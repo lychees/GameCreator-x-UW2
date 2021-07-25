@@ -146,8 +146,8 @@ class ProjectClientScene extends ClientScene {
                 if (a1[x] == null) a1[x] = [];
             }
                 
-            for (let x=0;x<100;++x) {
-                for (let y=0;y<100;++y) {         
+            for (let x=0;x<h;++x) {
+                for (let y=0;y<w;++y) {         
                     
                     if (a[y][x] == null) {
                         a[y][x] = {
@@ -167,10 +167,12 @@ class ProjectClientScene extends ClientScene {
 
                     a[y][x].texID = 15;
 
-                    // 在在 a1 处理山的情况
-                    if (58 <= idx && idx <= 61 ) {
+                    // 在 a1 处理山的情况
+                    // 在 a1 处理港口的情况
+                    if (58 <= idx && idx <= 61 || 116 <= idx && idx <= 119) {
                         a[y][x].x = 32;
                         a[y][x].y = 48;
+
                         if (a1[y][x] == null) {
                             a1[y][x] = {
                                 'texID': 15,
@@ -180,6 +182,9 @@ class ProjectClientScene extends ClientScene {
                         }
                         a1[y][x].x = Roguelike.uw2_to_has[idx].x * 16;
                         a1[y][x].y = Roguelike.uw2_to_has[idx].y * 16;
+                        if (116 <= idx && idx <= 119) {
+                            a1[y][x].texID = 16;    
+                        }
                     } else {
 
                         if (Roguelike.uw2_to_has[idx] != null) {

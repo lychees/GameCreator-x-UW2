@@ -85,8 +85,8 @@ var ProjectClientScene = (function (_super) {
                 if (a1[x] == null)
                     a1[x] = [];
             }
-            for (var x = 0; x < 100; ++x) {
-                for (var y = 0; y < 100; ++y) {
+            for (var x = 0; x < h; ++x) {
+                for (var y = 0; y < w; ++y) {
                     if (a[y][x] == null) {
                         a[y][x] = {
                             'texID': 12,
@@ -99,7 +99,7 @@ var ProjectClientScene = (function (_super) {
                     a[y][x].x = 16 * (idx % 16);
                     a[y][x].y = 16 * (Math.floor(idx / 16));
                     a[y][x].texID = 15;
-                    if (58 <= idx && idx <= 61) {
+                    if (58 <= idx && idx <= 61 || 116 <= idx && idx <= 119) {
                         a[y][x].x = 32;
                         a[y][x].y = 48;
                         if (a1[y][x] == null) {
@@ -111,6 +111,9 @@ var ProjectClientScene = (function (_super) {
                         }
                         a1[y][x].x = Roguelike.uw2_to_has[idx].x * 16;
                         a1[y][x].y = Roguelike.uw2_to_has[idx].y * 16;
+                        if (116 <= idx && idx <= 119) {
+                            a1[y][x].texID = 16;
+                        }
                     }
                     else {
                         if (Roguelike.uw2_to_has[idx] != null) {
