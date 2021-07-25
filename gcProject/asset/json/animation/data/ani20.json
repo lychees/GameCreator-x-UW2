@@ -1,0 +1,603 @@
+{
+    "totalFrame": 11,
+    "imageSources": [
+        null,
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/C1.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/C2.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/C3.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/C4.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/C5.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/C6.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/C7.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/E1.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/E2.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/E3.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/E4.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/E5.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/E6.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/E7.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/D1.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/D2.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/D3.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/D4.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/D5.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/D6.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/D7.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/A1.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/A2.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/A3.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/A4.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/A5.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/A6.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/A7.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/B1.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/B2.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/B3.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/B4.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/B5.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/B6.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192,
+            "url": "asset/image/animation/skill/singing_1/B7.png"
+        }
+    ],
+    "layers": [
+        {
+            "name": "layer",
+            "type": 1,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 15,
+                    "blendModeType": 1
+                },
+                {
+                    "index": 10,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 21,
+                    "signalId": 0,
+                    "blendModeType": 1
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        },
+        {
+            "name": "layer1",
+            "type": 1,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 22,
+                    "blendModeType": 1
+                },
+                {
+                    "index": 10,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 28,
+                    "signalId": 0,
+                    "blendModeType": 1
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        },
+        {
+            "name": "目标层",
+            "type": 0,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        },
+        {
+            "name": "layer2",
+            "type": 1,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 0.5,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 1,
+                    "blendModeType": 1
+                },
+                {
+                    "index": 10,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 0.5,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 7,
+                    "blendModeType": 1,
+                    "signalId": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        },
+        {
+            "name": "layer3",
+            "type": 1,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 8,
+                    "blendModeType": 1
+                },
+                {
+                    "index": 10,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 14,
+                    "blendModeType": 1,
+                    "signalId": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        },
+        {
+            "name": "layer4",
+            "type": 1,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 29,
+                    "blendModeType": 0
+                },
+                {
+                    "index": 10,
+                    "horizontalReversal": false,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -96,
+                    "y": -124,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 192,
+                    "height": 192,
+                    "imageSource": 35,
+                    "blendModeType": 0,
+                    "signalId": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        },
+        {
+            "name": "音效层",
+            "type": 3,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false,
+            "audioInfo": {
+                "url": "asset/audio/se/battle/Skill_2.mp3,1,1",
+                "volume": 1,
+                "pitch": 1
+            }
+        },
+        {
+            "name": "音效层",
+            "type": 3,
+            "children": [],
+            "frames": [
+                {
+                    "index": 2
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false,
+            "audioInfo": {
+                "url": "asset/audio/se/battle/Skill_2.mp3,1,1",
+                "volume": 1,
+                "pitch": 1
+            }
+        },
+        {
+            "name": "音效层",
+            "type": 3,
+            "children": [],
+            "frames": [
+                {
+                    "index": 5
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false,
+            "audioInfo": {
+                "url": "asset/audio/se/battle/Skill_2.mp3,1,1",
+                "volume": 1,
+                "pitch": 1
+            }
+        }
+    ],
+    "isParticle": false,
+    "id": 20,
+    "particleData": null
+}

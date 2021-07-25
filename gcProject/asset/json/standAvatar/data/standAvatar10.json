@@ -1,0 +1,49 @@
+{
+    "picUrls": [
+        "asset/image/avatar/character/HAS Hero Pack/Castle/Female/Icons/CastleIconFemale_6.png"
+    ],
+    "oriMode": 1,
+    "autoFlip": true,
+    "refObjs": {},
+    "parts": [
+        {
+            "id": 0,
+            "showOnEditor": true,
+            "mouseEventEnabledInEditor": true
+        }
+    ],
+    "actionListArr": [
+        {
+            "id": 1,
+            "frameImageInfo": [
+                [
+                    {
+                        "picUrlIndex": 0,
+                        "rect": [
+                            0,
+                            0,
+                            16,
+                            16
+                        ],
+                        "x": -8,
+                        "y": -16,
+                        "width": 16,
+                        "height": 16,
+                        "rotation": 0,
+                        "alpha": 1,
+                        "hue": 0,
+                        "blur": 0,
+                        "tonal_r": 0,
+                        "tonal_g": 0,
+                        "tonal_b": 0,
+                        "tonal_gray": 0,
+                        "tonal_mr": 1,
+                        "tonal_mg": 1,
+                        "tonal_mb": 1
+                    }
+                ]
+            ]
+        }
+    ],
+    "id": 10
+}

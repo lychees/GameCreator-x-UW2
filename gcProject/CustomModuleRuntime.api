@@ -1,0 +1,175 @@
+/**
+ * #1
+ */
+class Module_角色 {
+    id:number;
+    name:string;
+    face: string; // = ""; 头像
+    class: number; // = 1; 职业
+    growUpEnabled: boolean; // = false; 可成长角色
+    battleScene: boolean; // = false; 战斗画面设定
+    battleAvatar: number; // = 1; 战斗行走图
+    counterattack: boolean; // = false; 受到近战攻击时反击
+    dropEnabled: boolean; // = false; 死亡后掉落设定
+    avatar: number; // = 0; 行走图
+    MaxHP: number; // = 100; 生命值
+    MaxSP: number; // = 100; 魔法值
+    POW: number; // = 10; 力量
+    END: number; // = 5; 耐力
+    MAG: number; // = 0; 魔力
+    AGI: number; // = 0; 敏捷
+    MaxHPGrow: string; // = ""; 生命值
+    MaxSPGrow: string; // = ""; 魔法值
+    POWGrow: string; // = ""; 力量
+    ENDGrow: string; // = ""; 耐力
+    MAGGrow: string; // = ""; 魔力
+    AGIGrow: string; // = ""; 敏捷
+    MaxLv: number; // = 100; 最大等级
+    needEXPGrow: string; // = ""; 经验值设定
+    MoveGrid: number; // = 5; 移动力
+    MagDef: number; // = 0; 魔法防御力
+    HIT: number; // = 100; 命中率
+    skills: Module_技能[]; // = [];
+    equips: Module_装备[]; // = [];
+    items: Module_道具[]; // = [];
+    aiType: number; // = 0; 行动类别
+    aiVigilance: boolean; // = false; 警戒
+    aiVigilanceRange: number; // = 10; 警戒范围
+    aiGetTargetMode: number; // = 0; 获取目标的方式
+    aiAtkSetting: number[]; // = [];
+    dropGold: number; // = 0; 掉落金币
+    dropExp: number; // = 0; 掉落经验值
+    dropEquips: DataStructure_dropEquip[]; // = [];
+    dropItems: DataStructure_dropItem[]; // = [];
+    currentEXP: number; // = 0; 当前经验值
+    increaseMaxHP: number; // = 0; 增加的最大生命值
+    increaseMaxSP: number; // = 0; 增加的最大魔法值
+    increasePow: number; // = 0; 增加的力量
+    increaseEnd: number; // = 0; 增加的耐力
+    increaseMag: number; // = 0; 增加的魔力
+    increaseAgi: number; // = 0; 增加的敏捷
+    status: Module_状态[]; // = [];
+    ATK: number; // = 0; 攻击力
+    DEF: number; // = 0; 防御力
+    DOD: number; // = 0; 躲避率
+}
+/**
+ * #2
+ */
+class Module_职业 {
+    id:number;
+    name:string;
+    validityArr: DataStructure_classValidity[]; // = [];
+    lvUpAutoGetSkills: DataStructure_levelUpLearnSkill[]; // = [];
+    canWearEquips: number[]; // = [];
+}
+/**
+ * #3
+ */
+class Module_技能 {
+    id:number;
+    name:string;
+    icon: string; // = "";
+    info: string; // = "";  
+    skillType: number; // = 0; 技能类别
+    targetType: number; // = 2; 目标类别
+    effectRange: number; // = 0; 作用范围
+    releaseRange: number; // = 0; 释放范围
+    coolingTime: number; // = 1; 冷却时间
+    hit: number; // = 100; 命中率
+    costSP: number; // = 0; 消耗魔法值
+    useDamage: boolean; // = false; 计算伤害
+    bulletSpeed: number; // = 0; 弹幕速度
+    弹幕动画对象: number; // = 0;
+    damageType: number; // = 0; 伤害类型
+    damageValue: number; // = 0; 数值
+    additionMultiple: number; // = 100; 属性加成值
+    useAddition: boolean; // = false; 属性加成
+    additionMultiple1: number; // = 0; 加成类别
+    releaseAnimation: number; // = 0; 释放动画
+    hitAnimation: number; // = 0; 击中目标的动画
+    mulReleaseAnimation: boolean; // = false; 不同方位显示不同的动画
+    releaseEvent: string; // = ""; 释放动画
+    hitEvent: string; // = ""; 击中目标时事件
+    addStatus: number[]; // = [];
+    removeStatus: number[]; // = [];
+}
+/**
+ * #4
+ */
+class Module_装备 {
+    id:number;
+    name:string;
+    icon: string; // = "";
+    info: string; // = "";  
+    skillType: number; // = 0; 商店售价
+    partID: number; // = 0; 部位
+    maxHP: number; // = 100;
+    maxSP: number; // = 100;
+    atk: number; // = 100; 攻击力
+    def: number; // = 100; 防御力
+    mag: number; // = 100; 魔力
+    magDef: number; // = 100; 魔法防御力
+    hit: number; // = 0; 命中率修正
+    agi: number; // = 0; 躲避率修正
+    moveGrid: number; // = 100; 移动力
+    selfStatus: number[]; // = [];
+    selfImmuneStatus: number[]; // = [];
+    hitTargetStatus: number[]; // = [];
+    hitTargetStatus1: number[]; // = [];
+}
+/**
+ * #5
+ */
+class Module_道具 {
+    id:number;
+    name:string;
+    icon: string; // = ""; 图标
+    intro: string; // = "";
+    sell: number; // = 0; 商店售价
+    isUse: boolean; // = false; 可使用
+    isConsumables: boolean; // = false; 消耗品
+    callEvent: string; // = ""; 使用后执行的事件
+    releaseAnimation: number; // = 0; 释放动画
+    recoveryHP: number; // = 0; 恢复生命值
+    recoverySP: number; // = 0; 恢复魔法值
+    se: string; // = ""; 在背包使用时音效
+    addStatus: number[]; // = [];
+    removeStatus: number[]; // = [];
+}
+/**
+ * #6
+ */
+class Module_状态 {
+    id:number;
+    name:string;
+    icon: string; // = ""; 图标
+    intro: string; // = "";
+    duration: number; // = 1; 持续回合
+    overtime: boolean; // = false; DOT/HOT
+    hit: number; // = 1; 命中率
+    cantMove: boolean; // = false; 无法移动
+    cantAtk: boolean; // = false; 无法攻击
+    cantUseSkill: boolean; // = false; 无法使用技能
+    cantAutoPlay: boolean; // = false; 禁止播放动作
+    cantChangeOri: boolean; // = false; 禁止更改面向
+    removeWhenInjured: boolean; // = false; 受伤时解除
+    turnInterval: number; // = 1; 回合间隔
+    damageType: number; // = 0; 伤害类别
+    damage: number; // = 0; 数值
+    additionMultiple: number; // = 100; 属性加成值
+    useAddition: boolean; // = false; 属性加成
+    additionMultiple1: number; // = 0; 加成类别
+    whenOvertimeEvent: string; // = ""; 执行的事件
+    whenAddEvent: string; // = ""; 拥有该状态时处理
+    whenRemoveEvent: string; // = ""; 解除该状态时处理
+    maxHP: number; // = 100;
+    maxSP: number; // = 100;
+    atk: number; // = 100; 攻击力
+    def: number; // = 100; 防御力
+    mag: number; // = 100; 魔力
+    magDef: number; // = 100; 魔法防御力
+    hit1: number; // = 0; 命中率修正
+    agi: number; // = 0; 躲避率修正
+    moveGrid: number; // = 100; 移动力
+}

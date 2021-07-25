@@ -1,0 +1,200 @@
+{
+    "totalFrame": 10,
+    "imageSources": [
+        null,
+        {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "url": "asset/image/animation/skill/sword_3_hit/1.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "url": "asset/image/animation/skill/sword_3_hit/2.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "url": "asset/image/animation/skill/sword_3_hit/3.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "url": "asset/image/animation/skill/sword_3_hit/4.png"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "url": "asset/image/animation/skill/sword_3_hit/5.png"
+        }
+    ],
+    "layers": [
+        {
+            "name": "目标层",
+            "type": 0,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 255,
+                    "tonal_g": 189,
+                    "tonal_b": 255,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1
+                },
+                {
+                    "index": 2,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 153,
+                    "tonal_g": -255,
+                    "tonal_b": -78.03,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1
+                },
+                {
+                    "index": 5,
+                    "hue": 0,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "signalId": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        },
+        {
+            "name": "layer",
+            "type": 1,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "horizontalReversal": false,
+                    "hue": -180,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -48,
+                    "y": -75,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 96,
+                    "height": 96,
+                    "imageSource": 1
+                },
+                {
+                    "index": 7,
+                    "horizontalReversal": false,
+                    "hue": -180,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -48,
+                    "y": -75,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 96,
+                    "height": 96,
+                    "imageSource": 4
+                },
+                {
+                    "index": 9,
+                    "horizontalReversal": false,
+                    "hue": -180,
+                    "blur": 0,
+                    "tonal_r": 0,
+                    "tonal_g": 0,
+                    "tonal_b": 0,
+                    "tonal_gray": 0,
+                    "tonal_mr": 1,
+                    "tonal_mg": 1,
+                    "tonal_mb": 1,
+                    "x": -48,
+                    "y": -75,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "width": 96,
+                    "height": 96,
+                    "imageSource": 5,
+                    "signalId": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        },
+        {
+            "name": "音效层",
+            "type": 3,
+            "children": [],
+            "frames": [
+                {
+                    "index": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false,
+            "audioInfo": {
+                "url": "asset/audio/se/battle/Skill_7.mp3,1,1.5",
+                "volume": 1,
+                "pitch": 1.5
+            }
+        }
+    ],
+    "isParticle": false,
+    "id": 34,
+    "particleData": null
+}

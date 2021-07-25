@@ -1,0 +1,352 @@
+{
+    "list": [
+        null,
+        "草丛1",
+        "草地1",
+        "草地2",
+        "草地3",
+        "草地4",
+        "岩石1",
+        "岩石2",
+        "树丛1",
+        "砖石地板1",
+        "砖石地板2",
+        "砖石地板3",
+        "砖石地板4",
+        "砖石地板5",
+        "木质地板1",
+        "木质地板2",
+        "砖石天花1",
+        "砖石天花2",
+        "砖石天花3",
+        "砖石天花4",
+        "城墙1",
+        "木质天花1",
+        "木质天花2",
+        "木质天花3",
+        "木质天花4",
+        "木质天花5",
+        "木质天花6",
+        "砖石地板6",
+        "河1",
+        "河2",
+        "河3",
+        "河4",
+        "河5",
+        "河6",
+        "森林",
+        "沙漠森林",
+        "山脉",
+        "平原山脉",
+        "沙漠山脉",
+        "雪地山脉",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "data": {
+        "1": {
+            "url": "asset/image/tile/autotiles/surface/Grass_1.png",
+            "dataLayers": [
+                0,
+                null,
+                0
+            ],
+            "GCATMode": 0,
+            "id": 1
+        },
+        "2": {
+            "url": "asset/image/tile/autotiles/surface/Grassland_1.png",
+            "dataLayers": [
+                0
+            ],
+            "GCATMode": 0,
+            "id": 2
+        },
+        "3": {
+            "url": "asset/image/tile/autotiles/surface/Grassland_2.png",
+            "dataLayers": [
+                0
+            ],
+            "GCATMode": 0,
+            "id": 3
+        },
+        "4": {
+            "url": "asset/image/tile/autotiles/surface/Grassland_3.png",
+            "dataLayers": [
+                0
+            ],
+            "GCATMode": 0,
+            "id": 4
+        },
+        "5": {
+            "url": "asset/image/tile/autotiles/surface/Grassland_4.png",
+            "dataLayers": [
+                0,
+                0
+            ],
+            "GCATMode": 0,
+            "id": 5
+        },
+        "6": {
+            "url": "asset/image/tile/autotiles/surface/Rock_1.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 6
+        },
+        "7": {
+            "url": "asset/image/tile/autotiles/surface/Rock_2.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 7
+        },
+        "8": {
+            "url": "asset/image/tile/autotiles/surface/Trees_1.png",
+            "dataLayers": [
+                0,
+                0,
+                0
+            ],
+            "GCATMode": 0,
+            "id": 8
+        },
+        "9": {
+            "url": "asset/image/tile/autotiles/floor/MasonryFloor_1.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 9
+        },
+        "10": {
+            "url": "asset/image/tile/autotiles/floor/MasonryFloor_2.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 10
+        },
+        "11": {
+            "url": "asset/image/tile/autotiles/floor/MasonryFloor_3.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 11
+        },
+        "12": {
+            "url": "asset/image/tile/autotiles/floor/MasonryFloor_4.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 12
+        },
+        "13": {
+            "url": "asset/image/tile/autotiles/floor/MasonryFloor_5.png",
+            "dataLayers": [
+                null,
+                null,
+                0
+            ],
+            "GCATMode": 0,
+            "id": 13
+        },
+        "14": {
+            "url": "asset/image/tile/autotiles/floor/WoodenFloor_1.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 14
+        },
+        "15": {
+            "url": "asset/image/tile/autotiles/floor/WoodenFloor_2.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 15
+        },
+        "16": {
+            "url": "asset/image/tile/autotiles/ceiling/MasonryCeiling_1.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 16
+        },
+        "17": {
+            "url": "asset/image/tile/autotiles/ceiling/MasonryCeiling_2.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 17
+        },
+        "18": {
+            "url": "asset/image/tile/autotiles/ceiling/MasonryCeiling_3.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 18
+        },
+        "19": {
+            "url": "asset/image/tile/autotiles/ceiling/MasonryCeiling_4.png",
+            "dataLayers": [
+                0
+            ],
+            "GCATMode": 0,
+            "id": 19
+        },
+        "20": {
+            "url": "asset/image/tile/autotiles/ceiling/Wall_1.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 20
+        },
+        "21": {
+            "url": "asset/image/tile/autotiles/ceiling/WoodenCeiling_1.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 21
+        },
+        "22": {
+            "url": "asset/image/tile/autotiles/ceiling/WoodenCeiling_2.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 22
+        },
+        "23": {
+            "url": "asset/image/tile/autotiles/ceiling/WoodenCeiling_3.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 23
+        },
+        "24": {
+            "url": "asset/image/tile/autotiles/ceiling/WoodenCeiling_4.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 24
+        },
+        "25": {
+            "url": "asset/image/tile/autotiles/ceiling/WoodenCeiling_5.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 25
+        },
+        "26": {
+            "url": "asset/image/tile/autotiles/ceiling/WoodenCeiling_6.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 26
+        },
+        "27": {
+            "url": "asset/image/tile/autotiles/floor/MasonryFloor_6.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 27
+        },
+        "28": {
+            "url": "asset/image/tile/autotiles/river/River_1.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 28
+        },
+        "29": {
+            "url": "asset/image/tile/autotiles/river/River_2.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 29
+        },
+        "30": {
+            "url": "asset/image/tile/autotiles/river/River_3.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 30
+        },
+        "31": {
+            "url": "asset/image/tile/autotiles/river/River_4.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 31
+        },
+        "32": {
+            "url": "asset/image/tile/autotiles/river/River_5.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 32
+        },
+        "33": {
+            "url": "asset/image/tile/autotiles/river/River_6.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 33
+        },
+        "34": {
+            "url": "asset/image/tile/autotiles/worldmap/Forest.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 34
+        },
+        "35": {
+            "url": "asset/image/tile/autotiles/worldmap/DesertForest.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 35
+        },
+        "36": {
+            "url": "asset/image/tile/autotiles/worldmap/Mountain.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 36
+        },
+        "37": {
+            "url": "asset/image/tile/autotiles/worldmap/PlainMountain.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 37
+        },
+        "38": {
+            "url": "asset/image/tile/autotiles/worldmap/DesertMountain.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 38
+        },
+        "39": {
+            "url": "asset/image/tile/autotiles/worldmap/SnowMountain.png",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 39
+        },
+        "40": {
+            "url": "",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 40
+        },
+        "41": {
+            "url": "",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 41
+        },
+        "42": {
+            "url": "",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 42
+        },
+        "43": {
+            "url": "",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 43
+        },
+        "44": {
+            "url": "",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 44
+        },
+        "45": {
+            "url": "",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 45
+        },
+        "46": {
+            "url": "",
+            "dataLayers": [],
+            "GCATMode": 0,
+            "id": 46
+        }
+    }
+}
