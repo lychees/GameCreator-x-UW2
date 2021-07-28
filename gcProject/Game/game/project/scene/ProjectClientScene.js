@@ -144,7 +144,7 @@ var ProjectClientScene = (function (_super) {
                     }
                 }
             }
-            var parser = new Roguelike.uw2_tiles_texture_manager();
+            var parser = new Roguelike.HAS_tiles_texture_manager();
             parser.parse_from_01_matrix(this, g);
         }
     };
