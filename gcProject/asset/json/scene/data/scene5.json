@@ -570,8 +570,8 @@
                         "y": 0
                     },
                     {
-                        "texID": 1,
-                        "x": 48,
+                        "texID": 12,
+                        "x": 0,
                         "y": 0
                     },
                     {
@@ -100444,6 +100444,7 @@
             "showOnEditor": true,
             "tileTexIDs": {
                 "1": true,
+                "12": true,
                 "15": true
             }
         },

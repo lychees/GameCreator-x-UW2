@@ -134,6 +134,9 @@ class ProjectClientScene extends ClientScene {
             let a1 = this.LayerDatas[1].tileData;
             let w = this.gridWidth;
             let h = this.gridHeight;
+
+            w = 100;
+            h = 100;
             
 
             let oy = 820;
@@ -145,9 +148,26 @@ class ProjectClientScene extends ClientScene {
                 if (a[x] == null) a[x] = [];
                 if (a1[x] == null) a1[x] = [];
             }
-                
+            
+            let g = [];
             for (let x=0;x<h;++x) {
-                for (let y=0;y<w;++y) {         
+                g.push([]);
+                for (let y=0;y<w;++y) {
+                    g[x].push(0);
+                }
+            }
+
+            for (let x=0;x<h;++x) {                
+                for (let y=0;y<w;++y) {                        
+                    let height = Roguelike.fantasy_map[x*100+y];
+                    if (height <= 21) {
+                        g[y][x] = 0;
+                    } else {
+                        g[y][x] = 1;                        
+                    }
+                    continue;
+                        
+
                     
                     if (a[y][x] == null) {
                         a[y][x] = {
@@ -199,6 +219,10 @@ class ProjectClientScene extends ClientScene {
 
                 }
             }
+
+
+            let parser = new Roguelike.uw2_tiles_texture_manager();
+            parser.parse_from_01_matrix(this, g);
         }
     }
     /**

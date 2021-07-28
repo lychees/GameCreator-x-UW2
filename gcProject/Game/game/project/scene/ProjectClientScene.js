@@ -77,6 +77,8 @@ var ProjectClientScene = (function (_super) {
             var a1 = this.LayerDatas[1].tileData;
             var w = this.gridWidth;
             var h = this.gridHeight;
+            w = 100;
+            h = 100;
             var oy = 820;
             var ox = 348;
             for (var x = 0; x < w; ++x) {
@@ -85,8 +87,23 @@ var ProjectClientScene = (function (_super) {
                 if (a1[x] == null)
                     a1[x] = [];
             }
+            var g = [];
+            for (var x = 0; x < h; ++x) {
+                g.push([]);
+                for (var y = 0; y < w; ++y) {
+                    g[x].push(0);
+                }
+            }
             for (var x = 0; x < h; ++x) {
                 for (var y = 0; y < w; ++y) {
+                    var height = Roguelike.fantasy_map[x * 100 + y];
+                    if (height <= 21) {
+                        g[y][x] = 0;
+                    }
+                    else {
+                        g[y][x] = 1;
+                    }
+                    continue;
                     if (a[y][x] == null) {
                         a[y][x] = {
                             'texID': 12,
@@ -127,6 +144,8 @@ var ProjectClientScene = (function (_super) {
                     }
                 }
             }
+            var parser = new Roguelike.uw2_tiles_texture_manager();
+            parser.parse_from_01_matrix(this, g);
         }
     };
     ProjectClientScene.prototype.onRender = function () {
