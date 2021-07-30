@@ -16,6 +16,7 @@ var MouseControl = (function () {
         }
         sceneLayer.on(EventObject.MOUSE_DOWN, this, MouseControl.onSceneMouseDown);
         sceneLayer.on(EventObject.MOUSE_MOVE, this, MouseControl.onSceneMouseMove);
+        sceneLayer.on(EventObject.MOUSE_WHEEL, this, MouseControl.onSceneMouseWheel);
     };
     MouseControl.stop = function () {
         if (MouseControl.selectSceneObject)
@@ -26,6 +27,7 @@ var MouseControl = (function () {
         }
         sceneLayer.off(EventObject.MOUSE_DOWN, this, MouseControl.onSceneMouseDown);
         sceneLayer.off(EventObject.MOUSE_MOVE, this, MouseControl.onSceneMouseMove);
+        sceneLayer.off(EventObject.MOUSE_WHEEL, this, MouseControl.onSceneMouseWheel);
     };
     MouseControl.updateSelectSceneObject = function () {
         if (!Game.currentScene || Game.currentScene == ClientScene.EMPTY)
@@ -72,6 +74,16 @@ var MouseControl = (function () {
             return;
         if (this.selectSceneObject && this.selectSceneObject.inScene) {
             Controller.moveToNearTargetSceneObjectAndTriggerClickEvent(this.selectSceneObject);
+        }
+    };
+    MouseControl.onSceneMouseWheel = function (e) {
+        if (e.delta > 0) {
+            Game.currentScene.camera.scaleX += 0.05;
+            Game.currentScene.camera.scaleY += 0.05;
+        }
+        else if (e.delta < 0) {
+            Game.currentScene.camera.scaleX -= 0.05;
+            Game.currentScene.camera.scaleY -= 0.05;
         }
     };
     MouseControl.onSceneMouseMove = function () {

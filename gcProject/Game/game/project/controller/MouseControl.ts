@@ -44,6 +44,7 @@ class MouseControl {
         // 操作事件
         sceneLayer.on(EventObject.MOUSE_DOWN, this, MouseControl.onSceneMouseDown);
         sceneLayer.on(EventObject.MOUSE_MOVE, this, MouseControl.onSceneMouseMove);
+        sceneLayer.on(EventObject.MOUSE_WHEEL, this, MouseControl.onSceneMouseWheel);
     }
     /**
      * 关闭控制器 
@@ -57,6 +58,7 @@ class MouseControl {
         // 场景对象
         sceneLayer.off(EventObject.MOUSE_DOWN, this, MouseControl.onSceneMouseDown);
         sceneLayer.off(EventObject.MOUSE_MOVE, this, MouseControl.onSceneMouseMove);
+        sceneLayer.off(EventObject.MOUSE_WHEEL, this, MouseControl.onSceneMouseWheel);
     }
     //------------------------------------------------------------------------------------------------------
     // 选中效果
@@ -126,6 +128,28 @@ class MouseControl {
             Controller.moveToNearTargetSceneObjectAndTriggerClickEvent(this.selectSceneObject);
         }
     }
+    /**
+     * 鼠标滚轮的场合
+     * @param e 
+     */
+     private static onSceneMouseWheel(e: EventObject): void {
+         /*
+        // 刷新选中效果
+        this.updateSelectSceneObject();
+        // 当无法控制时忽略
+        if (!Controller.inSceneEnabled) return;
+        // 选中对象时：移动至其附近并执行点击事件
+        if (this.selectSceneObject && this.selectSceneObject.inScene) {
+            Controller.moveToNearTargetSceneObjectAndTriggerClickEvent(this.selectSceneObject);
+        }*/
+        if (e.delta > 0) {
+            Game.currentScene.camera.scaleX += 0.05;
+            Game.currentScene.camera.scaleY += 0.05;
+        } else if (e.delta < 0) {
+            Game.currentScene.camera.scaleX -= 0.05;
+            Game.currentScene.camera.scaleY -= 0.05;
+        }
+    }    
     /**
      * 鼠标在场景中移动的场合
      */
