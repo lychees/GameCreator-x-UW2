@@ -76,8 +76,8 @@ var ProjectClientScene = (function (_super) {
             var a1 = this.LayerDatas[1].tileData;
             var w = this.gridWidth;
             var h = this.gridHeight;
-            w = 100;
-            h = 100;
+            w = 720;
+            h = 540;
             var oy = 820;
             var ox = 348;
             for (var x = 0; x < w; ++x) {
@@ -95,14 +95,6 @@ var ProjectClientScene = (function (_super) {
             }
             for (var x = 0; x < h; ++x) {
                 for (var y = 0; y < w; ++y) {
-                    var height = Roguelike.fantasy_map[x * 100 + y];
-                    if (height <= 21) {
-                        g[y][x] = 0;
-                    }
-                    else {
-                        g[y][x] = 1;
-                    }
-                    continue;
                     if (a[y][x] == null) {
                         a[y][x] = {
                             'texID': 12,
@@ -114,42 +106,6 @@ var ProjectClientScene = (function (_super) {
                     a[y][x].texID = 12;
                     a[y][x].x = 16 * (idx % 16);
                     a[y][x].y = 16 * (Math.floor(idx / 16));
-                    a[y][x].texID = 15;
-                    if (58 <= idx && idx <= 61 || 116 <= idx && idx <= 119) {
-                        a[y][x].x = 32;
-                        a[y][x].y = 48;
-                        if (a1[y][x] == null) {
-                            a1[y][x] = {
-                                'texID': 15,
-                                'x': 0,
-                                'y': 0,
-                            };
-                        }
-                        a1[y][x].x = Roguelike.uw2_to_has[idx].x * 16;
-                        a1[y][x].y = Roguelike.uw2_to_has[idx].y * 16;
-                        if (116 <= idx && idx <= 119) {
-                            a1[y][x].texID = 16;
-                        }
-                    }
-                    else {
-                        if (Roguelike.uw2_to_has[idx] != null) {
-                            a[y][x].x = Roguelike.uw2_to_has[idx].x * 16;
-                            a[y][x].y = Roguelike.uw2_to_has[idx].y * 16;
-                        }
-                        else {
-                            a[y][x].x = 32;
-                            a[y][x].y = 48;
-                        }
-                    }
-                }
-            }
-            var parser = new Roguelike.RMVA_tiles_texture_manager();
-            parser.parse_from_01_matrix(this, g);
-            for (var x = 20; x < w - 1; ++x) {
-                for (var y = 20; y < h - 1; ++y) {
-                    if (g[x][y] == 1) {
-                        return;
-                    }
                 }
             }
         }

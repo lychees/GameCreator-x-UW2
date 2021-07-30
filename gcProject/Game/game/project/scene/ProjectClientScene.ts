@@ -135,8 +135,8 @@ class ProjectClientScene extends ClientScene {
             let w = this.gridWidth;
             let h = this.gridHeight;
 
-            w = 100;
-            h = 100;
+            w = 720; //3 * 30 * 12 * 2;
+            h = 540; //1 * 45 * 12 * 2;
             
 
             let oy = 820;
@@ -157,6 +157,15 @@ class ProjectClientScene extends ClientScene {
                 }
             }
 
+            /*
+            for (let x=0;x<h;++x) {                
+                for (let y=0;y<w;++y) {   
+                    let idx = Roguelike.world_map[(ox+x)*Roguelike.WORLD_MAP_COLUMNS+oy+y] - 1;
+                    g[y][x] = (idx == 65 || 58 <= idx && idx <= 61 || 116 <= idx && idx <= 119);
+                }
+            } */
+
+            /*
             for (let x=0;x<h;++x) {                
                 for (let y=0;y<w;++y) {                        
                     let height = Roguelike.fantasy_map[x*100+y];
@@ -165,9 +174,14 @@ class ProjectClientScene extends ClientScene {
                     } else {
                         g[y][x] = 1;                        
                     }
-                    continue;
-                        
+                }
+            }
+            let parser = new Roguelike.RMVA_tiles_texture_manager();
+            parser.parse_from_01_matrix(this, g);*/
 
+            
+            for (let x=0;x<h;++x) {                
+                for (let y=0;y<w;++y) {                        
                     
                     if (a[y][x] == null) {
                         a[y][x] = {
@@ -184,7 +198,8 @@ class ProjectClientScene extends ClientScene {
                     a[y][x].x = 16*(idx%16);
                     a[y][x].y = 16*(Math.floor(idx/16));
 
-
+                    /*
+                    // 映射到 has 地块
                     a[y][x].texID = 15;
 
                     // 在 a1 处理山的情况
@@ -216,22 +231,10 @@ class ProjectClientScene extends ClientScene {
                             a[y][x].y = 48;
                         }
                     }
+                    */
 
                 }
-            }
-
-
-            let parser = new Roguelike.RMVA_tiles_texture_manager();
-            parser.parse_from_01_matrix(this, g);
-            
-            for (let x=20;x<w-1;++x) {
-                for (let y=20;y<h-1;++y) {
-                    if (g[x][y] == 1) {
-                        // Game.player.toScene(5, x*32 + y*32);
-                        return;
-                    }                                  
-                }
-            }
+            } 
         }
     }
     /**

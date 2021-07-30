@@ -49,6 +49,17 @@ var KeyboardControl = (function () {
                 }
                 return;
             }
+            else {
+                var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+                var x = p.x + 820;
+                var y = p.y + 348;
+                console.log(x, '-', y);
+                for (var i = 0; i < 130; ++i) {
+                    if (Math.abs(x - hash_ports_meta_data[i + 1].x) < 4 && Math.abs(y - hash_ports_meta_data[i + 1].y) < 4) {
+                        alert("你发现了 " + hash_ports_meta_data[i + 1].name);
+                    }
+                }
+            }
         }
         if (Controller.inSceneEnabled) {
             this.dirKeyDownTrue(e.keyCode, true);

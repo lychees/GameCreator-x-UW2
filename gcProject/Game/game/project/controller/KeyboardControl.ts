@@ -125,7 +125,7 @@ class KeyboardControl {
      * 当键盘按下时
      * @param e 
      */
-    private static onKeyDown(e: EventObject) {
+    private static onKeyDown(e: EventObject) {        
         // 跳过对话
         if (GUI_Setting.IS_KEY(e.keyCode, GUI_Setting.KEY_BOARD.A)) {
             if (GameDialog.isInDialog) {
@@ -136,7 +136,24 @@ class KeyboardControl {
                     Callback.CallLaterBeforeRender(GameDialog.skip, GameDialog)
                 }
                 return;
-            }
+            } else {
+
+                let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+
+                //let x = Game.player.data.sceneObject.x;
+                //let y = Game.player.data.sceneObject.y;
+                
+                let x = p.x + 820;
+                let y = p.y + 348;
+                
+                console.log(x, '-', y);
+                for (let i=0;i<130;++i) {
+                    if (Math.abs(x - hash_ports_meta_data[i+1].x) < 4 && Math.abs(y - hash_ports_meta_data[i+1].y) < 4) {
+                        alert("你发现了 " + hash_ports_meta_data[i+1].name);
+                    }
+                }
+            }    
+            
         }
         // 当允许场景控制时
         if (Controller.inSceneEnabled) {
