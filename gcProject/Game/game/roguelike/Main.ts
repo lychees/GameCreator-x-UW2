@@ -115,13 +115,15 @@ namespace Roguelike{
     };
 
     export function command_line(cmd: string) {
-        alert(cmd);
         if (cmd == "+") {
             Game.currentScene.camera.scaleX += 0.1;
             Game.currentScene.camera.scaleY += 0.1;
         } else if (cmd == "-") {
             Game.currentScene.camera.scaleX -= 0.1;
             Game.currentScene.camera.scaleY -= 0.1;
+        } else if (cmd[0] == 't') {
+            let a = cmd.split(' ');
+            Game.player.toScene(a[1],a[2],a[3]);
         }
     }
 }

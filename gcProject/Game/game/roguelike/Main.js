@@ -72,7 +72,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
@@ -87,7 +87,6 @@ var Roguelike;
         }
     };
     function command_line(cmd) {
-        alert(cmd);
         if (cmd == "+") {
             Game.currentScene.camera.scaleX += 0.1;
             Game.currentScene.camera.scaleY += 0.1;
@@ -95,6 +94,10 @@ var Roguelike;
         else if (cmd == "-") {
             Game.currentScene.camera.scaleX -= 0.1;
             Game.currentScene.camera.scaleY -= 0.1;
+        }
+        else if (cmd[0] == 't') {
+            var a = cmd.split(' ');
+            Game.player.toScene(a[1], a[2], a[3]);
         }
     }
     Roguelike.command_line = command_line;

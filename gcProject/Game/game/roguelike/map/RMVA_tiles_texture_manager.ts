@@ -299,37 +299,12 @@ namespace Roguelike {
             // 否则是黑屏
             for (let x=0;x<w;++x) {
                 for (let y=0;y<h;++y) {
-
                     if (g[x][y] == 1) {
                         Grass.fill(a, g, x, y);
+
                     } else {
                         Ocean.fill(a, g, x, y);
-                    }
-                    
-                    /*
-                    for (let ox=0;ox<2;++ox) 
-                        for (let oy=0;oy<2;++oy) {
-                            let xx = x+x+ox;
-                            let yy = y+y+oy;
-                        
-                            let i = 0;
-                            i *= 2; if (up) i += 1;
-                            i *= 2; if (dn) i += 1;
-                            i *= 2; if (lt) i += 1;
-                            i *= 2; if (rt) i += 1;                            
-                            i *= 2; if (g[x][y] == 1) i += 1; 
-
-                            
-
-                            a[xx][yy].x = this.Auto[i][ox][oy].x;
-                            a[xx][yy].y = this.Auto[i][ox][oy].y;
-                            a[xx][yy].texID = this.Auto[i][ox][oy].texID;
-
-                        }*/
-                        
-
-                
-                    
+                    }                                    
                 }
             }
 
@@ -339,7 +314,6 @@ namespace Roguelike {
                     a[x][y].y *= this.GRID_SIZE;
                 }
             }
-            
         }
     }
 

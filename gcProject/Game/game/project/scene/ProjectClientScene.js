@@ -145,6 +145,13 @@ var ProjectClientScene = (function (_super) {
             }
             var parser = new Roguelike.RMVA_tiles_texture_manager();
             parser.parse_from_01_matrix(this, g);
+            for (var x = 20; x < w - 1; ++x) {
+                for (var y = 20; y < h - 1; ++y) {
+                    if (g[x][y] == 1) {
+                        return;
+                    }
+                }
+            }
         }
     };
     ProjectClientScene.prototype.onRender = function () {

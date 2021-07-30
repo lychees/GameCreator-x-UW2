@@ -223,6 +223,15 @@ class ProjectClientScene extends ClientScene {
 
             let parser = new Roguelike.RMVA_tiles_texture_manager();
             parser.parse_from_01_matrix(this, g);
+            
+            for (let x=20;x<w-1;++x) {
+                for (let y=20;y<h-1;++y) {
+                    if (g[x][y] == 1) {
+                        // Game.player.toScene(5, x*32 + y*32);
+                        return;
+                    }                                  
+                }
+            }
         }
     }
     /**
