@@ -40,8 +40,8 @@
                 [
                     20,
                     "",
-                    "// 当前的事件触发器：trigger: CommandTrigger;\nalert(GameUI.get(26).input.text);",
-                    "alert(GameUI.get(26).input.text);\n",
+                    "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.command_line(GameUI.get(26).input.text);",
+                    "Roguelike.command_line(GameUI.get(26).input.text);\n",
                     {
                         "___cmdID": "70064768873_0.012540016938316967"
                     }

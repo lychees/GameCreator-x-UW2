@@ -86,5 +86,17 @@ var Roguelike;
             this.engine.start();
         }
     };
+    function command_line(cmd) {
+        alert(cmd);
+        if (cmd == "+") {
+            Game.currentScene.camera.scaleX += 0.1;
+            Game.currentScene.camera.scaleY += 0.1;
+        }
+        else if (cmd == "-") {
+            Game.currentScene.camera.scaleX -= 0.1;
+            Game.currentScene.camera.scaleY -= 0.1;
+        }
+    }
+    Roguelike.command_line = command_line;
 })(Roguelike || (Roguelike = {}));
 //# sourceMappingURL=Main.js.map

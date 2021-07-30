@@ -19,7 +19,7 @@ class WorldData {
     static gridObsDebug: boolean; // = false; 显示地图格子障碍
     static rectObsDebug: boolean; // = false; 显示对象碰撞盒
     static dragSceneObjectDebug: boolean; // = false; 鼠标左键拖拽对象
-    static zoomCameraDebug: boolean; // = false; 滚轮缩放镜头
+    static zoomCameraDebug: boolean; // = true; 滚轮缩放镜头
     static focusEnabled: boolean; // = false; 使用按钮焦点
     static hotKeyListEnabled: boolean; // = false; 允许按键操作列表
     static selectSE: string; // = ""; 光标

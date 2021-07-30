@@ -398,7 +398,27 @@
         null
     ],
     "customCommands": [
-        []
+        [
+            [
+                20,
+                "",
+                "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.firstblood = true;",
+                "Roguelike.firstblood = true;\n",
+                {
+                    "___cmdID": "70075120958_0.6969814652644217"
+                }
+            ],
+            [
+                21,
+                false,
+                5,
+                25,
+                28,
+                {
+                    "___cmdID": "70075120958_0.4382058064458647"
+                }
+            ]
+        ]
     ],
     "customAttributes": [
         null,
@@ -12246,27 +12266,7 @@
         {
             "condition": [],
             "customCommands": [
-                [
-                    [
-                        20,
-                        "",
-                        "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.firstblood = true;",
-                        "Roguelike.firstblood = true;\n",
-                        {
-                            "___cmdID": "69979415793_0.7522585523542185"
-                        }
-                    ],
-                    [
-                        21,
-                        false,
-                        5,
-                        25,
-                        28,
-                        {
-                            "___cmdID": "69620806745_0.019355579479685803"
-                        }
-                    ]
-                ],
+                [],
                 [],
                 [],
                 [],
