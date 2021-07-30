@@ -1032,16 +1032,23 @@ class ListItem_25 extends UIListItemData {
 }
 
 /**
- * 26- [BASE]
+ * 26-控制台 [BASE]
  */
 class GUI_26 extends GUI_BASE {
-
+   输入框阴影:UIBitmap;
+   输入框背景:UIBitmap;
+   提交按钮阴影:UIBitmap;
+   提交按钮:UIButton;
+   input:UIInput;
    constructor(){
       super(26);
    }
 }
 class ListItem_26 extends UIListItemData {
-
+   输入框阴影:string;
+   输入框背景:string;
+   提交按钮阴影:string;
+   input:string;
 }
 
 /**

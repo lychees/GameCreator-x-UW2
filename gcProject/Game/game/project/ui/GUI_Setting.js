@@ -80,7 +80,8 @@ var GUI_Setting = (function (_super) {
         "L1": { index: 22, name: "L1", keys: [Keyboard.Q, Keyboard.O] },
         "L2": { index: 23, name: "L2", keys: [Keyboard.R, Keyboard.U] },
         "R1": { index: 24, name: "R1", keys: [Keyboard.E, Keyboard.P] },
-        "R2": { index: 25, name: "R2", keys: [Keyboard.T, Keyboard.I] }
+        "R2": { index: 25, name: "R2", keys: [Keyboard.T, Keyboard.I] },
+        "Console": { index: 26, name: "控制台", keys: [Keyboard.M] }
     };
     GUI_Setting.KEY_BOARD_DEFAULT = ObjectUtils.depthClone(GUI_Setting.KEY_BOARD);
     return GUI_Setting;

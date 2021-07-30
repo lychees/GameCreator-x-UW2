@@ -37,7 +37,8 @@ class GUI_Setting extends GUI_6 {
         "L1": { index: 22, name: "L1", keys: [Keyboard.Q, Keyboard.O] },
         "L2": { index: 23, name: "L2", keys: [Keyboard.R, Keyboard.U] },
         "R1": { index: 24, name: "R1", keys: [Keyboard.E, Keyboard.P] },
-        "R2": { index: 25, name: "R2", keys: [Keyboard.T, Keyboard.I] }
+        "R2": { index: 25, name: "R2", keys: [Keyboard.T, Keyboard.I] },
+        "Console": { index: 26, name: "控制台", keys: [Keyboard.M] }
     }
     /**
      * 获取系统键位描述

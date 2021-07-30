@@ -171,6 +171,10 @@ var GameBattleController = (function () {
     GameBattleController.onKeyDown = function (e) {
         if (!GameBattle.playerControlEnabled || GameDialog.isInDialog)
             return;
+        if (GUI_Setting.IS_KEY(e.keyCode, GUI_Setting.KEY_BOARD.Console)) {
+            GameUI.show(26);
+            return;
+        }
         if (GUI_Setting.IS_KEY(e.keyCode, GUI_Setting.KEY_BOARD.B)) {
             this.onControllerBack();
         }

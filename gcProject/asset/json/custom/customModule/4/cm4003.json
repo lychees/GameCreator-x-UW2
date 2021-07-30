@@ -2,12 +2,12 @@
     "attrs": {
         "icon": {
             "varType": 1,
-            "value": "",
+            "value": "asset/image/_HAS/HAS IconPack (v.1.2)/IconPack 1.0/AllItems/Necklace/NecklaceOutline/NecklaceOutline 4.png",
             "copy": false
         },
         "intro": {
             "varType": 1,
-            "value": "",
+            "value": "海神项链。",
             "copy": false
         },
         "sell": {
@@ -27,7 +27,7 @@
         },
         "maxHP": {
             "varType": 0,
-            "value": 0,
+            "value": 1,
             "copy": false
         },
         "maxSP": {
@@ -37,37 +37,37 @@
         },
         "atk": {
             "varType": 0,
-            "value": 0,
+            "value": 10,
             "copy": false
         },
         "def": {
             "varType": 0,
-            "value": 0,
+            "value": 1,
             "copy": false
         },
         "mag": {
             "varType": 0,
-            "value": 0,
+            "value": 1,
             "copy": false
         },
         "magDef": {
             "varType": 0,
-            "value": 0,
+            "value": 1,
             "copy": false
         },
         "hit": {
             "varType": 0,
-            "value": 0,
+            "value": 1,
             "copy": false
         },
         "moveGrid": {
             "varType": 0,
-            "value": 0,
+            "value": 1,
             "copy": false
         },
         "agi": {
             "varType": 0,
-            "value": 0,
+            "value": 1,
             "copy": false
         },
         "crit": {

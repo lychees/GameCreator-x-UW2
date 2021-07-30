@@ -374,6 +374,13 @@ class GameBattleController {
     static onKeyDown(e: EventObject): void {
         // 非玩家自由行动阶段时不允许操作
         if (!GameBattle.playerControlEnabled || GameDialog.isInDialog) return;
+
+        // 打开控制台
+        if (GUI_Setting.IS_KEY(e.keyCode, GUI_Setting.KEY_BOARD.Console)) {
+            GameUI.show(26);
+            return;
+        }
+
         // 退出按键
         if (GUI_Setting.IS_KEY(e.keyCode, GUI_Setting.KEY_BOARD.B)) {
             this.onControllerBack();

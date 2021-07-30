@@ -127,7 +127,7 @@ class ProjectClientScene extends ClientScene {
      */    
     gen() {
         if (Roguelike.firstblood == false) {
-            Roguelike.firstblood = true;
+            
         } else {
 
             let a = this.LayerDatas[0].tileData;

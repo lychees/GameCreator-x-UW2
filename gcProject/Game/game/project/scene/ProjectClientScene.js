@@ -70,7 +70,6 @@ var ProjectClientScene = (function (_super) {
     };
     ProjectClientScene.prototype.gen = function () {
         if (Roguelike.firstblood == false) {
-            Roguelike.firstblood = true;
         }
         else {
             var a = this.LayerDatas[0].tileData;
