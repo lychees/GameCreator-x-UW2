@@ -122,120 +122,174 @@ class ProjectClientScene extends ClientScene {
         this.gen();
         this.sceneUtils = new SceneUtils(this);
     }
+
     /**
-     * 生成地图
-     */    
-    gen() {
-        if (Roguelike.firstblood == false) {
-            
-        } else {
+     * 生成地牢
+     */ 
+    gen_cave() {
+        let a = this.LayerDatas[0].tileData;
+        let a1 = this.LayerDatas[1].tileData;
+        let w = this.gridWidth;
+        let h = this.gridHeight;
+        
+        // Config.SCENE_GRID_SIZE = 16;
 
-            let a = this.LayerDatas[0].tileData;
-            let a1 = this.LayerDatas[1].tileData;
-            let w = this.gridWidth;
-            let h = this.gridHeight;
-
-            w = 720; //3 * 30 * 12 * 2;
-            h = 540; //1 * 45 * 12 * 2;
-            
-
-            let oy = 820;
-	        let ox = 348;
-            
-            // Config.SCENE_GRID_SIZE = 16;
-
-            for (let x=0;x<w;++x) {
-                if (a[x] == null) a[x] = [];
-                if (a1[x] == null) a1[x] = [];
+        for (let x=0;x<w;++x) {
+            if (a[x] == null) a[x] = [];
+            if (a1[x] == null) a1[x] = [];
+        }
+        
+        let g = [];
+        for (let x=0;x<w/2;++x) {
+            g.push([]);
+            for (let y=0;y<h/2;++y) {
+                g[x].push(0);
             }
-            
-            let g = [];
-            for (let x=0;x<h;++x) {
-                g.push([]);
-                for (let y=0;y<w;++y) {
-                    g[x].push(0);
+        }
+
+        let digger = new ROT.Map.Digger(w/2, h/2);            
+        let spaces = [];
+        let digCallback = function(x, y, v) {
+            if (v) {
+
+            } else {     
+                console.log(x+","+y);           
+                g[x][y] = 1;                
+                spaces.push(x+","+y);                
+            }
+        }
+        digger.create(digCallback.bind(this));
+
+        /* for (let x=0;x<w/2;++x) {                
+            for (let y=0;y<h/2;++y) { 
+                if (Math.random() < 0.5) g[x][y] = 1;
+            }
+        }  */
+
+        let parser = new Roguelike.RMVA_cave_tiles_texture_manager();
+        parser.parse_from_01_matrix(this, g);
+    }
+    /**
+     * 生成世界地图
+     */ 
+    gen_world_map() {
+        let a = this.LayerDatas[0].tileData;
+        let a1 = this.LayerDatas[1].tileData;
+        let w = this.gridWidth;
+        let h = this.gridHeight;
+
+        w = 720; //3 * 30 * 12 * 2;
+        h = 540; //1 * 45 * 12 * 2;
+        
+        let oy = 820;
+        let ox = 348;
+        
+        // Config.SCENE_GRID_SIZE = 16;
+
+        for (let x=0;x<w;++x) {
+            if (a[x] == null) a[x] = [];
+            if (a1[x] == null) a1[x] = [];
+        }
+        
+        let g = [];
+        for (let x=0;x<h;++x) {
+            g.push([]);
+            for (let y=0;y<w;++y) {
+                g[x].push(0);
+            }
+        }
+
+        /*
+        for (let x=0;x<h;++x) {                
+            for (let y=0;y<w;++y) {   
+                let idx = Roguelike.world_map[(ox+x)*Roguelike.WORLD_MAP_COLUMNS+oy+y] - 1;
+                g[y][x] = (idx == 65 || 58 <= idx && idx <= 61 || 116 <= idx && idx <= 119);
+            }
+        } */
+
+        /*
+        for (let x=0;x<h;++x) {                
+            for (let y=0;y<w;++y) {                        
+                let height = Roguelike.fantasy_map[x*100+y];
+                if (height <= 21) {
+                    g[y][x] = 0;
+                } else {
+                    g[y][x] = 1;                        
                 }
             }
+        }
+        let parser = new Roguelike.RMVA_tiles_texture_manager();
+        parser.parse_from_01_matrix(this, g);*/
 
-            /*
-            for (let x=0;x<h;++x) {                
-                for (let y=0;y<w;++y) {   
-                    let idx = Roguelike.world_map[(ox+x)*Roguelike.WORLD_MAP_COLUMNS+oy+y] - 1;
-                    g[y][x] = (idx == 65 || 58 <= idx && idx <= 61 || 116 <= idx && idx <= 119);
-                }
-            } */
-
-            /*
-            for (let x=0;x<h;++x) {                
-                for (let y=0;y<w;++y) {                        
-                    let height = Roguelike.fantasy_map[x*100+y];
-                    if (height <= 21) {
-                        g[y][x] = 0;
-                    } else {
-                        g[y][x] = 1;                        
+        
+        for (let x=0;x<h;++x) {                
+            for (let y=0;y<w;++y) {                        
+                
+                if (a[y][x] == null) {
+                    a[y][x] = {
+                        'texID': 12,
+                        'x': 0,
+                        'y': 0,
                     }
                 }
-            }
-            let parser = new Roguelike.RMVA_tiles_texture_manager();
-            parser.parse_from_01_matrix(this, g);*/
 
-            
-            for (let x=0;x<h;++x) {                
-                for (let y=0;y<w;++y) {                        
-                    
-                    if (a[y][x] == null) {
-                        a[y][x] = {
-                            'texID': 12,
+                let idx = Roguelike.world_map[(ox+x)*Roguelike.WORLD_MAP_COLUMNS+oy+y] - 1;
+
+
+                a[y][x].texID = 12;
+                a[y][x].x = 16*(idx%16);
+                a[y][x].y = 16*(Math.floor(idx/16));
+
+                /*
+                // 映射到 has 地块
+                a[y][x].texID = 15;
+
+                // 在 a1 处理山的情况
+                // 在 a1 处理港口的情况
+                if (58 <= idx && idx <= 61 || 116 <= idx && idx <= 119) {
+                    a[y][x].x = 32;
+                    a[y][x].y = 48;
+
+                    if (a1[y][x] == null) {
+                        a1[y][x] = {
+                            'texID': 15,
                             'x': 0,
                             'y': 0,
                         }
                     }
+                    a1[y][x].x = Roguelike.uw2_to_has[idx].x * 16;
+                    a1[y][x].y = Roguelike.uw2_to_has[idx].y * 16;
+                    if (116 <= idx && idx <= 119) {
+                        a1[y][x].texID = 16;    
+                    }
+                } else {
 
-                    let idx = Roguelike.world_map[(ox+x)*Roguelike.WORLD_MAP_COLUMNS+oy+y] - 1;
+                    if (Roguelike.uw2_to_has[idx] != null) {
+                        a[y][x].x = Roguelike.uw2_to_has[idx].x * 16;
+                        a[y][x].y = Roguelike.uw2_to_has[idx].y * 16;
 
-
-                    a[y][x].texID = 12;
-                    a[y][x].x = 16*(idx%16);
-                    a[y][x].y = 16*(Math.floor(idx/16));
-
-                    /*
-                    // 映射到 has 地块
-                    a[y][x].texID = 15;
-
-                    // 在 a1 处理山的情况
-                    // 在 a1 处理港口的情况
-                    if (58 <= idx && idx <= 61 || 116 <= idx && idx <= 119) {
+                    } else {
                         a[y][x].x = 32;
                         a[y][x].y = 48;
-
-                        if (a1[y][x] == null) {
-                            a1[y][x] = {
-                                'texID': 15,
-                                'x': 0,
-                                'y': 0,
-                            }
-                        }
-                        a1[y][x].x = Roguelike.uw2_to_has[idx].x * 16;
-                        a1[y][x].y = Roguelike.uw2_to_has[idx].y * 16;
-                        if (116 <= idx && idx <= 119) {
-                            a1[y][x].texID = 16;    
-                        }
-                    } else {
-
-                        if (Roguelike.uw2_to_has[idx] != null) {
-                            a[y][x].x = Roguelike.uw2_to_has[idx].x * 16;
-                            a[y][x].y = Roguelike.uw2_to_has[idx].y * 16;
-
-                        } else {
-                            a[y][x].x = 32;
-                            a[y][x].y = 48;
-                        }
                     }
-                    */
-
                 }
-            } 
-        }
+                */
+
+            }
+        } 
+    }
+    /**
+     * 生成 Fantasy 地图
+     */ 
+    gen_fantasy_map() {
+
+    }
+    /**
+     * 生成地图
+     */    
+    gen() {
+        if (Roguelike.current_map == "world_map") this.gen_world_map();
+        if (Roguelike.current_map == "cave") this.gen_cave();        
     }
     /**
      * 当渲染时：每帧执行的逻辑

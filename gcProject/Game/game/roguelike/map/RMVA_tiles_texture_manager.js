@@ -2,6 +2,8 @@ var Roguelike;
 (function (Roguelike) {
     var Auto = (function () {
         function Auto() {
+            this.ox = 0;
+            this.oy = 0;
             this.a = new Array(16);
             for (var i = 0; i < 16; ++i) {
                 this.a[i] = new Array(2);
@@ -213,47 +215,47 @@ var Roguelike;
                 for (var oy = 0; oy < 2; ++oy) {
                     var xx = x + x + ox;
                     var yy = y + y + oy;
-                    a[xx][yy].x = this.a[i][ox][oy].x;
-                    a[xx][yy].y = this.a[i][ox][oy].y;
+                    a[xx][yy].x = this.a[i][ox][oy].x + this.ox;
+                    a[xx][yy].y = this.a[i][ox][oy].y + this.oy;
                     a[xx][yy].texID = this.texID;
                 }
             }
             if (up && lt) {
                 var xx = x + x + 0, yy = y + y + 0;
                 if (g[x - 1] != null && g[x - 1][y - 1] != null && g[x - 1][y - 1] != g[x][y]) {
-                    a[xx][yy].x = 2;
-                    a[xx][yy].y = 0;
+                    a[xx][yy].x = 2 + this.ox;
+                    a[xx][yy].y = 0 + this.oy;
                 }
             }
             if (up && rt) {
                 var xx = x + x + 1, yy = y + y + 0;
                 if (g[x + 1] != null && g[x + 1][y - 1] != null && g[x + 1][y - 1] != g[x][y]) {
-                    a[xx][yy].x = 3;
-                    a[xx][yy].y = 0;
+                    a[xx][yy].x = 3 + this.ox;
+                    a[xx][yy].y = 0 + this.oy;
                 }
             }
             if (dn && lt) {
                 var xx = x + x + 0, yy = y + y + 1;
                 if (g[x - 1] != null && g[x - 1][y + 1] != null && g[x - 1][y + 1] != g[x][y]) {
-                    a[xx][yy].x = 2;
-                    a[xx][yy].y = 1;
+                    a[xx][yy].x = 2 + this.ox;
+                    a[xx][yy].y = 1 + this.oy;
                 }
             }
             if (dn && rt) {
                 var xx = x + x + 1, yy = y + y + 1;
                 if (g[x + 1] != null && g[x + 1][y + 1] != null && g[x + 1][y + 1] != g[x][y]) {
-                    a[xx][yy].x = 3;
-                    a[xx][yy].y = 1;
+                    a[xx][yy].x = 3 + this.ox;
+                    a[xx][yy].y = 1 + this.oy;
                 }
             }
         };
         return Auto;
     }());
-    var RMVA_tiles_texture_manager = (function () {
-        function RMVA_tiles_texture_manager() {
+    var RMVA_ocean_tiles_texture_manager = (function () {
+        function RMVA_ocean_tiles_texture_manager() {
             this.GRID_SIZE = 16;
         }
-        RMVA_tiles_texture_manager.prototype.parse_from_01_matrix = function (scene, g) {
+        RMVA_ocean_tiles_texture_manager.prototype.parse_from_01_matrix = function (scene, g) {
             var a = scene.LayerDatas[0].tileData;
             var w = g.length;
             var h = g[0].length;
@@ -278,8 +280,44 @@ var Roguelike;
                 }
             }
         };
-        return RMVA_tiles_texture_manager;
+        return RMVA_ocean_tiles_texture_manager;
     }());
-    Roguelike.RMVA_tiles_texture_manager = RMVA_tiles_texture_manager;
+    Roguelike.RMVA_ocean_tiles_texture_manager = RMVA_ocean_tiles_texture_manager;
+    var RMVA_cave_tiles_texture_manager = (function () {
+        function RMVA_cave_tiles_texture_manager() {
+            this.GRID_SIZE = 16;
+        }
+        RMVA_cave_tiles_texture_manager.prototype.parse_from_01_matrix = function (scene, g) {
+            var a = scene.LayerDatas[0].tileData;
+            var w = g.length;
+            var h = g[0].length;
+            var Soil = new Auto();
+            Soil.texID = 62;
+            Soil.ox = 0;
+            Soil.oy = 6;
+            var Abyss = new Auto();
+            Abyss.texID = 62;
+            Abyss.ox = 20;
+            Abyss.oy = 18;
+            for (var x = 0; x < w; ++x) {
+                for (var y = 0; y < h; ++y) {
+                    if (g[x][y] == 1) {
+                        Soil.fill(a, g, x, y);
+                    }
+                    else {
+                        Abyss.fill(a, g, x, y);
+                    }
+                }
+            }
+            for (var x = 0; x < 2 * w; ++x) {
+                for (var y = 0; y < 2 * h; ++y) {
+                    a[x][y].x *= this.GRID_SIZE;
+                    a[x][y].y *= this.GRID_SIZE;
+                }
+            }
+        };
+        return RMVA_cave_tiles_texture_manager;
+    }());
+    Roguelike.RMVA_cave_tiles_texture_manager = RMVA_cave_tiles_texture_manager;
 })(Roguelike || (Roguelike = {}));
 //# sourceMappingURL=RMVA_tiles_texture_manager.js.map

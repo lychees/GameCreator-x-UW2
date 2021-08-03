@@ -402,8 +402,8 @@
             [
                 20,
                 "",
-                "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.firstblood = true;",
-                "Roguelike.firstblood = true;\n",
+                "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.current_map = \"world_map\";",
+                "Roguelike.current_map = \"world_map\";\n",
                 {
                     "___cmdID": "70110516393_0.8437054180109655"
                 }

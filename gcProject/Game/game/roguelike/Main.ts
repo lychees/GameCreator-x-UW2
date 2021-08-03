@@ -1,6 +1,6 @@
 namespace Roguelike{
 
-    export let firstblood = false;
+    export let current_map = "";
     
     // 地块
     /**

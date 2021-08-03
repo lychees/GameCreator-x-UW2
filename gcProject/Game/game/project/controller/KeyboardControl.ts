@@ -144,8 +144,12 @@ class KeyboardControl {
                     if (Math.abs(x - hash_ports_meta_data[i+1].x) < 4 && Math.abs(y - hash_ports_meta_data[i+1].y) < 4) {                                                
                         Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i+1].name);                        
                         GameCommand.startCommonCommand(1);
+                        Roguelike.current_map = "cave";
+                        Game.player.toScene(6, 16, 16);
+                        break;
                     }
                 }
+                Game.currentScene.sceneObjects[0].root.visible ^= 1;
             }    
             
         }

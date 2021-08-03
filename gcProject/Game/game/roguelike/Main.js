@@ -1,6 +1,6 @@
 var Roguelike;
 (function (Roguelike) {
-    Roguelike.firstblood = false;
+    Roguelike.current_map = "";
     function colorHex(colorArr) {
         var strHex = "#";
         var colorArr;

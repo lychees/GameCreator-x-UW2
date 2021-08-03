@@ -68,47 +68,84 @@ var ProjectClientScene = (function (_super) {
         this.gen();
         this.sceneUtils = new SceneUtils(this);
     };
+    ProjectClientScene.prototype.gen_cave = function () {
+        var a = this.LayerDatas[0].tileData;
+        var a1 = this.LayerDatas[1].tileData;
+        var w = this.gridWidth;
+        var h = this.gridHeight;
+        for (var x = 0; x < w; ++x) {
+            if (a[x] == null)
+                a[x] = [];
+            if (a1[x] == null)
+                a1[x] = [];
+        }
+        var g = [];
+        for (var x = 0; x < w / 2; ++x) {
+            g.push([]);
+            for (var y = 0; y < h / 2; ++y) {
+                g[x].push(0);
+            }
+        }
+        var digger = new ROT.Map.Digger(w / 2, h / 2);
+        var spaces = [];
+        var digCallback = function (x, y, v) {
+            if (v) {
+            }
+            else {
+                console.log(x + "," + y);
+                g[x][y] = 1;
+                spaces.push(x + "," + y);
+            }
+        };
+        digger.create(digCallback.bind(this));
+        var parser = new Roguelike.RMVA_cave_tiles_texture_manager();
+        parser.parse_from_01_matrix(this, g);
+    };
+    ProjectClientScene.prototype.gen_world_map = function () {
+        var a = this.LayerDatas[0].tileData;
+        var a1 = this.LayerDatas[1].tileData;
+        var w = this.gridWidth;
+        var h = this.gridHeight;
+        w = 720;
+        h = 540;
+        var oy = 820;
+        var ox = 348;
+        for (var x = 0; x < w; ++x) {
+            if (a[x] == null)
+                a[x] = [];
+            if (a1[x] == null)
+                a1[x] = [];
+        }
+        var g = [];
+        for (var x = 0; x < h; ++x) {
+            g.push([]);
+            for (var y = 0; y < w; ++y) {
+                g[x].push(0);
+            }
+        }
+        for (var x = 0; x < h; ++x) {
+            for (var y = 0; y < w; ++y) {
+                if (a[y][x] == null) {
+                    a[y][x] = {
+                        'texID': 12,
+                        'x': 0,
+                        'y': 0,
+                    };
+                }
+                var idx = Roguelike.world_map[(ox + x) * Roguelike.WORLD_MAP_COLUMNS + oy + y] - 1;
+                a[y][x].texID = 12;
+                a[y][x].x = 16 * (idx % 16);
+                a[y][x].y = 16 * (Math.floor(idx / 16));
+            }
+        }
+    };
+    ProjectClientScene.prototype.gen_fantasy_map = function () {
+    };
     ProjectClientScene.prototype.gen = function () {
-        if (Roguelike.firstblood == false) {
-        }
-        else {
-            var a = this.LayerDatas[0].tileData;
-            var a1 = this.LayerDatas[1].tileData;
-            var w = this.gridWidth;
-            var h = this.gridHeight;
-            w = 720;
-            h = 540;
-            var oy = 820;
-            var ox = 348;
-            for (var x = 0; x < w; ++x) {
-                if (a[x] == null)
-                    a[x] = [];
-                if (a1[x] == null)
-                    a1[x] = [];
-            }
-            var g = [];
-            for (var x = 0; x < h; ++x) {
-                g.push([]);
-                for (var y = 0; y < w; ++y) {
-                    g[x].push(0);
-                }
-            }
-            for (var x = 0; x < h; ++x) {
-                for (var y = 0; y < w; ++y) {
-                    if (a[y][x] == null) {
-                        a[y][x] = {
-                            'texID': 12,
-                            'x': 0,
-                            'y': 0,
-                        };
-                    }
-                    var idx = Roguelike.world_map[(ox + x) * Roguelike.WORLD_MAP_COLUMNS + oy + y] - 1;
-                    a[y][x].texID = 12;
-                    a[y][x].x = 16 * (idx % 16);
-                    a[y][x].y = 16 * (Math.floor(idx / 16));
-                }
-            }
-        }
+        if (Roguelike.current_map == "world_map")
+            this.gen_world_map();
+        if (Roguelike.current_map == "cave")
+            this.gen_cave();
     };
     ProjectClientScene.prototype.onRender = function () {
         _super.prototype.onRender.apply(this, arguments);

@@ -7,6 +7,8 @@ namespace Roguelike {
         texID: number;
 
         constructor() {
+            this.ox = 0;
+            this.oy = 0;
             this.a = new Array(16);
             for (let i=0;i<16;++i) {
                 this.a[i] = new Array(2);
@@ -233,8 +235,8 @@ namespace Roguelike {
                 for (let oy=0;oy<2;++oy) {
                     let xx = x+x+ox;
                     let yy = y+y+oy;
-                    a[xx][yy].x = this.a[i][ox][oy].x;
-                    a[xx][yy].y = this.a[i][ox][oy].y;
+                    a[xx][yy].x = this.a[i][ox][oy].x + this.ox;
+                    a[xx][yy].y = this.a[i][ox][oy].y + this.oy;
                     a[xx][yy].texID = this.texID;
                 }
             }
@@ -243,38 +245,36 @@ namespace Roguelike {
             if (up && lt) {
                 let xx = x+x+0, yy = y+y+0;
                 if (g[x-1] != null && g[x-1][y-1] != null && g[x-1][y-1] != g[x][y]) {
-                    a[xx][yy].x = 2;
-                    a[xx][yy].y = 0;
+                    a[xx][yy].x = 2 + this.ox;
+                    a[xx][yy].y = 0 + this.oy;
                 }
             }
             if (up && rt) {
                 let xx = x+x+1, yy = y+y+0;
                 if (g[x+1] != null && g[x+1][y-1] != null && g[x+1][y-1] != g[x][y]) {
-                    a[xx][yy].x = 3;
-                    a[xx][yy].y = 0;
+                    a[xx][yy].x = 3 + this.ox;
+                    a[xx][yy].y = 0 + this.oy;
                 }
             } 
             
             if (dn && lt) {
                 let xx = x+x+0, yy = y+y+1;
                 if (g[x-1] != null && g[x-1][y+1] != null && g[x-1][y+1] != g[x][y]) {
-                    a[xx][yy].x = 2;
-                    a[xx][yy].y = 1;
+                    a[xx][yy].x = 2 + this.ox;
+                    a[xx][yy].y = 1 + this.oy;
                 }
             }
             if (dn && rt) {
                 let xx = x+x+1, yy = y+y+1;
                 if (g[x+1] != null && g[x+1][y+1] != null && g[x+1][y+1] != g[x][y]) {
-                    a[xx][yy].x = 3;
-                    a[xx][yy].y = 1;
+                    a[xx][yy].x = 3 + this.ox;
+                    a[xx][yy].y = 1 + this.oy;
                 }
-            }
-            
-
+            }            
         }
     }
 
-    export class RMVA_tiles_texture_manager {
+    export class RMVA_ocean_tiles_texture_manager {
 
         GRID_SIZE: number;
         constructor() {
@@ -282,9 +282,6 @@ namespace Roguelike {
         }
 
         parse_from_01_matrix(scene: any, g: any) {
-
-
-
             let a = scene.LayerDatas[0].tileData;
             let w = g.length;
             let h = g[0].length;
@@ -293,7 +290,6 @@ namespace Roguelike {
             Grass.texID = 42;
             let Ocean = new Auto();
             Ocean.texID = 41;
-
 
             // 需要保证当前 texID 已经加载
             // 否则是黑屏
@@ -304,6 +300,44 @@ namespace Roguelike {
 
                     } else {
                         Ocean.fill(a, g, x, y);
+                    }                                    
+                }
+            }
+
+            for (let x=0;x<2*w;++x) {
+                for (let y=0;y<2*h;++y) {
+                    a[x][y].x *= this.GRID_SIZE;
+                    a[x][y].y *= this.GRID_SIZE;
+                }
+            }
+        }
+    }
+
+    export class RMVA_cave_tiles_texture_manager {
+
+        GRID_SIZE: number;
+        constructor() {
+            this.GRID_SIZE = 16;
+        }
+
+        parse_from_01_matrix(scene: any, g: any) {
+            let a = scene.LayerDatas[0].tileData;
+            let w = g.length;
+            let h = g[0].length;
+
+            let Soil = new Auto();
+            Soil.texID = 62; Soil.ox = 0; Soil.oy = 6;
+            let Abyss = new Auto();
+            Abyss.texID = 62; Abyss.ox = 20; Abyss.oy = 18;
+
+            // 需要保证当前 texID 已经加载
+            // 否则是黑屏
+            for (let x=0;x<w;++x) {
+                for (let y=0;y<h;++y) {
+                    if (g[x][y] == 1) {
+                        Soil.fill(a, g, x, y);
+                    } else {
+                        Abyss.fill(a, g, x, y);
                     }                                    
                 }
             }
