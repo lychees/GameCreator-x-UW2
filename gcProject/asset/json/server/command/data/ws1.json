@@ -2,6 +2,22 @@
     "allowClient": false,
     "conditionSwitch": 1,
     "updateMode": false,
-    "commands": [],
+    "commands": [
+        [
+            11,
+            1,
+            null,
+            "",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>[@s1]</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70451999916_0.7413869883770237"
+            }
+        ]
+    ],
     "id": 1
 }

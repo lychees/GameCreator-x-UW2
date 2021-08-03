@@ -137,19 +137,13 @@ class KeyboardControl {
                 }
                 return;
             } else {
-
                 let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
-
-                //let x = Game.player.data.sceneObject.x;
-                //let y = Game.player.data.sceneObject.y;
-                
                 let x = p.x + 820;
                 let y = p.y + 348;
-                
-                console.log(x, '-', y);
                 for (let i=0;i<130;++i) {
-                    if (Math.abs(x - hash_ports_meta_data[i+1].x) < 4 && Math.abs(y - hash_ports_meta_data[i+1].y) < 4) {
-                        confirm("你发现了 " + hash_ports_meta_data[i+1].name);
+                    if (Math.abs(x - hash_ports_meta_data[i+1].x) < 4 && Math.abs(y - hash_ports_meta_data[i+1].y) < 4) {                                                
+                        Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i+1].name);                        
+                        GameCommand.startCommonCommand(1);
                     }
                 }
             }    
