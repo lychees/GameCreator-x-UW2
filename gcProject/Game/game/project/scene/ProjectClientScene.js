@@ -131,6 +131,7 @@ var ProjectClientScene = (function (_super) {
             }
         }
         var obs = this.dataLayers[0];
+        console.log(obs);
         if (obs == null)
             obs = [];
         for (var x = 0; x < w2; ++x) {

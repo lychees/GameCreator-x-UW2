@@ -154,7 +154,7 @@ class KeyboardControl {
                         Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i+1].name);                        
                         GameCommand.startCommonCommand(1);
                         Roguelike.current_map = "cave";
-                        Game.player.toScene(6, 0, 0);                        
+                        Game.player.toScene(6, 16, 16);                        
                         break;
                     }
                 }
