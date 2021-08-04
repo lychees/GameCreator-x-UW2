@@ -137,27 +137,37 @@ class KeyboardControl {
                 }
                 return;
             } else {
-
-                console.log(Game.currentScene);
-
                 let w = Game.currentScene.gridWidth;
                 let h = Game.currentScene.gridHeight;
 
                 if (Roguelike.Main.map != null) {
+
+                    let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+                    Roguelike.Main.player.x = Math.floor(p.x/2);
+                    Roguelike.Main.player.y = Math.floor(p.y/2);
+                    Roguelike.Main.player.set_shadow();
+
+                    let layer = Game.currentScene.getLayerByPreset(3);           
                     for (let x=0;x<w/2;++x) {
                         for (let y=0;y<h/2;++y) {
                             if (Roguelike.Main.map.shadow[x][y] != 0) {
-                                
+                                /* for (let ox=0;ox<2;++ox) {
+                                    for (let oy=0;oy<2;++oy) {                                       
+                                        layer.drawTile(x+x+ox, y+y+oy, null);                                        
+                                    }
+                                } */
                             } else {
                                 for (let ox=0;ox<2;++ox) {
                                     for (let oy=0;oy<2;++oy) {
-                                        Game.currentScene.LayerDatas[2].tileData[x+x+ox][y+y+oy] = null;
+                                        layer.drawTile(x+x+ox, y+y+oy, null);
+                                        // Game.currentScene.LayerDatas[2].tileData[][] = null;
                                         // Game.currentScene.layers[2].tileLayer[x+x+ox][y+y+oy].visible = false;
                                     }          
                                 }         
                             }
                         }
                     }
+                    layer.flushTile();
                 }
 
 

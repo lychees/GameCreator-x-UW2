@@ -54,6 +54,11 @@ var KeyboardControl = (function () {
                 var w = Game.currentScene.gridWidth;
                 var h = Game.currentScene.gridHeight;
                 if (Roguelike.Main.map != null) {
+                    var p_1 = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+                    Roguelike.Main.player.x = Math.floor(p_1.x / 2);
+                    Roguelike.Main.player.y = Math.floor(p_1.y / 2);
+                    Roguelike.Main.player.set_shadow();
+                    var layer = Game.currentScene.getLayerByPreset(3);
                     for (var x_1 = 0; x_1 < w / 2; ++x_1) {
                         for (var y_1 = 0; y_1 < h / 2; ++y_1) {
                             if (Roguelike.Main.map.shadow[x_1][y_1] != 0) {
@@ -61,12 +66,13 @@ var KeyboardControl = (function () {
                             else {
                                 for (var ox = 0; ox < 2; ++ox) {
                                     for (var oy = 0; oy < 2; ++oy) {
-                                        Game.currentScene.LayerDatas[2].tileData[x_1 + x_1 + ox][y_1 + y_1 + oy] = null;
+                                        layer.drawTile(x_1 + x_1 + ox, y_1 + y_1 + oy, null);
                                     }
                                 }
                             }
                         }
                     }
+                    layer.flushTile();
                 }
                 var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                 var x = p.x + 820;

@@ -137,7 +137,6 @@ var ProjectClientScene = (function (_super) {
                 else {
                     for (var ox = 0; ox < 2; ++ox) {
                         for (var oy = 0; oy < 2; ++oy) {
-                            a2[x + x + ox][y + y + oy] = null;
                         }
                     }
                 }

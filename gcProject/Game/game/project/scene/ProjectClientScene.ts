@@ -201,7 +201,7 @@ class ProjectClientScene extends ClientScene {
                 } else {
                     for (let ox=0;ox<2;++ox) {
                         for (let oy=0;oy<2;++oy) {
-                            a2[x+x+ox][y+y+oy] = null;
+                            // a2[x+x+ox][y+y+oy] = null;
                         }          
                     }         
                 }
