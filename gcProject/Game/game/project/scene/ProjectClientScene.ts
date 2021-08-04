@@ -194,19 +194,22 @@ class ProjectClientScene extends ClientScene {
             }
         }
 
-        for (let x=0;x<w/2;++x) {
-            for (let y=0;y<h/2;++y) {
-                if (Roguelike.Main.map.shadow[x][y] != 0) {
-                    
-                } else {
-                    for (let ox=0;ox<2;++ox) {
-                        for (let oy=0;oy<2;++oy) {
-                            // a2[x+x+ox][y+y+oy] = null;
-                        }          
-                    }         
+
+        let obs = this.dataLayers[0];
+        console.log(obs);
+        if (obs == null) obs = [];
+        for (let x=0;x<w2;++x) {
+            for (let y=0;y<h2;++y) {
+                if (!Roguelike.Main.map.isPassable(x, y)) {
+                    for (let ox=0;ox<2;++ox) {                        
+                        if (obs[x+x+ox] == null) obs[x+x+ox] = [];
+                        for (let oy=0;oy<2;++oy) {                            
+                            obs[x+x+ox][y+y+oy] = 0;
+                        }                        
+                    }                    
                 }
             }
-        }
+        }    
     }
     /**
      * 生成世界地图

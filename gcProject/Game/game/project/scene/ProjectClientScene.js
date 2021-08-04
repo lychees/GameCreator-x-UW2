@@ -130,13 +130,18 @@ var ProjectClientScene = (function (_super) {
                 }
             }
         }
-        for (var x = 0; x < w / 2; ++x) {
-            for (var y = 0; y < h / 2; ++y) {
-                if (Roguelike.Main.map.shadow[x][y] != 0) {
-                }
-                else {
+        var obs = this.dataLayers[0];
+        console.log(obs);
+        if (obs == null)
+            obs = [];
+        for (var x = 0; x < w2; ++x) {
+            for (var y = 0; y < h2; ++y) {
+                if (!Roguelike.Main.map.isPassable(x, y)) {
                     for (var ox = 0; ox < 2; ++ox) {
+                        if (obs[x + x + ox] == null)
+                            obs[x + x + ox] = [];
                         for (var oy = 0; oy < 2; ++oy) {
+                            obs[x + x + ox][y + y + oy] = 1;
                         }
                     }
                 }
