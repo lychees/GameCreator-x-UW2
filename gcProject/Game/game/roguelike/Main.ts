@@ -131,9 +131,19 @@ namespace Roguelike{
 
             let layer = Game.currentScene.getLayerByPreset(3);
 
+            let shadow = {
+                "tex": AssetManager.getImage(TileData.getTileData(20).url),
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32,
+                "texID": 20
+            };
+
             for (let x=0;x<this.map.width;++x) {
                 for (let y=0;y<this.map.height;++y) {
-                    if (Roguelike.Main.map.shadow[x][y] != 0) {
+                    if (Roguelike.Main.map.shadow[x][y] != 0) {                        
+                        layer.drawTile(x+x, y+y, shadow);                                                    
                     } else {
                         for (let ox=0;ox<2;++ox) {
                             for (let oy=0;oy<2;++oy) {

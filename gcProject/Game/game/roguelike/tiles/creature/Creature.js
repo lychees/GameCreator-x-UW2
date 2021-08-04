@@ -37,7 +37,6 @@ var Roguelike;
             var fov = new ROT.FOV.RecursiveShadowcasting(function (x, y) {
                 return Roguelike.Main.map.canLightPass(x, y);
             });
-            console.log(this);
             if (angle == 90) {
                 fov.compute90(this.x, this.y, this.fv, this.d, function (x, y, r, visibility) {
                     Roguelike.Main.map.shadow[x][y] = s;

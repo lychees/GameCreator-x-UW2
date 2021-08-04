@@ -97,9 +97,18 @@ var Roguelike;
             this.player.y = Math.floor(p.y / 2);
             Roguelike.Main.player.set_shadow();
             var layer = Game.currentScene.getLayerByPreset(3);
+            var shadow = {
+                "tex": AssetManager.getImage(TileData.getTileData(20).url),
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32,
+                "texID": 20
+            };
             for (var x = 0; x < this.map.width; ++x) {
                 for (var y = 0; y < this.map.height; ++y) {
                     if (Roguelike.Main.map.shadow[x][y] != 0) {
+                        layer.drawTile(x + x, y + y, shadow);
                     }
                     else {
                         for (var ox = 0; ox < 2; ++ox) {
