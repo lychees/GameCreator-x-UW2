@@ -1,5 +1,5 @@
 namespace Roguelike {
-    export class Creature extends Tile {
+    export class Creature extends Roguelike.Tile {
         d: number; // direction  
         fv: number; // field_of_vision
 
@@ -27,22 +27,22 @@ namespace Roguelike {
         }
     
         set_shadow(s:number=0, angle:number=90) {
-            var fov = new ROT.FOV.RecursiveShadowcasting(function(x, y) {
-                return Main.map.canLightPass(x, y); 
+            let fov = new ROT.FOV.RecursiveShadowcasting(function(x, y) {
+                return Roguelike.Main.map.canLightPass(x, y);
             });
             if (angle == 90) {
                 fov.compute90(this.x, this.y, this.fv, this.d, function(x, y, r, visibility) {
-                    Main.map.shadow[x][y] = s;
+                    Roguelike.Main.map.shadow[x][y] = s;
                 });
             } else {
                 fov.compute(this.x, this.y, this.fv, function(x, y, r, visibility) {
-                    Main.map.shadow[x][y] = s;
+                    Roguelike.Main.map.shadow[x][y] = s;
                 });
             }
         }
         draw() {
-            //if (Main.map.shadow[this.x][this.y] == 0) {        
-            Main.display.draw(this.x, this.y, this.ch, this.color);
+            //if (Roguelike.Main.map.shadow[this.x][this.y] == 0) {        
+            Roguelike.Main.display.draw(this.x, this.y, this.ch, this.color);
             //}
         }    
     }
@@ -54,7 +54,7 @@ namespace Roguelike {
         }
 
         act() {
-            Main.engine.lock();
+            Roguelike.Main.engine.lock();
             document.addEventListener("keydown", this);
         }
         handleEvent(e) {
@@ -63,9 +63,9 @@ namespace Roguelike {
 
             // Enter
             if (code == ROT.KEYS.VK_SPACE || code == ROT.KEYS.VK_ENTER) {            
-                Main.map.enter(this);
+                Roguelike.Main.map.enter(this);
                 document.removeEventListener("keydown", this);
-                Main.engine.unlock();        
+                Roguelike.Main.engine.unlock();        
                 return;
             }
 
@@ -91,16 +91,16 @@ namespace Roguelike {
             if (e.shiftKey) {
             }
             else {
-                if (Main.map.isPassable(xx, yy)) {                    
+                if (Roguelike.Main.map.isPassable(xx, yy)) {                    
                     this.x = xx;
                     this.y = yy;
                 }
             }
 
             this.set_shadow();
-            Main.map.draw();
+            Roguelike.Main.map.draw();
             document.removeEventListener("keydown", this);
-            Main.engine.unlock();         
+            Roguelike.Main.engine.unlock();         
         }
     }
 
@@ -110,8 +110,8 @@ namespace Roguelike {
         }
         act() {
 
-            var astar = new ROT.Path.AStar(Main.player.x, Main.player.y, function(x, y) {
-                return Main.map.isPassable(x, y); 
+            var astar = new ROT.Path.AStar(Roguelike.Main.player.x, Roguelike.Main.player.y, function(x, y) {
+                return Roguelike.Main.map.isPassable(x, y); 
             }, {
                 topology:4
             });
@@ -123,13 +123,13 @@ namespace Roguelike {
             
             path.shift();
             if (path.length <= 1) {
-                Main.engine.lock();
+                Roguelike.Main.engine.lock();
                 alert("你被捉住了！");                        
-                Main.back_to_title();
+                Roguelike.Main.back_to_title();
             } else {
                 this.x = path[0][0];
                 this.y = path[0][1];
-                Main.map.draw();
+                Roguelike.Main.map.draw();
             }     
         }
     }
