@@ -142,32 +142,7 @@ class KeyboardControl {
 
                 if (Roguelike.Main.map != null) {
 
-                    let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
-                    Roguelike.Main.player.x = Math.floor(p.x/2);
-                    Roguelike.Main.player.y = Math.floor(p.y/2);
-                    Roguelike.Main.player.set_shadow();
-
-                    let layer = Game.currentScene.getLayerByPreset(3);           
-                    for (let x=0;x<w/2;++x) {
-                        for (let y=0;y<h/2;++y) {
-                            if (Roguelike.Main.map.shadow[x][y] != 0) {
-                                /* for (let ox=0;ox<2;++ox) {
-                                    for (let oy=0;oy<2;++oy) {                                       
-                                        layer.drawTile(x+x+ox, y+y+oy, null);                                        
-                                    }
-                                } */
-                            } else {
-                                for (let ox=0;ox<2;++ox) {
-                                    for (let oy=0;oy<2;++oy) {
-                                        layer.drawTile(x+x+ox, y+y+oy, null);
-                                        // Game.currentScene.LayerDatas[2].tileData[][] = null;
-                                        // Game.currentScene.layers[2].tileLayer[x+x+ox][y+y+oy].visible = false;
-                                    }          
-                                }         
-                            }
-                        }
-                    }
-                    layer.flushTile();
+                    Roguelike.Main.refresh_shadow();
                 }
 
 
@@ -362,6 +337,15 @@ class KeyboardControl {
             if (this.dir == 1) this.dir = this.lastKeyDown == 2 ? 4 : 2;
         }
         this.isChangeDir = this.dir != oldDir;
+        if (Roguelike.Main.player != null) {
+            let H = {};
+            H[2] = 4;
+            H[4] = 6;
+            H[6] = 2;
+            H[8] = 0;    
+            Roguelike.Main.player.dir = H[this.dir];
+            Roguelike.Main.refresh_shadow(); 
+        }
     }
     /**
      * 获取左方向键是否按下 

@@ -50,29 +50,10 @@ var KeyboardControl = (function () {
                 return;
             }
             else {
-                console.log(Game.currentScene);
                 var w = Game.currentScene.gridWidth;
                 var h = Game.currentScene.gridHeight;
                 if (Roguelike.Main.map != null) {
-                    var p_1 = GameUtils.getGridPostion(Game.player.sceneObject.pos);
-                    Roguelike.Main.player.x = Math.floor(p_1.x / 2);
-                    Roguelike.Main.player.y = Math.floor(p_1.y / 2);
-                    Roguelike.Main.player.set_shadow();
-                    var layer = Game.currentScene.getLayerByPreset(3);
-                    for (var x_1 = 0; x_1 < w / 2; ++x_1) {
-                        for (var y_1 = 0; y_1 < h / 2; ++y_1) {
-                            if (Roguelike.Main.map.shadow[x_1][y_1] != 0) {
-                            }
-                            else {
-                                for (var ox = 0; ox < 2; ++ox) {
-                                    for (var oy = 0; oy < 2; ++oy) {
-                                        layer.drawTile(x_1 + x_1 + ox, y_1 + y_1 + oy, null);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    layer.flushTile();
+                    Roguelike.Main.refresh_shadow();
                 }
                 var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                 var x = p.x + 820;
@@ -256,6 +237,15 @@ var KeyboardControl = (function () {
                 this.dir = this.lastKeyDown == 2 ? 4 : 2;
         }
         this.isChangeDir = this.dir != oldDir;
+        if (Roguelike.Main.player != null) {
+            var H = {};
+            H[2] = 4;
+            H[4] = 6;
+            H[6] = 2;
+            H[8] = 0;
+            Roguelike.Main.player.dir = H[this.dir];
+            Roguelike.Main.refresh_shadow();
+        }
     };
     Object.defineProperty(KeyboardControl, "leftDown", {
         get: function () {

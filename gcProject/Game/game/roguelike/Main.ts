@@ -118,6 +118,32 @@ namespace Roguelike{
             let h = Number(g[0].length);
             this.map = new Roguelike.Map(w, h); 
             this.map.gen_cave(g);
+        },
+
+        refresh_shadow: function() {
+            let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+            this.player.x = Math.floor(p.x/2);
+            this.player.y = Math.floor(p.y/2);
+
+            
+            
+            Roguelike.Main.player.set_shadow();
+
+            let layer = Game.currentScene.getLayerByPreset(3);
+
+            for (let x=0;x<this.map.width;++x) {
+                for (let y=0;y<this.map.height;++y) {
+                    if (Roguelike.Main.map.shadow[x][y] != 0) {
+                    } else {
+                        for (let ox=0;ox<2;++ox) {
+                            for (let oy=0;oy<2;++oy) {
+                                layer.drawTile(x+x+ox, y+y+oy, null);
+                            }          
+                        }         
+                    }
+                }
+            }
+            layer.flushTile();
         }
     };
 

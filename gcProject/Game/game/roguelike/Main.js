@@ -72,7 +72,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
@@ -90,6 +90,27 @@ var Roguelike;
             var h = Number(g[0].length);
             this.map = new Roguelike.Map(w, h);
             this.map.gen_cave(g);
+        },
+        refresh_shadow: function () {
+            var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+            this.player.x = Math.floor(p.x / 2);
+            this.player.y = Math.floor(p.y / 2);
+            Roguelike.Main.player.set_shadow();
+            var layer = Game.currentScene.getLayerByPreset(3);
+            for (var x = 0; x < this.map.width; ++x) {
+                for (var y = 0; y < this.map.height; ++y) {
+                    if (Roguelike.Main.map.shadow[x][y] != 0) {
+                    }
+                    else {
+                        for (var ox = 0; ox < 2; ++ox) {
+                            for (var oy = 0; oy < 2; ++oy) {
+                                layer.drawTile(x + x + ox, y + y + oy, null);
+                            }
+                        }
+                    }
+                }
+            }
+            layer.flushTile();
         }
     };
     function command_line(cmd) {
