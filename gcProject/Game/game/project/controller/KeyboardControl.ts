@@ -243,6 +243,7 @@ class KeyboardControl {
      */
     private static update(): void {
         if (!Controller.inSceneEnabled) return;
+
         var toX: number;
         var toY: number;
         // 弹起了所有移动方向按键的情况
@@ -292,6 +293,10 @@ class KeyboardControl {
         // 移动至格子中心点的情况，如果不处于移动状态才允许继续移动
         else if (!Game.player.sceneObject.isMoving) {
             this.moveDirectGrid(xGrid, yGrid);
+        }
+        
+        if (Roguelike.Main.map != null) {
+            Roguelike.Main.refresh_shadow();
         }
     }
     /**
@@ -344,9 +349,8 @@ class KeyboardControl {
             H[6] = 2;
             H[8] = 0;    
             if (H[this.dir] != null) {
-                Roguelike.Main.player.d = H[this.dir];
+                Roguelike.Main.turn_and_refresh_shadow(H[this.dir]);
             }
-            Roguelike.Main.refresh_shadow(); 
         }
     }
     /**

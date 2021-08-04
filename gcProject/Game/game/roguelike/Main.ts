@@ -120,14 +120,58 @@ namespace Roguelike{
             this.map.gen_cave(g);
         },
 
+        update_shadow(x,y,s) {
+            if (Game.currentScene == null) return;
+            let layer = Game.currentScene.getLayerByPreset(3);
+            
+            let shadow = {
+                "tex": AssetManager.getImage(TileData.getTileData(20).url),
+                "x": 0,
+                "y": 0,
+                "w": 16,
+                "h": 16,
+                "texID": 20
+            };
+
+            if (s != 0) {
+                for (let ox=0;ox<2;++ox) {
+                    for (let oy=0;oy<2;++oy) {
+                        layer.drawTile(x+x+ox, y+y+oy, shadow);
+                    }          
+                }                                            
+            } else {
+                for (let ox=0;ox<2;++ox) {
+                    for (let oy=0;oy<2;++oy) {
+                        layer.drawTile(x+x+ox, y+y+oy, null);
+                    }          
+                }
+            }
+        },  
+
+        turn_and_refresh_shadow: function(dd: number) {                        
+            this.player.set_shadow(0.5);
+            this.player.d = dd;
+            this.player.set_shadow();   
+            let layer = Game.currentScene.getLayerByPreset(3);
+            layer.flushTile();       
+        },
+
         refresh_shadow: function() {
             let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
-            this.player.x = Math.floor(p.x/2);
-            this.player.y = Math.floor(p.y/2);
+            let xx = Math.floor(p.x/2);
+            let yy = Math.floor(p.y/2);
+                        
+            if (xx == this.player.x && yy == this.player.y)  {
+                return;
+            }
 
-            
-            
-            Roguelike.Main.player.set_shadow();
+            this.player.set_shadow(0.5);
+            this.player.x = xx;
+            this.player.y = yy;
+            this.player.set_shadow();
+            let layer = Game.currentScene.getLayerByPreset(3);
+            layer.flushTile();
+            /*
 
             let layer = Game.currentScene.getLayerByPreset(3);
 
@@ -135,25 +179,29 @@ namespace Roguelike{
                 "tex": AssetManager.getImage(TileData.getTileData(20).url),
                 "x": 0,
                 "y": 0,
-                "w": 32,
-                "h": 32,
+                "w": 16,
+                "h": 16,
                 "texID": 20
             };
 
             for (let x=0;x<this.map.width;++x) {
                 for (let y=0;y<this.map.height;++y) {
                     if (Roguelike.Main.map.shadow[x][y] != 0) {                        
-                        layer.drawTile(x+x, y+y, shadow);                                                    
+                        for (let ox=0;ox<2;++ox) {
+                            for (let oy=0;oy<2;++oy) {
+                                layer.drawTile(x+x+ox, y+y+oy, shadow);
+                            }          
+                        }                                            
                     } else {
                         for (let ox=0;ox<2;++ox) {
                             for (let oy=0;oy<2;++oy) {
                                 layer.drawTile(x+x+ox, y+y+oy, null);
                             }          
-                        }         
+                        }
                     }
                 }
             }
-            layer.flushTile();
+            layer.flushTile(); */
         }
     };
 

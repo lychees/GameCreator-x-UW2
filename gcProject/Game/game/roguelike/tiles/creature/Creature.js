@@ -39,12 +39,18 @@ var Roguelike;
             });
             if (angle == 90) {
                 fov.compute90(this.x, this.y, this.fv, this.d, function (x, y, r, visibility) {
-                    Roguelike.Main.map.shadow[x][y] = s;
+                    if (Roguelike.Main.map.shadow[x][y] != s) {
+                        Roguelike.Main.map.shadow[x][y] = s;
+                        Roguelike.Main.update_shadow(x, y, s);
+                    }
                 });
             }
             else {
                 fov.compute(this.x, this.y, this.fv, function (x, y, r, visibility) {
-                    Roguelike.Main.map.shadow[x][y] = s;
+                    if (Roguelike.Main.map.shadow[x][y] != s) {
+                        Roguelike.Main.map.shadow[x][y] = s;
+                        Roguelike.Main.update_shadow(x, y, s);
+                    }
                 });
             }
         };

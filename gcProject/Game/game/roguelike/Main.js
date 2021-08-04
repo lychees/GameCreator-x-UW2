@@ -91,34 +91,52 @@ var Roguelike;
             this.map = new Roguelike.Map(w, h);
             this.map.gen_cave(g);
         },
-        refresh_shadow: function () {
-            var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
-            this.player.x = Math.floor(p.x / 2);
-            this.player.y = Math.floor(p.y / 2);
-            Roguelike.Main.player.set_shadow();
+        update_shadow: function (x, y, s) {
+            if (Game.currentScene == null)
+                return;
             var layer = Game.currentScene.getLayerByPreset(3);
             var shadow = {
                 "tex": AssetManager.getImage(TileData.getTileData(20).url),
                 "x": 0,
                 "y": 0,
-                "w": 32,
-                "h": 32,
+                "w": 16,
+                "h": 16,
                 "texID": 20
             };
-            for (var x = 0; x < this.map.width; ++x) {
-                for (var y = 0; y < this.map.height; ++y) {
-                    if (Roguelike.Main.map.shadow[x][y] != 0) {
-                        layer.drawTile(x + x, y + y, shadow);
-                    }
-                    else {
-                        for (var ox = 0; ox < 2; ++ox) {
-                            for (var oy = 0; oy < 2; ++oy) {
-                                layer.drawTile(x + x + ox, y + y + oy, null);
-                            }
-                        }
+            if (s != 0) {
+                for (var ox = 0; ox < 2; ++ox) {
+                    for (var oy = 0; oy < 2; ++oy) {
+                        layer.drawTile(x + x + ox, y + y + oy, shadow);
                     }
                 }
             }
+            else {
+                for (var ox = 0; ox < 2; ++ox) {
+                    for (var oy = 0; oy < 2; ++oy) {
+                        layer.drawTile(x + x + ox, y + y + oy, null);
+                    }
+                }
+            }
+        },
+        turn_and_refresh_shadow: function (dd) {
+            this.player.set_shadow(0.5);
+            this.player.d = dd;
+            this.player.set_shadow();
+            var layer = Game.currentScene.getLayerByPreset(3);
+            layer.flushTile();
+        },
+        refresh_shadow: function () {
+            var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+            var xx = Math.floor(p.x / 2);
+            var yy = Math.floor(p.y / 2);
+            if (xx == this.player.x && yy == this.player.y) {
+                return;
+            }
+            this.player.set_shadow(0.5);
+            this.player.x = xx;
+            this.player.y = yy;
+            this.player.set_shadow();
+            var layer = Game.currentScene.getLayerByPreset(3);
             layer.flushTile();
         }
     };

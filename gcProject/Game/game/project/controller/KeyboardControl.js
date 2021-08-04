@@ -165,6 +165,9 @@ var KeyboardControl = (function () {
         else if (!Game.player.sceneObject.isMoving) {
             this.moveDirectGrid(xGrid, yGrid);
         }
+        if (Roguelike.Main.map != null) {
+            Roguelike.Main.refresh_shadow();
+        }
     };
     KeyboardControl.clearKeyDown = function () {
         for (var i in this.dirKeyDown) {
@@ -244,9 +247,8 @@ var KeyboardControl = (function () {
             H[6] = 2;
             H[8] = 0;
             if (H[this.dir] != null) {
-                Roguelike.Main.player.d = H[this.dir];
+                Roguelike.Main.turn_and_refresh_shadow(H[this.dir]);
             }
-            Roguelike.Main.refresh_shadow();
         }
     };
     Object.defineProperty(KeyboardControl, "leftDown", {
