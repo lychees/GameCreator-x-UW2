@@ -194,6 +194,18 @@ var Roguelike;
             };
         }
         Auto.prototype.fill = function (a, g, x, y) {
+            if (a == null)
+                a = [];
+            for (var ox = 0; ox < 2; ++ox) {
+                var xx = x + x + ox;
+                if (a[xx] == null)
+                    a[xx] = [];
+                for (var oy = 0; oy < 2; ++oy) {
+                    var yy = y + y + oy;
+                    if (a[xx][yy] == null)
+                        a[xx][yy] = {};
+                }
+            }
             var i = 0;
             var up = g[x][y - 1] != null && g[x][y] == g[x][y - 1];
             var dn = g[x][y - 1] != null && g[x][y] == g[x][y + 1];
@@ -287,8 +299,21 @@ var Roguelike;
         function RMVA_cave_tiles_texture_manager() {
             this.GRID_SIZE = 16;
         }
+        RMVA_cave_tiles_texture_manager.prototype.reset = function (a, w, h) {
+            if (a == null)
+                a = [];
+            for (var x = 0; x < w; ++x) {
+                if (a[x] == null)
+                    a[x] = [];
+                for (var y = 0; y < h; ++y) {
+                    if (a[x][y] == null)
+                        a[x][y] = {};
+                }
+            }
+        };
         RMVA_cave_tiles_texture_manager.prototype.parse_from_01_matrix = function (scene, g) {
             var a = scene.LayerDatas[0].tileData;
+            var a1 = scene.LayerDatas[1].tileData;
             var w = g.length;
             var h = g[0].length;
             var Soil = new Auto();
@@ -298,14 +323,15 @@ var Roguelike;
             var Abyss = new Auto();
             Abyss.texID = 62;
             Abyss.ox = 20;
-            Abyss.oy = 18;
+            Abyss.oy = 12;
+            this.reset(a1, w * 2, h * 2);
             for (var x = 0; x < w; ++x) {
                 for (var y = 0; y < h; ++y) {
+                    Soil.fill(a, g, x, y);
                     if (g[x][y] == 1) {
-                        Soil.fill(a, g, x, y);
                     }
                     else {
-                        Abyss.fill(a, g, x, y);
+                        Abyss.fill(a1, g, x, y);
                     }
                 }
             }
@@ -313,6 +339,8 @@ var Roguelike;
                 for (var y = 0; y < 2 * h; ++y) {
                     a[x][y].x *= this.GRID_SIZE;
                     a[x][y].y *= this.GRID_SIZE;
+                    a1[x][y].x *= this.GRID_SIZE;
+                    a1[x][y].y *= this.GRID_SIZE;
                 }
             }
         };

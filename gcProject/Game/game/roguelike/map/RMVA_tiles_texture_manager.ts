@@ -219,6 +219,17 @@ namespace Roguelike {
 
         fill(a:any, g:any, x: number, y: number) {
 
+            if (a == null) a = [];
+
+            for (let ox=0;ox<2;++ox) {
+                let xx = x+x+ox;
+                if (a[xx] == null) a[xx] = [];
+                for (let oy=0;oy<2;++oy) {                    
+                    let yy = y+y+oy;
+                    if (a[xx][yy] == null) a[xx][yy] = {};
+                } 
+            }
+
             let i = 0;
             let up = g[x][y-1] != null && g[x][y] == g[x][y-1];
             let dn = g[x][y-1] != null && g[x][y] == g[x][y+1];
@@ -320,24 +331,37 @@ namespace Roguelike {
             this.GRID_SIZE = 16;
         }
 
+        reset(a: any, w: number, h: number) {
+            if (a == null) a = [];
+            for (let x=0;x<w;++x) {
+                if (a[x] == null) a[x] = [];
+                for (let y=0;y<h;++y) {
+                    if (a[x][y] == null) a[x][y] = {};
+                }
+            }
+        }
+
         parse_from_01_matrix(scene: any, g: any) {
             let a = scene.LayerDatas[0].tileData;
+            let a1 = scene.LayerDatas[1].tileData;
             let w = g.length;
             let h = g[0].length;
 
             let Soil = new Auto();
             Soil.texID = 62; Soil.ox = 0; Soil.oy = 6;
             let Abyss = new Auto();
-            Abyss.texID = 62; Abyss.ox = 20; Abyss.oy = 18;
+            Abyss.texID = 62; Abyss.ox = 20; Abyss.oy = 12;
 
+            this.reset(a1, w*2, h*2);
             // 需要保证当前 texID 已经加载
             // 否则是黑屏
             for (let x=0;x<w;++x) {
                 for (let y=0;y<h;++y) {
+                    Soil.fill(a, g, x, y);
                     if (g[x][y] == 1) {
-                        Soil.fill(a, g, x, y);
-                    } else {
-                        Abyss.fill(a, g, x, y);
+                        //Soil.fill(a, g, x, y);
+                    } else {                        
+                        Abyss.fill(a1, g, x, y);
                     }                                    
                 }
             }
@@ -345,7 +369,9 @@ namespace Roguelike {
             for (let x=0;x<2*w;++x) {
                 for (let y=0;y<2*h;++y) {
                     a[x][y].x *= this.GRID_SIZE;
-                    a[x][y].y *= this.GRID_SIZE;
+                    a[x][y].y *= this.GRID_SIZE;                    
+                    a1[x][y].x *= this.GRID_SIZE;
+                    a1[x][y].y *= this.GRID_SIZE;
                 }
             }
         }
