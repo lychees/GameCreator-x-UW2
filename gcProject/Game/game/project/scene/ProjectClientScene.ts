@@ -196,7 +196,6 @@ class ProjectClientScene extends ClientScene {
 
 
         let obs = this.dataLayers[0];
-        console.log(obs);
         if (obs == null) obs = [];
         for (let x=0;x<w2;++x) {
             for (let y=0;y<h2;++y) {
@@ -209,7 +208,9 @@ class ProjectClientScene extends ClientScene {
                     }                    
                 }
             }
-        }    
+        }
+         
+        // Roguelike.Main.refresh_shadow();
     }
     /**
      * 生成世界地图

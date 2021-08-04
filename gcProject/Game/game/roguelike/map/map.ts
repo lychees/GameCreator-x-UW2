@@ -128,7 +128,6 @@ namespace Roguelike {
             Roguelike.Main.player = player;
             player.set_shadow(0.5, 360);
             player.set_shadow();
-
             Game.player.toScene(6, player.x * 32 + 16, player.y * 32 + 16);
             
                         
