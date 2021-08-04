@@ -343,7 +343,7 @@ class KeyboardControl {
             H[4] = 6;
             H[6] = 2;
             H[8] = 0;    
-            Roguelike.Main.player.dir = H[this.dir];
+            Roguelike.Main.player.d = H[this.dir];
             Roguelike.Main.refresh_shadow(); 
         }
     }
