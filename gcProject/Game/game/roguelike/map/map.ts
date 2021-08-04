@@ -12,11 +12,13 @@ namespace Roguelike {
 
         isFov: boolean;
 
-        constructor(w: number, h: number) {        
+        constructor(w: number, h: number) {   
+                  
             this.width = w;
             this.height = h;        
             this.layer = new Array<any>(w);
-            this.shadow = new Array<any>(w);        
+            this.shadow = new Array<any>(w);
+                  
             for (let x=0;x<w;++x) {
                 this.layer[x] = new Array<any>(h);
                 this.shadow[x] = new Array<any>(h);
@@ -100,6 +102,59 @@ namespace Roguelike {
             return new tile(x, y);
         }
 
+        gen_cave(g: any) {
+            let w = this.width;
+            let h = this.height;        
+            let digger = new ROT.Map.Digger(w, h);
+            
+            let spaces = [];
+            let digCallback = function(x, y, v) {
+                if (v) {
+                    this.layer[x][y].push(new Roguelike.Wall(x, y));
+                } else {           
+                    g[x][y] = 1;     
+                    this.layer[x][y].push(new Roguelike.Tile(x, y));                
+                    spaces.push(x+","+y);
+                }
+            }
+            digger.create(digCallback.bind(this));
+
+        
+            
+            // 生成玩家
+            let player = this.createTileFromSpaces(Roguelike.Player, spaces);  
+            this.agents.push(player);
+            this.player = player;            
+            Roguelike.Main.player = player;
+            player.set_shadow(0.5, 360);
+            player.set_shadow();
+
+            Game.player.toScene(6, player.x * 32 + 16, player.y * 32 + 16);
+            
+                        
+            // 生成出口
+            let exit = this.createTileFromSpaces(Roguelike.Exit, spaces);            
+            this.layer[exit.x][exit.y].push(exit);        
+            // 生成箱子与钥匙        
+            this.isFov = true;
+            let isBox = true;
+            let isGuard = true;
+            
+            if (isBox) {
+                for (var i=0;i<60;i++) {
+                    let box = this.createTileFromSpaces(Roguelike.Box, spaces);                
+                    box.hasKey = !i;
+                    this.layer[box.x][box.y].push(box);
+                }
+                exit.needKey = true;
+            }                    
+            /*
+            if (isGuard) {
+                let guard = this.createTileFromSpaces(Guard, spaces);  
+                this.agents.push(guard);
+            } */
+        }
+
         gen(level: number) {
             let w = this.width;
             let h = this.height;        
@@ -146,7 +201,7 @@ namespace Roguelike {
             let isGuard = true;
             
             if (isBox) {
-                for (var i=0;i<3;i++) {
+                for (var i=0;i<190;i++) {
                     let box = this.createTileFromSpaces(Box, spaces);                
                     box.hasKey = !i;
                     this.layer[box.x][box.y].push(box);

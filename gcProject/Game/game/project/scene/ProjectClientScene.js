@@ -68,9 +68,19 @@ var ProjectClientScene = (function (_super) {
         this.gen();
         this.sceneUtils = new SceneUtils(this);
     };
+    ProjectClientScene.prototype.set_tile = function (a, x, y, t) {
+        var w = this.gridWidth;
+        var h = this.gridHeight;
+        if (a == null)
+            a = new Array(w);
+        if (a[x] == null)
+            a[x] = new Array(h);
+        a[x][y] = t;
+    };
     ProjectClientScene.prototype.gen_cave = function () {
         var a = this.LayerDatas[0].tileData;
         var a1 = this.LayerDatas[1].tileData;
+        var a2 = this.LayerDatas[2].tileData;
         var w = this.gridWidth;
         var h = this.gridHeight;
         for (var x = 0; x < w; ++x) {
@@ -79,27 +89,60 @@ var ProjectClientScene = (function (_super) {
             if (a1[x] == null)
                 a1[x] = [];
         }
+        var w2 = Math.floor(w / 2);
+        var h2 = Math.floor(h / 2);
         var g = [];
-        for (var x = 0; x < w / 2; ++x) {
+        for (var x = 0; x < w2; ++x) {
             g.push([]);
-            for (var y = 0; y < h / 2; ++y) {
+            for (var y = 0; y < h2; ++y) {
                 g[x].push(0);
             }
         }
-        var digger = new ROT.Map.Digger(w / 2, h / 2);
-        var spaces = [];
-        var digCallback = function (x, y, v) {
-            if (v) {
-            }
-            else {
-                console.log(x + "," + y);
-                g[x][y] = 1;
-                spaces.push(x + "," + y);
-            }
-        };
-        digger.create(digCallback.bind(this));
+        Roguelike.Main.gen_cave(g);
         var parser = new Roguelike.RMVA_cave_tiles_texture_manager();
         parser.parse_from_01_matrix(this, g);
+        for (var x = 0; x < w2; ++x) {
+            for (var y = 0; y < h2; ++y) {
+                for (var _i = 0, _a = Roguelike.Main.map.layer[x][y]; _i < _a.length; _i++) {
+                    var t = _a[_i];
+                    if (t.ch == "箱") {
+                        for (var ox = 0; ox < 2; ++ox) {
+                            for (var oy = 0; oy < 2; ++oy) {
+                                this.set_tile(a1, x + x + ox, y + y + oy, {
+                                    "x": (10 + ox) * 16,
+                                    "y": (18 + oy) * 16,
+                                    "texID": 66
+                                });
+                            }
+                        }
+                    }
+                    else if (t.ch == "門") {
+                        for (var ox = 0; ox < 2; ++ox) {
+                            for (var oy = 0; oy < 2; ++oy) {
+                                this.set_tile(a1, x * 2 + ox, y * 2 + oy, {
+                                    "x": (26 + ox) * 16,
+                                    "y": (22 + oy) * 16,
+                                    "texID": 66
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (var x = 0; x < w / 2; ++x) {
+            for (var y = 0; y < h / 2; ++y) {
+                if (Roguelike.Main.map.shadow[x][y] != 0) {
+                }
+                else {
+                    for (var ox = 0; ox < 2; ++ox) {
+                        for (var oy = 0; oy < 2; ++oy) {
+                            a2[x + x + ox][y + y + oy] = null;
+                        }
+                    }
+                }
+            }
+        }
     };
     ProjectClientScene.prototype.gen_world_map = function () {
         var a = this.LayerDatas[0].tileData;

@@ -50,6 +50,24 @@ var KeyboardControl = (function () {
                 return;
             }
             else {
+                console.log(Game.currentScene);
+                var w = Game.currentScene.gridWidth;
+                var h = Game.currentScene.gridHeight;
+                if (Roguelike.Main.map != null) {
+                    for (var x_1 = 0; x_1 < w / 2; ++x_1) {
+                        for (var y_1 = 0; y_1 < h / 2; ++y_1) {
+                            if (Roguelike.Main.map.shadow[x_1][y_1] != 0) {
+                            }
+                            else {
+                                for (var ox = 0; ox < 2; ++ox) {
+                                    for (var oy = 0; oy < 2; ++oy) {
+                                        Game.currentScene.LayerDatas[2].tileData[x_1 + x_1 + ox][y_1 + y_1 + oy] = null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                 var x = p.x + 820;
                 var y = p.y + 348;

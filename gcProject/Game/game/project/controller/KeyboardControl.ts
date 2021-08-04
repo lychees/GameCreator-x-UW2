@@ -137,6 +137,30 @@ class KeyboardControl {
                 }
                 return;
             } else {
+
+                console.log(Game.currentScene);
+
+                let w = Game.currentScene.gridWidth;
+                let h = Game.currentScene.gridHeight;
+
+                if (Roguelike.Main.map != null) {
+                    for (let x=0;x<w/2;++x) {
+                        for (let y=0;y<h/2;++y) {
+                            if (Roguelike.Main.map.shadow[x][y] != 0) {
+                                
+                            } else {
+                                for (let ox=0;ox<2;++ox) {
+                                    for (let oy=0;oy<2;++oy) {
+                                        Game.currentScene.LayerDatas[2].tileData[x+x+ox][y+y+oy] = null;
+                                        // Game.currentScene.layers[2].tileLayer[x+x+ox][y+y+oy].visible = false;
+                                    }          
+                                }         
+                            }
+                        }
+                    }
+                }
+
+
                 let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                 let x = p.x + 820;
                 let y = p.y + 348;
@@ -145,7 +169,7 @@ class KeyboardControl {
                         Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i+1].name);                        
                         GameCommand.startCommonCommand(1);
                         Roguelike.current_map = "cave";
-                        Game.player.toScene(6, 16, 16);
+                        Game.player.toScene(6, 16, 16);                        
                         break;
                     }
                 }

@@ -89,6 +89,43 @@ var Roguelike;
             var y = parseInt(pos[1]);
             return new tile(x, y);
         };
+        Map.prototype.gen_cave = function (g) {
+            var w = this.width;
+            var h = this.height;
+            var digger = new ROT.Map.Digger(w, h);
+            var spaces = [];
+            var digCallback = function (x, y, v) {
+                if (v) {
+                    this.layer[x][y].push(new Roguelike.Wall(x, y));
+                }
+                else {
+                    g[x][y] = 1;
+                    this.layer[x][y].push(new Roguelike.Tile(x, y));
+                    spaces.push(x + "," + y);
+                }
+            };
+            digger.create(digCallback.bind(this));
+            var player = this.createTileFromSpaces(Roguelike.Player, spaces);
+            this.agents.push(player);
+            this.player = player;
+            Roguelike.Main.player = player;
+            player.set_shadow(0.5, 360);
+            player.set_shadow();
+            Game.player.toScene(6, player.x * 32 + 16, player.y * 32 + 16);
+            var exit = this.createTileFromSpaces(Roguelike.Exit, spaces);
+            this.layer[exit.x][exit.y].push(exit);
+            this.isFov = true;
+            var isBox = true;
+            var isGuard = true;
+            if (isBox) {
+                for (var i = 0; i < 60; i++) {
+                    var box = this.createTileFromSpaces(Roguelike.Box, spaces);
+                    box.hasKey = !i;
+                    this.layer[box.x][box.y].push(box);
+                }
+                exit.needKey = true;
+            }
+        };
         Map.prototype.gen = function (level) {
             var w = this.width;
             var h = this.height;
@@ -125,7 +162,7 @@ var Roguelike;
             var isBox = true;
             var isGuard = true;
             if (isBox) {
-                for (var i = 0; i < 3; i++) {
+                for (var i = 0; i < 190; i++) {
                     var box = this.createTileFromSpaces(Roguelike.Box, spaces);
                     box.hasKey = !i;
                     this.layer[box.x][box.y].push(box);

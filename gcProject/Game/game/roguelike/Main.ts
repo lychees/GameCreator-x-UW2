@@ -111,6 +111,13 @@ namespace Roguelike{
             }        
             this.engine = new ROT.Engine(scheduler);
             this.engine.start();     
+        },
+
+        gen_cave: function(g: any) {
+            let w = Number(g.length);
+            let h = Number(g[0].length);
+            this.map = new Roguelike.Map(w, h); 
+            this.map.gen_cave(g);
         }
     };
 

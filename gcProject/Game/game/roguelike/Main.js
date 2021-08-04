@@ -84,6 +84,12 @@ var Roguelike;
             }
             this.engine = new ROT.Engine(scheduler);
             this.engine.start();
+        },
+        gen_cave: function (g) {
+            var w = Number(g.length);
+            var h = Number(g[0].length);
+            this.map = new Roguelike.Map(w, h);
+            this.map.gen_cave(g);
         }
     };
     function command_line(cmd) {

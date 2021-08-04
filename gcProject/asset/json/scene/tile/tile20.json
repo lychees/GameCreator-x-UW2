@@ -1,7 +1,28 @@
 {
-    "url": "",
-    "dataLayers": [],
-    "width": 0,
-    "height": 0,
+    "url": "asset/image/picture/rule/shadow.png",
+    "dataLayers": [
+        [
+            [
+                0
+            ]
+        ],
+        [
+            [
+                0
+            ]
+        ],
+        [
+            [
+                0
+            ]
+        ],
+        [
+            [
+                0
+            ]
+        ]
+    ],
+    "width": 16,
+    "height": 16,
     "id": 20
 }

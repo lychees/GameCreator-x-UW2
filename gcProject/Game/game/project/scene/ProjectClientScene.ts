@@ -122,6 +122,16 @@ class ProjectClientScene extends ClientScene {
         this.gen();
         this.sceneUtils = new SceneUtils(this);
     }
+    /**
+     * Set 地塊
+     */
+    set_tile(a, x, y, t) {
+        let w = this.gridWidth;
+        let h = this.gridHeight;
+        if (a == null) a = new Array(w);
+        if (a[x] == null) a[x] = new Array(h);
+        a[x][y] = t;
+    }
 
     /**
      * 生成地牢
@@ -129,6 +139,7 @@ class ProjectClientScene extends ClientScene {
     gen_cave() {
         let a = this.LayerDatas[0].tileData;
         let a1 = this.LayerDatas[1].tileData;
+        let a2 = this.LayerDatas[2].tileData;
         let w = this.gridWidth;
         let h = this.gridHeight;
         
@@ -139,35 +150,63 @@ class ProjectClientScene extends ClientScene {
             if (a1[x] == null) a1[x] = [];
         }
         
+        let w2 = Math.floor(w/2);
+        let h2 = Math.floor(h/2);
+
         let g = [];
-        for (let x=0;x<w/2;++x) {
+        for (let x=0;x<w2;++x) {
             g.push([]);
-            for (let y=0;y<h/2;++y) {
+            for (let y=0;y<h2;++y) {
                 g[x].push(0);
             }
         }
 
-        let digger = new ROT.Map.Digger(w/2, h/2);            
-        let spaces = [];
-        let digCallback = function(x, y, v) {
-            if (v) {
-
-            } else {     
-                console.log(x+","+y);           
-                g[x][y] = 1;                
-                spaces.push(x+","+y);                
-            }
-        }
-        digger.create(digCallback.bind(this));
-
-        /* for (let x=0;x<w/2;++x) {                
-            for (let y=0;y<h/2;++y) { 
-                if (Math.random() < 0.5) g[x][y] = 1;
-            }
-        }  */
+        Roguelike.Main.gen_cave(g);
 
         let parser = new Roguelike.RMVA_cave_tiles_texture_manager();
         parser.parse_from_01_matrix(this, g);
+
+        for (let x=0;x<w2;++x) {
+            for (let y=0;y<h2;++y) {
+                for (let t of Roguelike.Main.map.layer[x][y]) {
+                    if (t.ch == "箱") {
+                        for (let ox=0;ox<2;++ox) {
+                            for (let oy=0;oy<2;++oy) {
+                                this.set_tile(a1, x+x+ox, y+y+oy, {
+                                    "x": (10+ox)*16,
+                                    "y": (18+oy)*16,
+                                    "texID": 66
+                                });
+                            }
+                        }                        
+                    } else if (t.ch == "門") {
+                        for (let ox=0;ox<2;++ox) {
+                            for (let oy=0;oy<2;++oy) {
+                                this.set_tile(a1, x*2+ox, y*2+oy, {
+                                    "x": (26+ox)*16,
+                                    "y": (22+oy)*16,
+                                    "texID": 66
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for (let x=0;x<w/2;++x) {
+            for (let y=0;y<h/2;++y) {
+                if (Roguelike.Main.map.shadow[x][y] != 0) {
+                    
+                } else {
+                    for (let ox=0;ox<2;++ox) {
+                        for (let oy=0;oy<2;++oy) {
+                            a2[x+x+ox][y+y+oy] = null;
+                        }          
+                    }         
+                }
+            }
+        }
     }
     /**
      * 生成世界地图

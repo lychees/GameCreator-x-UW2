@@ -20,7 +20,7 @@
         "",
         "",
         "",
-        "",
+        "shadow.png",
         "",
         "",
         "",
@@ -63,6 +63,10 @@
         "",
         "Outside_A1.png",
         "Outside_A2.png",
-        "Outside_A3.png"
+        "Outside_A3.png",
+        "Outside_A4.png",
+        "Outside_A5.png",
+        "Outside_B.png",
+        "Outside_C.png"
     ]
 }
