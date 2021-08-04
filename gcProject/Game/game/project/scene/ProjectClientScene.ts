@@ -204,7 +204,7 @@ class ProjectClientScene extends ClientScene {
                     for (let ox=0;ox<2;++ox) {                        
                         if (obs[x+x+ox] == null) obs[x+x+ox] = [];
                         for (let oy=0;oy<2;++oy) {                            
-                            obs[x+x+ox][y+y+oy] = 0;
+                            obs[x+x+ox][y+y+oy] = 1;
                         }                        
                     }                    
                 }
