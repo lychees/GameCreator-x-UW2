@@ -103,23 +103,8 @@ var ProjectClientScene = (function (_super) {
         return byteArray;
     };
     ProjectClientScene.prototype.gen_port = function () {
-        var url = "asset/image/_uw2/ports/PORTMAP008.json";
-        FileUtils.loadFile(url, new Callback(function (raw) {
-            var port = Uint8Array.from(raw.split(','));
-            var a = this.LayerDatas[0].tileData;
-            console.log(port);
-            this.reset_2Darray(a, 96, 96);
-            for (var x = 0; x < 96; ++x) {
-                for (var y = 0; y < 96; ++y) {
-                    var idx = Number(port[x * 96 + y]);
-                    a[y][x] = {
-                        'texID': 21,
-                        'x': (idx % 16) * 16,
-                        'y': Math.floor(idx / 16) * 16,
-                    };
-                }
-            }
-        }, this));
+        return __awaiter(this, void 0, void 0, function* () {
+        });
     };
     ProjectClientScene.prototype.gen_cave = function () {
         var a = this.LayerDatas[0].tileData;

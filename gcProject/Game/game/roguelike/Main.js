@@ -68,7 +68,7 @@ var Roguelike;
                 for (var _i = 0, suffix_1 = suffix; _i < suffix_1.length; _i++) {
                     var s = suffix_1[_i];
                     console.log(file_name + s);
-                    AssetManager.loadImages("asset/image/_uw2/ports/" + file_name + s);
+                    AssetManager.loadImage("asset/image/_uw2/ports/" + file_name + s);
                 }
             }
         },
@@ -78,7 +78,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
@@ -146,7 +146,6 @@ var Roguelike;
             layer.flushTile();
         },
         gen_port: function () {
-            return;
             var url = "asset/image/_uw2/ports/PORTMAP008.json";
             FileUtils.loadFile(url, new Callback(function (raw) {
                 if (Game.currentScene == null)
@@ -154,21 +153,27 @@ var Roguelike;
                 var layer = Game.currentScene.getLayerByPreset(0);
                 var port = Uint8Array.from(raw.split(','));
                 var a = Game.currentScene.LayerDatas[0].tileData;
+                console.log(port);
+                console.log(AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  day.png"));
+                console.log(AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  night.png"));
                 Game.currentScene.reset_2Darray(a, 96, 96);
-                for (var x = 0; x < 96; ++x) {
-                    for (var y = 0; y < 96; ++y) {
-                        var idx = Number(port[x * 96 + y]);
-                        var t = {
-                            "tex": AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  day.png"),
-                            "y": Math.floor(idx / 16) * 16,
-                            "x": (idx % 16) * 16,
-                            "w": 16,
-                            "h": 16,
-                            "texID": 21,
-                        };
-                        layer.drawTile(y, x, t);
+                AssetManager.loadImage("asset/image/_uw2/ports/PORTCHIP.000  night.png", Callback.New(function (tex) {
+                    console.log('!!!', tex);
+                    for (var x = 0; x < 96; ++x) {
+                        for (var y = 0; y < 96; ++y) {
+                            var idx = Number(port[x * 96 + y]);
+                            var t = {
+                                "tex": tex,
+                                "y": Math.floor(idx / 16) * 16,
+                                "x": (idx % 16) * 16,
+                                "w": 16,
+                                "h": 16,
+                            };
+                            layer.drawTile(y, x, t);
+                        }
                     }
-                }
+                    layer.flushTile();
+                }));
             }, this));
         }
     };

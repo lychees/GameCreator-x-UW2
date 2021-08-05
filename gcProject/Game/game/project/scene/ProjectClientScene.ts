@@ -160,28 +160,33 @@ class ProjectClientScene extends ClientScene {
     /**
      * 生成港口
      */ 
-    gen_port() {
-        let url = "asset/image/_uw2/ports/PORTMAP008.json";
-        FileUtils.loadFile(url, new Callback(function (raw) {            
-            ////let port = raw.split(',');
+    async gen_port() {
+        /*
+        try {
+            let url = "asset/image/_uw2/ports/PORTMAP008.json";
+            await FileUtils.loadFile(url, new Callback(function (raw) {
+                let port = Uint8Array.from(raw.split(','));
+                let a = this.LayerDatas[0].tileData;
+                
+                console.log(port);
 
-            let port = Uint8Array.from(raw.split(','));
-            let a = this.LayerDatas[0].tileData;
-            
-            console.log(port);
-
-            this.reset_2Darray(a, 96, 96);            
-            for (let x=0;x<96;++x) {
-                for (let y=0;y<96;++y) {
-                    let idx = Number(port[x*96+y]);
-                    a[y][x] = {
-                        'texID': 21,
-                        'x': (idx%16) * 16,
-                        'y': Math.floor(idx/16) * 16,
+                this.reset_2Darray(a, 96, 96);            
+                for (let x=0;x<96;++x) {
+                    for (let y=0;y<96;++y) {
+                        let idx = Number(port[x*96+y]);
+                        a[y][x] = {
+                            'texID': 21,
+                            'x': (idx%16) * 16,
+                            'y': Math.floor(idx/16) * 16,
+                        }
                     }
                 }
-            }
-        }, this));
+            }, this));
+        }
+        catch(err) {
+            console.log('Error: ', err.message);
+        }
+        await timeout(5000); */
     }
     
     /**

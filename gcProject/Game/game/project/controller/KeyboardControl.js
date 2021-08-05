@@ -65,7 +65,6 @@ var KeyboardControl = (function () {
                         if (i <= 1) {
                             Roguelike.current_map = "port";
                             Game.player.toScene(7, 0, 0);
-                            Roguelike.Main.gen_port();
                         }
                         else {
                             Roguelike.current_map = "cave";
@@ -256,6 +255,9 @@ var KeyboardControl = (function () {
             if (H[this.dir] != null) {
                 Roguelike.Main.turn_and_refresh_shadow(H[this.dir]);
             }
+        }
+        if (Roguelike.current_map == 'port') {
+            Roguelike.Main.gen_port();
         }
     };
     Object.defineProperty(KeyboardControl, "leftDown", {
