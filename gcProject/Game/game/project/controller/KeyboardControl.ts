@@ -149,15 +149,24 @@ class KeyboardControl {
                 let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                 let x = p.x + 820;
                 let y = p.y + 348;
+
+                for (var i = 0; i < 130; ++i) {
+
+                }
+
                 for (let i=0;i<130;++i) {
                     if (Math.abs(x - hash_ports_meta_data[i+1].x) < 4 && Math.abs(y - hash_ports_meta_data[i+1].y) < 4) {                                                
                         Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i+1].name);
                         GameCommand.startCommonCommand(1);                        
-                        //if (i <= 1) {
+                        let meta = hash_ports_meta_data[i+1];
+                        if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
+                            Game.player.variable.setString(1, "你发现了" + meta.name);
+                            GameCommand.startCommonCommand(1);
                             Roguelike.current_map = "port";
                             Roguelike.port_id = i;
-                            Game.player.toScene(7, 0, 0);
-                            // Roguelike.Main.gen_port();
+                            Game.player.toScene(7, meta.buildings[4].x*16+16, meta.buildings[4].y*16+16);
+                            break;
+                        }
                         //} else {
                           //  Roguelike.current_map = "cave";
                             //Game.player.toScene(6, 0, 0);
