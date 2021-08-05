@@ -151,10 +151,6 @@ class KeyboardControl {
                     for (let i=0;i<130;++i) {
                         let meta = hash_ports_meta_data[i+1];
                         
-                        if (i==0) {
-                            console.log(x,'-',y,' : ',meta.x,'-',meta.y);
-                        }
-
                         if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
                             Game.player.variable.setString(1, "你发现了 " + meta.name);
                             GameCommand.startCommonCommand(1);
@@ -164,6 +160,21 @@ class KeyboardControl {
                             break;
                         }
                     }
+                    console.log(x,'-',y,'-',Roguelike.villages_n);
+
+                    if (Roguelike.current_map == 'world_map') {
+                        for (let i=47;i<=47;++i) {
+                            let meta = Roguelike.villages_dict[i+1];
+                            if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
+                                Game.player.variable.setString(1, "你发现了 " + meta.name);
+                                GameCommand.startCommonCommand(1);
+                                Game.player.variable.setString(1, meta.description);
+                                GameCommand.startCommonCommand(1);
+                                break;
+                            }
+                        }
+                    }
+
                 } else if (Roguelike.current_map == "port") {                    
                     let meta = hash_ports_meta_data[Roguelike.port_id+1];
                     let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);

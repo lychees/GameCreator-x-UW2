@@ -59,9 +59,6 @@ var KeyboardControl = (function () {
                     var y = p.y + Roguelike.world_map_oy;
                     for (var i = 0; i < 130; ++i) {
                         var meta = hash_ports_meta_data[i + 1];
-                        if (i == 0) {
-                            console.log(x, '-', y, ' : ', meta.x, '-', meta.y);
-                        }
                         if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
                             Game.player.variable.setString(1, "你发现了 " + meta.name);
                             GameCommand.startCommonCommand(1);
@@ -69,6 +66,19 @@ var KeyboardControl = (function () {
                             Roguelike.port_id = i;
                             Game.player.toScene(7, meta.buildings[4].x * 16 + 16, meta.buildings[4].y * 16 + 16);
                             break;
+                        }
+                    }
+                    console.log(x, '-', y, '-', Roguelike.villages_n);
+                    if (Roguelike.current_map == 'world_map') {
+                        for (var i = 47; i <= 47; ++i) {
+                            var meta = Roguelike.villages_dict[i + 1];
+                            if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
+                                Game.player.variable.setString(1, "你发现了 " + meta.name);
+                                GameCommand.startCommonCommand(1);
+                                Game.player.variable.setString(1, meta.description);
+                                GameCommand.startCommonCommand(1);
+                                break;
+                            }
                         }
                     }
                 }
