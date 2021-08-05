@@ -71,6 +71,7 @@ namespace Roguelike{
         },
         
         init: function() {
+            /*
             this.display = new ROT.Display({
                 width: 100,
                 height: 100,
@@ -81,7 +82,23 @@ namespace Roguelike{
 
             document.body.insertBefore(this.display.getContainer(), document.getElementById('the3Container'));
             document.getElementById("gcCanvas").style.position = "relative";
-            //document.getElementById("gcCanvas").style.position = "relative";       
+            //document.getElementById("gcCanvas").style.position = "relative";      
+            */ 
+            for (let i=0;i<7;++i) {
+                let file_name = "PORTCHIP.";
+                let a = '0';
+                let b = Math.floor((i*2) / 10);
+                let c = (i*2) % 10;
+                file_name += a;
+                file_name += b;
+                file_name += c;
+
+                let suffix = ["  day.png", "  dawn.png", "  dust.png", "  nignt.png"];
+                for (let s of suffix) {
+                    console.log(file_name + s);
+                    AssetManager.loadImages("asset/image/_uw2/ports/" + file_name + s);                    
+                }
+            }
         },
 
         start_level: function(level) {

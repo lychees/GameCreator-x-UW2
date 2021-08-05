@@ -56,15 +56,21 @@ var Roguelike;
             GameUI.show(1);
         },
         init: function () {
-            this.display = new ROT.Display({
-                width: 100,
-                height: 100,
-                fontSize: 26,
-                spacing: 1.08,
-                fontFamily: 'Verdana'
-            });
-            document.body.insertBefore(this.display.getContainer(), document.getElementById('the3Container'));
-            document.getElementById("gcCanvas").style.position = "relative";
+            for (var i = 0; i < 7; ++i) {
+                var file_name = "PORTCHIP.";
+                var a = '0';
+                var b = Math.floor((i * 2) / 10);
+                var c = (i * 2) % 10;
+                file_name += a;
+                file_name += b;
+                file_name += c;
+                var suffix = ["  day.png", "  dawn.png", "  dust.png", "  nignt.png"];
+                for (var _i = 0, suffix_1 = suffix; _i < suffix_1.length; _i++) {
+                    var s = suffix_1[_i];
+                    console.log(file_name + s);
+                    AssetManager.loadImages("asset/image/_uw2/ports/" + file_name + s);
+                }
+            }
         },
         start_level: function (level) {
             var w = 25;
@@ -72,7 +78,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Map(w, h);
+            this.map = new Roguelike.Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();

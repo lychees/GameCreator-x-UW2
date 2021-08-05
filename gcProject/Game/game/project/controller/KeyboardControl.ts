@@ -151,7 +151,7 @@ class KeyboardControl {
                 let y = p.y + 348;
                 for (let i=0;i<130;++i) {
                     if (Math.abs(x - hash_ports_meta_data[i+1].x) < 4 && Math.abs(y - hash_ports_meta_data[i+1].y) < 4) {                                                
-                        Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i+1].name);                        
+                        Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i+1].name);
                         GameCommand.startCommonCommand(1);                        
                         if (i <= 1) {
                             Roguelike.current_map = "port";
