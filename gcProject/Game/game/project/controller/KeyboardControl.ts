@@ -179,6 +179,18 @@ class KeyboardControl {
                             if (name[i] == "port") {
                                 Roguelike.toWorldMap(meta.x, meta.y);
                             }
+                            if (name[i] == "msc") {
+                                if (Roguelike.story == "访问老师") {
+                                    GameCommand.startCommonCommand(8002);
+                                    Roguelike.story = "出发";            
+                                }
+                            }
+                            if (name[i] == "palace") {
+                                if (Roguelike.story == "谒见公爵") {
+                                    GameCommand.startCommonCommand(8003);
+                                    Roguelike.story = "访问老师";            
+                                }
+                            }
                             break;
                         }
                     }

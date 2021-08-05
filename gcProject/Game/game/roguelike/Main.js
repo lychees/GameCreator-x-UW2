@@ -79,7 +79,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Map(w, h);
+            this.map = new Roguelike.Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
@@ -217,6 +217,7 @@ var Roguelike;
     Roguelike.command_line = command_line;
     Roguelike.world_map_ox = 0;
     Roguelike.world_map_oy = 0;
+    Roguelike.story = "启航";
     function toWorldMap(x, y) {
         Roguelike.current_map = "world_map";
         Roguelike.world_map_ox = x - 360;
@@ -226,6 +227,10 @@ var Roguelike;
         if (Roguelike.world_map_oy < 0)
             Roguelike.world_map_oy = 0;
         Game.player.toScene(5, (x - Roguelike.world_map_ox) * 16, (y - Roguelike.world_map_oy) * 16);
+        if (Roguelike.story == "启航") {
+            GameCommand.startCommonCommand(8001);
+            Roguelike.story = "谒见公爵";
+        }
     }
     Roguelike.toWorldMap = toWorldMap;
 })(Roguelike || (Roguelike = {}));

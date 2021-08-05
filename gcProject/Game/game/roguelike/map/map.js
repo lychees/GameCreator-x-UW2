@@ -58,7 +58,7 @@ var Roguelike;
             return true;
         };
         Map.prototype.draw_tile_at = function (x, y) {
-            Main.display.draw(x, y, null);
+            Roguelike.Main.display.draw(x, y, null);
             var a = this.layer[x][y];
             if (a !== null) {
                 var n = a.length;
@@ -142,35 +142,35 @@ var Roguelike;
             var spaces = [];
             var digCallback = function (x, y, v) {
                 if (v) {
-                    this.layer[x][y].push(new Wall(x, y));
+                    this.layer[x][y].push(new Roguelike.Wall(x, y));
                 }
                 else {
-                    this.layer[x][y].push(new Tile(x, y));
+                    this.layer[x][y].push(new Roguelike.Tile(x, y));
                     spaces.push(x + "," + y);
                 }
             };
             digger.create(digCallback.bind(this));
-            var player = this.createTileFromSpaces(Player, spaces);
+            var player = this.createTileFromSpaces(Roguelike.Player, spaces);
             this.agents.push(player);
             this.player = player;
-            Main.player = player;
+            Roguelike.Main.player = player;
             player.set_shadow(0.5, 360);
             player.set_shadow();
-            var exit = this.createTileFromSpaces(Exit, spaces);
+            var exit = this.createTileFromSpaces(Roguelike.Exit, spaces);
             this.layer[exit.x][exit.y].push(exit);
             this.isFov = true;
             var isBox = true;
             var isGuard = true;
             if (isBox) {
                 for (var i = 0; i < 190; i++) {
-                    var box = this.createTileFromSpaces(Box, spaces);
+                    var box = this.createTileFromSpaces(Roguelike.Box, spaces);
                     box.hasKey = !i;
                     this.layer[box.x][box.y].push(box);
                 }
                 exit.needKey = true;
             }
             if (isGuard) {
-                var guard = this.createTileFromSpaces(Guard, spaces);
+                var guard = this.createTileFromSpaces(Roguelike.Guard, spaces);
                 this.agents.push(guard);
             }
         };

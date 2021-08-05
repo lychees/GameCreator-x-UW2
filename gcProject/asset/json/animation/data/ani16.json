@@ -88,7 +88,8 @@
                     "rotation": 0,
                     "alpha": 1,
                     "scaleX": 1,
-                    "scaleY": 1
+                    "scaleY": 1,
+                    "frameinterpolationEnabled": true
                 },
                 {
                     "index": 5,
@@ -196,7 +197,8 @@
                     "height": 192,
                     "imageSource": 1,
                     "blendModeType": 0,
-                    "signalId": 0
+                    "signalId": 0,
+                    "frameinterpolationEnabled": true
                 },
                 {
                     "index": 13,
@@ -230,7 +232,8 @@
             "children": [],
             "frames": [
                 {
-                    "index": 0
+                    "index": 0,
+                    "frameinterpolationEnabled": true
                 }
             ],
             "isHitEffect": false,

@@ -1,0 +1,18 @@
+{
+    "variable": {
+        "variables": [],
+        "switchs": [],
+        "strings": []
+    },
+    "saveIDs": [],
+    "globalData": {
+        "___globalData": null,
+        "___useNewGlobalData": true,
+        "Setting": {
+            "bgmVolume": 1,
+            "bgsVolume": 1,
+            "seVolume": 1,
+            "tsVolume": 1
+        }
+    }
+}

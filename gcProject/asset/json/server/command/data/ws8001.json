@@ -1,0 +1,53 @@
+{
+    "allowClient": false,
+    "conditionSwitch": 1,
+    "updateMode": false,
+    "commands": [
+        [
+            11,
+            2,
+            null,
+            "一般通过妹子",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>伊莎贝拉大人，公爵殿下正在 里斯本 的宫殿等你。</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70640158115_0.1646351953271512"
+            }
+        ],
+        [
+            11,
+            3,
+            21,
+            "伊莎贝拉",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>好的，我知道了。\n</span><span style='color:#FfFffF'>公爵殿下这个时候找我是做什么呢？...</span>",
+            null,
+            5,
+            0,
+            {
+                "___cmdID": "70640239621_0.6525709331974159"
+            }
+        ],
+        [
+            11,
+            2,
+            null,
+            "",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>你感到一丝 不安</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70645681502_0.9123258712354774"
+            }
+        ]
+    ],
+    "id": 8001
+}
