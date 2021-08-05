@@ -686,31 +686,6 @@
             "tileTexIDs": {}
         },
         {
-            "dx": 0,
-            "dy": 0,
-            "scaleX": 1,
-            "scaleY": 1,
-            "skewX": 0,
-            "skewY": 0,
-            "rotation": 0,
-            "xMove": 0,
-            "yMove": 0,
-            "prospectsPerX": 1,
-            "prospectsPerY": 1,
-            "xLoop": false,
-            "yLoop": false,
-            "opacity": 1,
-            "blendMode": null,
-            "drawMode": true,
-            "tileData": [],
-            "autoTileDataCache": [],
-            "img": null,
-            "modeType": true,
-            "modeLock": false,
-            "showOnEditor": true,
-            "tileTexIDs": {}
-        },
-        {
             "p": true,
             "showOnEditor": true
         },

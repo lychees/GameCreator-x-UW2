@@ -62,14 +62,9 @@ var KeyboardControl = (function () {
                     if (Math.abs(x - hash_ports_meta_data[i + 1].x) < 4 && Math.abs(y - hash_ports_meta_data[i + 1].y) < 4) {
                         Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i + 1].name);
                         GameCommand.startCommonCommand(1);
-                        if (i <= 1) {
-                            Roguelike.current_map = "port";
-                            Game.player.toScene(7, 0, 0);
-                        }
-                        else {
-                            Roguelike.current_map = "cave";
-                            Game.player.toScene(6, 0, 0);
-                        }
+                        Roguelike.current_map = "port";
+                        Roguelike.port_id = i;
+                        Game.player.toScene(7, 0, 0);
                         break;
                     }
                 }
@@ -255,9 +250,6 @@ var KeyboardControl = (function () {
             if (H[this.dir] != null) {
                 Roguelike.Main.turn_and_refresh_shadow(H[this.dir]);
             }
-        }
-        if (Roguelike.current_map == 'port') {
-            Roguelike.Main.gen_port();
         }
     };
     Object.defineProperty(KeyboardControl, "leftDown", {

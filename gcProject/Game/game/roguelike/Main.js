@@ -1,6 +1,7 @@
 var Roguelike;
 (function (Roguelike) {
     Roguelike.current_map = "";
+    Roguelike.port_id = 0;
     function colorHex(colorArr) {
         var strHex = "#";
         var colorArr;
@@ -78,7 +79,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Map(w, h);
+            this.map = new Roguelike.Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
@@ -145,31 +146,57 @@ var Roguelike;
             var layer = Game.currentScene.getLayerByPreset(3);
             layer.flushTile();
         },
-        gen_port: function () {
-            var url = "asset/image/_uw2/ports/PORTMAP008.json";
+        get_port_chip: function (id, t) {
+            if (id === void 0) { id = 0; }
+            if (t === void 0) { t = "day"; }
+            var i = hash_ports_meta_data[id + 1].tileset;
+            var f = "PORTCHIP.";
+            var a = '0';
+            var b = Math.floor((i * 2) / 10);
+            var c = (i * 2) % 10;
+            f += a;
+            f += b;
+            f += c;
+            f += '  ';
+            return "asset/image/_uw2/ports/" + f + t + ".png";
+        },
+        gen_port: function (id, t) {
+            if (id === void 0) { id = 0; }
+            if (t === void 0) { t = "random"; }
+            if (t == 'random') {
+                var tt = ["day", "dusk", "dawn", "night"];
+                t = tt[Math.floor(Math.random() * 4)];
+            }
+            var x = id;
+            var c = x % 10;
+            x = Math.floor(x / 10);
+            var b = x % 10;
+            x = Math.floor(x / 10);
+            var a = x % 10;
+            var url = "asset/image/_uw2/ports/PORTMAP" + a + b + c + ".json";
+            alert(url);
             FileUtils.loadFile(url, new Callback(function (raw) {
                 if (Game.currentScene == null)
                     return;
-                var layer = Game.currentScene.getLayerByPreset(0);
+                var layer = Game.currentScene.getLayerByPreset(1);
                 var port = Uint8Array.from(raw.split(','));
-                var a = Game.currentScene.LayerDatas[0].tileData;
-                console.log(port);
-                console.log(AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  day.png"));
-                console.log(AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  night.png"));
+                var a = Game.currentScene.LayerDatas[1].tileData;
                 Game.currentScene.reset_2Darray(a, 96, 96);
-                AssetManager.loadImage("asset/image/_uw2/ports/PORTCHIP.000  night.png", Callback.New(function (tex) {
-                    console.log('!!!', tex);
-                    for (var x = 0; x < 96; ++x) {
+                console.log(this.get_port_chip(id, t));
+                console.log(a);
+                AssetManager.loadImage(this.get_port_chip(id, t), Callback.New(function (tex) {
+                    console.log(tex);
+                    for (var x_1 = 0; x_1 < 96; ++x_1) {
                         for (var y = 0; y < 96; ++y) {
-                            var idx = Number(port[x * 96 + y]);
-                            var t = {
+                            var idx = Number(port[x_1 * 96 + y]);
+                            var t_1 = {
                                 "tex": tex,
                                 "y": Math.floor(idx / 16) * 16,
                                 "x": (idx % 16) * 16,
                                 "w": 16,
                                 "h": 16,
                             };
-                            layer.drawTile(y, x, t);
+                            layer.drawTile(y, x_1, t_1);
                         }
                     }
                     layer.flushTile();

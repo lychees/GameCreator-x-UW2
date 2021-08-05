@@ -1,6 +1,7 @@
 namespace Roguelike{
 
     export let current_map = "";
+    export let port_id = 0;
     
     // 地块
     /**
@@ -190,32 +191,50 @@ namespace Roguelike{
             layer.flushTile();
         },
 
-        gen_port: function() {
-         
-            let url = "asset/image/_uw2/ports/PORTMAP008.json";
-            
-            
+        get_port_chip: function(id = 0, t = "day") {
+
+            let i = hash_ports_meta_data[id+1].tileset;
+            let f = "PORTCHIP.";
+            let a = '0';
+            let b = Math.floor((i * 2) / 10);
+            let c = (i * 2) % 10;
+            f += a; f += b; f += c; f += '  ';
+            return "asset/image/_uw2/ports/" + f + t + ".png";
+        },
+
+        gen_port: function(id = 0, t = "random") {
+
+            if (t == 'random') {
+                let tt = ["day","dusk","dawn","night"];
+                t = tt[Math.floor(Math.random()*4)];
+            }
+
+            let x = id;
+            let c = x % 10; x = Math.floor(x/10); 
+            let b = x % 10; x = Math.floor(x/10);
+            let a = x % 10;
+                     
+            let url = "asset/image/_uw2/ports/PORTMAP" + a+b+c + ".json";
+
+            alert(url);
+                        
             FileUtils.loadFile(url, new Callback(function (raw) {
                 if (Game.currentScene == null) return;
-                let layer = Game.currentScene.getLayerByPreset(0);
+                let layer = Game.currentScene.getLayerByPreset(1);
 
                 let port = Uint8Array.from(raw.split(','));
-                let a =Game.currentScene.LayerDatas[0].tileData;
-
-                console.log(port);
-
-                console.log(AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  day.png"));
-                console.log(AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  night.png"));
+                let a = Game.currentScene.LayerDatas[1].tileData;
 
                 Game.currentScene.reset_2Darray(a, 96, 96);
-                AssetManager.loadImage("asset/image/_uw2/ports/PORTCHIP.000  night.png", Callback.New((tex: Texture) => {
 
-                    console.log('!!!', tex);
+                console.log(this.get_port_chip(id, t));
+                console.log(a);
+                AssetManager.loadImage(this.get_port_chip(id, t), Callback.New((tex: Texture) => {
+                    console.log(tex);
 
                     for (let x=0;x<96;++x) {
                         for (let y=0;y<96;++y) {
                             let idx = Number(port[x*96+y]);
-
                             let t = {
                                 "tex": tex,
                                 "y": Math.floor(idx/16) * 16,
