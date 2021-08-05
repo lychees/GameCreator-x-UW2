@@ -77,6 +77,50 @@ var ProjectClientScene = (function (_super) {
             a[x] = new Array(h);
         a[x][y] = t;
     };
+    ProjectClientScene.prototype.reset_2Darray = function (a, n, m) {
+        if (a == null)
+            a = [];
+        for (var x = 0; x < 96; ++x) {
+            if (a[x] == null)
+                a[x] = [];
+            for (var y = 0; y < 96; ++y) {
+                if (a[x][y] == null)
+                    a[x][y] = {};
+            }
+        }
+    };
+    ProjectClientScene.prototype.load_binary_resource = function (url) {
+        var byteArray = [];
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.overrideMimeType('text\/plain; charset=x-user-defined');
+        req.send(null);
+        if (req.status != 200)
+            return byteArray;
+        for (var i = 0; i < req.responseText.length; ++i) {
+            byteArray.push(req.responseText.charCodeAt(i) & 0xff);
+        }
+        return byteArray;
+    };
+    ProjectClientScene.prototype.gen_port = function () {
+        var url = "asset/image/_uw2/ports/PORTMAP008.json";
+        FileUtils.loadFile(url, new Callback(function (raw) {
+            var port = Uint8Array.from(raw.split(','));
+            var a = this.LayerDatas[0].tileData;
+            console.log(port);
+            this.reset_2Darray(a, 96, 96);
+            for (var x = 0; x < 96; ++x) {
+                for (var y = 0; y < 96; ++y) {
+                    var idx = Number(port[x * 96 + y]);
+                    a[y][x] = {
+                        'texID': 21,
+                        'x': (idx % 16) * 16,
+                        'y': Math.floor(idx / 16) * 16,
+                    };
+                }
+            }
+        }, this));
+    };
     ProjectClientScene.prototype.gen_cave = function () {
         var a = this.LayerDatas[0].tileData;
         var a1 = this.LayerDatas[1].tileData;
@@ -193,6 +237,8 @@ var ProjectClientScene = (function (_super) {
             this.gen_world_map();
         if (Roguelike.current_map == "cave")
             this.gen_cave();
+        if (Roguelike.current_map == "port")
+            this.gen_port();
     };
     ProjectClientScene.prototype.onRender = function () {
         _super.prototype.onRender.apply(this, arguments);

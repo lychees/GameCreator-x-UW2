@@ -62,8 +62,14 @@ var KeyboardControl = (function () {
                     if (Math.abs(x - hash_ports_meta_data[i + 1].x) < 4 && Math.abs(y - hash_ports_meta_data[i + 1].y) < 4) {
                         Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i + 1].name);
                         GameCommand.startCommonCommand(1);
-                        Roguelike.current_map = "cave";
-                        Game.player.toScene(6, 16, 16);
+                        if (i <= 1) {
+                            Roguelike.current_map = "port";
+                            Game.player.toScene(7, 0, 0);
+                        }
+                        else {
+                            Roguelike.current_map = "cave";
+                            Game.player.toScene(6, 0, 0);
+                        }
                         break;
                     }
                 }

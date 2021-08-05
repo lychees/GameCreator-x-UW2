@@ -133,6 +133,57 @@ class ProjectClientScene extends ClientScene {
         a[x][y] = t;
     }
 
+    reset_2Darray(a, n, m) {
+        if (a == null) a = [];
+        for (let x=0;x<96;++x) {
+            if (a[x] == null) a[x] = [];
+            for (let y=0;y<96;++y) {
+                if (a[x][y] == null) a[x][y] = {};
+            }
+        }
+    }
+
+
+    load_binary_resource(url) {
+        var byteArray = [];
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.overrideMimeType('text\/plain; charset=x-user-defined');
+        req.send(null);
+        if (req.status != 200) return byteArray;
+        for (var i = 0; i < req.responseText.length; ++i) {
+            byteArray.push(req.responseText.charCodeAt(i) & 0xff)
+        }
+        return byteArray;
+    }
+
+    /**
+     * 生成港口
+     */ 
+    gen_port() {
+        let url = "asset/image/_uw2/ports/PORTMAP008.json";
+        FileUtils.loadFile(url, new Callback(function (raw) {            
+            ////let port = raw.split(',');
+
+            let port = Uint8Array.from(raw.split(','));
+            let a = this.LayerDatas[0].tileData;
+            
+            console.log(port);
+
+            this.reset_2Darray(a, 96, 96);            
+            for (let x=0;x<96;++x) {
+                for (let y=0;y<96;++y) {
+                    let idx = Number(port[x*96+y]);
+                    a[y][x] = {
+                        'texID': 21,
+                        'x': (idx%16) * 16,
+                        'y': Math.floor(idx/16) * 16,
+                    }
+                }
+            }
+        }, this));
+    }
+    
     /**
      * 生成地牢
      */ 
@@ -332,6 +383,7 @@ class ProjectClientScene extends ClientScene {
     gen() {
         if (Roguelike.current_map == "world_map") this.gen_world_map();
         if (Roguelike.current_map == "cave") this.gen_cave();        
+        if (Roguelike.current_map == "port") this.gen_port();        
     }
     /**
      * 当渲染时：每帧执行的逻辑
