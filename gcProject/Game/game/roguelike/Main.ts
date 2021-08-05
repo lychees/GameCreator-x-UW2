@@ -259,4 +259,14 @@ namespace Roguelike{
             Game.player.toScene(a[1],a[2],a[3]);
         }
     }
+
+    export let world_map_ox = 0;
+    export let world_map_oy = 0;
+
+    export function toWorldMap(x:number, y:number) {
+        current_map = "world_map";
+        world_map_ox = x-360; if (world_map_ox<0) world_map_ox=0;
+        world_map_oy = y-270; if (world_map_oy<0) world_map_oy=0;
+        Game.player.toScene(5,(x-world_map_ox)*16,(y-world_map_oy)*16);
+    }
 }

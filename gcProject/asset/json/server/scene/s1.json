@@ -402,20 +402,19 @@
             [
                 20,
                 "",
-                "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.Main.init();\nRoguelike.current_map = \"world_map\";",
-                "Roguelike.Main.init();\nRoguelike.current_map = \"world_map\";\n",
+                "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.Main.init();",
+                "Roguelike.Main.init();\n",
                 {
                     "___cmdID": "70110516393_0.8437054180109655"
                 }
             ],
             [
-                21,
-                false,
-                5,
-                1282,
-                1013,
+                20,
+                "",
+                "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.toWorldMap(840, 358);",
+                "Roguelike.toWorldMap(840, 358);\n",
                 {
-                    "___cmdID": "70110516393_0.7749198557370827"
+                    "___cmdID": "70637575092_0.46940289032075677"
                 }
             ]
         ]

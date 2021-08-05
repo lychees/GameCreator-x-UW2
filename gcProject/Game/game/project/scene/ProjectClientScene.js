@@ -77,15 +77,16 @@ var ProjectClientScene = (function (_super) {
             a[x] = new Array(h);
         a[x][y] = t;
     };
-    ProjectClientScene.prototype.reset_2Darray = function (a, n, m) {
+    ProjectClientScene.prototype.reset_2Darray = function (a, n, m, t) {
+        if (t === void 0) { t = {}; }
         if (a == null)
             a = [];
-        for (var x = 0; x < 96; ++x) {
+        for (var x = 0; x < n; ++x) {
             if (a[x] == null)
                 a[x] = [];
-            for (var y = 0; y < 96; ++y) {
+            for (var y = 0; y < m; ++y) {
                 if (a[x][y] == null)
-                    a[x][y] = {};
+                    a[x][y] = t;
             }
         }
     };
@@ -179,20 +180,13 @@ var ProjectClientScene = (function (_super) {
         var h = this.gridHeight;
         w = 720;
         h = 540;
-        var oy = 820;
-        var ox = 348;
+        var ox = Roguelike.world_map_oy;
+        var oy = Roguelike.world_map_ox;
         for (var x = 0; x < w; ++x) {
             if (a[x] == null)
                 a[x] = [];
             if (a1[x] == null)
                 a1[x] = [];
-        }
-        var g = [];
-        for (var x = 0; x < h; ++x) {
-            g.push([]);
-            for (var y = 0; y < w; ++y) {
-                g[x].push(0);
-            }
         }
         for (var x = 0; x < h; ++x) {
             for (var y = 0; y < w; ++y) {

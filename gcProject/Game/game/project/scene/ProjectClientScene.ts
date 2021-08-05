@@ -133,12 +133,12 @@ class ProjectClientScene extends ClientScene {
         a[x][y] = t;
     }
 
-    reset_2Darray(a, n, m) {
+    reset_2Darray(a, n, m, t = {}) {
         if (a == null) a = [];
-        for (let x=0;x<96;++x) {
+        for (let x=0;x<n;++x) {
             if (a[x] == null) a[x] = [];
-            for (let y=0;y<96;++y) {
-                if (a[x][y] == null) a[x][y] = {};
+            for (let y=0;y<m;++y) {
+                if (a[x][y] == null) a[x][y] = t;
             }
         }
     }
@@ -248,8 +248,8 @@ class ProjectClientScene extends ClientScene {
         w = 720; //3 * 30 * 12 * 2;
         h = 540; //1 * 45 * 12 * 2;
         
-        let oy = 820;
-        let ox = 348;
+        let ox = Roguelike.world_map_oy;
+        let oy = Roguelike.world_map_ox;
         
         // Config.SCENE_GRID_SIZE = 16;
 
@@ -257,37 +257,7 @@ class ProjectClientScene extends ClientScene {
             if (a[x] == null) a[x] = [];
             if (a1[x] == null) a1[x] = [];
         }
-        
-        let g = [];
-        for (let x=0;x<h;++x) {
-            g.push([]);
-            for (let y=0;y<w;++y) {
-                g[x].push(0);
-            }
-        }
-
-        /*
-        for (let x=0;x<h;++x) {                
-            for (let y=0;y<w;++y) {   
-                let idx = Roguelike.world_map[(ox+x)*Roguelike.WORLD_MAP_COLUMNS+oy+y] - 1;
-                g[y][x] = (idx == 65 || 58 <= idx && idx <= 61 || 116 <= idx && idx <= 119);
-            }
-        } */
-
-        /*
-        for (let x=0;x<h;++x) {                
-            for (let y=0;y<w;++y) {                        
-                let height = Roguelike.fantasy_map[x*100+y];
-                if (height <= 21) {
-                    g[y][x] = 0;
-                } else {
-                    g[y][x] = 1;                        
-                }
-            }
-        }
-        let parser = new Roguelike.RMVA_tiles_texture_manager();
-        parser.parse_from_01_matrix(this, g);*/
-
+    
         
         for (let x=0;x<h;++x) {                
             for (let y=0;y<w;++y) {                        
@@ -301,7 +271,6 @@ class ProjectClientScene extends ClientScene {
                 }
 
                 let idx = Roguelike.world_map[(ox+x)*Roguelike.WORLD_MAP_COLUMNS+oy+y] - 1;
-
 
                 a[y][x].texID = 12;
                 a[y][x].x = 16*(idx%16);
@@ -343,6 +312,41 @@ class ProjectClientScene extends ClientScene {
                 */
 
             }
+
+            /*        
+            let g = [];
+            for (let x=0;x<h;++x) {
+                g.push([]);
+                for (let y=0;y<w;++y) {
+                    g[x].push(0);
+                }
+            }
+            */
+
+                
+            /*
+            for (let x=0;x<h;++x) {                
+                for (let y=0;y<w;++y) {   
+                    let idx = Roguelike.world_map[(ox+x)*Roguelike.WORLD_MAP_COLUMNS+oy+y] - 1;
+                    g[y][x] = (idx == 65 || 58 <= idx && idx <= 61 || 116 <= idx && idx <= 119);
+                }
+            } */
+
+            /*
+            for (let x=0;x<h;++x) {                
+                for (let y=0;y<w;++y) {                        
+                    let height = Roguelike.fantasy_map[x*100+y];
+                    if (height <= 21) {
+                        g[y][x] = 0;
+                    } else {
+                        g[y][x] = 1;                        
+                    }
+                }
+            }
+            let parser = new Roguelike.RMVA_tiles_texture_manager();
+            parser.parse_from_01_matrix(this, g);*/
+
+
         } 
     }
     /**

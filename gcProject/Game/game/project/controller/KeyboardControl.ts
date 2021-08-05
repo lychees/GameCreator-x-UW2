@@ -145,11 +145,16 @@ class KeyboardControl {
                     }
 
                     let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
-                    let x = p.x + 820;
-                    let y = p.y + 348;
+                    let x = p.x + Roguelike.world_map_ox;
+                    let y = p.y + Roguelike.world_map_oy;
 
                     for (let i=0;i<130;++i) {
                         let meta = hash_ports_meta_data[i+1];
+                        
+                        if (i==0) {
+                            console.log(x,'-',y,' : ',meta.x,'-',meta.y);
+                        }
+
                         if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
                             Game.player.variable.setString(1, "你发现了 " + meta.name);
                             GameCommand.startCommonCommand(1);
@@ -171,6 +176,9 @@ class KeyboardControl {
                         if (Math.abs(x - meta.buildings[i].x) < 3 && Math.abs(y - meta.buildings[i].y) < 3) {
                             Game.player.variable.setString(1, "这里是 " + meta.name + " 的 " + name[i]);
                             GameCommand.startCommonCommand(1);
+                            if (name[i] == "port") {
+                                Roguelike.toWorldMap(meta.x, meta.y);
+                            }
                             break;
                         }
                     }

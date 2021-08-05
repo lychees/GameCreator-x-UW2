@@ -79,7 +79,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
@@ -215,5 +215,18 @@ var Roguelike;
         }
     }
     Roguelike.command_line = command_line;
+    Roguelike.world_map_ox = 0;
+    Roguelike.world_map_oy = 0;
+    function toWorldMap(x, y) {
+        Roguelike.current_map = "world_map";
+        Roguelike.world_map_ox = x - 360;
+        if (Roguelike.world_map_ox < 0)
+            Roguelike.world_map_ox = 0;
+        Roguelike.world_map_oy = y - 270;
+        if (Roguelike.world_map_oy < 0)
+            Roguelike.world_map_oy = 0;
+        Game.player.toScene(5, (x - Roguelike.world_map_ox) * 16, (y - Roguelike.world_map_oy) * 16);
+    }
+    Roguelike.toWorldMap = toWorldMap;
 })(Roguelike || (Roguelike = {}));
 //# sourceMappingURL=Main.js.map
