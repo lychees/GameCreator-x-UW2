@@ -137,44 +137,45 @@ class KeyboardControl {
                 }
                 return;
             } else {
-                let w = Game.currentScene.gridWidth;
-                let h = Game.currentScene.gridHeight;
+                
+                if (Roguelike.current_map == 'world_map') {
 
-                if (Roguelike.Main.map != null) {
+                    if (Roguelike.Main.map != null) {
+                        Roguelike.Main.refresh_shadow();
+                    }
 
-                    Roguelike.Main.refresh_shadow();
-                }
+                    let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+                    let x = p.x + 820;
+                    let y = p.y + 348;
 
-
-                let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
-                let x = p.x + 820;
-                let y = p.y + 348;
-
-                for (var i = 0; i < 130; ++i) {
-
-                }
-
-                for (let i=0;i<130;++i) {
-                    if (Math.abs(x - hash_ports_meta_data[i+1].x) < 4 && Math.abs(y - hash_ports_meta_data[i+1].y) < 4) {                                                
-                        Game.player.variable.setString(1, "你发现了" + hash_ports_meta_data[i+1].name);
-                        GameCommand.startCommonCommand(1);                        
+                    for (let i=0;i<130;++i) {
                         let meta = hash_ports_meta_data[i+1];
                         if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
-                            Game.player.variable.setString(1, "你发现了" + meta.name);
+                            Game.player.variable.setString(1, "你发现了 " + meta.name);
                             GameCommand.startCommonCommand(1);
                             Roguelike.current_map = "port";
                             Roguelike.port_id = i;
                             Game.player.toScene(7, meta.buildings[4].x*16+16, meta.buildings[4].y*16+16);
                             break;
                         }
-                        //} else {
-                          //  Roguelike.current_map = "cave";
-                            //Game.player.toScene(6, 0, 0);
-                        //}
-                        break;
+                    }
+                } else if (Roguelike.current_map == "port") {                    
+                    let meta = hash_ports_meta_data[Roguelike.port_id+1];
+                    let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
+                    let x = p.x;
+                    let y = p.y;
+                    let name = ["","market","bar","dry_dock","port","inn","palace","job_house","msc","bank",
+                    "item_shop","church","fortune_house"];                            
+                    for (let i=1;i<=12;++i) {
+                        if (meta.buildings[i] == null) continue;
+                        if (Math.abs(x - meta.buildings[i].x) < 3 && Math.abs(y - meta.buildings[i].y) < 3) {
+                            Game.player.variable.setString(1, "这里是 " + meta.name + " 的 " + name[i]);
+                            GameCommand.startCommonCommand(1);
+                            break;
+                        }
                     }
                 }
-                Game.currentScene.sceneObjects[0].root.visible ^= 1;
+                // Game.currentScene.sceneObjects[0].root.visible ^= 1;
             }    
             
         }
