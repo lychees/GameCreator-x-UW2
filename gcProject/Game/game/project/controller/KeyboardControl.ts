@@ -156,6 +156,7 @@ class KeyboardControl {
                         if (i <= 1) {
                             Roguelike.current_map = "port";
                             Game.player.toScene(7, 0, 0);
+                            Roguelike.Main.gen_port();
                         } else {
                             Roguelike.current_map = "cave";
                             Game.player.toScene(6, 0, 0);

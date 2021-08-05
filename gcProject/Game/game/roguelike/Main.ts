@@ -188,6 +188,40 @@ namespace Roguelike{
             this.player.set_shadow();
             let layer = Game.currentScene.getLayerByPreset(3);
             layer.flushTile();
+        },
+
+        gen_port: function() {
+            return;
+            let url = "asset/image/_uw2/ports/PORTMAP008.json";
+            
+            FileUtils.loadFile(url, new Callback(function (raw) {
+                ////let port = raw.split(',');
+                
+                
+                if (Game.currentScene == null) return;
+                let layer = Game.currentScene.getLayerByPreset(0);
+
+                let port = Uint8Array.from(raw.split(','));
+                let a =Game.currentScene.LayerDatas[0].tileData;
+                
+                Game.currentScene.reset_2Darray(a, 96, 96);            
+                for (let x=0;x<96;++x) {
+                    for (let y=0;y<96;++y) {
+                        let idx = Number(port[x*96+y]);
+
+                        let t = {
+                            "tex": AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  day.png"),
+                            "y": Math.floor(idx/16) * 16,
+                            "x": (idx%16) * 16,                            
+                            "w": 16,
+                            "h": 16,
+                            "texID": 21,
+                        };
+
+                        layer.drawTile(y, x, t);
+                    }
+                }
+            }, this));
         }
     };
 

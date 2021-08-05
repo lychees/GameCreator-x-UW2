@@ -144,6 +144,32 @@ var Roguelike;
             this.player.set_shadow();
             var layer = Game.currentScene.getLayerByPreset(3);
             layer.flushTile();
+        },
+        gen_port: function () {
+            return;
+            var url = "asset/image/_uw2/ports/PORTMAP008.json";
+            FileUtils.loadFile(url, new Callback(function (raw) {
+                if (Game.currentScene == null)
+                    return;
+                var layer = Game.currentScene.getLayerByPreset(0);
+                var port = Uint8Array.from(raw.split(','));
+                var a = Game.currentScene.LayerDatas[0].tileData;
+                Game.currentScene.reset_2Darray(a, 96, 96);
+                for (var x = 0; x < 96; ++x) {
+                    for (var y = 0; y < 96; ++y) {
+                        var idx = Number(port[x * 96 + y]);
+                        var t = {
+                            "tex": AssetManager.getImage("asset/image/_uw2/ports/PORTCHIP.000  day.png"),
+                            "y": Math.floor(idx / 16) * 16,
+                            "x": (idx % 16) * 16,
+                            "w": 16,
+                            "h": 16,
+                            "texID": 21,
+                        };
+                        layer.drawTile(y, x, t);
+                    }
+                }
+            }, this));
         }
     };
     function command_line(cmd) {
