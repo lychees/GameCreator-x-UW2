@@ -79,7 +79,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
@@ -174,7 +174,6 @@ var Roguelike;
             x = Math.floor(x / 10);
             var a = x % 10;
             var url = "asset/image/_uw2/ports/PORTMAP" + a + b + c + ".json";
-            alert(url);
             FileUtils.loadFile(url, new Callback(function (raw) {
                 if (Game.currentScene == null)
                     return;
@@ -182,10 +181,7 @@ var Roguelike;
                 var port = Uint8Array.from(raw.split(','));
                 var a = Game.currentScene.LayerDatas[1].tileData;
                 Game.currentScene.reset_2Darray(a, 96, 96);
-                console.log(this.get_port_chip(id, t));
-                console.log(a);
                 AssetManager.loadImage(this.get_port_chip(id, t), Callback.New(function (tex) {
-                    console.log(tex);
                     for (var x_1 = 0; x_1 < 96; ++x_1) {
                         for (var y = 0; y < 96; ++y) {
                             var idx = Number(port[x_1 * 96 + y]);

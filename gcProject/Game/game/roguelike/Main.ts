@@ -216,8 +216,6 @@ namespace Roguelike{
                      
             let url = "asset/image/_uw2/ports/PORTMAP" + a+b+c + ".json";
 
-            alert(url);
-                        
             FileUtils.loadFile(url, new Callback(function (raw) {
                 if (Game.currentScene == null) return;
                 let layer = Game.currentScene.getLayerByPreset(1);
@@ -227,11 +225,8 @@ namespace Roguelike{
 
                 Game.currentScene.reset_2Darray(a, 96, 96);
 
-                console.log(this.get_port_chip(id, t));
-                console.log(a);
                 AssetManager.loadImage(this.get_port_chip(id, t), Callback.New((tex: Texture) => {
-                    console.log(tex);
-
+                    
                     for (let x=0;x<96;++x) {
                         for (let y=0;y<96;++y) {
                             let idx = Number(port[x*96+y]);
