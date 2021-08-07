@@ -282,6 +282,37 @@ namespace Roguelike{
         world_map_oy = y-270; if (world_map_oy<0) world_map_oy=0;
         Game.player.toScene(5,(x-world_map_ox)*16,(y-world_map_oy)*16);
 
+        let bgm_url = "asset/audio/_uwol/sea/Mediterranean.mp3";
+        if (Roguelike.port_id != null){
+            let id = Roguelike.port_id;
+            let meta = hash_ports_meta_data[id+1];
+            let region = hash_ports_meta_data.regions[meta.regionId];
+            let economy = hash_ports_meta_data.markets[meta.economyId];
+
+            if (region == 'Europe') {
+                if (economy == "Northern Europe") {
+                    bgm_url = "asset/audio/_uwol/sea/North Sea.mp3";    
+                }
+            } else if (region == 'New World') {                
+                bgm_url = "asset/audio/_uwol/sea/American Sea.mp3";                                             
+            } else if (region == "West Africa") {
+                bgm_url = "asset/audio/_uwol/sea/African Sea.mp3";                                
+            } else if (region == "East Africa") {
+                bgm_url = "asset/audio/_uwol/sea/African Sea.mp3";                                
+            } else if (region == "Middle East") {
+                // bgm_url = "asset/audio/_uwol/sea/African Sea.mp3";
+            } else if (region == 'India') {
+                bgm_url = "asset/audio/_uwol/sea/Indian Ocean.mp3";
+            } else if (region == 'Southeast Asia') {
+                bgm_url = "asset/audio/_uwol/sea/Southeast Asian Sea.ogg";
+            } else if (region == 'Far East') {
+                bgm_url = "asset/audio/_uwol/sea/East Asia Sea.mp3";
+            }
+            
+        }
+        
+        GameAudio.playBGM(bgm_url);
+
         if (story == "启航") {
             GameCommand.startCommonCommand(8001);
             story = "谒见公爵"            
@@ -300,16 +331,14 @@ namespace Roguelike{
         Game.player.toScene(7, meta.buildings[4].x*16+16, meta.buildings[4].y*16+16);
         
         let bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
-Venice
+
+
         if (["Lisbon", "Seville", "London", "Marseille", "Amsterdam", "Venice"].includes(meta.name)) {                                
             bgm_url = "asset/audio/_uwol/port/" + meta.name + ".mp3";                                
         } else {
 
             let region = hash_ports_meta_data.regions[meta.regionId];
             let economy = hash_ports_meta_data.markets[meta.economyId];
-
-            console.log(region);
-            console.log(economy);
 
             if (region == 'Europe') {
                 if (economy == "Ottoman Empire") {
