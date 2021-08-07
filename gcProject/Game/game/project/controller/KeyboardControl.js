@@ -57,18 +57,62 @@ var KeyboardControl = (function () {
                     var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                     var x = p.x + Roguelike.world_map_ox;
                     var y = p.y + Roguelike.world_map_oy;
-                    for (var i = 0; i < 130; ++i) {
-                        var meta = hash_ports_meta_data[i + 1];
-                        if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
-                            Game.player.variable.setString(1, "你发现了 " + meta.name);
+                    for (var i_1 = 0; i_1 < 130; ++i_1) {
+                        var meta_1 = hash_ports_meta_data[i_1 + 1];
+                        if (Math.abs(x - meta_1.x) < 4 && Math.abs(y - meta_1.y) < 4) {
+                            Game.player.variable.setString(1, "你发现了 " + meta_1.name);
                             GameCommand.startCommonCommand(1);
                             Roguelike.current_map = "port";
-                            Roguelike.port_id = i;
-                            Game.player.toScene(7, meta.buildings[4].x * 16 + 16, meta.buildings[4].y * 16 + 16);
+                            Roguelike.port_id = i_1;
+                            Game.player.toScene(7, meta_1.buildings[4].x * 16 + 16, meta_1.buildings[4].y * 16 + 16);
+                            var bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
+                            if (["Lisbon", "Seville", "London", "Marseille", "Amsterdam", "Venezia"].includes(meta_1.name)) {
+                                bgm_url = "asset/audio/_uwol/port/" + meta_1.name + ".mp3";
+                            }
+                            else {
+                                var region = hash_ports_meta_data.regions[meta_1.regionId];
+                                var economy = hash_ports_meta_data.markets[meta_1.economyId];
+                                console.log(region);
+                                console.log(economy);
+                                if (region == 'Europe') {
+                                    if (economy == "Northern Europe") {
+                                        bgm_url = "asset/audio/_uwol/port/Northern Europe Town.mp3";
+                                    }
+                                    else {
+                                        bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
+                                    }
+                                }
+                                else if (region == 'New World') {
+                                    if (economy == "Central America") {
+                                        bgm_url = "asset/audio/_uwol/port/Central America Town.mp3";
+                                    }
+                                    else {
+                                        bgm_url = "asset/audio/_uwol/port/South America Town.mp3";
+                                    }
+                                }
+                                else if (region == "West Africa") {
+                                    bgm_url = "asset/audio/_uwol/port/African Town.mp3";
+                                }
+                                else if (region == "East Africa") {
+                                    bgm_url = "asset/audio/_uwol/port/African Town.mp3";
+                                }
+                                else if (region == "Middle East") {
+                                    bgm_url = "asset/audio/_uwol/port/Middle Eastern Town.mp3";
+                                }
+                                else if (region == 'India') {
+                                    bgm_url = "asset/audio/_uwol/port/Indian Town.mp3";
+                                }
+                                else if (region == 'Southeast Asia') {
+                                    bgm_url = "asset/audio/_uwol/port/Southeast Asian Town.ogg";
+                                }
+                                else if (region == 'Far East') {
+                                    bgm_url = "asset/audio/_uwol/port/China Town.mp3";
+                                }
+                            }
+                            GameAudio.playBGM(bgm_url);
                             break;
                         }
                     }
-                    
                     if (Roguelike.current_map == 'world_map') {
                         for (var i = 0; i < 98; ++i) {
                             var meta = Roguelike.villages_json[i + 1];
@@ -83,28 +127,28 @@ var KeyboardControl = (function () {
                     }
                 }
                 else if (Roguelike.current_map == "port") {
-                    var meta = hash_ports_meta_data[Roguelike.port_id + 1];
+                    var meta_2 = hash_ports_meta_data[Roguelike.port_id + 1];
                     var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                     var x = p.x;
                     var y = p.y;
                     var name = ["", "market", "bar", "dry_dock", "port", "inn", "palace", "job_house", "msc", "bank",
                         "item_shop", "church", "fortune_house"];
-                    for (var i = 1; i <= 12; ++i) {
-                        if (meta.buildings[i] == null)
+                    for (var i_2 = 1; i_2 <= 12; ++i_2) {
+                        if (meta_2.buildings[i_2] == null)
                             continue;
-                        if (Math.abs(x - meta.buildings[i].x) < 3 && Math.abs(y - meta.buildings[i].y) < 3) {
-                            Game.player.variable.setString(1, "这里是 " + meta.name + " 的 " + name[i]);
+                        if (Math.abs(x - meta_2.buildings[i_2].x) < 3 && Math.abs(y - meta_2.buildings[i_2].y) < 3) {
+                            Game.player.variable.setString(1, "这里是 " + meta_2.name + " 的 " + name[i_2]);
                             GameCommand.startCommonCommand(1);
-                            if (name[i] == "port") {
-                                Roguelike.toWorldMap(meta.x, meta.y);
+                            if (name[i_2] == "port") {
+                                Roguelike.toWorldMap(meta_2.x, meta_2.y);
                             }
-                            if (name[i] == "msc") {
+                            if (name[i_2] == "msc") {
                                 if (Roguelike.story == "访问老师") {
                                     GameCommand.startCommonCommand(8002);
                                     Roguelike.story = "出发";
                                 }
                             }
-                            if (name[i] == "palace") {
+                            if (name[i_2] == "palace") {
                                 if (Roguelike.story == "谒见公爵") {
                                     GameCommand.startCommonCommand(8003);
                                     Roguelike.story = "访问老师";

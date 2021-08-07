@@ -66,10 +66,9 @@ var Roguelike;
                 file_name += a;
                 file_name += b;
                 file_name += c;
-                var suffix = ["  day.png", "  dawn.png", "  dust.png", "  nignt.png"];
+                var suffix = ["  day.png", "  dawn.png", "  dusk.png", "  night.png"];
                 for (var _i = 0, suffix_1 = suffix; _i < suffix_1.length; _i++) {
                     var s = suffix_1[_i];
-                    console.log(file_name + s);
                     AssetManager.loadImage("asset/image/_uw2/ports/" + file_name + s);
                 }
             }

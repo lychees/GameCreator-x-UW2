@@ -96,9 +96,8 @@ namespace Roguelike{
                 file_name += b;
                 file_name += c;
 
-                let suffix = ["  day.png", "  dawn.png", "  dust.png", "  nignt.png"];
+                let suffix = ["  day.png", "  dawn.png", "  dusk.png", "  night.png"];
                 for (let s of suffix) {
-                    console.log(file_name + s);
                     AssetManager.loadImage("asset/image/_uw2/ports/" + file_name + s);                    
                 }
             }

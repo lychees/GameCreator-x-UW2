@@ -157,14 +157,85 @@ class KeyboardControl {
                             Roguelike.current_map = "port";
                             Roguelike.port_id = i;
                             Game.player.toScene(7, meta.buildings[4].x*16+16, meta.buildings[4].y*16+16);
+                            
+                            let bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
+
+                            if (["Lisbon", "Seville", "London", "Marseille", "Amsterdam", "Venezia"].includes(meta.name)) {                                
+                                bgm_url = "asset/audio/_uwol/port/" + meta.name + ".mp3";                                
+                            } else {
+
+                                let region = hash_ports_meta_data.regions[meta.regionId];
+                                let economy = hash_ports_meta_data.markets[meta.economyId];
+
+                                // console.log(region);
+                                // console.log(economy);
+
+                                if (region == 'Europe') {
+                                    if (economy == "Ottoman Empire") {
+                                        bgm_url = "asset/audio/_uwol/port/Middle Eastern Town.mp3";
+                                    } if (economy == "Northern Europe") {
+                                        bgm_url = "asset/audio/_uwol/port/Northern Europe Town.mp3";    
+                                    } else {
+                                        bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
+                                    }                                     
+                                } else if (region == 'New World') {
+                                    if (economy == "Central America") {
+                                        bgm_url = "asset/audio/_uwol/port/Central America Town.mp3";
+                                    } else {
+                                        bgm_url = "asset/audio/_uwol/port/South America Town.mp3";
+                                    }                                    
+                                } else if (region == "West Africa") {
+                                    bgm_url = "asset/audio/_uwol/port/African Town.mp3";                                
+                                } else if (region == "East Africa") {
+                                    bgm_url = "asset/audio/_uwol/port/African Town.mp3";                                
+                                } else if (region == "Middle East") {
+                                    bgm_url = "asset/audio/_uwol/port/Middle Eastern Town.mp3";
+                                } else if (region == 'India') {
+                                    bgm_url = "asset/audio/_uwol/port/Indian Town.mp3";
+                                } else if (region == 'Southeast Asia') {
+                                    bgm_url = "asset/audio/_uwol/port/Southeast Asian Town.ogg";
+                                } else if (region == 'Far East') {
+                                    bgm_url = "asset/audio/_uwol/port/China Town.mp3";
+                                }
+
+
+                    
+
+                                /*console.log(hash_ports_meta_data.markets);
+                                console.log(meta.economyId);
+                                console.log(region_name);*/
+                                /*
+                                elif region_name in ['Middle East', 'Ottoman Empire']:
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/Middle Eastern Town.mp3')
+                                elif region_name == 'Northern Europe':
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/Northern Europe Town.mp3')
+                                elif region_name == 'The Mediterranean' or region_name == 'Iberia':
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/Southern Europe Town.mp3')
+                                elif region_name == 'Central America':
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/Central America Town.mp3')
+                                elif region_name == 'South America':
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/South America Town.mp3')
+                                elif region_name in ['India']:
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/Indian Town.mp3')
+                                elif region_name in ['Southeast Asia']:
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/Southeast Asian Town.ogg')
+                                elif port_id == 94 or port_id == 95 or port_id == 97:
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/China Town.mp3')
+                                elif port_id == 98 or port_id == 99:
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/Japan Town.mp3')
+                                elif port_id == 119:
+                                    pygame.mixer.music.load('../../assets/sounds/music/port/Oceania Town.mp3')
+                                */
+
+                            }
+                            GameAudio.playBGM(bgm_url);
                             break;
                         }
                     }
-                    console.log(x,'-',y,'-',Roguelike.villages_n);
 
                     if (Roguelike.current_map == 'world_map') {
-                        for (let i=47;i<=47;++i) {
-                            let meta = Roguelike.villages_dict[i+1];
+                        for (var i = 0; i < 98; ++i) {
+                            var meta = Roguelike.villages_json[i + 1];
                             if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
                                 Game.player.variable.setString(1, "你发现了 " + meta.name);
                                 GameCommand.startCommonCommand(1);
@@ -174,7 +245,6 @@ class KeyboardControl {
                             }
                         }
                     }
-
                 } else if (Roguelike.current_map == "port") {                    
                     let meta = hash_ports_meta_data[Roguelike.port_id+1];
                     let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);

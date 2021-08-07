@@ -3341,7 +3341,7 @@
             "tileTexIDs": {}
         }
     ],
-    "bgm": "asset/audio/bgm/Relieve_3.mp3",
+    "bgm": "",
     "bgmVolume": 1,
     "bgmPitch": 1
 }
