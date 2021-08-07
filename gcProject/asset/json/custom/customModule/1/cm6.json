@@ -2,7 +2,7 @@
     "attrs": {
         "face": {
             "varType": 1,
-            "value": "asset/image/picture/face/smallFace/magicianHead.png",
+            "value": "asset/image/_waifulabs/米塔/c342333-d71941-p908587.png",
             "copy": false
         },
         "class": {
@@ -27,7 +27,7 @@
         },
         "smallFace": {
             "varType": 1,
-            "value": "asset/image/picture/face/smallFace/magicianHead.png",
+            "value": "asset/image/_waifulabs/米塔/c342333-d71941-p204211.png",
             "copy": false
         },
         "moveSpeed": {

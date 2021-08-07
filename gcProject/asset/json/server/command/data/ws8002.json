@@ -70,12 +70,27 @@
             "索菲亚",
             3,
             -3,
-            "<span style='color:#FfFffF'>事实上，前些日子，公爵派人来邀请我参加国家派遣的调查舰队。\n</span><span style='color:#FfFffF'>我想，事情可能和我这几年着手研究的这本 古籍 的内容相关。\n</span><span style='color:#FfFffF'>\n</span><span style='color:#FfFffF'>有线索表明，我手中的这块宝石是来自古代亚特兰蒂斯的造物。\n</span><span style='color:#FfFffF'>据说持有它的人，可以传送到世界的任何角落。\n</span><span style='color:#FfFffF'>国家希望研究它的力量，来找到前往东方的方法。\n</span><span style='color:#FfFffF'>于是他们组织了一只科考船，希望我可以担任船上随行古文字的翻译。\n</span><span style='color:#FfFffF'>我年事已高，不适合远洋航行，我思前顾后，这项工作最适合的人，就是你。</span>",
+            "<span style='color:#FfFffF'>事实上，前些日子，公爵派人来邀请我参加国家派遣的调查舰队。\n</span><span style='color:#FfFffF'>我想，事情可能和我这几年着手研究的这本 古籍 的内容相关。</span>",
             null,
             1,
             0,
             {
                 "___cmdID": "70643172722_0.8903170568705119"
+            }
+        ],
+        [
+            11,
+            4,
+            22,
+            "索菲亚",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>有线索表明，我手中的这块宝石是来自古代亚特兰蒂斯的造物。\n</span><span style='color:#FfFffF'>据说持有它的人，可以传送到世界的任何角落。\n</span><span style='color:#FfFffF'>国家希望研究它的力量，来找到前往东方的方法。\n</span><span style='color:#FfFffF'>于是他们组织了一只科考船，希望我可以担任船上随行古文字的翻译。\n</span><span style='color:#FfFffF'>我年事已高，不适合远洋航行，我思前顾后，这项工作最适合的人，就是你。</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70780673953_0.17186740845540704"
             }
         ],
         [
@@ -155,6 +170,66 @@
         ],
         [
             11,
+            3,
+            21,
+            "伊莎贝拉",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>可是... 玩什么是我呢... 老师明明有许多更优秀的学生...</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70797176492_0.016174181568340718"
+            }
+        ],
+        [
+            11,
+            4,
+            22,
+            "索菲亚",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>嗯... 你还是以前一样的性格呢...\n</span><span style='color:#FfFffF'>一方面说这次的行动公爵不希望引人注目，又需要能够确保任务能够顺利的完成，\n</span><span style='color:#FfFffF'>伊莎贝拉虽然没有念完大学，但是是完成任务的最适合人选。</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70797201822_0.678561871186711"
+            }
+        ],
+        [
+            11,
+            4,
+            22,
+            "索菲亚",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>另一方面，这次旅行会访问近东的多所学院，\n</span><span style='color:#FfFffF'>一定可以认识许多著名的学者，接触到许多宝贵的文献，\n</span><span style='color:#FfFffF'>对你来说也是一次难得的学习机会。</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70797338154_0.06421975786081258"
+            }
+        ],
+        [
+            11,
+            3,
+            21,
+            "伊莎贝拉",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>谢谢老师 ...</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70797415921_0.3653782486080077"
+            }
+        ],
+        [
+            11,
             4,
             22,
             "索菲亚",
@@ -191,17 +266,17 @@
         ],
         [
             11,
-            2,
-            "asset/image/picture/face/smallFace/magicianHead.png",
+            4,
+            22,
             "索菲亚",
             3,
             -3,
-            "<span style='color:#FfFffF'>不愧是你。</span>",
+            "<span style='color:#FfFffF'>抱住（</span>",
             null,
             1,
             0,
             {
-                "___cmdID": "70641756010_0.19600202506162545"
+                "___cmdID": "70780703003_0.6901058452785573"
             }
         ],
         [
@@ -218,17 +293,17 @@
         ],
         [
             11,
-            2,
-            "asset/image/picture/face/smallFace/magicianHead.png",
+            4,
+            22,
             "索菲亚",
             3,
             -3,
-            "<span style='color:#FfFffF'>听话，别卖弱！</span>",
+            "<span style='color:#FfFffF'>嘛，公爵那儿接都接了，现在也拒绝不了了吧。</span>",
             null,
             1,
             0,
             {
-                "___cmdID": "70641772575_0.7142865068834783"
+                "___cmdID": "70780716128_0.3114188891761873"
             }
         ],
         [
@@ -239,8 +314,8 @@
         ],
         [
             11,
-            2,
-            "asset/image/picture/face/smallFace/magicianHead.png",
+            4,
+            22,
             "索菲亚",
             3,
             -3,
@@ -249,7 +324,7 @@
             1,
             0,
             {
-                "___cmdID": "70641833525_0.8875071540305166"
+                "___cmdID": "70780733191_0.5417859948808432"
             }
         ],
         [

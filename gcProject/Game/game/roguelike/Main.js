@@ -2,6 +2,7 @@ var Roguelike;
 (function (Roguelike) {
     Roguelike.current_map = "";
     Roguelike.port_id = 0;
+    Roguelike.port_time = "";
     function colorHex(colorArr) {
         var strHex = "#";
         var colorArr;
@@ -164,9 +165,9 @@ var Roguelike;
             f += '  ';
             return "asset/image/_uw2/ports/" + f + t + ".png";
         },
-        gen_port: function (id, t) {
+        gen_port: function (id) {
             if (id === void 0) { id = 0; }
-            if (t === void 0) { t = "random"; }
+            var t = Roguelike.port_time;
             if (t == 'random') {
                 var tt = ["day", "dusk", "dawn", "night"];
                 t = tt[Math.floor(Math.random() * 4)];
@@ -237,5 +238,64 @@ var Roguelike;
         }
     }
     Roguelike.toWorldMap = toWorldMap;
+    function toPort(id, t) {
+        if (t === void 0) { t = "random"; }
+        var meta = hash_ports_meta_data[id + 1];
+        Game.player.variable.setString(1, "你发现了 " + i18n.chinese[meta.name]);
+        GameCommand.startCommonCommand(1);
+        Roguelike.current_map = "port";
+        Roguelike.port_id = id;
+        Roguelike.port_time = t;
+        Game.player.toScene(7, meta.buildings[4].x * 16 + 16, meta.buildings[4].y * 16 + 16);
+        var bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
+        if (["Lisbon", "Seville", "London", "Marseille", "Amsterdam", "Venezia"].includes(meta.name)) {
+            bgm_url = "asset/audio/_uwol/port/" + meta.name + ".mp3";
+        }
+        else {
+            var region = hash_ports_meta_data.regions[meta.regionId];
+            var economy = hash_ports_meta_data.markets[meta.economyId];
+            console.log(region);
+            console.log(economy);
+            if (region == 'Europe') {
+                if (economy == "Ottoman Empire") {
+                    bgm_url = "asset/audio/_uwol/port/Middle Eastern Town.mp3";
+                }
+                if (economy == "Northern Europe") {
+                    bgm_url = "asset/audio/_uwol/port/Northern Europe Town.mp3";
+                }
+                else {
+                    bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
+                }
+            }
+            else if (region == 'New World') {
+                if (economy == "Central America") {
+                    bgm_url = "asset/audio/_uwol/port/Central America Town.mp3";
+                }
+                else {
+                    bgm_url = "asset/audio/_uwol/port/South America Town.mp3";
+                }
+            }
+            else if (region == "West Africa") {
+                bgm_url = "asset/audio/_uwol/port/African Town.mp3";
+            }
+            else if (region == "East Africa") {
+                bgm_url = "asset/audio/_uwol/port/African Town.mp3";
+            }
+            else if (region == "Middle East") {
+                bgm_url = "asset/audio/_uwol/port/Middle Eastern Town.mp3";
+            }
+            else if (region == 'India') {
+                bgm_url = "asset/audio/_uwol/port/Indian Town.mp3";
+            }
+            else if (region == 'Southeast Asia') {
+                bgm_url = "asset/audio/_uwol/port/Southeast Asian Town.ogg";
+            }
+            else if (region == 'Far East') {
+                bgm_url = "asset/audio/_uwol/port/China Town.mp3";
+            }
+        }
+        GameAudio.playBGM(bgm_url);
+    }
+    Roguelike.toPort = toPort;
 })(Roguelike || (Roguelike = {}));
 //# sourceMappingURL=Main.js.map

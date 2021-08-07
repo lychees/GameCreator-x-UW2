@@ -2,7 +2,7 @@
     "attrs": {
         "face": {
             "varType": 1,
-            "value": "asset/image/picture/face/smallFace/physicianHead.png",
+            "value": "asset/image/_waifulabs/伊莎贝拉/c172688-d315535-p59760.png",
             "copy": false
         },
         "class": {
@@ -22,12 +22,12 @@
         },
         "avatar": {
             "varType": 0,
-            "value": 39,
+            "value": 0,
             "copy": false
         },
         "smallFace": {
             "varType": 1,
-            "value": "asset/image/picture/face/smallFace/physicianHead.png",
+            "value": "asset/image/_waifulabs/伊莎贝拉/c172688-d315535-p646628.png",
             "copy": false
         },
         "moveSpeed": {

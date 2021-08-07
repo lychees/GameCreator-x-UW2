@@ -2,7 +2,7 @@
     "attrs": {
         "face": {
             "varType": 1,
-            "value": "asset/image/picture/face/smallFace/physicianHead.png",
+            "value": "asset/image/_waifulabs/芭芭拉/c999507-d999507-p999507.png",
             "copy": false
         },
         "class": {
@@ -27,7 +27,7 @@
         },
         "smallFace": {
             "varType": 1,
-            "value": "asset/image/picture/face/smallFace/physicianHead.png",
+            "value": "asset/image/_waifulabs/芭芭拉/c999507-d999507-p276240.png",
             "copy": false
         },
         "moveSpeed": {

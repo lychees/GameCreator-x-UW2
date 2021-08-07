@@ -8,7 +8,7 @@
         "世界地图",
         "地牢",
         "港口",
-        null,
+        "新的场景8",
         null,
         null,
         null,
@@ -67,6 +67,12 @@
                 {
                     "id": 7,
                     "name": "港口",
+                    "children": [],
+                    "isOpen": true
+                },
+                {
+                    "id": 8,
+                    "name": "新的场景8",
                     "children": []
                 }
             ],

@@ -115,6 +115,21 @@
             "伊莎贝拉",
             3,
             -3,
+            "<span style='color:#FfFffF'>明明有许多更适合的人选 ...\n</span><span style='color:#FfFffF'>我甚至没有读完大学 ...</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "70797103955_0.31282483488740986"
+            }
+        ],
+        [
+            11,
+            3,
+            21,
+            "伊莎贝拉",
+            3,
+            -3,
             "<span style='color:#FfFffF'>（索菲亚老师 ...）</span>",
             null,
             4,
@@ -431,6 +446,15 @@
             0,
             {
                 "___cmdID": "70645340764_0.3296801664064175"
+            }
+        ],
+        [
+            20,
+            "",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.port_time = \"night\";\nGame.player.toScene(7, 48*16, 7*16);",
+            "Roguelike.port_time = \"night\";\nGame.player.toScene(7, 48 * 16, 7 * 16);\n",
+            {
+                "___cmdID": "70781697411_0.6480024490430101"
             }
         ]
     ],
