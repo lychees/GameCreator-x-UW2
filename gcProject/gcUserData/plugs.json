@@ -35,5 +35,42 @@
         "name": "等待界面关闭后继续执行事件",
         "lastUpdateTime": 1618426348,
         "author": "黑暗之神KDS"
+    },
+    {
+        "allPlugUseData": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            [],
+            [],
+            [],
+            [],
+            [
+                15002
+            ],
+            [],
+            null,
+            null,
+            [],
+            [
+                {
+                    "filePath": "Game/GCplug/217/GC_ DoubleFingersScale.ts",
+                    "isServer": false
+                }
+            ],
+            null,
+            null,
+            [],
+            []
+        ],
+        "id": 217,
+        "name": "手机端双指缩放",
+        "lastUpdateTime": 1621311481,
+        "author": "JayLen"
     }
 ]

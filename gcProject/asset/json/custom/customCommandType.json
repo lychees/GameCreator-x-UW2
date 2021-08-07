@@ -96,7 +96,8 @@
         ],
         "16": [
             null,
-            "等待关闭界面"
+            "等待关闭界面",
+            "手机端双指缩放"
         ]
     },
     "type": {
@@ -38721,6 +38722,110 @@
             "name": "等待关闭界面",
             "customPhraseDescTS": "// 根据属性名称值编写自定义短语描述，如：\"我的短语是\"+attrs.xxx\n// 使用下拉框组件的变量attrs.xxx有对应的attrs.xxxItems的属性以便获得标签名集合\n// 获取自定义模块的数据名称的函数：getModuleDataName(moduleID:number,dataID:number):string;\n// 获取各种列表内数据名称的函数：getTypeDataListName(typeID: number, dataID: number):string;\n// -- typeID ：0-全局变量 1-全局开关 2-全局字符串 3-玩家变量 4-玩家开关 5-玩家字符串\n//           ：6-场景列表 7-场景对象模型列表 8-图块列表 9-行走图列表 10-行走图动作列表 11-立绘列表 12-立绘表情列表\n//           ：13-公共事件 14-对话框列表 15-动画列表 16-动画信号列表 17-界面列表 18-数据结构列表 19-自定义模块列表\n//           ：20-自定义命令列表 21-自定义行为列表 22-自动元件列表 23-行走图部件列表 24-立绘部件列表\nvar str = ``;\nvar objStr = attrs.useVar ? `@${attrs.uiVar}-${getTypeDataListName(3, attrs.uiVar)}` : `${attrs.uiID}-${getTypeDataListName(17, attrs.uiID)}`;\nstr += `「${objStr}」`;\nstr;",
             "customPhraseDescJS": "var str = \"\";\nvar objStr = attrs.useVar ? \"@\" + attrs.uiVar + \"-\" + getTypeDataListName(3, attrs.uiVar) : attrs.uiID + \"-\" + getTypeDataListName(17, attrs.uiID);\nstr += \"\\u300C\" + objStr + \"\\u300D\";\nstr;\n"
+        },
+        "15002": {
+            "compAutoOrderLimitHeight": 0,
+            "id": 15002,
+            "blockList": [
+                {
+                    "name": "未命名块",
+                    "blockAttrs": [
+                        {
+                            "attr": {
+                                "id": "63698038117_0.287984017943383",
+                                "varName": "scaleType",
+                                "varType": 0,
+                                "compData": {
+                                    "compType": 2,
+                                    "compParam": {
+                                        "items": "场景,界面",
+                                        "showIndex": true
+                                    }
+                                },
+                                "defaultValue": "",
+                                "hideMode": false,
+                                "useCommand": false,
+                                "onlyPointTo": false,
+                                "moduleID": 1,
+                                "dataStructureID": 1,
+                                "arrayMode": false,
+                                "arrayLength": 100,
+                                "arrayAllowDelete": false,
+                                "arrayAllowSwap": false,
+                                "arrayAllowUpdate": false,
+                                "accessMode": 1,
+                                "syncMode": 0,
+                                "attrTips": "",
+                                "alias": "选择缩放对象",
+                                "onlyConfig": false,
+                                "preview": false,
+                                "autoTitleWidth": true,
+                                "titleWidth": 100,
+                                "eyeShow": true,
+                                "lockBlock": false
+                            },
+                            "attrConditions": [],
+                            "y": 13,
+                            "x": 8,
+                            "width": 200,
+                            "height": 32
+                        },
+                        {
+                            "attr": {
+                                "id": "63704031385_0.8496348181541775",
+                                "varName": "uiID",
+                                "varType": 0,
+                                "compData": {
+                                    "compType": 5,
+                                    "compParam": {}
+                                },
+                                "defaultValue": "",
+                                "hideMode": false,
+                                "useCommand": false,
+                                "onlyPointTo": false,
+                                "moduleID": 1,
+                                "dataStructureID": 1,
+                                "arrayMode": false,
+                                "arrayLength": 100,
+                                "arrayAllowDelete": false,
+                                "arrayAllowSwap": false,
+                                "arrayAllowUpdate": false,
+                                "accessMode": 1,
+                                "syncMode": 0,
+                                "attrTips": "",
+                                "alias": "界面ID",
+                                "onlyConfig": false,
+                                "preview": false,
+                                "autoTitleWidth": true,
+                                "titleWidth": 100,
+                                "eyeShow": true,
+                                "lockBlock": false
+                            },
+                            "attrConditions": [
+                                {
+                                    "attrID": "63698038117_0.287984017943383",
+                                    "value": 1,
+                                    "isExpression": false,
+                                    "jsCode": null,
+                                    "tsCode": null,
+                                    "codeName": null
+                                }
+                            ],
+                            "y": 13,
+                            "x": 223,
+                            "width": 200,
+                            "height": 32
+                        }
+                    ],
+                    "blockCondition": [],
+                    "blockHeight": 62,
+                    "autoOrder": true,
+                    "hideBlockTitle": true,
+                    "cmdColor": "#e40fe8"
+                }
+            ],
+            "isCustomPhraseDesc": false,
+            "name": "手机端双指缩放"
         }
     }
 }
