@@ -68,10 +68,10 @@ var KeyboardControl = (function () {
                             break;
                         }
                     }
-                    console.log(x, '-', y, '-', Roguelike.villages_n);
+                    
                     if (Roguelike.current_map == 'world_map') {
-                        for (var i = 47; i <= 47; ++i) {
-                            var meta = Roguelike.villages_dict[i + 1];
+                        for (var i = 0; i < 98; ++i) {
+                            var meta = Roguelike.villages_json[i + 1];
                             if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
                                 Game.player.variable.setString(1, "你发现了 " + meta.name);
                                 GameCommand.startCommonCommand(1);

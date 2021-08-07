@@ -43,6 +43,7 @@ var Roguelike;
         return colorHex(c);
     }
     Roguelike.mix = mix;
+    Roguelike.villages_json = {};
     Roguelike.Main = {
         display: null,
         map: null,
@@ -72,6 +73,10 @@ var Roguelike;
                     AssetManager.loadImage("asset/image/_uw2/ports/" + file_name + s);
                 }
             }
+            var url = "Game/game/roguelike/uw2/villages.json";
+            FileUtils.loadJsonFile(url, new Callback(function (json) {
+                Roguelike.villages_json = json;
+            }, this));
         },
         start_level: function (level) {
             var w = 25;
@@ -79,7 +84,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();

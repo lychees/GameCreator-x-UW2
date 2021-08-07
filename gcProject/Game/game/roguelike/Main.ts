@@ -55,6 +55,8 @@ namespace Roguelike{
         return colorHex(c);
     }
 
+    export let villages_json = {};
+
     export var Main = {
         display: null,
         map: null,
@@ -100,6 +102,14 @@ namespace Roguelike{
                     AssetManager.loadImage("asset/image/_uw2/ports/" + file_name + s);                    
                 }
             }
+
+
+            let url = "Game/game/roguelike/uw2/villages.json";
+
+            FileUtils.loadJsonFile(url, new Callback(function (json) {                
+                Roguelike.villages_json = json;
+            }, this));
+
         },
 
         start_level: function(level) {
