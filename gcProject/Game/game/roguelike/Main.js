@@ -3,6 +3,7 @@ var Roguelike;
     Roguelike.current_map = "";
     Roguelike.port_id = 0;
     Roguelike.port_time = "";
+    Roguelike.discoveries = [];
     function colorHex(colorArr) {
         var strHex = "#";
         var colorArr;

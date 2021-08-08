@@ -3,6 +3,7 @@ namespace Roguelike{
     export let current_map = "";
     export let port_id = 0;
     export let port_time = "";
+    export let discoveries = [];
     
     // 地块
     /**
@@ -315,7 +316,7 @@ namespace Roguelike{
 
         if (story == "启航") {
             GameCommand.startCommonCommand(8001);
-            story = "谒见公爵"            
+            story = "谒见公爵";
         }
     }
 

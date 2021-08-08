@@ -161,10 +161,17 @@ class KeyboardControl {
                         for (var i = 0; i < 98; ++i) {
                             var meta = Roguelike.villages_json[i + 1];
                             if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
-                                Game.player.variable.setString(1, "你发现了 " + i18n.chinese[meta.name]);
-                                GameCommand.startCommonCommand(1);
-                                Game.player.variable.setString(1, i18n.chinese[meta.description]);
-                                GameCommand.startCommonCommand(1);
+                                if (Roguelike.discoveries[i] == null) {
+                                    Roguelike.discoveries[i] = true;
+                                    Game.player.variable.setString(1, "你发现了 " + i18n.chinese[meta.name]);
+                                    GameCommand.startCommonCommand(1);
+                                    Game.player.variable.setString(1, i18n.chinese[meta.description]);
+                                    GameCommand.startCommonCommand(1);
+                                    GameAudio.playSE("asset/audio/_uwol/se/discover.ogg");
+                                } else {
+                                    Game.player.variable.setString(1, "这里是 " + i18n.chinese[meta.name]);
+                                    GameCommand.startCommonCommand(1);
+                                }
                                 break;
                             }
                         }
