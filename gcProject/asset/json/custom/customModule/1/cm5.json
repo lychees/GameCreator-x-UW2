@@ -7,7 +7,7 @@
         },
         "class": {
             "varType": 0,
-            "value": 1,
+            "value": 4,
             "copy": false
         },
         "growUpEnabled": {
@@ -22,7 +22,7 @@
         },
         "avatar": {
             "varType": 0,
-            "value": 0,
+            "value": 8001,
             "copy": false
         },
         "smallFace": {

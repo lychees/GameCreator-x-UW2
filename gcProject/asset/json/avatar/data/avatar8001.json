@@ -1,6 +1,6 @@
 {
     "picUrls": [
-        "asset/image/_RM/VA/Characters/$c_54b_2.png"
+        "asset/image/_RM/VA/Characters/$キッカ.png"
     ],
     "oriMode": 4,
     "autoFlip": true,
@@ -20,15 +20,15 @@
                     {
                         "picUrlIndex": 0,
                         "rect": [
-                            0,
+                            -32,
                             0,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -46,15 +46,15 @@
                     {
                         "picUrlIndex": 0,
                         "rect": [
-                            0,
-                            -34,
+                            -32,
+                            -32,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -72,15 +72,15 @@
                     {
                         "picUrlIndex": 0,
                         "rect": [
-                            0,
-                            -68,
+                            -32,
+                            -64,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -98,15 +98,15 @@
                     {
                         "picUrlIndex": 0,
                         "rect": [
-                            0,
-                            -102,
+                            -32,
+                            -96,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -132,12 +132,12 @@
                             0,
                             0,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -156,12 +156,12 @@
                             -32,
                             0,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -180,36 +180,12 @@
                             -64,
                             0,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
-                        "rotation": 0,
-                        "alpha": 1,
-                        "hue": 0,
-                        "blur": 0,
-                        "tonal_r": 0,
-                        "tonal_g": 0,
-                        "tonal_b": 0,
-                        "tonal_gray": 0,
-                        "tonal_mr": 1,
-                        "tonal_mg": 1,
-                        "tonal_mb": 1
-                    },
-                    {
-                        "picUrlIndex": 0,
-                        "rect": [
-                            -96,
-                            0,
-                            32,
-                            34
-                        ],
-                        "x": 0,
-                        "y": 0,
-                        "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -228,14 +204,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             0,
-                            -34,
+                            -32,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -252,14 +228,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             -32,
-                            -34,
+                            -32,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -276,38 +252,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             -64,
-                            -34,
+                            -32,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
-                        "rotation": 0,
-                        "alpha": 1,
-                        "hue": 0,
-                        "blur": 0,
-                        "tonal_r": 0,
-                        "tonal_g": 0,
-                        "tonal_b": 0,
-                        "tonal_gray": 0,
-                        "tonal_mr": 1,
-                        "tonal_mg": 1,
-                        "tonal_mb": 1
-                    },
-                    {
-                        "picUrlIndex": 0,
-                        "rect": [
-                            -96,
-                            -34,
-                            32,
-                            34
-                        ],
-                        "x": 0,
-                        "y": 0,
-                        "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -326,14 +278,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             0,
-                            -68,
+                            -64,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -350,14 +302,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             -32,
-                            -68,
+                            -64,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -374,38 +326,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             -64,
-                            -68,
+                            -64,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
-                        "rotation": 0,
-                        "alpha": 1,
-                        "hue": 0,
-                        "blur": 0,
-                        "tonal_r": 0,
-                        "tonal_g": 0,
-                        "tonal_b": 0,
-                        "tonal_gray": 0,
-                        "tonal_mr": 1,
-                        "tonal_mg": 1,
-                        "tonal_mb": 1
-                    },
-                    {
-                        "picUrlIndex": 0,
-                        "rect": [
-                            -96,
-                            -68,
-                            32,
-                            34
-                        ],
-                        "x": 0,
-                        "y": 0,
-                        "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -424,14 +352,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             0,
-                            -102,
+                            -96,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -448,14 +376,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             -32,
-                            -102,
+                            -96,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,
@@ -472,38 +400,14 @@
                         "picUrlIndex": 0,
                         "rect": [
                             -64,
-                            -102,
-                            32,
-                            34
-                        ],
-                        "x": 0,
-                        "y": 0,
-                        "width": 32,
-                        "height": 34,
-                        "rotation": 0,
-                        "alpha": 1,
-                        "hue": 0,
-                        "blur": 0,
-                        "tonal_r": 0,
-                        "tonal_g": 0,
-                        "tonal_b": 0,
-                        "tonal_gray": 0,
-                        "tonal_mr": 1,
-                        "tonal_mg": 1,
-                        "tonal_mb": 1
-                    },
-                    {
-                        "picUrlIndex": 0,
-                        "rect": [
                             -96,
-                            -102,
                             32,
-                            34
+                            32
                         ],
-                        "x": 0,
-                        "y": 0,
+                        "x": -16,
+                        "y": -31,
                         "width": 32,
-                        "height": 34,
+                        "height": 32,
                         "rotation": 0,
                         "alpha": 1,
                         "hue": 0,

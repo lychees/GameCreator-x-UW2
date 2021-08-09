@@ -2,12 +2,12 @@
     "attrs": {
         "face": {
             "varType": 1,
-            "value": "asset/image/_waifulabs/芭芭拉/c999507-d999507-p999507.png",
+            "value": "asset/image/_waifulabs/尤多拉/c997954-d997954-p533877.png",
             "copy": false
         },
         "class": {
             "varType": 0,
-            "value": 1,
+            "value": 2,
             "copy": false
         },
         "growUpEnabled": {
@@ -22,12 +22,12 @@
         },
         "avatar": {
             "varType": 0,
-            "value": 39,
+            "value": 8003,
             "copy": false
         },
         "smallFace": {
             "varType": 1,
-            "value": "asset/image/_waifulabs/芭芭拉/c999507-d999507-p276240.png",
+            "value": "asset/image/_waifulabs/尤多拉/c997954-d997954-p788008.png",
             "copy": false
         },
         "moveSpeed": {
