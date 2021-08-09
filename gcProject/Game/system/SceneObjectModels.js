@@ -17,4 +17,39 @@ var ClientSceneObject_2 = (function (_super) {
     }
     return ClientSceneObject_2;
 }(ClientSceneObject));
+var ClientSceneObject_3 = (function (_super) {
+    __extends(ClientSceneObject_3, _super);
+    function ClientSceneObject_3(soData, scene) {
+        _super.call(this, soData, scene);
+    }
+    return ClientSceneObject_3;
+}(ClientSceneObject));
+var ClientSceneObject_4 = (function (_super) {
+    __extends(ClientSceneObject_4, _super);
+    function ClientSceneObject_4(soData, scene) {
+        _super.call(this, soData, scene);
+    }
+    return ClientSceneObject_4;
+}(ClientSceneObject));
+var ClientSceneObject_5 = (function (_super) {
+    __extends(ClientSceneObject_5, _super);
+    function ClientSceneObject_5(soData, scene) {
+        _super.call(this, soData, scene);
+    }
+    return ClientSceneObject_5;
+}(ClientSceneObject));
+var ClientSceneObject_6 = (function (_super) {
+    __extends(ClientSceneObject_6, _super);
+    function ClientSceneObject_6(soData, scene) {
+        _super.call(this, soData, scene);
+    }
+    return ClientSceneObject_6;
+}(ClientSceneObject));
+var ClientSceneObject_7 = (function (_super) {
+    __extends(ClientSceneObject_7, _super);
+    function ClientSceneObject_7(soData, scene) {
+        _super.call(this, soData, scene);
+    }
+    return ClientSceneObject_7;
+}(ClientSceneObject));
 //# sourceMappingURL=SceneObjectModels.js.map

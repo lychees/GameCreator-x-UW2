@@ -76,7 +76,7 @@
                 "mouseEventEnabledInEditor": true,
                 "showOnEditor": true,
                 "hasCommand": [],
-                "isOpen": false,
+                "isOpen": true,
                 "image": "asset/image/picture/control/uibitmap.png",
                 "grid9": "51,39,41,34,1",
                 "flip": null,
@@ -154,7 +154,8 @@
                 "hasCommand": [],
                 "isOpen": true,
                 "guiID": 1025,
-                "instanceClassName": ""
+                "instanceClassName": "",
+                "dpWidth": 0
             },
             {
                 "id": "52833977539_0.38798306219077916",

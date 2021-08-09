@@ -115,6 +115,7 @@ var KeyboardControl = (function () {
                                 }
                             }
                             else if (name[i_2] == "bar") {
+                                Game.player.toScene(8, 8 * 16, 4 * 16);
                                 GameAudio.playBGM("asset/audio/_uwol/building/bar.mp3");
                             }
                             else if (name[i_2] == "church") {
