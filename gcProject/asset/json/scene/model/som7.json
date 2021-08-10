@@ -1,9 +1,0 @@
-{
-    "preLayer": [],
-    "varAttributes": [],
-    "serverInstanceClassName": "ServerSceneObject",
-    "clientInstanceClassName": "ClientSceneObject",
-    "supportTriggerTypes": [],
-    "supportStatusPage": true,
-    "id": 7
-}

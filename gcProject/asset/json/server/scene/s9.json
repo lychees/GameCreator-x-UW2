@@ -214,8 +214,8 @@
             "modelID": 1,
             "index": 6,
             "name": "未命名6",
-            "x": 613,
-            "y": 479,
+            "x": 616,
+            "y": 472,
             "z": 0,
             "materialData": [
                 {
@@ -240,8 +240,8 @@
                 }
             },
             "layerLevel": 1,
-            "autoPlayEnable": true,
-            "scale": 1,
+            "autoPlayEnable": false,
+            "scale": 0.63,
             "playerUID": 0,
             "hasCommand": []
         },
@@ -5362,7 +5362,7 @@
             },
             "moveAutoChangeAction": {
                 "varType": 2,
-                "value": true,
+                "value": false,
                 "copy": false
             },
             "lockBehaviorLayer": {
@@ -5387,7 +5387,7 @@
             },
             "onlyPlayerTouch": {
                 "varType": 2,
-                "value": false,
+                "value": true,
                 "copy": false
             },
             "waitTouchEvent": {
@@ -6361,7 +6361,23 @@
         {
             "condition": [],
             "customCommands": [
-                [],
+                [
+                    [
+                        11,
+                        1,
+                        null,
+                        "",
+                        3,
+                        -3,
+                        "<span style='color:#FfFffF'>请问您要来点兔子么？</span>",
+                        null,
+                        1,
+                        0,
+                        {
+                            "___cmdID": "71029821279_0.4220681660400989"
+                        }
+                    ]
+                ],
                 [],
                 [],
                 [],
@@ -6408,7 +6424,7 @@
                         "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.toPort(Roguelike.port_id, \"random\", 2);",
                         "Roguelike.toPort(Roguelike.port_id, \"random\", 2);\n",
                         {
-                            "___cmdID": "71029022099_0.8649336797728153"
+                            "___cmdID": "71030084887_0.858038229289773"
                         }
                     ]
                 ],
@@ -6430,14 +6446,6 @@
         [],
         null
     ],
-    "statusPagesSelectedIndexs": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    ],
+    "statusPagesSelectedIndexs": [],
     "id": 9
 }

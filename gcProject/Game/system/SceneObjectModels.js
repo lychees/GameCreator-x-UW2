@@ -38,18 +38,4 @@ var ClientSceneObject_5 = (function (_super) {
     }
     return ClientSceneObject_5;
 }(ClientSceneObject));
-var ClientSceneObject_6 = (function (_super) {
-    __extends(ClientSceneObject_6, _super);
-    function ClientSceneObject_6(soData, scene) {
-        _super.call(this, soData, scene);
-    }
-    return ClientSceneObject_6;
-}(ClientSceneObject));
-var ClientSceneObject_7 = (function (_super) {
-    __extends(ClientSceneObject_7, _super);
-    function ClientSceneObject_7(soData, scene) {
-        _super.call(this, soData, scene);
-    }
-    return ClientSceneObject_7;
-}(ClientSceneObject));
 //# sourceMappingURL=SceneObjectModels.js.map

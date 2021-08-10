@@ -57,19 +57,3 @@ class ClientSceneObject_5 extends ClientSceneObject {
         super(soData,scene);
     }
 }
-/**
- * 场景对象模型：
- */
-class ClientSceneObject_6 extends ClientSceneObject {
-    constructor(soData: SceneObject, scene: ClientScene) {
-        super(soData,scene);
-    }
-}
-/**
- * 场景对象模型：
- */
-class ClientSceneObject_7 extends ClientSceneObject {
-    constructor(soData: SceneObject, scene: ClientScene) {
-        super(soData,scene);
-    }
-}
