@@ -4,6 +4,7 @@ var Roguelike;
     Roguelike.port_id = 0;
     Roguelike.port_time = "";
     Roguelike.discoveries = [];
+    Roguelike.first_battle = false;
     function colorHex(colorArr) {
         var strHex = "#";
         var colorArr;
@@ -272,15 +273,16 @@ var Roguelike;
         }
     }
     Roguelike.toWorldMap = toWorldMap;
-    function toPort(id, t) {
+    function toPort(id, t, building_id) {
         if (t === void 0) { t = "random"; }
+        if (building_id === void 0) { building_id = 4; }
         var meta = hash_ports_meta_data[id + 1];
         Game.player.variable.setString(1, "你发现了 " + i18n.chinese[meta.name]);
         GameCommand.startCommonCommand(1);
         Roguelike.current_map = "port";
         Roguelike.port_id = id;
         Roguelike.port_time = t;
-        Game.player.toScene(7, meta.buildings[4].x * 16 + 16, meta.buildings[4].y * 16 + 16);
+        Game.player.toScene(7, meta.buildings[building_id].x * 16 + 16, meta.buildings[building_id].y * 16 + 16);
         var bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
         if (["Lisbon", "Seville", "London", "Marseille", "Amsterdam", "Venice"].includes(meta.name)) {
             bgm_url = "asset/audio/_uwol/port/" + meta.name + ".mp3";

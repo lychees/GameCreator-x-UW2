@@ -96,8 +96,6 @@ var KeyboardControl = (function () {
                         if (meta_2.buildings[i_2] == null)
                             continue;
                         if (Math.abs(x - meta_2.buildings[i_2].x) < 3 && Math.abs(y - meta_2.buildings[i_2].y) < 3) {
-                            Game.player.variable.setString(1, "这里是 " + i18n.chinese[meta_2.name] + " 的 " + i18n.chinese[name[i_2]]);
-                            GameCommand.startCommonCommand(1);
                             if (name[i_2] == "harbor") {
                                 Roguelike.toWorldMap(meta_2.x, meta_2.y);
                             }
@@ -115,7 +113,7 @@ var KeyboardControl = (function () {
                                 }
                             }
                             else if (name[i_2] == "bar") {
-                                Game.player.toScene(8, 8 * 16, 4 * 16);
+                                Game.player.toScene(9, 20 * 16, 20 * 16);
                                 GameAudio.playBGM("asset/audio/_uwol/building/bar.mp3");
                             }
                             else if (name[i_2] == "church") {

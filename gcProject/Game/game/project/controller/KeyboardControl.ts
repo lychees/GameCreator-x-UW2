@@ -186,8 +186,8 @@ class KeyboardControl {
                     for (let i=1;i<=12;++i) {
                         if (meta.buildings[i] == null) continue;
                         if (Math.abs(x - meta.buildings[i].x) < 3 && Math.abs(y - meta.buildings[i].y) < 3) {
-                            Game.player.variable.setString(1, "这里是 " + i18n.chinese[meta.name] + " 的 " + i18n.chinese[name[i]]);
-                            GameCommand.startCommonCommand(1);
+                            // Game.player.variable.setString(1, "这里是 " + i18n.chinese[meta.name] + " 的 " + i18n.chinese[name[i]]);
+                            // GameCommand.startCommonCommand(1);
                             if (name[i] == "harbor") {
                                 Roguelike.toWorldMap(meta.x, meta.y);
                             } else if (name[i] == "misc") {
@@ -202,7 +202,7 @@ class KeyboardControl {
                                     Roguelike.story = "访问老师";            
                                 }
                             } else if (name[i] == "bar") {
-                                Game.player.toScene(8, 8*16, 4*16);
+                                Game.player.toScene(9, 20*16, 20*16);
                                 GameAudio.playBGM("asset/audio/_uwol/building/bar.mp3");
                             } else if (name[i] == "church") {
                                 GameAudio.playBGM("asset/audio/_uwol/building/church.mp3");

@@ -4,6 +4,7 @@ namespace Roguelike{
     export let port_id = 0;
     export let port_time = "";
     export let discoveries = [];
+    export let first_battle = false; 
     
     // 地块
     /**
@@ -320,7 +321,7 @@ namespace Roguelike{
         }
     }
 
-    export function toPort(id: number, t:string="random") {
+    export function toPort(id: number, t:string="random", building_id:number=4) {
         let meta = hash_ports_meta_data[id+1];
 
         Game.player.variable.setString(1, "你发现了 " + i18n.chinese[meta.name]);
@@ -329,7 +330,7 @@ namespace Roguelike{
         Roguelike.port_id = id;
         Roguelike.port_time = t;
 
-        Game.player.toScene(7, meta.buildings[4].x*16+16, meta.buildings[4].y*16+16);
+        Game.player.toScene(7, meta.buildings[building_id].x*16+16, meta.buildings[building_id].y*16+16);
         
         let bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
 

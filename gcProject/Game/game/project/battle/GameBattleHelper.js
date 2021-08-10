@@ -536,9 +536,6 @@ var GameBattleHelper = (function () {
         ani.play();
         ani.x = aniX;
         ani.y = aniY;
-        console.log("what2");
-        ;
-        console.log(ani);
         ani.scaleX = 0.3333;
         ani.scaleY = 0.3333;
         layer.addChild(ani);
