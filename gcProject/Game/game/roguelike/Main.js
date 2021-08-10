@@ -86,7 +86,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
@@ -156,6 +156,8 @@ var Roguelike;
         get_port_chip: function (id, t) {
             if (id === void 0) { id = 0; }
             if (t === void 0) { t = "day"; }
+            if (id > 100)
+                id = 100;
             var i = hash_ports_meta_data[id + 1].tileset;
             var f = "PORTCHIP.";
             var a = '0';
@@ -175,6 +177,8 @@ var Roguelike;
                 t = tt[Math.floor(Math.random() * 4)];
             }
             var x = id;
+            if (x > 100)
+                x = 100;
             var c = x % 10;
             x = Math.floor(x / 10);
             var b = x % 10;
@@ -282,7 +286,12 @@ var Roguelike;
         Roguelike.current_map = "port";
         Roguelike.port_id = id;
         Roguelike.port_time = t;
-        Game.player.toScene(7, meta.buildings[building_id].x * 16 + 16, meta.buildings[building_id].y * 16 + 16);
+        if (id <= 100) {
+            Game.player.toScene(7, meta.buildings[building_id].x * 16 + 16, meta.buildings[building_id].y * 16 + 16);
+        }
+        else {
+            Game.player.toScene(7, hash_ports_meta_data[100].buildings[4].x * 16 + 16, hash_ports_meta_data[100].buildings[4].y * 16 + 16);
+        }
         var bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
         if (["Lisbon", "Seville", "London", "Marseille", "Amsterdam", "Venice"].includes(meta.name)) {
             bgm_url = "asset/audio/_uwol/port/" + meta.name + ".mp3";

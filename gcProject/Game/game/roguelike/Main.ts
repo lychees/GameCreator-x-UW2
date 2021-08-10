@@ -205,6 +205,8 @@ namespace Roguelike{
 
         get_port_chip: function(id = 0, t = "day") {
 
+            if (id > 100) id = 100;
+
             let i = hash_ports_meta_data[id+1].tileset;
             let f = "PORTCHIP.";
             let a = '0';
@@ -223,11 +225,11 @@ namespace Roguelike{
                 t = tt[Math.floor(Math.random()*4)];
             }
 
-            let x = id;
+            let x = id; if (x > 100) x = 100; // 补给港
             let c = x % 10; x = Math.floor(x/10); 
             let b = x % 10; x = Math.floor(x/10);
             let a = x % 10;
-                     
+
             let url = "asset/image/_uw2/ports/PORTMAP" + a+b+c + ".json";
 
             FileUtils.loadFile(url, new Callback(function (raw) {
@@ -330,7 +332,11 @@ namespace Roguelike{
         Roguelike.port_id = id;
         Roguelike.port_time = t;
 
-        Game.player.toScene(7, meta.buildings[building_id].x*16+16, meta.buildings[building_id].y*16+16);
+        if (id <= 100) {
+            Game.player.toScene(7, meta.buildings[building_id].x*16+16, meta.buildings[building_id].y*16+16);
+        } else {
+            Game.player.toScene(7, hash_ports_meta_data[100].buildings[4].x*16+16, hash_ports_meta_data[100].buildings[4].y*16+16);
+        }
         
         let bgm_url = "asset/audio/_uwol/port/Southern Europe Town.mp3";
 

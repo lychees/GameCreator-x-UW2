@@ -87,6 +87,8 @@ var KeyboardControl = (function () {
                 }
                 else if (Roguelike.current_map == "port") {
                     var meta_2 = hash_ports_meta_data[Roguelike.port_id + 1];
+                    if (Roguelike.port_id > 100)
+                        meta_2 = hash_ports_meta_data[100 + 1];
                     var p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                     var x = p.x;
                     var y = p.y;
@@ -97,6 +99,7 @@ var KeyboardControl = (function () {
                             continue;
                         if (Math.abs(x - meta_2.buildings[i_2].x) < 3 && Math.abs(y - meta_2.buildings[i_2].y) < 3) {
                             if (name[i_2] == "harbor") {
+                                meta_2 = hash_ports_meta_data[Roguelike.port_id + 1];
                                 Roguelike.toWorldMap(meta_2.x, meta_2.y);
                             }
                             else if (name[i_2] == "misc") {

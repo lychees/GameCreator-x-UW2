@@ -178,6 +178,7 @@ class KeyboardControl {
                     }
                 } else if (Roguelike.current_map == "port") {                    
                     let meta = hash_ports_meta_data[Roguelike.port_id+1];
+                    if (Roguelike.port_id > 100) meta = hash_ports_meta_data[100+1];
                     let p = GameUtils.getGridPostion(Game.player.sceneObject.pos);
                     let x = p.x;
                     let y = p.y;
@@ -189,6 +190,7 @@ class KeyboardControl {
                             // Game.player.variable.setString(1, "这里是 " + i18n.chinese[meta.name] + " 的 " + i18n.chinese[name[i]]);
                             // GameCommand.startCommonCommand(1);
                             if (name[i] == "harbor") {
+                                meta = hash_ports_meta_data[Roguelike.port_id+1];
                                 Roguelike.toWorldMap(meta.x, meta.y);
                             } else if (name[i] == "misc") {
                                 if (Roguelike.story == "访问老师") {
