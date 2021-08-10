@@ -5,8 +5,8 @@
             "modelID": 1,
             "index": 1,
             "name": "未命名1",
-            "x": 309,
-            "y": 105,
+            "x": 110,
+            "y": 284,
             "z": 0,
             "materialData": [
                 {
@@ -139,11 +139,11 @@
                     "battleActor": {
                         "varType": 5,
                         "value": {
-                            "id": 1,
+                            "id": 8,
                             "data": {
                                 "face": {
                                     "varType": 1,
-                                    "value": "asset/image/picture/face/swordman/Normal_body_half.png",
+                                    "value": "asset/image/_waifulabs/芭芭拉/c999507-d999507-p999507.png",
                                     "copy": false
                                 },
                                 "class": {
@@ -153,7 +153,7 @@
                                 },
                                 "growUpEnabled": {
                                     "varType": 2,
-                                    "value": true,
+                                    "value": false,
                                     "copy": false
                                 },
                                 "dropEnabled": {
@@ -163,7 +163,17 @@
                                 },
                                 "avatar": {
                                     "varType": 0,
-                                    "value": 1,
+                                    "value": 8004,
+                                    "copy": false
+                                },
+                                "smallFace": {
+                                    "varType": 1,
+                                    "value": "asset/image/_waifulabs/芭芭拉/c999507-d999507-p276240.png",
+                                    "copy": false
+                                },
+                                "moveSpeed": {
+                                    "varType": 0,
+                                    "value": 250,
                                     "copy": false
                                 },
                                 "MaxHP": {
@@ -173,7 +183,7 @@
                                 },
                                 "MaxSP": {
                                     "varType": 0,
-                                    "value": 80,
+                                    "value": 100,
                                     "copy": false
                                 },
                                 "POW": {
@@ -183,57 +193,57 @@
                                 },
                                 "END": {
                                     "varType": 0,
-                                    "value": 10,
+                                    "value": 5,
                                     "copy": false
                                 },
                                 "MAG": {
                                     "varType": 0,
-                                    "value": 2,
+                                    "value": 0,
                                     "copy": false
                                 },
                                 "AGI": {
                                     "varType": 0,
-                                    "value": 5,
+                                    "value": 0,
                                     "copy": false
                                 },
                                 "MaxHPGrow": {
                                     "varType": 1,
-                                    "value": "[[0,0,10.107816711590331,99,999,0,0,0],[0,100,100]]",
+                                    "value": "",
                                     "copy": false
                                 },
                                 "MaxSPGrow": {
                                     "varType": 1,
-                                    "value": "[[0,0,8.0862533692722,99,999,0,0,0],[0,100,100]]",
+                                    "value": "",
                                     "copy": false
                                 },
                                 "POWGrow": {
                                     "varType": 1,
-                                    "value": "[[0,0,10.646900269541817,99,99,0,0,0],[0,100,100]]",
+                                    "value": "",
                                     "copy": false
                                 },
                                 "ENDGrow": {
                                     "varType": 1,
-                                    "value": "[[0,0,10.242587601078128,99,99,0,0,0],[0,100,100]]",
+                                    "value": "",
                                     "copy": false
                                 },
                                 "MAGGrow": {
                                     "varType": 1,
-                                    "value": "[[0,0,2.021563342318103,99,99,0,0,0],[0,100,100]]",
+                                    "value": "",
                                     "copy": false
                                 },
                                 "AGIGrow": {
                                     "varType": 1,
-                                    "value": "[[0,0,5.660377358490592,99,99,0,0,0],[0,100,100]]",
+                                    "value": "",
                                     "copy": false
                                 },
                                 "MaxLv": {
                                     "varType": 0,
-                                    "value": 60,
+                                    "value": 100,
                                     "copy": false
                                 },
                                 "needEXPGrow": {
                                     "varType": 1,
-                                    "value": "[[0,0,0.808625336927264,199,10000,0,0,0],[0,100,100]]",
+                                    "value": "",
                                     "copy": false
                                 },
                                 "MoveGrid": {
@@ -243,349 +253,261 @@
                                 },
                                 "MagDef": {
                                     "varType": 0,
-                                    "value": 15,
+                                    "value": 0,
                                     "copy": false
                                 },
                                 "HIT": {
                                     "varType": 0,
-                                    "value": 75,
+                                    "value": 100,
+                                    "copy": false
+                                },
+                                "atkMode": {
+                                    "varType": 0,
+                                    "value": 0,
+                                    "copy": false
+                                },
+                                "atkSkill": {
+                                    "varType": 5,
+                                    "value": {
+                                        "id": 1,
+                                        "data": {
+                                            "icon": {
+                                                "varType": 1,
+                                                "value": "asset/image/picture/icon/skill/Skill_1.png",
+                                                "copy": false
+                                            },
+                                            "intro": {
+                                                "varType": 1,
+                                                "value": "对敌方目标进行一次强力的打击，造成${Math.floor(s.damageValue+a.ATK*s.additionMultiple/100)}点物理伤害！",
+                                                "copy": false
+                                            },
+                                            "skillType": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "targetType": {
+                                                "varType": 0,
+                                                "value": 2,
+                                                "copy": false
+                                            },
+                                            "effectRange1": {
+                                                "varType": 0,
+                                                "value": 1,
+                                                "copy": false
+                                            },
+                                            "effectRange2A": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "effectRange2B": {
+                                                "varType": 0,
+                                                "value": 2,
+                                                "copy": false
+                                            },
+                                            "effectRange3": {
+                                                "varType": 12,
+                                                "value": {},
+                                                "copy": false
+                                            },
+                                            "releaseRange": {
+                                                "varType": 12,
+                                                "value": {},
+                                                "copy": false
+                                            },
+                                            "totalCD": {
+                                                "varType": 0,
+                                                "value": 2,
+                                                "copy": false
+                                            },
+                                            "hit": {
+                                                "varType": 0,
+                                                "value": 100,
+                                                "copy": false
+                                            },
+                                            "costSP": {
+                                                "varType": 0,
+                                                "value": 20,
+                                                "copy": false
+                                            },
+                                            "useDamage": {
+                                                "varType": 2,
+                                                "value": true,
+                                                "copy": false
+                                            },
+                                            "releaseFrame": {
+                                                "varType": 0,
+                                                "value": 2,
+                                                "copy": false
+                                            },
+                                            "releaseActionID": {
+                                                "varType": 0,
+                                                "value": 3,
+                                                "copy": false
+                                            },
+                                            "effectRangeType": {
+                                                "varType": 0,
+                                                "value": 1,
+                                                "copy": false
+                                            },
+                                            "mustOpenSpace": {
+                                                "varType": 2,
+                                                "value": false,
+                                                "copy": false
+                                            },
+                                            "costActionPower": {
+                                                "varType": 2,
+                                                "value": true,
+                                                "copy": false
+                                            },
+                                            "useHate": {
+                                                "varType": 2,
+                                                "value": false,
+                                                "copy": false
+                                            },
+                                            "releaseTimes": {
+                                                "varType": 0,
+                                                "value": 1,
+                                                "copy": false
+                                            },
+                                            "isThroughObstacle": {
+                                                "varType": 2,
+                                                "value": false,
+                                                "copy": false
+                                            },
+                                            "bulletSpeed": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "bulletAnimation": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "damageType": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "damageValue": {
+                                                "varType": 0,
+                                                "value": 10,
+                                                "copy": false
+                                            },
+                                            "additionMultiple": {
+                                                "varType": 0,
+                                                "value": 150,
+                                                "copy": false
+                                            },
+                                            "useAddition": {
+                                                "varType": 2,
+                                                "value": true,
+                                                "copy": false
+                                            },
+                                            "additionMultipleType": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "fixedHeteValue": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "damageHatePer": {
+                                                "varType": 0,
+                                                "value": 100,
+                                                "copy": false
+                                            },
+                                            "releaseAnimation": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "hitAnimation": {
+                                                "varType": 0,
+                                                "value": 1,
+                                                "copy": false
+                                            },
+                                            "targetGridAnimation": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "targetGridAniLayer": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "releaseEvent": {
+                                                "varType": 1,
+                                                "value": "",
+                                                "copy": false
+                                            },
+                                            "hitEvent": {
+                                                "varType": 1,
+                                                "value": "",
+                                                "copy": false
+                                            },
+                                            "hitOpenSpaceEvent": {
+                                                "varType": 1,
+                                                "value": "",
+                                                "copy": false
+                                            },
+                                            "addStatus": {
+                                                "varType": 6,
+                                                "value": [],
+                                                "copy": false
+                                            },
+                                            "removeStatus": {
+                                                "varType": 6,
+                                                "value": [],
+                                                "copy": false
+                                            },
+                                            "currentCD": {
+                                                "varType": 0,
+                                                "value": 0,
+                                                "copy": false
+                                            },
+                                            "infoLegend": {
+                                                "varType": 1,
+                                                "value": "",
+                                                "copy": false
+                                            },
+                                            "pLabel": {
+                                                "varType": 1,
+                                                "value": "",
+                                                "copy": false
+                                            },
+                                            "label1": {
+                                                "varType": 1,
+                                                "value": "",
+                                                "copy": false
+                                            }
+                                        }
+                                    },
+                                    "copy": false
+                                },
+                                "hitFrame": {
+                                    "varType": 0,
+                                    "value": 1,
+                                    "copy": false
+                                },
+                                "hitAnimation": {
+                                    "varType": 0,
+                                    "value": 1,
                                     "copy": false
                                 },
                                 "skills": {
                                     "varType": 11,
-                                    "value": [
-                                        {
-                                            "id": 1,
-                                            "data": {
-                                                "icon": {
-                                                    "varType": 1,
-                                                    "value": "asset/image/picture/icon/skill/Skill_1.png",
-                                                    "copy": false
-                                                },
-                                                "intro": {
-                                                    "varType": 1,
-                                                    "value": "反手就是一个二连！\n对目标造成${s.damageValue+a.ATK*2}点伤害",
-                                                    "copy": false
-                                                },
-                                                "skillType": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "targetType": {
-                                                    "varType": 0,
-                                                    "value": 2,
-                                                    "copy": false
-                                                },
-                                                "effectRange1": {
-                                                    "varType": 0,
-                                                    "value": 1,
-                                                    "copy": false
-                                                },
-                                                "effectRange2A": {
-                                                    "varType": 0,
-                                                    "value": 1,
-                                                    "copy": false
-                                                },
-                                                "effectRange2B": {
-                                                    "varType": 0,
-                                                    "value": 2,
-                                                    "copy": false
-                                                },
-                                                "effectRange3": {
-                                                    "varType": 12,
-                                                    "value": {},
-                                                    "copy": false
-                                                },
-                                                "releaseRange": {
-                                                    "varType": 12,
-                                                    "value": {},
-                                                    "copy": false
-                                                },
-                                                "totalCD": {
-                                                    "varType": 0,
-                                                    "value": 3,
-                                                    "copy": false
-                                                },
-                                                "hit": {
-                                                    "varType": 0,
-                                                    "value": 100,
-                                                    "copy": false
-                                                },
-                                                "costSP": {
-                                                    "varType": 0,
-                                                    "value": 20,
-                                                    "copy": false
-                                                },
-                                                "useDamage": {
-                                                    "varType": 2,
-                                                    "value": true,
-                                                    "copy": false
-                                                },
-                                                "releaseFrame": {
-                                                    "varType": 0,
-                                                    "value": 2,
-                                                    "copy": false
-                                                },
-                                                "releaseActionID": {
-                                                    "varType": 0,
-                                                    "value": 3,
-                                                    "copy": false
-                                                },
-                                                "effectRangeType": {
-                                                    "varType": 0,
-                                                    "value": 1,
-                                                    "copy": false
-                                                },
-                                                "mustOpenSpace": {
-                                                    "varType": 2,
-                                                    "value": false,
-                                                    "copy": false
-                                                },
-                                                "costActionPower": {
-                                                    "varType": 2,
-                                                    "value": true,
-                                                    "copy": false
-                                                },
-                                                "useHate": {
-                                                    "varType": 2,
-                                                    "value": false,
-                                                    "copy": false
-                                                },
-                                                "releaseTimes": {
-                                                    "varType": 0,
-                                                    "value": 1,
-                                                    "copy": false
-                                                },
-                                                "isThroughObstacle": {
-                                                    "varType": 2,
-                                                    "value": false,
-                                                    "copy": false
-                                                },
-                                                "bulletSpeed": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "bulletAnimation": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "damageType": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "damageValue": {
-                                                    "varType": 0,
-                                                    "value": 10,
-                                                    "copy": false
-                                                },
-                                                "additionMultiple": {
-                                                    "varType": 0,
-                                                    "value": 100,
-                                                    "copy": false
-                                                },
-                                                "useAddition": {
-                                                    "varType": 2,
-                                                    "value": true,
-                                                    "copy": false
-                                                },
-                                                "additionMultipleType": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "fixedHeteValue": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "damageHatePer": {
-                                                    "varType": 0,
-                                                    "value": 100,
-                                                    "copy": false
-                                                },
-                                                "releaseAnimation": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "hitAnimation": {
-                                                    "varType": 0,
-                                                    "value": 1,
-                                                    "copy": false
-                                                },
-                                                "targetGridAnimation": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "targetGridAniLayer": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "releaseEvent": {
-                                                    "varType": 1,
-                                                    "value": "",
-                                                    "copy": false
-                                                },
-                                                "hitEvent": {
-                                                    "varType": 1,
-                                                    "value": "",
-                                                    "copy": false
-                                                },
-                                                "hitOpenSpaceEvent": {
-                                                    "varType": 1,
-                                                    "value": "",
-                                                    "copy": false
-                                                },
-                                                "addStatus": {
-                                                    "varType": 6,
-                                                    "value": [],
-                                                    "copy": false
-                                                },
-                                                "removeStatus": {
-                                                    "varType": 6,
-                                                    "value": [],
-                                                    "copy": false
-                                                },
-                                                "currentCD": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "infoLegend": {
-                                                    "varType": 1,
-                                                    "value": "",
-                                                    "copy": false
-                                                },
-                                                "pLabel": {
-                                                    "varType": 1,
-                                                    "value": "",
-                                                    "copy": false
-                                                }
-                                            }
-                                        }
-                                    ],
+                                    "value": [],
                                     "copy": false
                                 },
                                 "equips": {
                                     "varType": 11,
-                                    "value": [
-                                        {
-                                            "id": 21,
-                                            "data": {
-                                                "icon": {
-                                                    "varType": 1,
-                                                    "value": "asset/image/_HAS/HAS IconPack (v.1.2)/IconPack 1.0/AllItems/Weapon/Sword/SwordOriginal/SwordOriginal 1.png",
-                                                    "copy": false
-                                                },
-                                                "intro": {
-                                                    "varType": 1,
-                                                    "value": "海族世代传递的宝物。\n水系魔法的源泉。",
-                                                    "copy": false
-                                                },
-                                                "sell": {
-                                                    "varType": 0,
-                                                    "value": 1000,
-                                                    "copy": false
-                                                },
-                                                "partID": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "sellEnabled": {
-                                                    "varType": 2,
-                                                    "value": true,
-                                                    "copy": false
-                                                },
-                                                "maxHP": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "maxSP": {
-                                                    "varType": 0,
-                                                    "value": 1,
-                                                    "copy": false
-                                                },
-                                                "atk": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "def": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "mag": {
-                                                    "varType": 0,
-                                                    "value": 5,
-                                                    "copy": false
-                                                },
-                                                "magDef": {
-                                                    "varType": 0,
-                                                    "value": 2,
-                                                    "copy": false
-                                                },
-                                                "hit": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "moveGrid": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "agi": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "crit": {
-                                                    "varType": 0,
-                                                    "value": 0,
-                                                    "copy": false
-                                                },
-                                                "magCrit": {
-                                                    "varType": 0,
-                                                    "value": 5,
-                                                    "copy": false
-                                                },
-                                                "selfStatus": {
-                                                    "varType": 6,
-                                                    "value": [],
-                                                    "copy": false
-                                                },
-                                                "selfImmuneStatus": {
-                                                    "varType": 6,
-                                                    "value": [],
-                                                    "copy": false
-                                                },
-                                                "hitTargetStatus": {
-                                                    "varType": 6,
-                                                    "value": [],
-                                                    "copy": false
-                                                },
-                                                "hitTargetSelfAddStatus": {
-                                                    "varType": 6,
-                                                    "value": [],
-                                                    "copy": false
-                                                },
-                                                "infoLegend": {
-                                                    "varType": 1,
-                                                    "value": "",
-                                                    "copy": false
-                                                }
-                                            }
-                                        }
-                                    ],
+                                    "value": [],
                                     "copy": false
                                 },
                                 "items": {
@@ -605,12 +527,17 @@
                                 },
                                 "aiVigilanceRange": {
                                     "varType": 0,
-                                    "value": 4,
+                                    "value": 10,
                                     "copy": false
                                 },
                                 "aiGetTargetMode": {
                                     "varType": 0,
-                                    "value": 1,
+                                    "value": 0,
+                                    "copy": false
+                                },
+                                "moveType": {
+                                    "varType": 0,
+                                    "value": 0,
                                     "copy": false
                                 },
                                 "dropGold": {
@@ -688,245 +615,19 @@
                                     "value": 0,
                                     "copy": false
                                 },
+                                "CRIT": {
+                                    "varType": 0,
+                                    "value": 0,
+                                    "copy": false
+                                },
+                                "MagCrit": {
+                                    "varType": 0,
+                                    "value": 0,
+                                    "copy": false
+                                },
                                 "AI": {
                                     "varType": 2,
                                     "value": false,
-                                    "copy": false
-                                },
-                                "atkSkill": {
-                                    "varType": 5,
-                                    "value": {
-                                        "id": 9,
-                                        "data": {
-                                            "icon": {
-                                                "varType": 1,
-                                                "value": "asset/image/picture/icon/skill/Skill_10.png",
-                                                "copy": false
-                                            },
-                                            "intro": {
-                                                "varType": 1,
-                                                "value": "dsaa321321",
-                                                "copy": false
-                                            },
-                                            "skillType": {
-                                                "varType": 0,
-                                                "value": 1,
-                                                "copy": false
-                                            },
-                                            "targetType": {
-                                                "varType": 0,
-                                                "value": 2,
-                                                "copy": false
-                                            },
-                                            "effectRange1": {
-                                                "varType": 0,
-                                                "value": 6,
-                                                "copy": false
-                                            },
-                                            "effectRange2A": {
-                                                "varType": 0,
-                                                "value": 2,
-                                                "copy": false
-                                            },
-                                            "effectRange2B": {
-                                                "varType": 0,
-                                                "value": 5,
-                                                "copy": false
-                                            },
-                                            "effectRange3": {
-                                                "varType": 12,
-                                                "value": {},
-                                                "copy": false
-                                            },
-                                            "releaseRange": {
-                                                "varType": 12,
-                                                "value": {},
-                                                "copy": false
-                                            },
-                                            "hit": {
-                                                "varType": 0,
-                                                "value": 100,
-                                                "copy": false
-                                            },
-                                            "costSP": {
-                                                "varType": 0,
-                                                "value": 0,
-                                                "copy": false
-                                            },
-                                            "useDamage": {
-                                                "varType": 2,
-                                                "value": true,
-                                                "copy": false
-                                            },
-                                            "releaseFrame": {
-                                                "varType": 0,
-                                                "value": 2,
-                                                "copy": false
-                                            },
-                                            "releaseActionID": {
-                                                "varType": 0,
-                                                "value": 3,
-                                                "copy": false
-                                            },
-                                            "effectRangeType": {
-                                                "varType": 0,
-                                                "value": 1,
-                                                "copy": false
-                                            },
-                                            "mustOpenSpace": {
-                                                "varType": 2,
-                                                "value": false,
-                                                "copy": false
-                                            },
-                                            "costActionPower": {
-                                                "varType": 2,
-                                                "value": true,
-                                                "copy": false
-                                            },
-                                            "bulletSpeed": {
-                                                "varType": 0,
-                                                "value": 600,
-                                                "copy": false
-                                            },
-                                            "bulletAnimation": {
-                                                "varType": 0,
-                                                "value": 12,
-                                                "copy": false
-                                            },
-                                            "damageType": {
-                                                "varType": 0,
-                                                "value": 0,
-                                                "copy": false
-                                            },
-                                            "damageValue": {
-                                                "varType": 0,
-                                                "value": 0,
-                                                "copy": false
-                                            },
-                                            "additionMultiple": {
-                                                "varType": 0,
-                                                "value": 100,
-                                                "copy": false
-                                            },
-                                            "useAddition": {
-                                                "varType": 2,
-                                                "value": true,
-                                                "copy": false
-                                            },
-                                            "additionMultipleType": {
-                                                "varType": 0,
-                                                "value": 0,
-                                                "copy": false
-                                            },
-                                            "releaseAnimation": {
-                                                "varType": 0,
-                                                "value": 6,
-                                                "copy": false
-                                            },
-                                            "hitAnimation": {
-                                                "varType": 0,
-                                                "value": 16,
-                                                "copy": false
-                                            },
-                                            "releaseEvent": {
-                                                "varType": 1,
-                                                "value": "\u000556391063989_0.6269445708500843\u0005[]",
-                                                "copy": false
-                                            },
-                                            "hitEvent": {
-                                                "varType": 1,
-                                                "value": "啊啊啊\u000556338640388_0.740265952461763\u0005[]",
-                                                "copy": false
-                                            },
-                                            "addStatus": {
-                                                "varType": 6,
-                                                "value": [
-                                                    2
-                                                ],
-                                                "copy": false
-                                            },
-                                            "removeStatus": {
-                                                "varType": 6,
-                                                "value": [],
-                                                "copy": false
-                                            },
-                                            "infoLegend": {
-                                                "varType": 1,
-                                                "value": "",
-                                                "copy": false
-                                            },
-                                            "pLabel": {
-                                                "varType": 1,
-                                                "value": "",
-                                                "copy": false
-                                            },
-                                            "currentCD": {
-                                                "varType": 0,
-                                                "value": 0,
-                                                "copy": false
-                                            },
-                                            "totalCD": {
-                                                "varType": 0,
-                                                "value": 1,
-                                                "copy": false
-                                            },
-                                            "targetGridAnimation": {
-                                                "varType": 0,
-                                                "value": 0,
-                                                "copy": false
-                                            },
-                                            "targetGridAniLayer": {
-                                                "varType": 0,
-                                                "value": 0,
-                                                "copy": false
-                                            },
-                                            "hitOpenSpaceEvent": {
-                                                "varType": 1,
-                                                "value": "",
-                                                "copy": false
-                                            },
-                                            "useHate": {
-                                                "varType": 2,
-                                                "value": false,
-                                                "copy": false
-                                            },
-                                            "releaseTimes": {
-                                                "varType": 0,
-                                                "value": 2,
-                                                "copy": false
-                                            },
-                                            "fixedHeteValue": {
-                                                "varType": 0,
-                                                "value": 0,
-                                                "copy": false
-                                            },
-                                            "damageHatePer": {
-                                                "varType": 0,
-                                                "value": 100,
-                                                "copy": false
-                                            },
-                                            "isThroughObstacle": {
-                                                "varType": 2,
-                                                "value": true,
-                                                "copy": false
-                                            }
-                                        }
-                                    },
-                                    "copy": false
-                                },
-                                "hitFrame": {
-                                    "varType": 0,
-                                    "value": 3,
-                                    "copy": false
-                                },
-                                "hitAnimation": {
-                                    "varType": 0,
-                                    "value": 24,
-                                    "copy": false
-                                },
-                                "atkMode": {
-                                    "varType": 0,
-                                    "value": 0,
                                     "copy": false
                                 },
                                 "hp": {
@@ -957,31 +658,6 @@
                                 "hitTargetSelfAddStatus": {
                                     "varType": 6,
                                     "value": [],
-                                    "copy": false
-                                },
-                                "CRIT": {
-                                    "varType": 0,
-                                    "value": 0,
-                                    "copy": false
-                                },
-                                "MagCrit": {
-                                    "varType": 0,
-                                    "value": 0,
-                                    "copy": false
-                                },
-                                "moveType": {
-                                    "varType": 0,
-                                    "value": 0,
-                                    "copy": false
-                                },
-                                "smallFace": {
-                                    "varType": 1,
-                                    "value": "asset/image/picture/face/smallFace/swordmanHead.png",
-                                    "copy": false
-                                },
-                                "moveSpeed": {
-                                    "varType": 0,
-                                    "value": 250,
                                     "copy": false
                                 }
                             }

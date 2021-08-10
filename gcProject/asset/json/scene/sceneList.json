@@ -9,7 +9,7 @@
         "地牢",
         "港口",
         "郊外",
-        null,
+        "酒吧",
         null,
         null,
         null,
@@ -73,7 +73,14 @@
                 {
                     "id": 8,
                     "name": "郊外",
-                    "children": []
+                    "children": [
+                        {
+                            "id": 9,
+                            "name": "酒吧",
+                            "children": []
+                        }
+                    ],
+                    "isOpen": true
                 }
             ],
             "isOpen": true
