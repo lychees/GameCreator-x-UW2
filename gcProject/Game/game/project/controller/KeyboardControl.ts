@@ -216,7 +216,7 @@ class KeyboardControl {
 
                                 break;
                             } else {
-                                if (x <= 3 || y <= 3) {
+                                if (x <= 3 || y <= 3 || x >= 96*16-3 || y >= 96*16-3) {
                                     Game.player.variable.setString(1, "要去郊外吗？");
                                     GameCommand.startCommonCommand(1);
                                 }
