@@ -94,35 +94,41 @@ var KeyboardControl = (function () {
                     var y = p.y;
                     var name = ["", "market", "bar", "dry dock", "harbor", "inn", "palace", "job house", "misc", "bank",
                         "item shop", "church", "fortune house"];
-                    for (var i_2 = 1; i_2 <= 12; ++i_2) {
-                        if (meta_2.buildings[i_2] == null)
-                            continue;
-                        if (Math.abs(x - meta_2.buildings[i_2].x) < 3 && Math.abs(y - meta_2.buildings[i_2].y) < 3) {
-                            if (name[i_2] == "harbor") {
-                                meta_2 = hash_ports_meta_data[Roguelike.port_id + 1];
-                                Roguelike.toWorldMap(meta_2.x, meta_2.y);
-                            }
-                            else if (name[i_2] == "misc") {
-                                if (Roguelike.story == "访问老师") {
-                                    GameCommand.startCommonCommand(8002);
-                                    Roguelike.story = "出发";
+                    if (x == 95 || x == 0 || y == 95 || y == 0) {
+                        Game.player.variable.setString(2, "是否出城？");
+                        GameCommand.startCommonCommand(2);
+                    }
+                    else {
+                        for (var i_2 = 1; i_2 <= 12; ++i_2) {
+                            if (meta_2.buildings[i_2] == null)
+                                continue;
+                            if (Math.abs(x - meta_2.buildings[i_2].x) < 3 && Math.abs(y - meta_2.buildings[i_2].y) < 3) {
+                                if (name[i_2] == "harbor") {
+                                    meta_2 = hash_ports_meta_data[Roguelike.port_id + 1];
+                                    Roguelike.toWorldMap(meta_2.x, meta_2.y);
                                 }
-                            }
-                            else if (name[i_2] == "palace") {
-                                GameAudio.playBGM("asset/audio/_uwol/building/palace.mp3");
-                                if (Roguelike.story == "谒见公爵") {
-                                    GameCommand.startCommonCommand(8003);
-                                    Roguelike.story = "访问老师";
+                                else if (name[i_2] == "misc") {
+                                    if (Roguelike.story == "访问老师") {
+                                        GameCommand.startCommonCommand(8002);
+                                        Roguelike.story = "出发";
+                                    }
                                 }
+                                else if (name[i_2] == "palace") {
+                                    GameAudio.playBGM("asset/audio/_uwol/building/palace.mp3");
+                                    if (Roguelike.story == "谒见公爵") {
+                                        GameCommand.startCommonCommand(8003);
+                                        Roguelike.story = "访问老师";
+                                    }
+                                }
+                                else if (name[i_2] == "bar") {
+                                    Game.player.toScene(9, 20 * 16, 20 * 16);
+                                    GameAudio.playBGM("asset/audio/_uwol/building/bar.mp3");
+                                }
+                                else if (name[i_2] == "church") {
+                                    GameAudio.playBGM("asset/audio/_uwol/building/church.mp3");
+                                }
+                                break;
                             }
-                            else if (name[i_2] == "bar") {
-                                Game.player.toScene(9, 20 * 16, 20 * 16);
-                                GameAudio.playBGM("asset/audio/_uwol/building/bar.mp3");
-                            }
-                            else if (name[i_2] == "church") {
-                                GameAudio.playBGM("asset/audio/_uwol/building/church.mp3");
-                            }
-                            break;
                         }
                     }
                 }

@@ -23,10 +23,10 @@ var Roguelike;
         Tile.prototype.touch = function () {
         };
         Tile.prototype.draw = function () {
-            Roguelike.Main.display.draw(this.x, this.y, this.ch, this.color);
+            Main.display.draw(this.x, this.y, this.ch, this.color);
         };
         Tile.prototype.draw_with_shadow = function (shadow) {
-            Roguelike.Main.display.draw(this.x, this.y, this.ch, Roguelike.mix(this.color, shadow));
+            Main.display.draw(this.x, this.y, this.ch, mix(this.color, shadow));
         };
         return Tile;
     }());
@@ -58,8 +58,8 @@ var Roguelike;
         Exit.prototype.enter = function (who) {
             if (!this.needKey || who.hasKey) {
                 alert("你找到了出口!");
-                Roguelike.Main.engine.lock();
-                Roguelike.Main.back_to_title();
+                Main.engine.lock();
+                Main.back_to_title();
             }
             else {
                 alert("锁上了!");

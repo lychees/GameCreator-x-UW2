@@ -183,34 +183,39 @@ class KeyboardControl {
                     let x = p.x;
                     let y = p.y;
                     let name = ["","market","bar","dry dock","harbor","inn","palace","job house","misc","bank",
-                    "item shop","church","fortune house"];                            
-                    for (let i=1;i<=12;++i) {
-                        if (meta.buildings[i] == null) continue;
-                        if (Math.abs(x - meta.buildings[i].x) < 3 && Math.abs(y - meta.buildings[i].y) < 3) {
-                            // Game.player.variable.setString(1, "这里是 " + i18n.chinese[meta.name] + " 的 " + i18n.chinese[name[i]]);
-                            // GameCommand.startCommonCommand(1);
-                            if (name[i] == "harbor") {
-                                meta = hash_ports_meta_data[Roguelike.port_id+1];
-                                Roguelike.toWorldMap(meta.x, meta.y);
-                            } else if (name[i] == "misc") {
-                                if (Roguelike.story == "访问老师") {
-                                    GameCommand.startCommonCommand(8002);
-                                    Roguelike.story = "出发";            
+                    "item shop","church","fortune house"];
+                    if (x == 95 || x == 0 || y == 95 || y == 0) {
+                        Game.player.variable.setString(2, "是否出城？");
+                        GameCommand.startCommonCommand(2);
+                    } else {                          
+                         for (let i=1;i<=12;++i) {
+                             if (meta.buildings[i] == null) continue;
+                             if (Math.abs(x - meta.buildings[i].x) < 3 && Math.abs(y - meta.buildings[i].y) < 3) {
+                                  // Game.player.variable.setString(1, "这里是 " + i18n.chinese[meta.name] + " 的 " + i18n.chinese[name[i]]);
+                                 // GameCommand.startCommonCommand(1);
+                                if (name[i] == "harbor") {
+                                    meta = hash_ports_meta_data[Roguelike.port_id+1];
+                                    Roguelike.toWorldMap(meta.x, meta.y);
+                                } else if (name[i] == "misc") {
+                                    if (Roguelike.story == "访问老师") {
+                                        GameCommand.startCommonCommand(8002);
+                                        Roguelike.story = "出发";            
+                                    }
+                                } else if (name[i] == "palace") {
+                                    GameAudio.playBGM("asset/audio/_uwol/building/palace.mp3");
+                                    if (Roguelike.story == "谒见公爵") {
+                                        GameCommand.startCommonCommand(8003);
+                                        Roguelike.story = "访问老师";            
+                                    }
+                                } else if (name[i] == "bar") {
+                                    Game.player.toScene(9, 20*16, 20*16);
+                                    GameAudio.playBGM("asset/audio/_uwol/building/bar.mp3");
+                                } else if (name[i] == "church") {
+                                    GameAudio.playBGM("asset/audio/_uwol/building/church.mp3");
                                 }
-                            } else if (name[i] == "palace") {
-                                GameAudio.playBGM("asset/audio/_uwol/building/palace.mp3");
-                                if (Roguelike.story == "谒见公爵") {
-                                    GameCommand.startCommonCommand(8003);
-                                    Roguelike.story = "访问老师";            
-                                }
-                            } else if (name[i] == "bar") {
-                                Game.player.toScene(9, 20*16, 20*16);
-                                GameAudio.playBGM("asset/audio/_uwol/building/bar.mp3");
-                            } else if (name[i] == "church") {
-                                GameAudio.playBGM("asset/audio/_uwol/building/church.mp3");
-                            }
 
-                            break;
+                                break;
+                            }
                         }
                     }
                 }

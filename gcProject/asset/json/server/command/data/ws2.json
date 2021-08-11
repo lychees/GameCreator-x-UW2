@@ -2,6 +2,70 @@
     "allowClient": false,
     "conditionSwitch": 1,
     "updateMode": false,
-    "commands": [],
+    "commands": [
+        [
+            11,
+            1,
+            null,
+            "",
+            3,
+            -2,
+            "<span style='color:#FfFffF'>[@s1]</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "71120487504_0.17106666808931426"
+            }
+        ],
+        [
+            3,
+            0,
+            -1,
+            -1,
+            {
+                "___cmdID": "71121501914_0.23059343663255216"
+            }
+        ],
+        [
+            4,
+            "是",
+            -1,
+            -1,
+            0,
+            0,
+            [],
+            {
+                "___cmdID": "71121514560_0.3754185217397472"
+            }
+        ],
+        [
+            20,
+            "",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nmeta = hash_ports_meta_data[Roguelike.port_id+1];\nRoguelike.toWorldMap(meta.x, meta.y);",
+            "meta = hash_ports_meta_data[Roguelike.port_id + 1];\nRoguelike.toWorldMap(meta.x, meta.y);\n",
+            {
+                "___cmdID": "71121537103_0.042619683456611046"
+            }
+        ],
+        [
+            4,
+            "否",
+            -1,
+            -1,
+            0,
+            0,
+            [],
+            {
+                "___cmdID": "71121514560_0.6181320601694922"
+            }
+        ],
+        [
+            10,
+            {
+                "___cmdID": "71121514560_0.1823955142873046"
+            }
+        ]
+    ],
     "id": 2
 }
