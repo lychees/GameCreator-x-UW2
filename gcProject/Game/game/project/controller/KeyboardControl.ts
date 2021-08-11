@@ -215,6 +215,11 @@ class KeyboardControl {
                                 }
 
                                 break;
+                            } else {
+                                if (x <= 3 || y <= 3) {
+                                    Game.player.variable.setString(1, "要去郊外吗？");
+                                    GameCommand.startCommonCommand(1);
+                                }
                             }
                         }
                     }

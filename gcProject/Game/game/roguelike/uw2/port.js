@@ -5664,7 +5664,7 @@ var hash_ports_meta_data = {
                 11,
             ],
         },
-        'economyId': 12,
+        'economyId': 14,
         'industryId': 8,
         'buildings': {
             1: {
@@ -5735,7 +5735,7 @@ var hash_ports_meta_data = {
                 60,
             ],
         },
-        'economyId': 12,
+        'economyId': 14,
         'industryId': 8,
         'buildings': {
             1: {
@@ -5802,7 +5802,7 @@ var hash_ports_meta_data = {
                 26,
             ],
         },
-        'economyId': 12,
+        'economyId': 14,
         'industryId': 6,
         'buildings': {
             1: {
@@ -5862,7 +5862,7 @@ var hash_ports_meta_data = {
                 11,
             ],
         },
-        'economyId': 12,
+        'economyId': 13,
         'industryId': 8,
         'buildings': {
             1: {
@@ -5933,7 +5933,7 @@ var hash_ports_meta_data = {
                 73,
             ],
         },
-        'economyId': 12,
+        'economyId': 14,
         'industryId': 9,
         'buildings': {
             1: {
@@ -5998,7 +5998,7 @@ var hash_ports_meta_data = {
                 52,
             ],
         },
-        'economyId': 12,
+        'economyId': 14,
         'industryId': 9,
         'buildings': {
             1: {
@@ -6218,6 +6218,8 @@ var hash_ports_meta_data = {
         'India',
         'Southeast Asia',
         'Far East',
+        'China',
+        'Japan',
     ],
 };
 //# sourceMappingURL=port.js.map

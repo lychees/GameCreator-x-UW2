@@ -373,7 +373,11 @@ namespace Roguelike{
             } else if (region == 'Southeast Asia') {
                 bgm_url = "asset/audio/_uwol/port/Southeast Asian Town.ogg";
             } else if (region == 'Far East') {
-                bgm_url = "asset/audio/_uwol/port/China Town.mp3";
+                if (economy == "China") {
+                    bgm_url = "asset/audio/_uwol/port/China Town.mp3";
+                } else if (economy == "Japan") {
+                    bgm_url = "asset/audio/_uwol/port/Japan Town.mp3";
+                }
             }
 
 
