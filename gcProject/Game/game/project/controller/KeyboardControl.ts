@@ -195,7 +195,7 @@ class KeyboardControl {
                                  // GameCommand.startCommonCommand(1);
                                 if (name[i] == "harbor") {
                                     meta = hash_ports_meta_data[Roguelike.port_id+1];
-                                    Roguelike.toWorldMap(meta.x, meta.y);
+                                    Roguelike.toWorldMap(meta.x+16, meta.y+16);
                                 } else if (name[i] == "misc") {
                                     if (Roguelike.story == "访问老师") {
                                         GameCommand.startCommonCommand(8002);
@@ -215,11 +215,6 @@ class KeyboardControl {
                                 }
 
                                 break;
-                            } else {
-                                if (x <= 3 || y <= 3 || x >= 96*16-3 || y >= 96*16-3) {
-                                    Game.player.variable.setString(1, "要去郊外吗？");
-                                    GameCommand.startCommonCommand(1);
-                                }
                             }
                         }
                     }
