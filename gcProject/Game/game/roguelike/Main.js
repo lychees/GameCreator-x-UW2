@@ -75,7 +75,7 @@ var Roguelike;
                     AssetManager.loadImage("asset/image/_uw2/ports/" + file_name + s);
                 }
             }
-            var url = "Game/game/roguelike/uw2/villages.json";
+            var url = "Game/game/roguelike/uw2/villages.js";
             FileUtils.loadJsonFile(url, new Callback(function (json) {
                 Roguelike.villages_json = json;
             }, this));
