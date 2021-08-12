@@ -185,7 +185,7 @@ class KeyboardControl {
                     let name = ["","market","bar","dry dock","harbor","inn","palace","job house","misc","bank",
                     "item shop","church","fortune house"];
                     if (x == 95 || x == 0 || y == 95 || y == 0) {
-                        Game.player.variable.setString(2, "是否出城？");
+                        Game.player.variable.setString(1, "是否出城？");
                         GameCommand.startCommonCommand(2);
                     } else {                          
                          for (let i=1;i<=12;++i) {
