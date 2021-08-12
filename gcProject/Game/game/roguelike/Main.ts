@@ -106,7 +106,7 @@ namespace Roguelike{
             }
 
 
-            let url = "Game/game/roguelike/uw2/villages.js";
+            let url = "asset/json/uw2/villages.json";
 
             FileUtils.loadJsonFile(url, new Callback(function (json) {                
                 Roguelike.villages_json = json;
