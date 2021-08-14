@@ -95,7 +95,7 @@ var KeyboardControl = (function () {
                     var name = ["", "market", "bar", "dry dock", "harbor", "inn", "palace", "job house", "misc", "bank",
                         "item shop", "church", "fortune house"];
                     if (x == 95 || x == 0 || y == 95 || y == 0) {
-                        Game.player.variable.setString(2, "是否出城？");
+                        Game.player.variable.setString(1, "是否出城？");
                         GameCommand.startCommonCommand(2);
                     }
                     else {
@@ -105,7 +105,7 @@ var KeyboardControl = (function () {
                             if (Math.abs(x - meta_2.buildings[i_2].x) < 3 && Math.abs(y - meta_2.buildings[i_2].y) < 3) {
                                 if (name[i_2] == "harbor") {
                                     meta_2 = hash_ports_meta_data[Roguelike.port_id + 1];
-                                    Roguelike.toWorldMap(meta_2.x, meta_2.y);
+                                    Roguelike.toWorldMap(meta_2.x + 1, meta_2.y + 1);
                                 }
                                 else if (name[i_2] == "misc") {
                                     if (Roguelike.story == "访问老师") {
