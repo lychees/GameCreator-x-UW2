@@ -75,7 +75,7 @@ var Roguelike;
                     AssetManager.loadImage("asset/image/_uw2/ports/" + file_name + s);
                 }
             }
-            var url = "asset/json/uw2/villages.json";
+            var url = "asset/json/_uw2/villages.json";
             FileUtils.loadJsonFile(url, new Callback(function (json) {
                 Roguelike.villages_json = json;
             }, this));
@@ -86,7 +86,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
