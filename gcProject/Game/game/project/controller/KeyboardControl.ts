@@ -198,6 +198,7 @@ class KeyboardControl {
                                     alert(1);
                                 } else if (name[i] == "harbor") {
                                     meta = hash_ports_meta_data[Roguelike.port_id+1];
+                                    Roguelike.on_ocean = true;
                                     Roguelike.toWorldMap(meta.x+1, meta.y+1);
                                 } else if (name[i] == "misc") {
                                     if (Roguelike.story == "访问老师") {

@@ -42,8 +42,8 @@
         [
             20,
             "",
-            "// 当前的事件触发器：trigger: CommandTrigger;\nlet meta = hash_ports_meta_data[Roguelike.port_id+1];\nRoguelike.toWorldMap(meta.x+1, meta.y+1);",
-            "var meta = hash_ports_meta_data[Roguelike.port_id + 1];\nRoguelike.toWorldMap(meta.x + 1, meta.y + 1);\n",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nlet meta = hash_ports_meta_data[Roguelike.port_id+1];\nRoguelike.on_ocean = false;\nRoguelike.toWorldMap(meta.x+1, meta.y+1);",
+            "var meta = hash_ports_meta_data[Roguelike.port_id + 1];\nRoguelike.on_ocean = false;\nRoguelike.toWorldMap(meta.x + 1, meta.y + 1);\n",
             {
                 "___cmdID": "71121537103_0.042619683456611046"
             }

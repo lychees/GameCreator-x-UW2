@@ -109,6 +109,7 @@ var KeyboardControl = (function () {
                                 }
                                 else if (name[i_2] == "harbor") {
                                     meta_2 = hash_ports_meta_data[Roguelike.port_id + 1];
+                                    Roguelike.on_ocean = true;
                                     Roguelike.toWorldMap(meta_2.x + 1, meta_2.y + 1);
                                 }
                                 else if (name[i_2] == "misc") {

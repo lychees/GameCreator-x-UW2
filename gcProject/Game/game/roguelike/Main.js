@@ -3,6 +3,7 @@ var Roguelike;
     Roguelike.current_map = "";
     Roguelike.port_id = 0;
     Roguelike.port_time = "";
+    Roguelike.on_ocean = false;
     Roguelike.discoveries = [];
     Roguelike.first_battle = false;
     function colorHex(colorArr) {
@@ -86,7 +87,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Map(w, h);
+            this.map = new Roguelike.Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
