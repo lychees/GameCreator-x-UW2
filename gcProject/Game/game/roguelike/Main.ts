@@ -3,6 +3,7 @@ namespace Roguelike{
     export let current_map = "";
     export let port_id = 0;
     export let port_time = "";
+    export let on_ocean = false;
     export let discoveries = [];
     export let first_battle = false; 
     
@@ -106,7 +107,7 @@ namespace Roguelike{
             }
 
 
-            let url = "asset/json/uw2/villages.json";
+            let url = "asset/json/_uw2/villages.json";
 
             FileUtils.loadJsonFile(url, new Callback(function (json) {                
                 Roguelike.villages_json = json;

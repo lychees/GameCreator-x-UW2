@@ -46,13 +46,6 @@
                 [
                     [
                         0,
-                        39,
-                        1,
-                        1,
-                        4
-                    ],
-                    [
-                        0,
                         44,
                         1,
                         1,
@@ -80,6 +73,15 @@
                     "43052012740_0.35968828444562195": 0
                 },
                 "70060073219_0.5964881685303589"
+            ],
+            [
+                20,
+                "",
+                "// 当前的事件触发器：trigger: CommandTrigger;\nif (Roguelike.on_ocean == false) {\n    Game.currentScene.reverse_obs();\n    Game.player.sceneObject.avatar.loadData(39);\n    Game.player.sceneObject.avatar.scaleX = 2;\n    Game.player.sceneObject.avatar.scaleY = 2;\n}\n",
+                "if (Roguelike.on_ocean == false) {\n    Game.currentScene.reverse_obs();\n    Game.player.sceneObject.avatar.loadData(39);\n    Game.player.sceneObject.avatar.scaleX = 2;\n    Game.player.sceneObject.avatar.scaleY = 2;\n}\n",
+                {
+                    "___cmdID": "71363461999_0.716109592720021"
+                }
             ]
         ]
     ],

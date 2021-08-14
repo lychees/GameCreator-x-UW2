@@ -237,6 +237,19 @@ class ProjectClientScene extends ClientScene {
         }    
     }
     /**
+     * reverse obs 
+     */
+    reverse_obs() {
+        let w = this.gridWidth;
+        let h = this.gridHeight;
+        let o = this.dataLayers[0];
+        for (let x=0;x<w;++x) {                
+            for (let y=0;y<h;++y) {
+                o[x][y] = !o[x][y];
+            }
+        } 
+    }
+    /**
      * 生成世界地图
      */ 
     gen_world_map() {

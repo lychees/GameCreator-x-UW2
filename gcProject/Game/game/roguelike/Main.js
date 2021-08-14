@@ -3,6 +3,7 @@ var Roguelike;
     Roguelike.current_map = "";
     Roguelike.port_id = 0;
     Roguelike.port_time = "";
+    Roguelike.on_ocean = false;
     Roguelike.discoveries = [];
     Roguelike.first_battle = false;
     function colorHex(colorArr) {
@@ -75,7 +76,7 @@ var Roguelike;
                     AssetManager.loadImage("asset/image/_uw2/ports/" + file_name + s);
                 }
             }
-            var url = "Game/game/roguelike/uw2/villages.js";
+            var url = "asset/json/_uw2/villages.json";
             FileUtils.loadJsonFile(url, new Callback(function (json) {
                 Roguelike.villages_json = json;
             }, this));
@@ -334,7 +335,12 @@ var Roguelike;
                 bgm_url = "asset/audio/_uwol/port/Southeast Asian Town.ogg";
             }
             else if (region == 'Far East') {
-                bgm_url = "asset/audio/_uwol/port/China Town.mp3";
+                if (economy == "China") {
+                    bgm_url = "asset/audio/_uwol/port/China Town.mp3";
+                }
+                else if (economy == "Japan") {
+                    bgm_url = "asset/audio/_uwol/port/Japan Town.mp3";
+                }
             }
         }
         GameAudio.playBGM(bgm_url);

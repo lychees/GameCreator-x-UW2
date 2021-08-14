@@ -173,6 +173,16 @@ var ProjectClientScene = (function (_super) {
             }
         }
     };
+    ProjectClientScene.prototype.reverse_obs = function () {
+        var w = this.gridWidth;
+        var h = this.gridHeight;
+        var o = this.dataLayers[0];
+        for (var x = 0; x < w; ++x) {
+            for (var y = 0; y < h; ++y) {
+                o[x][y] = !o[x][y];
+            }
+        }
+    };
     ProjectClientScene.prototype.gen_world_map = function () {
         var a = this.LayerDatas[0].tileData;
         var a1 = this.LayerDatas[1].tileData;

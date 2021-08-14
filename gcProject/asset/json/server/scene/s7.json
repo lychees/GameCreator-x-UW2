@@ -5,8 +5,8 @@
             [
                 20,
                 "",
-                "// 当前的事件触发器：trigger: CommandTrigger;\nlet t = Game.player.sceneObject.avatar;\nconsole.log(t);\nconsole.log(t.gameDataAvatarURL); \nt.loadData(\"8001\");\nRoguelike.Main.gen_port(Roguelike.port_id);\n\n",
-                "var t = Game.player.sceneObject.avatar;\nconsole.log(t);\nconsole.log(t.gameDataAvatarURL);\nt.loadData(\"8001\");\nRoguelike.Main.gen_port(Roguelike.port_id);\n",
+                "// 当前的事件触发器：trigger: CommandTrigger;\nlet t = Game.player.sceneObject.avatar;\nt.loadData(\"8001\");\nRoguelike.Main.gen_port(Roguelike.port_id);\n\n",
+                "var t = Game.player.sceneObject.avatar;\nt.loadData(\"8001\");\nRoguelike.Main.gen_port(Roguelike.port_id);\n",
                 {
                     "___cmdID": "70608035664_0.9888905580808953"
                 }
