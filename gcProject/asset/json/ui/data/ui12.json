@@ -149,7 +149,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "44534859956_0.4501981441573939",
@@ -191,7 +192,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "44534932010_0.013071348804608363",
@@ -233,7 +235,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "44505526616_0.43506511147608085",
@@ -461,6 +464,7 @@
                         "isOpen": true,
                         "image": "asset/image/picture/ui/backpack/line.png",
                         "grid9": "0,0,0,0,0",
+                        "flip": null,
                         "pivotType": 0
                     }
                 ]
@@ -532,7 +536,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "44505663228_0.15986823703151387",
@@ -574,7 +579,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "57198487720_0.28443931735574157",
@@ -699,7 +705,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "44517862531_0.5813662829094026",
@@ -889,7 +896,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "44700824606_0.6183744980371977",
@@ -931,7 +939,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "44546248451_0.7060209325954057",
@@ -973,7 +982,8 @@
                         "shadowDx": 1,
                         "shadowDy": 1,
                         "stroke": 0,
-                        "strokeColor": "#000000"
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
                     },
                     {
                         "id": "54443959250_0.7413577536597304",
@@ -1177,7 +1187,8 @@
                                 "shadowDx": 1,
                                 "shadowDy": 1,
                                 "stroke": 0,
-                                "strokeColor": "#000000"
+                                "strokeColor": "#000000",
+                                "onChangeFragEvent": null
                             }
                         ]
                     },
@@ -1472,6 +1483,7 @@
                 "labelDy": 0,
                 "labelStroke": 0,
                 "labelStrokeColor": "#000000",
+                "onChangeFragEvent": null,
                 "children": [
                     {
                         "id": "58374653630_0.6531261819490946",
@@ -1495,6 +1507,7 @@
                         "showOnEditor": true,
                         "hasCommand": [],
                         "isOpen": false,
+                        "enabledLimitView": null,
                         "scrollShowType": 2,
                         "hScrollBar": "asset/image/picture/control/hscroll_bar.png",
                         "hScrollBg": "asset/image/picture/control/hscroll_bg.png",
@@ -1546,7 +1559,8 @@
                                 "shadowDx": 1,
                                 "shadowDy": 1,
                                 "stroke": 0,
-                                "strokeColor": "#000000"
+                                "strokeColor": "#000000",
+                                "onChangeFragEvent": null
                             },
                             {
                                 "id": "57200230727_0.03783760766008415",
@@ -1588,7 +1602,8 @@
                                 "shadowDx": 1,
                                 "shadowDy": 1,
                                 "stroke": 0,
-                                "strokeColor": "#000000"
+                                "strokeColor": "#000000",
+                                "onChangeFragEvent": null
                             },
                             {
                                 "id": "57200230727_0.2479732845080056",
@@ -1630,7 +1645,8 @@
                                 "shadowDx": 1,
                                 "shadowDy": 1,
                                 "stroke": 0,
-                                "strokeColor": "#000000"
+                                "strokeColor": "#000000",
+                                "onChangeFragEvent": null
                             }
                         ]
                     },
@@ -1656,6 +1672,7 @@
                         "showOnEditor": true,
                         "hasCommand": [],
                         "isOpen": false,
+                        "enabledLimitView": null,
                         "scrollShowType": 2,
                         "hScrollBar": "asset/image/picture/control/hscroll_bar.png",
                         "hScrollBg": "asset/image/picture/control/hscroll_bg.png",

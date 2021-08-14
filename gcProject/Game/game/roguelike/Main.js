@@ -4,7 +4,7 @@ var Roguelike;
     Roguelike.port_id = 0;
     Roguelike.port_time = "";
     Roguelike.on_ocean = false;
-    Roguelike.discoveries = [];
+    Roguelike.discoveries = {};
     Roguelike.first_battle = false;
     function colorHex(colorArr) {
         var strHex = "#";

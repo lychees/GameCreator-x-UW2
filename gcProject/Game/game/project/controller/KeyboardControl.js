@@ -68,8 +68,8 @@ var KeyboardControl = (function () {
                         for (var i = 0; i < 98; ++i) {
                             var meta = Roguelike.villages_json[i + 1];
                             if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
-                                if (Roguelike.discoveries[i] == null) {
-                                    Roguelike.discoveries[i] = true;
+                                if (!Roguelike.discoveries[i]) {
+                                    Roguelike.discoveries[i] = meta;
                                     Game.player.variable.setString(1, "你发现了 " + i18n.chinese[meta.name]);
                                     GameCommand.startCommonCommand(1);
                                     Game.player.variable.setString(1, i18n.chinese[meta.description]);

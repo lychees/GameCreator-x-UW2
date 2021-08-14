@@ -4,7 +4,7 @@ namespace Roguelike{
     export let port_id = 0;
     export let port_time = "";
     export let on_ocean = false;
-    export let discoveries = [];
+    export let discoveries = {};
     export let first_battle = false; 
     
     // 地块

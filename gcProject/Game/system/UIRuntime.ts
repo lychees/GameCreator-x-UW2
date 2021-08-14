@@ -1059,26 +1059,26 @@ class ListItem_26 extends UIListItemData {
  */
 class GUI_27 extends GUI_BASE {
    界面背景:UIBitmap;
-   存档界面阴影:UIBitmap;
-   存档界面背景:UIBitmap;
+   已发现物品界面阴影:UIBitmap;
+   已发现物品界面背景:UIBitmap;
    花纹:UIBitmap;
    延长线:UIBitmap;
-   标题:UIString;
-   存档英文标题:UIString;
-   list:UIList; // Item=1001
-   关闭存档界面按钮:UIButton;
+   已发现物品标题:UIString;
+   已发现物品英文标题:UIString;
+   list:UIList; // Item=1011
+   关闭已发现物品界面按钮:UIButton;
    constructor(){
       super(27);
    }
 }
 class ListItem_27 extends UIListItemData {
    界面背景:string;
-   存档界面阴影:string;
-   存档界面背景:string;
+   已发现物品界面阴影:string;
+   已发现物品界面背景:string;
    花纹:string;
    延长线:string;
-   标题:string;
-   存档英文标题:string;
+   已发现物品标题:string;
+   已发现物品英文标题:string;
    list:UIListItemData[];
 
 }
@@ -1346,16 +1346,32 @@ class ListItem_1010 extends UIListItemData {
 }
 
 /**
- * 1011- [BASE]
+ * 1011-已发现物_Item [BASE]
  */
 class GUI_1011 extends GUI_BASE {
-
+   档案背景:UIBitmap;
+   截图背景:UIBitmap;
+   分割线:UIBitmap;
+   档案排序数字:UIString;
+   screenshotImg:UIBitmap;
+   itemName:UIString;
+   dateStr:UIString;
+   no:UIString;
+   description:UIString;
    constructor(){
       super(1011);
    }
 }
 class ListItem_1011 extends UIListItemData {
-
+   档案背景:string;
+   截图背景:string;
+   分割线:string;
+   档案排序数字:string;
+   screenshotImg:string;
+   itemName:string;
+   dateStr:string;
+   no:string;
+   description:string;
 }
 
 /**

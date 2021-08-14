@@ -7,9 +7,35 @@ var GUI_Discoveries = (function (_super) {
     __extends(GUI_Discoveries, _super);
     function GUI_Discoveries() {
         _super.call(this);
-        console.log(this.list);
-        console.log(Roguelike.discoveries);
+        GUI_Manager.standardList(this.list, false);
+        this.on(EventObject.DISPLAY, this, this.onDisplay);
     }
+    GUI_Discoveries.prototype.onDisplay = function () {
+        UIList.focus = this.list;
+        this.refreshItems(0);
+    };
+    GUI_Discoveries.prototype.refreshItems = function (state) {
+        if (state != 0)
+            return;
+        var arr = [];
+        Object.keys(Roguelike.discoveries).forEach(function (id) {
+            var d = new ListItem_1011;
+            var meta = Roguelike.discoveries[id];
+            d.no = id;
+            d.itemName = i18n.chinese[meta.name];
+            d.description = (i18n.chinese[meta.description]).slice(0, 43);
+            if (d.description.length === 43)
+                d.description += '......';
+            arr.push(d);
+        });
+        if (Object.keys(Roguelike.discoveries).length === 0) {
+            var emptyItem = new ListItem_1011;
+            emptyItem.itemName = "还没有发现物";
+            emptyItem.no = "0";
+            arr.push(emptyItem);
+        }
+        this.list.items = arr;
+    };
     return GUI_Discoveries;
-}(GUI_5));
+}(GUI_27));
 //# sourceMappingURL=GUI_Discoveries.js.map
