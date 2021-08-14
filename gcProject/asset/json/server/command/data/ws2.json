@@ -9,7 +9,7 @@
             null,
             "",
             3,
-            -2,
+            -3,
             "<span style='color:#FfFffF'>[@s1]</span>",
             null,
             1,
@@ -20,8 +20,8 @@
         ],
         [
             3,
+            1,
             0,
-            -1,
             -1,
             {
                 "___cmdID": "71121501914_0.23059343663255216"
@@ -30,7 +30,7 @@
         [
             4,
             "是",
-            -1,
+            0,
             -1,
             0,
             0,
@@ -42,8 +42,8 @@
         [
             20,
             "",
-            "// 当前的事件触发器：trigger: CommandTrigger;\nmeta = hash_ports_meta_data[Roguelike.port_id+1];\nRoguelike.toWorldMap(meta.x, meta.y);",
-            "meta = hash_ports_meta_data[Roguelike.port_id + 1];\nRoguelike.toWorldMap(meta.x, meta.y);\n",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nlet meta = hash_ports_meta_data[Roguelike.port_id+1];\nRoguelike.toWorldMap(meta.x+1, meta.y+1);",
+            "var meta = hash_ports_meta_data[Roguelike.port_id + 1];\nRoguelike.toWorldMap(meta.x + 1, meta.y + 1);\n",
             {
                 "___cmdID": "71121537103_0.042619683456611046"
             }
