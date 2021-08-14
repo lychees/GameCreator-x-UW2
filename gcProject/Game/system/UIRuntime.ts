@@ -74,13 +74,15 @@ class GUI_3 extends GUI_BASE {
    设置按钮阴影:UIBitmap;
    返回标题按钮阴影:UIBitmap;
    返回游戏按钮阴影:UIBitmap;
-   背包按钮:UIButton;
+   已发现物按钮阴影:UIBitmap;
+   已发现物按钮:UIButton;
    队伍编成按钮:UIButton;
    存档按钮:UIButton;
    读档按钮:UIButton;
    设置按钮:UIButton;
    返回标题按钮:UIButton;
    返回游戏按钮:UIButton;
+   背包按钮:UIButton;
    constructor(){
       super(3);
    }
@@ -95,6 +97,7 @@ class ListItem_3 extends UIListItemData {
    设置按钮阴影:string;
    返回标题按钮阴影:string;
    返回游戏按钮阴影:string;
+   已发现物按钮阴影:string;
 
 }
 
@@ -1052,15 +1055,31 @@ class ListItem_26 extends UIListItemData {
 }
 
 /**
- * 27- [BASE]
+ * 27-已发现物 [BASE]
  */
 class GUI_27 extends GUI_BASE {
-
+   界面背景:UIBitmap;
+   存档界面阴影:UIBitmap;
+   存档界面背景:UIBitmap;
+   花纹:UIBitmap;
+   延长线:UIBitmap;
+   标题:UIString;
+   存档英文标题:UIString;
+   list:UIList; // Item=1001
+   关闭存档界面按钮:UIButton;
    constructor(){
       super(27);
    }
 }
 class ListItem_27 extends UIListItemData {
+   界面背景:string;
+   存档界面阴影:string;
+   存档界面背景:string;
+   花纹:string;
+   延长线:string;
+   标题:string;
+   存档英文标题:string;
+   list:UIListItemData[];
 
 }
 

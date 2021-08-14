@@ -4,7 +4,13 @@
         "switchs": [],
         "strings": []
     },
-    "saveIDs": [],
+    "saveIDs": [
+        {
+            "id": 0,
+            "indexInfo": {},
+            "now": 1628673352200
+        }
+    ],
     "globalData": {
         "___globalData": null,
         "___useNewGlobalData": true,
