@@ -1087,31 +1087,15 @@ class ListItem_27 extends UIListItemData {
 }
 
 /**
- * 28-发现物 [BASE]
+ * 28- [BASE]
  */
 class GUI_28 extends GUI_BASE {
-   界面背景:UIBitmap;
-   已发现物品界面阴影:UIBitmap;
-   已发现物品界面背景:UIBitmap;
-   花纹:UIBitmap;
-   延长线:UIBitmap;
-   已发现物品标题:UIString;
-   已发现物品英文标题:UIString;
-   list:UIList; // Item=1011
-   关闭已发现物品界面按钮:UIButton;
+
    constructor(){
       super(28);
    }
 }
 class ListItem_28 extends UIListItemData {
-   界面背景:string;
-   已发现物品界面阴影:string;
-   已发现物品界面背景:string;
-   花纹:string;
-   延长线:string;
-   已发现物品标题:string;
-   已发现物品英文标题:string;
-   list:UIListItemData[];
 
 }
 
@@ -2140,9 +2124,7 @@ class GUI_8002 extends GUI_BASE {
    分割线:UIBitmap;
    icon:UIBitmap;
    itemName:UIString;
-   shipName:UIString;
    maxHP:UIString;
-
    constructor(){
       super(8002);
    }
@@ -2159,9 +2141,7 @@ class ListItem_8002 extends UIListItemData {
    分割线:string;
    icon:string;
    itemName:string;
-   shipName:string;
    maxHP:string;
-
 }
 
 /**

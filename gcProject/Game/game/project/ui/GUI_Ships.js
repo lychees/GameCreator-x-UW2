@@ -24,7 +24,7 @@ var GUI_Ships = (function (_super) {
             d.icon = "asset/image/_uw2/ships/" + ship.name.toLowerCase() + ".png";
             console.log(d.icon);
             d.itemName = i18n.chinese[ship.name];
-            d.description = "\n\n\u4EF7\u683C\uFF1A" + ship.price;
+            d.description = "\n\u4EF7\u683C\uFF1A" + ship.price;
             return d;
         });
         if (Object.keys(Roguelike.discoveries).length === 0) {
