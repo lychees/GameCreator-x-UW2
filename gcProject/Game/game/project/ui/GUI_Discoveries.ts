@@ -25,10 +25,12 @@ class GUI_Discoveries extends GUI_27 {
     }
 
     static onDiscoveredItem(ui: GUI_1011, data: ListItem_1011, index: number) {
-        AssetManager.loadImage('asset/image/_uw2/ships/balsa.png', Callback.New((tex: Texture) => {
+        AssetManager.loadImage('asset/image/_uw2/discoveries/discoveries_and_items.png', Callback.New((tex: Texture) => {
             // 取样从图中的0,0中取得50x50尺寸的切图
+            const meta = Roguelike.villages_json[index+1];
             const g = new Graphics();
-            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(0, 0));
+            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(50*(meta.image_x-1), 50*(meta.image_y-1)));
+            
             const sp = new Sprite();
             sp.graphics = g;
             ui.icon.addChild(sp);

@@ -16,9 +16,10 @@ var GUI_Discoveries = (function (_super) {
         this.refreshItems(0);
     };
     GUI_Discoveries.onDiscoveredItem = function (ui, data, index) {
-        AssetManager.loadImage('asset/image/_uw2/ships/balsa.png', Callback.New(function (tex) {
+        AssetManager.loadImage('asset/image/_uw2/discoveries/discoveries_and_items.png', Callback.New(function (tex) {
+            var meta = Roguelike.villages_json[index + 1];
             var g = new Graphics();
-            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(20, 20));
+            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(50 * (meta.image_x - 1), 50 * (meta.image_y - 1)));
             var sp = new Sprite();
             sp.graphics = g;
             ui.icon.addChild(sp);
