@@ -17,9 +17,9 @@ var GUI_Discoveries = (function (_super) {
     };
     GUI_Discoveries.onDiscoveredItem = function (ui, data, index) {
         AssetManager.loadImage('asset/image/_uw2/discoveries/discoveries_and_items.png', Callback.New(function (tex) {
-            var meta = Roguelike.villages_json[index + 1];
+            var meta = Roguelike.villages_json[parseInt(data.no)];
             var g = new Graphics();
-            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(50 * (meta.image_x - 1), 50 * (meta.image_y - 1)));
+            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(-49 * (meta.image_x - 1), -49 * (meta.image_y - 1)));
             var sp = new Sprite();
             sp.graphics = g;
             ui.icon.addChild(sp);
@@ -32,7 +32,7 @@ var GUI_Discoveries = (function (_super) {
         Object.keys(Roguelike.discoveries).forEach(function (id) {
             var d = new ListItem_1011;
             var meta = Roguelike.discoveries[id];
-            d.no = id;
+            d.no = (parseInt(id) + 1).toString();
             d.dateStr = meta.date;
             d.itemName = i18n.chinese[meta.name];
             d.description = (i18n.chinese[meta.description]).slice(0, 43);

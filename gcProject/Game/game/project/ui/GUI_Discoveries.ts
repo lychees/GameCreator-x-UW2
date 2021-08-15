@@ -27,9 +27,9 @@ class GUI_Discoveries extends GUI_27 {
     static onDiscoveredItem(ui: GUI_1011, data: ListItem_1011, index: number) {
         AssetManager.loadImage('asset/image/_uw2/discoveries/discoveries_and_items.png', Callback.New((tex: Texture) => {
             // 取样从图中的0,0中取得50x50尺寸的切图
-            const meta = Roguelike.villages_json[index+1];
+            const meta = Roguelike.villages_json[parseInt(data.no)];
             const g = new Graphics();
-            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(50*(meta.image_x-1), 50*(meta.image_y-1)));
+            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(-49*(meta.image_x-1), -49*(meta.image_y-1)));
             
             const sp = new Sprite();
             sp.graphics = g;
@@ -45,8 +45,7 @@ class GUI_Discoveries extends GUI_27 {
             // 创建对应的背包物品项数据，该项数据由系统自动生成
             const d = new ListItem_1011;
             const meta = Roguelike.discoveries[id];
-            // d.icon = 'asset/image/_uw2/ships/balsa.png';
-            d.no = id;
+            d.no = (parseInt(id) + 1).toString();
             d.dateStr = meta.date;
             d.itemName = i18n.chinese[meta.name]; // 设置名称
             d.description = (i18n.chinese[meta.description]).slice(0, 43);
