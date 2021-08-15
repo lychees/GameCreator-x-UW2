@@ -346,6 +346,6 @@
         ]
     },
     "id": 8001,
-    "instanceClassName": "GUI_Discoveries",
+    "instanceClassName": "GUI_Ships",
     "hasRootCommand": []
 }

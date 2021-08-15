@@ -8,6 +8,47 @@ var Roguelike;
     Roguelike.on_ocean = false;
     Roguelike.discoveries = {};
     Roguelike.first_battle = false;
+    Roguelike.ships = [
+        {
+            'name': 'Balsa',
+            'model': 'Balsa',
+            'durability': 30,
+            'tacking': 70,
+            'power': 80,
+            'capacity': 50,
+            'max_guns': 10,
+            'min_crew': 5,
+            'max_crew': 20,
+            'price': 1200,
+            'position': 'ocean',
+        },
+        {
+            'name': 'Sloop',
+            'model': 'Sloop',
+            'durability': 50,
+            'tacking': 95,
+            'power': 85,
+            'capacity': 250,
+            'max_guns': 40,
+            'min_crew': 5,
+            'max_crew': 60,
+            'price': 16000,
+            'position': 'ocean',
+        },
+        {
+            'name': 'Venetian Galeass',
+            'model': 'Venetian Galeass',
+            'durability': 90,
+            'tacking': 70,
+            'power': 70,
+            'capacity': 950,
+            'max_guns': 50,
+            'min_crew': 60,
+            'max_crew': 400,
+            'price': 64000,
+            'position': 'ocean',
+        },
+    ];
     function colorHex(colorArr) {
         var strHex = "#";
         var colorArr;
@@ -95,7 +136,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();
