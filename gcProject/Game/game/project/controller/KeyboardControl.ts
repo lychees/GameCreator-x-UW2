@@ -162,6 +162,7 @@ class KeyboardControl {
                             var meta = Roguelike.villages_json[i + 1];
                             if (Math.abs(x - meta.x) < 4 && Math.abs(y - meta.y) < 4) {
                                 if (!Roguelike.discoveries[i]) {
+                                    meta.date = ProjectUtils.dateFormat("YYYY-mm-dd HH:MM", new Date());
                                     Roguelike.discoveries[i] = meta;
                                     Game.player.variable.setString(1, "你发现了 " + i18n.chinese[meta.name]);
                                     GameCommand.startCommonCommand(1);

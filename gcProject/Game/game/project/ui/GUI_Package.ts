@@ -186,6 +186,7 @@ class GUI_Package extends GUI_4 {
                 d.icon = itemDS.item.icon; // 设置图标
                 d.itemName = itemDS.item.name; // 设置名称
             }
+            console.log(itemDS.equip.icon);
             d.itemNum = itemDS.number.toString() + "x"; // 设置道具数目
             arr.push(d);
         }

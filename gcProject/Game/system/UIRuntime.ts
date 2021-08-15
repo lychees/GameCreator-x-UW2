@@ -1353,7 +1353,7 @@ class GUI_1011 extends GUI_BASE {
    截图背景:UIBitmap;
    分割线:UIBitmap;
    档案排序数字:UIString;
-   screenshotImg:UIBitmap;
+   icon:UIBitmap;
    itemName:UIString;
    dateStr:UIString;
    no:UIString;
@@ -1367,7 +1367,7 @@ class ListItem_1011 extends UIListItemData {
    截图背景:string;
    分割线:string;
    档案排序数字:string;
-   screenshotImg:string;
+   icon:string;
    itemName:string;
    dateStr:string;
    no:string;

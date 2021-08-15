@@ -8,6 +8,7 @@ class GUI_Discoveries extends GUI_27 {
         // 标准化列表
         GUI_Manager.standardList(this.list, false);
         // 事件监听：当界面显示时
+        this.list.onCreateItem = Callback.New(GUI_Discoveries.onDiscoveredItem, GUI_Discoveries, []);
         this.on(EventObject.DISPLAY, this, this.onDisplay);
     }
     //------------------------------------------------------------------------------------------------------
@@ -23,6 +24,17 @@ class GUI_Discoveries extends GUI_27 {
         this.refreshItems(0);
     }
 
+    static onDiscoveredItem(ui: GUI_1011, data: ListItem_1011, index: number) {
+        AssetManager.loadImage('asset/image/_uw2/ships/balsa.png', Callback.New((tex: Texture) => {
+            // 取样从图中的0,0中取得50x50尺寸的切图
+            const g = new Graphics();
+            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(0, 0));
+            const sp = new Sprite();
+            sp.graphics = g;
+            ui.icon.addChild(sp);
+        }
+    }
+
     private refreshItems(state: number) {
         if (state != 0) return;
         const arr = [];
@@ -31,19 +43,20 @@ class GUI_Discoveries extends GUI_27 {
             // 创建对应的背包物品项数据，该项数据由系统自动生成
             const d = new ListItem_1011;
             const meta = Roguelike.discoveries[id];
-
+            // d.icon = 'asset/image/_uw2/ships/balsa.png';
             d.no = id;
+            d.dateStr = meta.date;
             d.itemName = i18n.chinese[meta.name]; // 设置名称
             d.description = (i18n.chinese[meta.description]).slice(0, 43);
             if (d.description.length === 43) d.description += '......';
             arr.push(d);
         });
         // 如果没有道具的话：追加一个空项
-        if  (Object.keys(Roguelike.discoveries).length === 0) {
+        if (Object.keys(Roguelike.discoveries).length === 0) {
             const emptyItem = new ListItem_1011;
             emptyItem.itemName = "还没有发现物";
             emptyItem.no = "0";
-            arr.push(emptyItem)
+            emptyItem.dateStr = "----/----";
         }
         // 刷新列表
         this.list.items = arr;

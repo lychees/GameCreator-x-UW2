@@ -102,6 +102,7 @@ var GUI_Package = (function (_super) {
                 d.icon = itemDS.item.icon;
                 d.itemName = itemDS.item.name;
             }
+            console.log(itemDS.equip.icon);
             d.itemNum = itemDS.number.toString() + "x";
             arr.push(d);
         }
