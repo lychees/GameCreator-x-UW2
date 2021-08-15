@@ -1221,6 +1221,146 @@ var ListItem_3002 = (function (_super) {
     }
     return ListItem_3002;
 }(UIListItemData));
+var GUI_8001 = (function (_super) {
+    __extends(GUI_8001, _super);
+    function GUI_8001() {
+        _super.call(this, 8001);
+    }
+    return GUI_8001;
+}(GUI_BASE));
+var ListItem_8001 = (function (_super) {
+    __extends(ListItem_8001, _super);
+    function ListItem_8001() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8001;
+}(UIListItemData));
+var GUI_8002 = (function (_super) {
+    __extends(GUI_8002, _super);
+    function GUI_8002() {
+        _super.call(this, 8002);
+    }
+    return GUI_8002;
+}(GUI_BASE));
+var ListItem_8002 = (function (_super) {
+    __extends(ListItem_8002, _super);
+    function ListItem_8002() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8002;
+}(UIListItemData));
+var GUI_8003 = (function (_super) {
+    __extends(GUI_8003, _super);
+    function GUI_8003() {
+        _super.call(this, 8003);
+    }
+    return GUI_8003;
+}(GUI_BASE));
+var ListItem_8003 = (function (_super) {
+    __extends(ListItem_8003, _super);
+    function ListItem_8003() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8003;
+}(UIListItemData));
+var GUI_8004 = (function (_super) {
+    __extends(GUI_8004, _super);
+    function GUI_8004() {
+        _super.call(this, 8004);
+    }
+    return GUI_8004;
+}(GUI_BASE));
+var ListItem_8004 = (function (_super) {
+    __extends(ListItem_8004, _super);
+    function ListItem_8004() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8004;
+}(UIListItemData));
+var GUI_8005 = (function (_super) {
+    __extends(GUI_8005, _super);
+    function GUI_8005() {
+        _super.call(this, 8005);
+    }
+    return GUI_8005;
+}(GUI_BASE));
+var ListItem_8005 = (function (_super) {
+    __extends(ListItem_8005, _super);
+    function ListItem_8005() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8005;
+}(UIListItemData));
+var GUI_8006 = (function (_super) {
+    __extends(GUI_8006, _super);
+    function GUI_8006() {
+        _super.call(this, 8006);
+    }
+    return GUI_8006;
+}(GUI_BASE));
+var ListItem_8006 = (function (_super) {
+    __extends(ListItem_8006, _super);
+    function ListItem_8006() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8006;
+}(UIListItemData));
+var GUI_8007 = (function (_super) {
+    __extends(GUI_8007, _super);
+    function GUI_8007() {
+        _super.call(this, 8007);
+    }
+    return GUI_8007;
+}(GUI_BASE));
+var ListItem_8007 = (function (_super) {
+    __extends(ListItem_8007, _super);
+    function ListItem_8007() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8007;
+}(UIListItemData));
+var GUI_8008 = (function (_super) {
+    __extends(GUI_8008, _super);
+    function GUI_8008() {
+        _super.call(this, 8008);
+    }
+    return GUI_8008;
+}(GUI_BASE));
+var ListItem_8008 = (function (_super) {
+    __extends(ListItem_8008, _super);
+    function ListItem_8008() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8008;
+}(UIListItemData));
+var GUI_8009 = (function (_super) {
+    __extends(GUI_8009, _super);
+    function GUI_8009() {
+        _super.call(this, 8009);
+    }
+    return GUI_8009;
+}(GUI_BASE));
+var ListItem_8009 = (function (_super) {
+    __extends(ListItem_8009, _super);
+    function ListItem_8009() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8009;
+}(UIListItemData));
+var GUI_8010 = (function (_super) {
+    __extends(GUI_8010, _super);
+    function GUI_8010() {
+        _super.call(this, 8010);
+    }
+    return GUI_8010;
+}(GUI_BASE));
+var ListItem_8010 = (function (_super) {
+    __extends(ListItem_8010, _super);
+    function ListItem_8010() {
+        _super.apply(this, arguments);
+    }
+    return ListItem_8010;
+}(UIListItemData));
 var GUI_15001 = (function (_super) {
     __extends(GUI_15001, _super);
     function GUI_15001() {

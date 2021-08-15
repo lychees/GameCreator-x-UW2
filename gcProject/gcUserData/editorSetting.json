@@ -17,9 +17,9 @@
         "scriptSystem": true,
         "mainArea": 0,
         "sceneState": {
-            "lastSceneMapID": 5,
+            "lastSceneMapID": 1,
             "lastSceneElementIndex": 1,
-            "lastSceneElementSelectedIndex": 0,
+            "lastSceneElementSelectedIndex": 3,
             "lastSceneElementBlockset": true
         },
         "viewState": {

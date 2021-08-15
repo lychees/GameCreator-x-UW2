@@ -129,7 +129,7 @@
                 "mouseEventEnabledInEditor": true,
                 "showOnEditor": true,
                 "hasCommand": [],
-                "isOpen": false,
+                "isOpen": true,
                 "image": "asset/image/picture/control/uibitmap.png",
                 "grid9": "32,32,19,31,1",
                 "flip": null,
@@ -343,6 +343,8 @@
                         "scrollWidth": 16,
                         "slowmotionType": 0,
                         "enabledWheel": true,
+                        "hScrollValue": 0,
+                        "vScrollValue": 0,
                         "children": [
                             {
                                 "id": "53452375191_0.9840520162200266",
@@ -572,7 +574,7 @@
                         "mouseEventEnabledInEditor": true,
                         "showOnEditor": true,
                         "hasCommand": [],
-                        "isOpen": false,
+                        "isOpen": true,
                         "enabledLimitView": null,
                         "scrollShowType": 2,
                         "hScrollBar": "asset/image/picture/control/hscroll_bar.png",
@@ -582,6 +584,8 @@
                         "scrollWidth": 16,
                         "slowmotionType": 0,
                         "enabledWheel": true,
+                        "hScrollValue": 0,
+                        "vScrollValue": 0,
                         "children": [
                             {
                                 "id": "57635148427_0.4473847971023115",
@@ -614,6 +618,8 @@
                                 "scrollWidth": 16,
                                 "slowmotionType": 0,
                                 "enabledWheel": true,
+                                "hScrollValue": 0,
+                                "vScrollValue": 0,
                                 "children": [
                                     {
                                         "id": "57635148427_0.0782238503021282",
@@ -1226,7 +1232,7 @@
                                 "mouseEventEnabledInEditor": true,
                                 "showOnEditor": true,
                                 "hasCommand": [],
-                                "isOpen": false,
+                                "isOpen": true,
                                 "enabledLimitView": null,
                                 "scrollShowType": 2,
                                 "hScrollBar": "asset/image/picture/control/hscroll_bar.png",
@@ -1236,6 +1242,8 @@
                                 "scrollWidth": 16,
                                 "slowmotionType": 0,
                                 "enabledWheel": true,
+                                "hScrollValue": 0,
+                                "vScrollValue": 0,
                                 "children": [
                                     {
                                         "id": "53452375194_0.20963991507294577",
@@ -1858,6 +1866,8 @@
                                 "scrollWidth": 16,
                                 "slowmotionType": 0,
                                 "enabledWheel": true,
+                                "hScrollValue": 0,
+                                "vScrollValue": 0,
                                 "children": [
                                     {
                                         "id": "57635214568_0.12471297251319302",

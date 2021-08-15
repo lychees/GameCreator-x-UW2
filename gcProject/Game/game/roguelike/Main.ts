@@ -2,10 +2,55 @@ namespace Roguelike{
 
     export let current_map = "";
     export let port_id = 0;
+    export let last_x = 1560;
+    export let last_y = 388;
     export let port_time = "";
     export let on_ocean = false;
     export let discoveries = {};
     export let first_battle = false; 
+
+    export let ships = [
+        {
+            'name': 'Balsa',
+            'model': 'Balsa',
+            'durability': 30,
+            'tacking': 70,
+            'power': 80,
+            'capacity': 50,
+            'max_guns': 10,
+            'min_crew': 5,
+            'max_crew': 20,
+            'price': 1200,
+            'position': 'ocean',
+        },
+        {
+            'name': 'Sloop',
+            'model': 'Sloop',
+            'durability': 50,
+            'tacking': 95,
+            'power': 85,
+            'capacity': 250,
+            'max_guns': 40,
+            'min_crew': 5,
+            'max_crew': 60,
+            'price': 16000,
+            'position': 'ocean',
+        },
+        {
+            'name': 'Venetian Galeass',
+            'model': 'Venetian Galeass',
+            'durability': 90,
+            'tacking': 70,
+            'power': 70,
+            'capacity': 950,
+            'max_guns': 50,
+            'min_crew': 60,
+            'max_crew': 400,
+            'price': 64000,
+            'position': 'ocean',
+        },
+    ];
+
     
     // 地块
     /**
@@ -112,7 +157,12 @@ namespace Roguelike{
             FileUtils.loadJsonFile(url, new Callback(function (json) {                
                 Roguelike.villages_json = json;
             }, this));
-
+            
+            if (on_ocean == true) {
+                toWorldMap(last_x, last_y);
+            } else {
+                toPort(port_id);
+            }
         },
 
         start_level: function(level) {
@@ -279,7 +329,8 @@ namespace Roguelike{
 
     export let world_map_ox = 0;
     export let world_map_oy = 0;
-    export let story = "启航";
+    // export let story = "启航";
+    export let story = "-";
 
     export function toWorldMap(x:number, y:number) {
         current_map = "world_map";
@@ -323,7 +374,7 @@ namespace Roguelike{
             story = "谒见公爵";
         }
     }
-
+    
     export function toPort(id: number, t:string="random", building_id:number=4) {
         let meta = hash_ports_meta_data[id+1];
 

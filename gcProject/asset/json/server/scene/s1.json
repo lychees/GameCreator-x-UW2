@@ -407,15 +407,6 @@
                 {
                     "___cmdID": "70110516393_0.8437054180109655"
                 }
-            ],
-            [
-                20,
-                "",
-                "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.toWorldMap(840, 358);",
-                "Roguelike.toWorldMap(840, 358);\n",
-                {
-                    "___cmdID": "70637575092_0.46940289032075677"
-                }
             ]
         ]
     ],

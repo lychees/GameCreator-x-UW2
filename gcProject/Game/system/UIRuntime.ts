@@ -75,6 +75,7 @@ class GUI_3 extends GUI_BASE {
    返回标题按钮阴影:UIBitmap;
    返回游戏按钮阴影:UIBitmap;
    已发现物按钮阴影:UIBitmap;
+   舰船按钮阴影:UIBitmap;
    发现物按钮:UIButton;
    队伍编成按钮:UIButton;
    存档按钮:UIButton;
@@ -83,6 +84,7 @@ class GUI_3 extends GUI_BASE {
    返回标题按钮:UIButton;
    返回游戏按钮:UIButton;
    背包按钮:UIButton;
+   舰船按钮:UIButton;
    constructor(){
       super(3);
    }
@@ -98,6 +100,7 @@ class ListItem_3 extends UIListItemData {
    返回标题按钮阴影:string;
    返回游戏按钮阴影:string;
    已发现物按钮阴影:string;
+   舰船按钮阴影:string;
 
 }
 
@@ -2073,6 +2076,175 @@ class GUI_3002 extends GUI_BASE {
    }
 }
 class ListItem_3002 extends UIListItemData {
+
+}
+
+/**
+ * 8001-舰船列表界面 [BASE]
+ */
+class GUI_8001 extends GUI_BASE {
+   界面背景:UIBitmap;
+   已发现物品界面阴影:UIBitmap;
+   已发现物品界面背景:UIBitmap;
+   花纹:UIBitmap;
+   延长线:UIBitmap;
+   已发现物品标题:UIString;
+   已发现物品英文标题:UIString;
+   list:UIList; // Item=1011
+   关闭已发现物品界面按钮:UIButton;
+   constructor(){
+      super(8001);
+   }
+}
+class ListItem_8001 extends UIListItemData {
+   界面背景:string;
+   已发现物品界面阴影:string;
+   已发现物品界面背景:string;
+   花纹:string;
+   延长线:string;
+   已发现物品标题:string;
+   已发现物品英文标题:string;
+   list:UIListItemData[];
+
+}
+
+/**
+ * 8002-舰船界面 [BASE]
+ */
+class GUI_8002 extends GUI_BASE {
+   界面背景:UIBitmap;
+   已发现物品界面阴影:UIBitmap;
+   已发现物品界面背景:UIBitmap;
+   花纹:UIBitmap;
+   延长线:UIBitmap;
+   已发现物品标题:UIString;
+   已发现物品英文标题:UIString;
+   关闭已发现物品界面按钮:UIButton;
+   截图背景:UIBitmap;
+   分割线:UIBitmap;
+   icon:UIBitmap;
+   itemName:UIString;
+   maxHP:UIString;
+   constructor(){
+      super(8002);
+   }
+}
+class ListItem_8002 extends UIListItemData {
+   界面背景:string;
+   已发现物品界面阴影:string;
+   已发现物品界面背景:string;
+   花纹:string;
+   延长线:string;
+   已发现物品标题:string;
+   已发现物品英文标题:string;
+   截图背景:string;
+   分割线:string;
+   icon:string;
+   itemName:string;
+   maxHP:string;
+}
+
+/**
+ * 8003- [BASE]
+ */
+class GUI_8003 extends GUI_BASE {
+
+   constructor(){
+      super(8003);
+   }
+}
+class ListItem_8003 extends UIListItemData {
+
+}
+
+/**
+ * 8004- [BASE]
+ */
+class GUI_8004 extends GUI_BASE {
+
+   constructor(){
+      super(8004);
+   }
+}
+class ListItem_8004 extends UIListItemData {
+
+}
+
+/**
+ * 8005- [BASE]
+ */
+class GUI_8005 extends GUI_BASE {
+
+   constructor(){
+      super(8005);
+   }
+}
+class ListItem_8005 extends UIListItemData {
+
+}
+
+/**
+ * 8006- [BASE]
+ */
+class GUI_8006 extends GUI_BASE {
+
+   constructor(){
+      super(8006);
+   }
+}
+class ListItem_8006 extends UIListItemData {
+
+}
+
+/**
+ * 8007- [BASE]
+ */
+class GUI_8007 extends GUI_BASE {
+
+   constructor(){
+      super(8007);
+   }
+}
+class ListItem_8007 extends UIListItemData {
+
+}
+
+/**
+ * 8008- [BASE]
+ */
+class GUI_8008 extends GUI_BASE {
+
+   constructor(){
+      super(8008);
+   }
+}
+class ListItem_8008 extends UIListItemData {
+
+}
+
+/**
+ * 8009- [BASE]
+ */
+class GUI_8009 extends GUI_BASE {
+
+   constructor(){
+      super(8009);
+   }
+}
+class ListItem_8009 extends UIListItemData {
+
+}
+
+/**
+ * 8010- [BASE]
+ */
+class GUI_8010 extends GUI_BASE {
+
+   constructor(){
+      super(8010);
+   }
+}
+class ListItem_8010 extends UIListItemData {
 
 }
 

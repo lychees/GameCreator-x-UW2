@@ -1,0 +1,53 @@
+
+
+
+
+
+var GUI_ships = (function (_super) {
+    __extends(GUI_ships, _super);
+    function GUI_ships() {
+        _super.call(this);
+        GUI_Manager.standardList(this.list, false);
+        this.list.onCreateItem = Callback.New(GUI_ships.onDiscoveredItem, GUI_ships, []);
+        this.on(EventObject.DISPLAY, this, this.onDisplay);
+    }
+    GUI_ships.prototype.onDisplay = function () {
+        UIList.focus = this.list;
+        this.refreshItems(0);
+    };
+    GUI_ships.onDiscoveredItem = function (ui, data, index) {
+        AssetManager.loadImage('asset/image/_uw2/discoveries/discoveries_and_items.png', Callback.New(function (tex) {
+            var meta = Roguelike.villages_json[parseInt(data.no)];
+            var g = new Graphics();
+            g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(-49 * (meta.image_x - 1), -49 * (meta.image_y - 1)));
+            var sp = new Sprite();
+            sp.graphics = g;
+            ui.icon.addChild(sp);
+        }));
+    };
+    GUI_ships.prototype.refreshItems = function (state) {
+        if (state != 0)
+            return;
+        var arr = [];
+        Object.keys(Roguelike.discoveries).forEach(function (id) {
+            var d = new ListItem_1011;
+            var meta = Roguelike.discoveries[id];
+            d.no = (parseInt(id) + 1).toString();
+            d.dateStr = meta.date;
+            d.itemName = i18n.chinese[meta.name];
+            d.description = (i18n.chinese[meta.description]).slice(0, 43);
+            if (d.description.length === 43)
+                d.description += '......';
+            arr.push(d);
+        });
+        if (Object.keys(Roguelike.discoveries).length === 0) {
+            var emptyItem = new ListItem_1011;
+            emptyItem.itemName = "还没有发现物";
+            emptyItem.no = "0";
+            emptyItem.dateStr = "----/----";
+        }
+        this.list.items = arr;
+    };
+    return GUI_ships;
+}(GUI_8001));
+//# sourceMappingURL=GUI_Ships.js.map

@@ -2,6 +2,8 @@ var Roguelike;
 (function (Roguelike) {
     Roguelike.current_map = "";
     Roguelike.port_id = 0;
+    Roguelike.last_x = 1560;
+    Roguelike.last_y = 388;
     Roguelike.port_time = "";
     Roguelike.on_ocean = false;
     Roguelike.discoveries = {};
@@ -80,6 +82,12 @@ var Roguelike;
             FileUtils.loadJsonFile(url, new Callback(function (json) {
                 Roguelike.villages_json = json;
             }, this));
+            if (Roguelike.on_ocean == true) {
+                toWorldMap(Roguelike.last_x, Roguelike.last_y);
+            }
+            else {
+                toPort(Roguelike.port_id);
+            }
         },
         start_level: function (level) {
             var w = 25;
@@ -229,7 +237,7 @@ var Roguelike;
     Roguelike.command_line = command_line;
     Roguelike.world_map_ox = 0;
     Roguelike.world_map_oy = 0;
-    Roguelike.story = "启航";
+    Roguelike.story = "-";
     function toWorldMap(x, y) {
         Roguelike.current_map = "world_map";
         Roguelike.world_map_ox = x - 360;
