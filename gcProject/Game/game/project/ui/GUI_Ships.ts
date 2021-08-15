@@ -9,6 +9,8 @@ class GUI_Ships extends GUI_8001 {
         GUI_Manager.standardList(this.list, false);
         // 事件监听：当界面显示时
         // this.list.onCreateItem = Callback.New(GUI_Ships.onDiscoveredItem, GUI_Ships, []);
+        // 事件监听：当项选中时
+        this.list.on(UIList.ITEM_CLICK, this, this.onItemClick);
         this.on(EventObject.DISPLAY, this, this.onDisplay);
     }
     //------------------------------------------------------------------------------------------------------
@@ -22,6 +24,18 @@ class GUI_Ships extends GUI_8001 {
         UIList.focus = this.list;
         // 刷新道具列表
         this.refreshItems(0);
+    }
+
+    /**
+     * 当项目点击时
+     */
+    private onItemClick() {
+        // 打开8002号界面
+        // 额嗯，为了知道你打开了哪艘船，所以需要一个临时变量。
+        // 这里暂且用到了这个，到时候你可以改。
+        const selectedItem = this.list.selectedItem;
+        Roguelike.selected_ship = selectedItem;
+        GameUI.show(8002);
     }
 
     // static onDiscoveredItem(ui: GUI_1011, data: ListItem_1011, index: number) {

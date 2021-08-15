@@ -7,6 +7,7 @@ namespace Roguelike{
     export let port_time = "";
     export let on_ocean = false;
     export let discoveries = {};
+    export let selected_ship: any = {};
     export let first_battle = false; 
 
     export let ships = [

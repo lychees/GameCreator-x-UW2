@@ -7,6 +7,7 @@ var Roguelike;
     Roguelike.port_time = "";
     Roguelike.on_ocean = false;
     Roguelike.discoveries = {};
+    Roguelike.selected_ship = {};
     Roguelike.first_battle = false;
     Roguelike.ships = [
         {
@@ -136,7 +137,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Map(w, h);
+            this.map = new Roguelike.Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();

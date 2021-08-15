@@ -2125,6 +2125,8 @@ class GUI_8002 extends GUI_BASE {
    icon:UIBitmap;
    itemName:UIString;
    maxHP:UIString;
+   power:UIString;
+   members:UIString;
    constructor(){
       super(8002);
    }
@@ -2142,6 +2144,8 @@ class ListItem_8002 extends UIListItemData {
    icon:string;
    itemName:string;
    maxHP:string;
+   power:string;
+   members:string;
 }
 
 /**
