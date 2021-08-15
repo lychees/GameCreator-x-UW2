@@ -311,7 +311,7 @@
                 "id": "52592987823_0.22415773856299737",
                 "condition": [],
                 "type": "UIButton",
-                "name": "已发现物按钮",
+                "name": "发现物按钮",
                 "x": 978,
                 "y": 84,
                 "width": 201,
@@ -331,7 +331,7 @@
                     true
                 ],
                 "isOpen": true,
-                "label": "已发现物",
+                "label": "发现物",
                 "image1": "asset/image/picture/ui/menu/optionNormal.png",
                 "grid9img1": "0,0,0,0,0",
                 "image2": "asset/image/picture/ui/menu/optionSelect.png",

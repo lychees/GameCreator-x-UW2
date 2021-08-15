@@ -75,7 +75,7 @@ class GUI_3 extends GUI_BASE {
    返回标题按钮阴影:UIBitmap;
    返回游戏按钮阴影:UIBitmap;
    已发现物按钮阴影:UIBitmap;
-   已发现物按钮:UIButton;
+   发现物按钮:UIButton;
    队伍编成按钮:UIButton;
    存档按钮:UIButton;
    读档按钮:UIButton;
@@ -1055,7 +1055,7 @@ class ListItem_26 extends UIListItemData {
 }
 
 /**
- * 27-已发现物 [BASE]
+ * 27-发现物 [BASE]
  */
 class GUI_27 extends GUI_BASE {
    界面背景:UIBitmap;
