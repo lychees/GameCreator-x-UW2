@@ -72,7 +72,7 @@ class GUI_Shop extends GUI_12 {
         this.sureBtn.on(EventObject.CLICK, this, this.onSureNumChange);
         this.cancelBtn.on(EventObject.CLICK, this, this.onCancelNumChange);
         // 鼠标右键
-        stage.on(EventObject.RIGHT_MOUSE_DOWN, this, this.onRightMouseDOwn);
+        stage.on(EventObject.RIGHT_MOUSE_DOWN, this, this.onRightMouseDown);
     }
     /**
      * 初始化商品列表
@@ -360,7 +360,7 @@ class GUI_Shop extends GUI_12 {
     /**
      * 右键鼠标按下时
      */
-    private onRightMouseDOwn() {
+    private onRightMouseDown() {
         if (!this.stage) return;
         var e = new EventObject;
         e.keyCode = GUI_Setting.KEY_BOARD.B.keys[0];

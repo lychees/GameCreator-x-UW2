@@ -21,6 +21,5 @@ class GUI_ShipDetails extends GUI_8002 {
         this.capacity.text = Roguelike.selected_ship.info.cargoes.total + '/' + Roguelike.selected_ship.info.capacity;
 
         this.sailing_power.text = Roguelike.selected_ship.info.sailing_power;
-        
     }
 }

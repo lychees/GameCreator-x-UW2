@@ -2,142 +2,12 @@
     "root": {
         "children": [
             {
-                "id": "71657540481_0.6478175475634653",
-                "condition": [],
-                "type": "UIBitmap",
-                "name": "goldBox",
-                "x": 302,
-                "y": 536,
-                "width": 104,
-                "height": 34,
-                "opacity": 1,
-                "rotation": 0,
-                "show": true,
-                "mouseEventEnabledData": true,
-                "materialData": [
-                    {
-                        "materials": []
-                    }
-                ],
-                "mouseEventEnabledInEditor": true,
-                "showOnEditor": true,
-                "hasCommand": [],
-                "isOpen": true,
-                "image": "asset/image/picture/ui/backpack/goldBg.png",
-                "grid9": "0,0,0,0,0",
-                "flip": null,
-                "pivotType": 0,
-                "children": [
-                    {
-                        "id": "71657540482_0.3177781423691357",
-                        "condition": [],
-                        "type": "UIString",
-                        "name": "gold_sign",
-                        "x": 68,
-                        "y": 10,
-                        "width": 15,
-                        "height": 17,
-                        "opacity": 1,
-                        "rotation": 0,
-                        "show": true,
-                        "mouseEventEnabledData": false,
-                        "materialData": [
-                            {
-                                "materials": []
-                            }
-                        ],
-                        "mouseEventEnabledInEditor": true,
-                        "showOnEditor": true,
-                        "hasCommand": [],
-                        "isOpen": true,
-                        "text": "G",
-                        "fontSize": 16,
-                        "color": "#bc810f",
-                        "bold": true,
-                        "italic": false,
-                        "smooth": false,
-                        "align": 0,
-                        "valign": 0,
-                        "leading": 0,
-                        "letterSpacing": 0,
-                        "font": "思源黑体",
-                        "wordWrap": true,
-                        "overflow": 0,
-                        "shadowEnabled": null,
-                        "shadowColor": "#000000",
-                        "shadowDx": 1,
-                        "shadowDy": 1,
-                        "stroke": 0,
-                        "strokeColor": "#000000",
-                        "onChangeFragEvent": null
-                    },
-                    {
-                        "id": "71657540482_0.6465704818463718",
-                        "condition": [],
-                        "type": "UICustomGameNumber",
-                        "name": "goldNum",
-                        "x": 14,
-                        "y": 10,
-                        "width": 52,
-                        "height": 14,
-                        "opacity": 1,
-                        "rotation": 0,
-                        "show": true,
-                        "mouseEventEnabledData": false,
-                        "materialData": [
-                            {
-                                "materials": []
-                            }
-                        ],
-                        "mouseEventEnabledInEditor": true,
-                        "showOnEditor": true,
-                        "hasCommand": [],
-                        "isOpen": true,
-                        "customData": [
-                            4,
-                            {
-                                "type": 0,
-                                "itemID": 0,
-                                "customAttrName": ""
-                            },
-                            [
-                                {
-                                    "42658697920_0.521797091125876": 0,
-                                    "42658755593_0.30830009866665464": 0,
-                                    "42658786591_0.003637264112336336": ""
-                                }
-                            ]
-                        ],
-                        "previewNum": 4,
-                        "previewFixed": 0,
-                        "fontSize": 16,
-                        "color": "#3c3c48",
-                        "bold": true,
-                        "italic": false,
-                        "smooth": false,
-                        "align": 2,
-                        "valign": 0,
-                        "leading": 0,
-                        "letterSpacing": 0,
-                        "font": "思源黑体",
-                        "wordWrap": true,
-                        "overflow": 0,
-                        "shadowEnabled": null,
-                        "shadowColor": "#000000",
-                        "shadowDx": 1,
-                        "shadowDy": 1,
-                        "stroke": 0,
-                        "strokeColor": "#000000"
-                    }
-                ]
-            },
-            {
                 "id": "71657540482_0.4552120567913207",
                 "condition": [],
                 "type": "UIRoot",
                 "name": "buyBoxArea",
-                "x": 627,
-                "y": 474,
+                "x": 625,
+                "y": 419,
                 "width": 350,
                 "height": 256,
                 "opacity": 1,
@@ -471,7 +341,7 @@
                                 "id": "71657540484_0.9289573467489902",
                                 "condition": [],
                                 "type": "UIString",
-                                "name": "buyNum",
+                                "name": "delta",
                                 "x": 0,
                                 "y": 0,
                                 "width": 48,
@@ -489,7 +359,7 @@
                                 "showOnEditor": true,
                                 "hasCommand": [],
                                 "isOpen": true,
-                                "text": "1",
+                                "text": "0",
                                 "fontSize": 16,
                                 "color": "#523731",
                                 "bold": true,
@@ -711,6 +581,116 @@
                         "pivotType": 0
                     }
                 ]
+            },
+            {
+                "id": "71657540481_0.6478175475634653",
+                "condition": [],
+                "type": "UIBitmap",
+                "name": "goldBox",
+                "x": 306,
+                "y": 491,
+                "width": 149,
+                "height": 34,
+                "opacity": 1,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": true,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "image": "asset/image/picture/ui/backpack/goldBg.png",
+                "grid9": "0,0,0,0,0",
+                "flip": null,
+                "pivotType": 0
+            },
+            {
+                "id": "71675760105_0.23372666231539463",
+                "condition": [],
+                "type": "UIString",
+                "name": "standby",
+                "x": 354,
+                "y": 500,
+                "width": 89,
+                "height": 30,
+                "opacity": 1,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": false,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "text": "0",
+                "fontSize": 16,
+                "color": "#000000",
+                "bold": false,
+                "italic": false,
+                "align": 2,
+                "valign": 0,
+                "leading": 0,
+                "letterSpacing": 0,
+                "font": "思源黑体",
+                "wordWrap": true,
+                "overflow": 0,
+                "shadowColor": "#000000",
+                "shadowDx": 1,
+                "shadowDy": 1,
+                "stroke": 0,
+                "strokeColor": "#000000"
+            },
+            {
+                "id": "71675700389_0.7960181202947458",
+                "condition": [],
+                "type": "UIString",
+                "name": "文本",
+                "x": 329,
+                "y": 499,
+                "width": 200,
+                "height": 30,
+                "opacity": 1,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": false,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "text": "待命",
+                "fontSize": 16,
+                "color": "#000000",
+                "bold": false,
+                "italic": false,
+                "smooth": null,
+                "align": 0,
+                "valign": 0,
+                "leading": 0,
+                "letterSpacing": 0,
+                "font": "思源黑体",
+                "wordWrap": true,
+                "overflow": 0,
+                "shadowEnabled": null,
+                "shadowColor": "#000000",
+                "shadowDx": 1,
+                "shadowDy": 1,
+                "stroke": 0,
+                "strokeColor": "#000000",
+                "onChangeFragEvent": null
             }
         ]
     },

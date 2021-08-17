@@ -2182,9 +2182,6 @@ class ListItem_8003 extends UIListItemData {
  * 8004-分配船员界面 [BASE]
  */
 class GUI_8004 extends GUI_BASE {
-   goldBox:UIBitmap;
-   gold_sign:UIString;
-   goldNum:UICustomGameNumber;
    buyBoxArea:UIRoot;
    交易栏阴影:UIBitmap;
    交易栏背景:UIBitmap;
@@ -2194,30 +2191,34 @@ class GUI_8004 extends GUI_BASE {
    addNumBtn:UIButton;
    maxNumBtn:UIButton;
    购买数量背景:UIBitmap;
-   buyNum:UIString;
+   delta:UIString;
    确定按钮阴影:UIBitmap;
    取消按钮阴影:UIBitmap;
    sureBtn:UIButton;
    cancelBtn:UIButton;
    分割线:UIBitmap;
    交易栏装饰:UIBitmap;
+   goldBox:UIBitmap;
+   standby:UIString;
+   文本:UIString;
    constructor(){
       super(8004);
    }
 }
 class ListItem_8004 extends UIListItemData {
-   goldBox:string;
-   gold_sign:string;
    交易栏阴影:string;
    交易栏背景:string;
    buyNum_text:string;
    buyNum_text2:string;
    购买数量背景:string;
-   buyNum:string;
+   delta:string;
    确定按钮阴影:string;
    取消按钮阴影:string;
    分割线:string;
    交易栏装饰:string;
+   goldBox:string;
+   standby:string;
+   文本:string;
 }
 
 /**

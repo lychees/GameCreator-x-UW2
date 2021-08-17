@@ -30,7 +30,7 @@ var GUI_Shop = (function (_super) {
         this.maxNumBtn.on(EventObject.CLICK, this, this.onMaxNumChange);
         this.sureBtn.on(EventObject.CLICK, this, this.onSureNumChange);
         this.cancelBtn.on(EventObject.CLICK, this, this.onCancelNumChange);
-        stage.on(EventObject.RIGHT_MOUSE_DOWN, this, this.onRightMouseDOwn);
+        stage.on(EventObject.RIGHT_MOUSE_DOWN, this, this.onRightMouseDown);
     };
     GUI_Shop.prototype.initGoodsList = function () {
         var dataArr;
@@ -247,7 +247,7 @@ var GUI_Shop = (function (_super) {
             }
         }
     };
-    GUI_Shop.prototype.onRightMouseDOwn = function () {
+    GUI_Shop.prototype.onRightMouseDown = function () {
         if (!this.stage)
             return;
         var e = new EventObject;
