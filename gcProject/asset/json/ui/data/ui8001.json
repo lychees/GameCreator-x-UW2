@@ -2,15 +2,15 @@
     "root": {
         "children": [
             {
-                "id": "42595472268_0.3900902705761442",
+                "id": "71660918056_0.6853633660741687",
                 "condition": [],
                 "type": "UIBitmap",
-                "name": "界面背景",
+                "name": "黑色半透明背景",
                 "x": 0,
                 "y": 0,
                 "width": 1200,
                 "height": 720,
-                "opacity": 1,
+                "opacity": 0.25,
                 "rotation": 0,
                 "show": true,
                 "mouseEventEnabledData": true,
@@ -23,8 +23,8 @@
                 "showOnEditor": true,
                 "hasCommand": [],
                 "isOpen": true,
-                "image": "asset/image/picture/ui/shop/bg.png",
-                "grid9": "3,3,3,3,0",
+                "image": "asset/image/picture/other/Black.png",
+                "grid9": "0,0,0,0,0",
                 "flip": null,
                 "pivotType": 0
             },

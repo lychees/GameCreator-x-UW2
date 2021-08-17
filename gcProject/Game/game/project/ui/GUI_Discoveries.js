@@ -9,6 +9,7 @@ var GUI_Discoveries = (function (_super) {
         _super.call(this);
         GUI_Manager.standardList(this.list, false);
         this.list.onCreateItem = Callback.New(GUI_Discoveries.onDiscoveredItem, GUI_Discoveries, []);
+        this.list.on(UIList.ITEM_CLICK, this, this.onItemClick);
         this.on(EventObject.DISPLAY, this, this.onDisplay);
     }
     GUI_Discoveries.prototype.onDisplay = function () {
@@ -24,6 +25,9 @@ var GUI_Discoveries = (function (_super) {
             sp.graphics = g;
             ui.icon.addChild(sp);
         }));
+    };
+    GUI_Discoveries.prototype.onItemClick = function () {
+        alert('点击发现物');
     };
     GUI_Discoveries.prototype.refreshItems = function (state) {
         if (state != 0)

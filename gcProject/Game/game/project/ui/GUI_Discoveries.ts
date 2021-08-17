@@ -9,6 +9,7 @@ class GUI_Discoveries extends GUI_27 {
         GUI_Manager.standardList(this.list, false);
         // 事件监听：当界面显示时
         this.list.onCreateItem = Callback.New(GUI_Discoveries.onDiscoveredItem, GUI_Discoveries, []);
+        this.list.on(UIList.ITEM_CLICK, this, this.onItemClick);
         this.on(EventObject.DISPLAY, this, this.onDisplay);
     }
     //------------------------------------------------------------------------------------------------------
@@ -36,6 +37,15 @@ class GUI_Discoveries extends GUI_27 {
             ui.icon.addChild(sp);
         }
     }
+
+    /**
+     * 当项目点击时
+     */
+     private onItemClick() {        
+        alert('点击发现物');
+        // To do list(minakokojima): 用发现物与对象交互
+        // 例如，向工会报告，和吧女聊天，etcs
+    }    
 
     private refreshItems(state: number) {
         if (state != 0) return;

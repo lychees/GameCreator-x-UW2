@@ -8,7 +8,9 @@ namespace Roguelike{
     export let on_ocean = false;
     export let discoveries = {};
     export let selected_ship: any = {};
-    export let first_battle = false; 
+    export let first_battle = false;
+    export let in_crew_menu = false;
+    export let standby_crews = 100;
 
     export let ships = [
         {

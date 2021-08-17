@@ -9,6 +9,8 @@ var Roguelike;
     Roguelike.discoveries = {};
     Roguelike.selected_ship = {};
     Roguelike.first_battle = false;
+    Roguelike.in_crew_menu = false;
+    Roguelike.standby_crews = 0;
     Roguelike.ships = [
         {
             'name': 'Balsa',

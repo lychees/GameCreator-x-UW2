@@ -2,5 +2,7 @@
     "root": {
         "children": []
     },
-    "id": 8005
+    "instanceClassName": "",
+    "id": 8005,
+    "hasRootCommand": []
 }

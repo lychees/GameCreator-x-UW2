@@ -33,7 +33,11 @@ class GUI_Ships extends GUI_8001 {
         Roguelike.selected_ship = selectedItem;
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
-        GameUI.show(8003);
+        if (Roguelike.in_crew_menu == true) {
+
+        } else {
+            GameUI.show(8003);
+        }
     }
 
     // static onDiscoveredItem(ui: GUI_1011, data: ListItem_1011, index: number) {

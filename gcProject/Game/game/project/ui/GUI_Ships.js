@@ -20,7 +20,11 @@ var GUI_Ships = (function (_super) {
         Roguelike.selected_ship = selectedItem;
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
-        GameUI.show(8003);
+        if (Roguelike.in_crew_menu == true) {
+        }
+        else {
+            GameUI.show(8003);
+        }
     };
     GUI_Ships.prototype.refreshItems = function (state) {
         if (state != 0)

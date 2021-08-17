@@ -252,8 +252,8 @@
             [
                 20,
                 "",
-                "// 当前的事件触发器：trigger: CommandTrigger;\nif (Roguelike.first_battle == false) {\n    Roguelike.first_battle = true;\n    GameCommand.startCommonCommand(8006);\n}\n                                  ",
-                "if (Roguelike.first_battle == false) {\n    Roguelike.first_battle = true;\n    GameCommand.startCommonCommand(8006);\n}\n",
+                "// 当前的事件触发器：trigger: CommandTrigger;\n/*\nif (Roguelike.first_battle == false) {\n    Roguelike.first_battle = true;\n    GameCommand.startCommonCommand(8006);\n}\n*/\n                                  ",
+                "",
                 {
                     "___cmdID": "71025471430_0.5942583761979316"
                 }
@@ -6375,6 +6375,105 @@
                         0,
                         {
                             "___cmdID": "71029821279_0.4220681660400989"
+                        }
+                    ],
+                    [
+                        3,
+                        0,
+                        -1,
+                        -1,
+                        {
+                            "___cmdID": "71659945647_0.8954907182818659"
+                        }
+                    ],
+                    [
+                        4,
+                        "喝一杯",
+                        -1,
+                        -1,
+                        0,
+                        0,
+                        [],
+                        {
+                            "___cmdID": "71659988685_0.8671662499879462"
+                        }
+                    ],
+                    [
+                        4,
+                        "请喝酒",
+                        -1,
+                        -1,
+                        0,
+                        0,
+                        [],
+                        {
+                            "___cmdID": "71659988685_0.9493521282797641"
+                        }
+                    ],
+                    [
+                        4,
+                        "招募船员",
+                        -1,
+                        -1,
+                        0,
+                        0,
+                        [],
+                        {
+                            "___cmdID": "71659988685_0.5742837777772882"
+                        }
+                    ],
+                    [
+                        11,
+                        1,
+                        null,
+                        "",
+                        3,
+                        -3,
+                        "<span style='color:#FfFffF'>招募了 100 名船员</span>",
+                        null,
+                        1,
+                        0,
+                        {
+                            "___cmdID": "71659993299_0.2433417614219926"
+                        }
+                    ],
+                    [
+                        20,
+                        "",
+                        "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.Standby_crews += 100;",
+                        "Roguelike.Standby_crews += 100;\n",
+                        {
+                            "___cmdID": "71660017025_0.05080377370213607"
+                        }
+                    ],
+                    [
+                        4,
+                        "任务委托",
+                        -1,
+                        -1,
+                        0,
+                        0,
+                        [],
+                        {
+                            "___cmdID": "71659988685_0.7329151675893526"
+                        }
+                    ],
+                    [
+                        4,
+                        "离开",
+                        -1,
+                        -1,
+                        0,
+                        0,
+                        [],
+                        {
+                            "___cmdID": "71659988685_0.338665049221369"
+                        }
+                    ],
+                    [
+                        10,
+                        {
+                            "___cmdID": "71659988685_0.8938939768827632"
                         }
                     ]
                 ],

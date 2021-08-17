@@ -1061,7 +1061,7 @@ class ListItem_26 extends UIListItemData {
  * 27-发现物 [BASE]
  */
 class GUI_27 extends GUI_BASE {
-   界面背景:UIBitmap;
+   黑色半透明背景:UIBitmap;
    已发现物品界面阴影:UIBitmap;
    已发现物品界面背景:UIBitmap;
    花纹:UIBitmap;
@@ -1075,7 +1075,7 @@ class GUI_27 extends GUI_BASE {
    }
 }
 class ListItem_27 extends UIListItemData {
-   界面背景:string;
+   黑色半透明背景:string;
    已发现物品界面阴影:string;
    已发现物品界面背景:string;
    花纹:string;
@@ -2083,7 +2083,7 @@ class ListItem_3002 extends UIListItemData {
  * 8001-舰船列表界面 [BASE]
  */
 class GUI_8001 extends GUI_BASE {
-   界面背景:UIBitmap;
+   黑色半透明背景:UIBitmap;
    已发现物品界面阴影:UIBitmap;
    已发现物品界面背景:UIBitmap;
    花纹:UIBitmap;
@@ -2097,7 +2097,7 @@ class GUI_8001 extends GUI_BASE {
    }
 }
 class ListItem_8001 extends UIListItemData {
-   界面背景:string;
+   黑色半透明背景:string;
    已发现物品界面阴影:string;
    已发现物品界面背景:string;
    花纹:string;
@@ -2179,16 +2179,45 @@ class ListItem_8003 extends UIListItemData {
 }
 
 /**
- * 8004- [BASE]
+ * 8004-分配船员界面 [BASE]
  */
 class GUI_8004 extends GUI_BASE {
-
+   goldBox:UIBitmap;
+   gold_sign:UIString;
+   goldNum:UICustomGameNumber;
+   buyBoxArea:UIRoot;
+   交易栏阴影:UIBitmap;
+   交易栏背景:UIBitmap;
+   buyNum_text:UIString;
+   buyNum_text2:UIString;
+   subNumBtn:UIButton;
+   addNumBtn:UIButton;
+   maxNumBtn:UIButton;
+   购买数量背景:UIBitmap;
+   buyNum:UIString;
+   确定按钮阴影:UIBitmap;
+   取消按钮阴影:UIBitmap;
+   sureBtn:UIButton;
+   cancelBtn:UIButton;
+   分割线:UIBitmap;
+   交易栏装饰:UIBitmap;
    constructor(){
       super(8004);
    }
 }
 class ListItem_8004 extends UIListItemData {
-
+   goldBox:string;
+   gold_sign:string;
+   交易栏阴影:string;
+   交易栏背景:string;
+   buyNum_text:string;
+   buyNum_text2:string;
+   购买数量背景:string;
+   buyNum:string;
+   确定按钮阴影:string;
+   取消按钮阴影:string;
+   分割线:string;
+   交易栏装饰:string;
 }
 
 /**
@@ -2244,16 +2273,89 @@ class ListItem_8008 extends UIListItemData {
 }
 
 /**
- * 8009- [BASE]
+ * 8009-交易所买入界面 [BASE]
  */
 class GUI_8009 extends GUI_BASE {
-
+   界面背景:UIBitmap;
+   商店界面阴影:UIBitmap;
+   说明栏阴影:UIBitmap;
+   goodsListBox:UIBitmap;
+   商品名称:UIString;
+   商品价格:UIString;
+   商品数量:UIString;
+   goodsList:UIList; // Item=1003
+   sellItemList:UIList; // Item=1003
+   商店界面底衬:UIBitmap;
+   花纹:UIBitmap;
+   延长线:UIBitmap;
+   分割线:UIBitmap;
+   itemBox:UIBitmap;
+   itemName:UIString;
+   itemIntro:UIString;
+   说明栏装饰:UIBitmap;
+   货币栏阴影:UIBitmap;
+   goldBox:UIBitmap;
+   gold_sign:UIString;
+   goldNum:UICustomGameNumber;
+   buyBoxArea:UIRoot;
+   交易栏阴影:UIBitmap;
+   交易栏背景:UIBitmap;
+   buyNum_text:UIString;
+   buyNum_text2:UIString;
+   subNumBtn:UIButton;
+   addNumBtn:UIButton;
+   maxNumBtn:UIButton;
+   购买数量背景:UIBitmap;
+   buyNum:UIString;
+   确定按钮阴影:UIBitmap;
+   取消按钮阴影:UIBitmap;
+   sureBtn:UIButton;
+   cancelBtn:UIButton;
+   交易栏装饰:UIBitmap;
+   closeBtn:UIButton;
+   typeTab:UITabBox;
+   购买页容器:UIRoot;
+   物品持有数量:UIString;
+   商店标题:UIString;
+   商店英文标题:UIString;
    constructor(){
       super(8009);
    }
 }
 class ListItem_8009 extends UIListItemData {
-
+   界面背景:string;
+   商店界面阴影:string;
+   说明栏阴影:string;
+   goodsListBox:string;
+   商品名称:string;
+   商品价格:string;
+   商品数量:string;
+   goodsList:UIListItemData[];
+   sellItemList:UIListItemData[];
+   商店界面底衬:string;
+   花纹:string;
+   延长线:string;
+   分割线:string;
+   itemBox:string;
+   itemName:string;
+   itemIntro:string;
+   说明栏装饰:string;
+   货币栏阴影:string;
+   goldBox:string;
+   gold_sign:string;
+   交易栏阴影:string;
+   交易栏背景:string;
+   buyNum_text:string;
+   buyNum_text2:string;
+   购买数量背景:string;
+   buyNum:string;
+   确定按钮阴影:string;
+   取消按钮阴影:string;
+   交易栏装饰:string;
+   typeTab:string;
+   物品持有数量:string;
+   商店标题:string;
+   商店英文标题:string;
 }
 
 /**

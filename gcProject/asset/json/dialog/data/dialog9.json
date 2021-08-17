@@ -52,7 +52,7 @@
         "column": 1,
         "columnSpaceing": 5,
         "row": 2,
-        "rowSpaceing": 40,
+        "rowSpaceing": 10,
         "image1": "asset/image/picture/ui/dialog/dialogNormal.png",
         "grid9img1": "0,0,0,0,0",
         "image2": "asset/image/picture/ui/dialog/dialogOnDown.png",

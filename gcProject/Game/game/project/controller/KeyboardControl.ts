@@ -216,6 +216,8 @@ class KeyboardControl {
                                     GameAudio.playBGM("asset/audio/_uwol/building/bar.mp3");
                                 } else if (name[i] == "church") {
                                     GameAudio.playBGM("asset/audio/_uwol/building/church.mp3");
+                                } else if (name[i] == "market") {
+                                    GameUI.show(8004);
                                 }
 
                                 break;
