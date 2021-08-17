@@ -106,7 +106,6 @@ var KeyboardControl = (function () {
                             if (Math.abs(x - meta_2.buildings[i_2].x) < 3 && Math.abs(y - meta_2.buildings[i_2].y) < 3) {
                                 if (name[i_2] == "dry dock") {
                                     GameCommand.startCommonCommand(3);
-                                    alert(1);
                                 }
                                 else if (name[i_2] == "harbor") {
                                     meta_2 = hash_ports_meta_data[Roguelike.port_id + 1];

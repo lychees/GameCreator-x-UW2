@@ -20,18 +20,19 @@ var GUI_Ships = (function (_super) {
         Roguelike.selected_ship = selectedItem;
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
+        GameUI.show(8003);
     };
     GUI_Ships.prototype.refreshItems = function (state) {
         if (state != 0)
             return;
         var arr = Roguelike.ships.map(function (ship, index) {
             var d = new ListItem_1011;
-            d.no = (index + 1).toString();
+            d.no = index.toString();
             d.dateStr = "----/----";
-            d.icon = "asset/image/_uw2/ships/" + ship.name.toLowerCase() + ".png";
-            console.log(d.icon);
+            d.icon = "asset/image/_uw2/ships/" + ship.type.toLowerCase() + ".png";
             d.itemName = i18n.chinese[ship.name];
             d.description = "\n\u4EF7\u683C\uFF1A" + ship.price;
+            d.info = ship;
             return d;
         });
         if (Object.keys(Roguelike.discoveries).length === 0) {

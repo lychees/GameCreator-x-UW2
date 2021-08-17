@@ -2123,11 +2123,16 @@ class GUI_8002 extends GUI_BASE {
    截图背景:UIBitmap;
    分割线:UIBitmap;
    icon:UIBitmap;
+   itemType:UIString;
+   type:UIString;
    itemName:UIString;
-   shipName:UIString;
-   maxHP:UIString;
-   power:UIString;
-   members:UIString;
+   durability:UIString;
+   sailing_power:UIString;
+   crew:UIString;
+   ship_name:UIString;
+   price:UIString;
+   capacity:UIString;
+   armor_power:UIString;
    constructor(){
       super(8002);
    }
@@ -2143,23 +2148,33 @@ class ListItem_8002 extends UIListItemData {
    截图背景:string;
    分割线:string;
    icon:string;
+   itemType:string;
+   type:string;
    itemName:string;
-   shipName:string;
-   maxHP:string;
-   power:string;
-   members:string;
+   durability:string;
+   sailing_power:string;
+   crew:string;
+   ship_name:string;
+   price:string;
+   capacity:string;
+   armor_power:string;
 }
 
 /**
- * 8003- [BASE]
+ * 8003-船只整备界面 [BASE]
  */
 class GUI_8003 extends GUI_BASE {
-
+   界面背景:UIBitmap;
+   货物:UIButton;
+   甲板:UIButton;
+   船舱:UIButton;
+   船员:UIButton;
    constructor(){
       super(8003);
    }
 }
 class ListItem_8003 extends UIListItemData {
+   界面背景:string;
 
 }
 

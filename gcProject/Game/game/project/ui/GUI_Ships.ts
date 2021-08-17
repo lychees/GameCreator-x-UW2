@@ -1,7 +1,3 @@
-/**
- * 存档界面
- * Created by 黑暗之神KDS on 2020-09-15 14:01:31.
- */
 class GUI_Ships extends GUI_8001 {
     constructor() {
         super();
@@ -33,10 +29,11 @@ class GUI_Ships extends GUI_8001 {
         // 打开8002号界面
         // 额嗯，为了知道你打开了哪艘船，所以需要一个临时变量。
         // 这里暂且用到了这个，到时候你可以改。
-        const selectedItem = this.list.selectedItem;
+        const selectedItem = this.list.selectedItem;        
         Roguelike.selected_ship = selectedItem;
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
+        GameUI.show(8003);
     }
 
     // static onDiscoveredItem(ui: GUI_1011, data: ListItem_1011, index: number) {
@@ -58,12 +55,12 @@ class GUI_Ships extends GUI_8001 {
         const arr = Roguelike.ships.map((ship: any, index: number) => {
             // 创建对应的背包物品项数据，该项数据由系统自动生成
             const d = new ListItem_1011;
-            d.no = (index + 1).toString();
+            d.no = index.toString();
             d.dateStr = "----/----";
-            d.icon = `asset/image/_uw2/ships/${ship.name.toLowerCase()}.png`;
-            console.log(d.icon);
+            d.icon = `asset/image/_uw2/ships/${ship.type.toLowerCase()}.png`;            
             d.itemName = i18n.chinese[ship.name]; // 设置名称
             d.description = `\n价格：${ship.price}`;
+            d.info = ship;
             return d;
         });
         // 如果没有道具的话：追加一个空项

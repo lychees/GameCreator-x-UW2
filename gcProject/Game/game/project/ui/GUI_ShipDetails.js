@@ -10,9 +10,14 @@ var GUI_ShipDetails = (function (_super) {
         this.on(EventObject.DISPLAY, this, this.onDisplay);
     }
     GUI_ShipDetails.prototype.onDisplay = function () {
-        console.log(Roguelike.selected_ship);
         this.icon.image = Roguelike.selected_ship.icon;
-        this.shipName.text = Roguelike.selected_ship.itemName;
+        this.ship_name.text = Roguelike.selected_ship.info.name;
+        this.type.text = i18n.chinese[Roguelike.selected_ship.info.type];
+        this.price.text = Roguelike.selected_ship.info.price;
+        this.durability.text = Roguelike.selected_ship.info.durability + '/' + Roguelike.selected_ship.info.max_durability;
+        this.crew.text = Roguelike.selected_ship.info.crew + '/' + Roguelike.selected_ship.info.max_crew;
+        this.capacity.text = Roguelike.selected_ship.info.cargoes.total + '/' + Roguelike.selected_ship.info.capacity;
+        this.sailing_power.text = Roguelike.selected_ship.info.sailing_power;
     };
     return GUI_ShipDetails;
 }(GUI_8002));

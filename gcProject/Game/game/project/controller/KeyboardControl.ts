@@ -195,8 +195,7 @@ class KeyboardControl {
                                   // Game.player.variable.setString(1, "这里是 " + i18n.chinese[meta.name] + " 的 " + i18n.chinese[name[i]]);
                                  // GameCommand.startCommonCommand(1);
                                 if (name[i] == "dry dock") {
-                                    GameCommand.startCommonCommand(3);
-                                    alert(1);
+                                    GameCommand.startCommonCommand(3);                                    
                                 } else if (name[i] == "harbor") {
                                     meta = hash_ports_meta_data[Roguelike.port_id+1];
                                     Roguelike.on_ocean = true;

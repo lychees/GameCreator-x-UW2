@@ -13,42 +13,87 @@ namespace Roguelike{
     export let ships = [
         {
             'name': 'Balsa',
-            'model': 'Balsa',
-            'durability': 30,
-            'tacking': 70,
-            'power': 80,
-            'capacity': 50,
-            'max_guns': 10,
-            'min_crew': 5,
-            'max_crew': 20,
+            'type': 'Balsa',
             'price': 1200,
-            'position': 'ocean',
+            
+            'max_durability': 30,
+            'durability': 30,
+
+            'max_crew': 20,
+            'min_crew': 5,
+            'crew': 0,
+
+            'sailing_power': 80,
+            'square_rig': 0,
+            'fore-and-aft_rig': 80,
+
+            'tacking': 70,
+            'max_guns': 10,
+                                                                            
+            'state': 'active',
+            'capacity': 50,
+            'cargoes': {
+                'total': 0,
+                'food': 0,
+                'water': 0,
+                'wood': 0
+            }
         },
         {
             'name': 'Sloop',
-            'model': 'Sloop',
-            'durability': 50,
-            'tacking': 95,
-            'power': 85,
-            'capacity': 250,
-            'max_guns': 40,
-            'min_crew': 5,
-            'max_crew': 60,
+            'type': 'Sloop',
             'price': 16000,
-            'position': 'ocean',
+            
+            'max_durability': 50,
+            'durability': 50,
+
+            'max_crew': 60,
+            'min_crew': 5,
+            'crew': 0,
+
+            'sailing_power': 85,
+            'square_rig': 0,
+            'fore-and-aft_rig': 85,
+
+            'tacking': 95,            
+            'max_guns': 40,
+            
+            'state': 'active',
+            'capacity': 250,
+            'cargoes': {
+                'total': 0,
+                'food': 0,
+                'water': 0,
+                'wood': 0
+            }
         },
         {
             'name': 'Venetian Galeass',
-            'model': 'Venetian Galeass',
-            'durability': 90,
-            'tacking': 70,
-            'power': 70,
-            'capacity': 950,
-            'max_guns': 50,
-            'min_crew': 60,
-            'max_crew': 400,
+            'type': 'Venetian Galeass',
             'price': 64000,
-            'position': 'ocean',
+
+            'max_durability': 90,
+            'durability': 90,
+
+            'max_crew': 400,
+            'min_crew': 60,
+            'crew': 0,
+
+            'sailing_power': 70,
+            'square_rig': 0,
+            'fore-and-aft_rig': 70,
+
+            'tacking': 70,
+            'max_guns': 50,
+            
+            'state': 'active',
+            'capacity': 950,
+            'cargoes': {
+                'total': 0,
+                'food': 0,
+                'water': 0,
+                'wood': 0
+            }
         },
     ];
 
