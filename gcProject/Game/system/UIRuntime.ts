@@ -2124,6 +2124,7 @@ class GUI_8002 extends GUI_BASE {
    分割线:UIBitmap;
    icon:UIBitmap;
    itemName:UIString;
+   shipName:UIString;
    maxHP:UIString;
    power:UIString;
    members:UIString;
@@ -2143,6 +2144,7 @@ class ListItem_8002 extends UIListItemData {
    分割线:string;
    icon:string;
    itemName:string;
+   shipName:string;
    maxHP:string;
    power:string;
    members:string;

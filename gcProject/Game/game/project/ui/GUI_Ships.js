@@ -18,6 +18,7 @@ var GUI_Ships = (function (_super) {
     GUI_Ships.prototype.onItemClick = function () {
         var selectedItem = this.list.selectedItem;
         Roguelike.selected_ship = selectedItem;
+        GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
     };
     GUI_Ships.prototype.refreshItems = function (state) {

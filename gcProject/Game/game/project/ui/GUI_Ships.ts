@@ -35,6 +35,7 @@ class GUI_Ships extends GUI_8001 {
         // 这里暂且用到了这个，到时候你可以改。
         const selectedItem = this.list.selectedItem;
         Roguelike.selected_ship = selectedItem;
+        GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
     }
 
