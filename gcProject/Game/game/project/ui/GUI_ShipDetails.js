@@ -16,7 +16,7 @@ var GUI_ShipDetails = (function (_super) {
         this.price.text = Roguelike.selected_ship.info.price;
         this.durability.text = Roguelike.selected_ship.info.durability + '/' + Roguelike.selected_ship.info.max_durability;
         this.crew.text = Roguelike.selected_ship.info.crew + '/' + Roguelike.selected_ship.info.max_crew;
-        this.capacity.text = Roguelike.selected_ship.info.cargoes.total + '/' + Roguelike.selected_ship.info.capacity;
+        this.capacity.text = Roguelike.selected_ship.info.cargoes.Total + '/' + Roguelike.selected_ship.info.capacity;
         this.sailing_power.text = Roguelike.selected_ship.info.sailing_power;
     };
     return GUI_ShipDetails;

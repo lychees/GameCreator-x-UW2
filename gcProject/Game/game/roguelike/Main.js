@@ -8,9 +8,26 @@ var Roguelike;
     Roguelike.on_ocean = false;
     Roguelike.discoveries = {};
     Roguelike.selected_ship = {};
+    Roguelike.selected_cargo = {};
+    Roguelike.selected_ship_id = 0;
     Roguelike.first_battle = false;
     Roguelike.in_crew_menu = false;
     Roguelike.standby_crews = 100;
+    Roguelike.standby_cargoes = {
+        'Total': 30,
+        'Food': {
+            'count': 10,
+            'buy_price': 5
+        },
+        'Water': {
+            'count': 10,
+            'buy_price': 0
+        },
+        'Cheese': {
+            'count': 10,
+            'buy_price': 100
+        }
+    };
     Roguelike.ships = [
         {
             'name': 'Balsa',
@@ -29,10 +46,19 @@ var Roguelike;
             'state': 'active',
             'capacity': 50,
             'cargoes': {
-                'total': 0,
-                'food': 0,
-                'water': 0,
-                'wood': 0
+                'Total': 30,
+                'Food': {
+                    'count': 10,
+                    'buy_price': 5
+                },
+                'Water': {
+                    'count': 10,
+                    'buy_price': 0
+                },
+                'Fish': {
+                    'count': 10,
+                    'buy_price': 100
+                }
             }
         },
         {
@@ -52,10 +78,19 @@ var Roguelike;
             'state': 'active',
             'capacity': 250,
             'cargoes': {
-                'total': 0,
-                'food': 0,
-                'water': 0,
-                'wood': 0
+                'Total': 30,
+                'Food': {
+                    'count': 10,
+                    'buy_price': 5
+                },
+                'Water': {
+                    'count': 10,
+                    'buy_price': 0
+                },
+                'Fish': {
+                    'count': 10,
+                    'buy_price': 100
+                }
             }
         },
         {
@@ -75,10 +110,19 @@ var Roguelike;
             'state': 'active',
             'capacity': 950,
             'cargoes': {
-                'total': 0,
-                'food': 0,
-                'water': 0,
-                'wood': 0
+                'Total': 30,
+                'Food': {
+                    'count': 10,
+                    'buy_price': 5
+                },
+                'Water': {
+                    'count': 10,
+                    'buy_price': 0
+                },
+                'Fish': {
+                    'count': 10,
+                    'buy_price': 100
+                }
             }
         },
     ];
@@ -169,7 +213,7 @@ var Roguelike;
             if (this.level == null) {
                 this.init();
             }
-            this.map = new Roguelike.Map(w, h);
+            this.map = new Map(w, h);
             this.level = level;
             this.map.gen(level);
             this.map.draw();

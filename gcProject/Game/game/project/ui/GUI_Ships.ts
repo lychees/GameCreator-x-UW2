@@ -31,6 +31,7 @@ class GUI_Ships extends GUI_8001 {
         // 这里暂且用到了这个，到时候你可以改。
         const selectedItem = this.list.selectedItem;        
         Roguelike.selected_ship = selectedItem;
+        Roguelike.selected_ship_id = Number(selectedItem.no);
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
         if (Roguelike.in_crew_menu == true) {
@@ -56,6 +57,7 @@ class GUI_Ships extends GUI_8001 {
     private refreshItems(state: number) {
         if (state != 0) return;
         // 遍历玩家自定义数据-背包
+        
         const arr = Roguelike.ships.map((ship: any, index: number) => {
             // 创建对应的背包物品项数据，该项数据由系统自动生成
             const d = new ListItem_1011;

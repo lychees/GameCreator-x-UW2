@@ -8,9 +8,27 @@ namespace Roguelike{
     export let on_ocean = false;
     export let discoveries = {};
     export let selected_ship: any = {};
+    export let selected_cargo: any = {};
+    export let selected_ship_id = 0;
     export let first_battle = false;
     export let in_crew_menu = false;
     export let standby_crews = 100;
+
+    export let standby_cargoes = {
+        'Total': 30,
+        'Food': {
+            'count': 10,
+            'buy_price': 5
+        },
+        'Water': {
+            'count': 10,
+            'buy_price': 0
+        },
+        'Cheese': {
+            'count': 10,
+            'buy_price': 100
+        }
+    };
 
     export let ships = [
         {
@@ -35,10 +53,19 @@ namespace Roguelike{
             'state': 'active',
             'capacity': 50,
             'cargoes': {
-                'total': 0,
-                'food': 0,
-                'water': 0,
-                'wood': 0
+                'Total': 30,
+                'Food': {
+                    'count': 10,
+                    'buy_price': 5
+                },
+                'Water': {
+                    'count': 10,
+                    'buy_price': 0
+                },
+                'Fish': {
+                    'count': 10,
+                    'buy_price': 100
+                }
             }
         },
         {
@@ -63,10 +90,19 @@ namespace Roguelike{
             'state': 'active',
             'capacity': 250,
             'cargoes': {
-                'total': 0,
-                'food': 0,
-                'water': 0,
-                'wood': 0
+                'Total': 30,
+                'Food': {
+                    'count': 10,
+                    'buy_price': 5
+                },
+                'Water': {
+                    'count': 10,
+                    'buy_price': 0
+                },
+                'Fish': {
+                    'count': 10,
+                    'buy_price': 100
+                }
             }
         },
         {
@@ -91,10 +127,19 @@ namespace Roguelike{
             'state': 'active',
             'capacity': 950,
             'cargoes': {
-                'total': 0,
-                'food': 0,
-                'water': 0,
-                'wood': 0
+                'Total': 30,
+                'Food': {
+                    'count': 10,
+                    'buy_price': 5
+                },
+                'Water': {
+                    'count': 10,
+                    'buy_price': 0
+                },
+                'Fish': {
+                    'count': 10,
+                    'buy_price': 100
+                }
             }
         },
     ];

@@ -2186,7 +2186,6 @@ class GUI_8004 extends GUI_BASE {
    交易栏阴影:UIBitmap;
    交易栏背景:UIBitmap;
    buyNum_text:UIString;
-   buyNum_text2:UIString;
    subNumBtn:UIButton;
    addNumBtn:UIButton;
    maxNumBtn:UIButton;
@@ -2209,7 +2208,6 @@ class ListItem_8004 extends UIListItemData {
    交易栏阴影:string;
    交易栏背景:string;
    buyNum_text:string;
-   buyNum_text2:string;
    购买数量背景:string;
    确定按钮阴影:string;
    取消按钮阴影:string;
@@ -2222,55 +2220,155 @@ class ListItem_8004 extends UIListItemData {
 }
 
 /**
- * 8005- [BASE]
+ * 8005-货物列表界面 [BASE]
  */
 class GUI_8005 extends GUI_BASE {
-
+   黑色半透明背景:UIBitmap;
+   已发现物品界面阴影:UIBitmap;
+   已发现物品界面背景:UIBitmap;
+   花纹:UIBitmap;
+   延长线:UIBitmap;
+   已发现物品标题:UIString;
+   已发现物品英文标题:UIString;
+   list:UIList; // Item=1011
+   关闭已发现物品界面按钮:UIButton;
    constructor(){
       super(8005);
    }
 }
 class ListItem_8005 extends UIListItemData {
+   黑色半透明背景:string;
+   已发现物品界面阴影:string;
+   已发现物品界面背景:string;
+   花纹:string;
+   延长线:string;
+   已发现物品标题:string;
+   已发现物品英文标题:string;
+   list:UIListItemData[];
 
 }
 
 /**
- * 8006- [BASE]
+ * 8006-分配货物界面 [BASE]
  */
 class GUI_8006 extends GUI_BASE {
-
+   buyBoxArea:UIRoot;
+   交易栏阴影:UIBitmap;
+   交易栏背景:UIBitmap;
+   buyNum_text:UIString;
+   subNumBtn:UIButton;
+   addNumBtn:UIButton;
+   maxNumBtn:UIButton;
+   购买数量背景:UIBitmap;
+   确定按钮阴影:UIBitmap;
+   取消按钮阴影:UIBitmap;
+   sureBtn:UIButton;
+   cancelBtn:UIButton;
+   分割线:UIBitmap;
+   交易栏装饰:UIBitmap;
+   goldBox:UIBitmap;
+   standby:UIString;
+   文本:UIString;
+   delta:UIInput;
    constructor(){
       super(8006);
    }
 }
 class ListItem_8006 extends UIListItemData {
-
+   交易栏阴影:string;
+   交易栏背景:string;
+   buyNum_text:string;
+   购买数量背景:string;
+   确定按钮阴影:string;
+   取消按钮阴影:string;
+   分割线:string;
+   交易栏装饰:string;
+   goldBox:string;
+   standby:string;
+   文本:string;
+   delta:string;
 }
 
 /**
- * 8007- [BASE]
+ * 8007-买入货物界面 [BASE]
  */
 class GUI_8007 extends GUI_BASE {
-
+   buyBoxArea:UIRoot;
+   交易栏阴影:UIBitmap;
+   交易栏背景:UIBitmap;
+   buyNum_text:UIString;
+   subNumBtn:UIButton;
+   addNumBtn:UIButton;
+   maxNumBtn:UIButton;
+   购买数量背景:UIBitmap;
+   确定按钮阴影:UIBitmap;
+   取消按钮阴影:UIBitmap;
+   sureBtn:UIButton;
+   cancelBtn:UIButton;
+   分割线:UIBitmap;
+   交易栏装饰:UIBitmap;
+   goldBox:UIBitmap;
+   standby:UIString;
+   文本:UIString;
+   delta:UIInput;
    constructor(){
       super(8007);
    }
 }
 class ListItem_8007 extends UIListItemData {
-
+   交易栏阴影:string;
+   交易栏背景:string;
+   buyNum_text:string;
+   购买数量背景:string;
+   确定按钮阴影:string;
+   取消按钮阴影:string;
+   分割线:string;
+   交易栏装饰:string;
+   goldBox:string;
+   standby:string;
+   文本:string;
+   delta:string;
 }
 
 /**
- * 8008- [BASE]
+ * 8008-售出货物界面 [BASE]
  */
 class GUI_8008 extends GUI_BASE {
-
+   buyBoxArea:UIRoot;
+   交易栏阴影:UIBitmap;
+   交易栏背景:UIBitmap;
+   buyNum_text:UIString;
+   subNumBtn:UIButton;
+   addNumBtn:UIButton;
+   maxNumBtn:UIButton;
+   购买数量背景:UIBitmap;
+   确定按钮阴影:UIBitmap;
+   取消按钮阴影:UIBitmap;
+   sureBtn:UIButton;
+   cancelBtn:UIButton;
+   分割线:UIBitmap;
+   交易栏装饰:UIBitmap;
+   goldBox:UIBitmap;
+   standby:UIString;
+   文本:UIString;
+   delta:UIInput;
    constructor(){
       super(8008);
    }
 }
 class ListItem_8008 extends UIListItemData {
-
+   交易栏阴影:string;
+   交易栏背景:string;
+   buyNum_text:string;
+   购买数量背景:string;
+   确定按钮阴影:string;
+   取消按钮阴影:string;
+   分割线:string;
+   交易栏装饰:string;
+   goldBox:string;
+   standby:string;
+   文本:string;
+   delta:string;
 }
 
 /**
