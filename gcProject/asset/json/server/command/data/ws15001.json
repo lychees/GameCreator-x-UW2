@@ -1641,7 +1641,7 @@
             "// 当前的事件触发器：trigger: CommandTrigger;\nGameUI.get(8001).onDisplay();",
             "GameUI.get(8001).onDisplay();\n",
             {
-                "___cmdID": "71732341750_0.22145326421711053"
+                "___cmdID": "71736916601_0.695430498511358"
             }
         ],
         [
@@ -1755,6 +1755,15 @@
                 "49821586470_0.5086891336665356": false
             },
             "71657844527_0.1451863634143118"
+        ],
+        [
+            20,
+            "刷新舰船界面",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nGameUI.get(8002).onDisplay();",
+            "GameUI.get(8002).onDisplay();\n",
+            {
+                "___cmdID": "71736695309_0.8679252863277833"
+            }
         ],
         [
             14,
@@ -1871,10 +1880,10 @@
         [
             20,
             "刷新舰船界面",
-            "// 当前的事件触发器：trigger: CommandTrigger;\nGameUI.get(8001).onDisplay();",
-            "GameUI.get(8001).onDisplay();\n",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nGameUI.get(8002).onDisplay();",
+            "GameUI.get(8002).onDisplay();\n",
             {
-                "___cmdID": "71733348538_0.5943177749949609"
+                "___cmdID": "71736858791_0.3750609073605764"
             }
         ],
         [
@@ -1991,11 +2000,11 @@
         ],
         [
             20,
-            "刷新货物界面",
-            "// 当前的事件触发器：trigger: CommandTrigger;\nGameUI.get(8005).onDisplay();",
-            "GameUI.get(8005).onDisplay();\n",
+            "刷新舰船界面",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nGameUI.get(8002).onDisplay();",
+            "GameUI.get(8002).onDisplay();\n",
             {
-                "___cmdID": "71733355188_0.08144671270360271"
+                "___cmdID": "71736861154_0.7081534593321586"
             }
         ],
         [

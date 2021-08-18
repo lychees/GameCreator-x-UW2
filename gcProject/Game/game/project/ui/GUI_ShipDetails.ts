@@ -11,15 +11,16 @@ class GUI_ShipDetails extends GUI_8002 {
      * 当界面显示时事件
      */
     private onDisplay() {
-        this.icon.image = Roguelike.selected_ship.icon;
-        this.ship_name.text = Roguelike.selected_ship.info.name;
-        this.type.text = i18n.chinese[Roguelike.selected_ship.info.type];
-        this.price.text = Roguelike.selected_ship.info.price;
+        let ship = Roguelike.ships[Roguelike.selected_ship_id];
+        this.icon.image = `asset/image/_uw2/ships/${ship.type.toLowerCase()}.png`;
+        this.ship_name.text = ship.name;
+        this.type.text = i18n.chinese[ship.type];
+        this.price.text = ship.price;
 
-        this.durability.text = Roguelike.selected_ship.info.durability + '/' + Roguelike.selected_ship.info.max_durability;
-        this.crew.text = Roguelike.selected_ship.info.crew + '/' + Roguelike.selected_ship.info.max_crew;
-        this.capacity.text = Roguelike.selected_ship.info.cargoes.Total + '/' + Roguelike.selected_ship.info.capacity;
+        this.durability.text = ship.durability + '/' + ship.max_durability;
+        this.crew.text = ship.crew + '/' + ship.max_crew;
+        this.capacity.text = ship.cargoes.Total + '/' + ship.capacity;
 
-        this.sailing_power.text = Roguelike.selected_ship.info.sailing_power;
+        this.sailing_power.text = ship.sailing_power;
     }
 }

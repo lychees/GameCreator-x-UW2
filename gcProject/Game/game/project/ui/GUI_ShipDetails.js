@@ -10,14 +10,15 @@ var GUI_ShipDetails = (function (_super) {
         this.on(EventObject.DISPLAY, this, this.onDisplay);
     }
     GUI_ShipDetails.prototype.onDisplay = function () {
-        this.icon.image = Roguelike.selected_ship.icon;
-        this.ship_name.text = Roguelike.selected_ship.info.name;
-        this.type.text = i18n.chinese[Roguelike.selected_ship.info.type];
-        this.price.text = Roguelike.selected_ship.info.price;
-        this.durability.text = Roguelike.selected_ship.info.durability + '/' + Roguelike.selected_ship.info.max_durability;
-        this.crew.text = Roguelike.selected_ship.info.crew + '/' + Roguelike.selected_ship.info.max_crew;
-        this.capacity.text = Roguelike.selected_ship.info.cargoes.Total + '/' + Roguelike.selected_ship.info.capacity;
-        this.sailing_power.text = Roguelike.selected_ship.info.sailing_power;
+        var ship = Roguelike.ships[Roguelike.selected_ship_id];
+        this.icon.image = "asset/image/_uw2/ships/" + ship.type.toLowerCase() + ".png";
+        this.ship_name.text = ship.name;
+        this.type.text = i18n.chinese[ship.type];
+        this.price.text = ship.price;
+        this.durability.text = ship.durability + '/' + ship.max_durability;
+        this.crew.text = ship.crew + '/' + ship.max_crew;
+        this.capacity.text = ship.cargoes.Total + '/' + ship.capacity;
+        this.sailing_power.text = ship.sailing_power;
     };
     return GUI_ShipDetails;
 }(GUI_8002));

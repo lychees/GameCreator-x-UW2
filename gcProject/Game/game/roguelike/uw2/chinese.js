@@ -193,6 +193,8 @@ i18n.chinese = {
     'Cape Cod': '鳕鱼角',
     'Montevideo': '蒙拖维迪亚',
     'Forel': '法雷尔',
+    'Food': '食物',
+    'Water': '水',
     'Clove': '丁香',
     'Cinnamon': '肉桂',
     'Pepper': '胡椒',

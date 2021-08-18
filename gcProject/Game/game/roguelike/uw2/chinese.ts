@@ -210,6 +210,8 @@ i18n.chinese = {
     'Forel' : '法雷尔',
 
     // goods
+    'Food': '食物',
+    'Water': '水',
     'Clove' : '丁香',
     'Cinnamon' : '肉桂',
     'Pepper' : '胡椒',

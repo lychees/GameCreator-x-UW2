@@ -20,7 +20,8 @@ var GUI_Crews = (function (_super) {
     };
     GUI_Crews.prototype.onAddButtonClick = function () {
         var delta = Number(this.delta.text);
-        var up_limit = Math.min(Roguelike.selected_ship.info.max_crew - Roguelike.selected_ship.info.crew, Roguelike.standby_crews);
+        var ship = Roguelike.ships[Roguelike.selected_ship_id];
+        var up_limit = Math.min(ship.max_crew - ship.crew, Roguelike.standby_crews);
         if (delta == up_limit) {
             GameAudio.playSE(WorldData.disalbeSE);
         }
@@ -32,7 +33,8 @@ var GUI_Crews = (function (_super) {
     };
     GUI_Crews.prototype.onSubButtonClick = function () {
         var delta = Number(this.delta.text);
-        var up_limit = -Roguelike.selected_ship.info.crew;
+        var ship = Roguelike.ships[Roguelike.selected_ship_id];
+        var up_limit = -ship.crew;
         if (delta == up_limit) {
             GameAudio.playSE(WorldData.disalbeSE);
         }
@@ -44,20 +46,20 @@ var GUI_Crews = (function (_super) {
     };
     GUI_Crews.prototype.onMaxButtonClick = function () {
         GameAudio.playSE(WorldData.selectSE);
-        var delta = Number(this.delta.text);
-        delta = Math.min(Roguelike.selected_ship.info.max_crew - Roguelike.selected_ship.info.crew, Roguelike.standby_crews);
-        this.delta.text = delta;
+        var ship = Roguelike.ships[Roguelike.selected_ship_id];
+        this.delta.text = Math.min(ship.max_crew - ship.crew, Roguelike.standby_crews);
     };
     GUI_Crews.prototype.onSureButtonClick = function () {
         var delta = Math.floor(Number(this.delta.text));
-        var up_limit = Math.min(Roguelike.selected_ship.info.max_crew - Roguelike.selected_ship.info.crew, Roguelike.standby_crews);
+        var ship = Roguelike.ships[Roguelike.selected_ship_id];
+        var up_limit = Math.min(ship.max_crew - ship.crew, Roguelike.standby_crews);
         if (delta > up_limit)
             delta = up_limit;
-        var down_limit = -Roguelike.selected_ship.info.crew;
+        var down_limit = -ship.crew;
         if (delta < down_limit)
             delta = down_limit;
         Roguelike.standby_crews -= delta;
-        Roguelike.selected_ship.info.crew += delta;
+        ship.crew += delta;
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
         GameUI.get(8002).onDisplay();

@@ -16,7 +16,7 @@ var GUI_Cargoes = (function (_super) {
         this.refreshItems(0);
     };
     GUI_Cargoes.prototype.onItemClick = function () {
-        Roguelike.selected_cargo = this.list.selectedItem.info;
+        Roguelike.selected_cargo_name = this.list.selectedItem.name;
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8006);
     };
@@ -24,33 +24,34 @@ var GUI_Cargoes = (function (_super) {
         if (state != 0)
             return;
         var index = 0;
-        var cargoes = JSON.parse(JSON.stringify(Roguelike.standby_cargoes));
-        for (var name in Roguelike.ships[Roguelike.selected_ship_id].cargoes) {
-            if (cargoes[name] == null) {
-                cargoes[name] = JSON.parse(JSON.stringify(Roguelike.ships[Roguelike.selected_ship_id].cargoes[name]));
-                cargoes[name].ship_count = cargoes[name].count;
-                cargoes[name].count = 0;
+        var standby = Roguelike.standby_cargoes;
+        var ship = Roguelike.ships[Roguelike.selected_ship_id].cargoes;
+        for (var name in ship) {
+            if (standby[name] == null) {
+                standby[name] = JSON.parse(JSON.stringify(ship[name]));
+                standby[name].count = 0;
             }
-            else {
-                cargoes[name].ship_count = Roguelike.ships[Roguelike.selected_ship_id].cargoes[name].count;
+        }
+        for (var name in standby) {
+            if (ship[name] == null) {
+                ship[name] = JSON.parse(JSON.stringify(standby[name]));
+                ship[name].count = 0;
             }
         }
         var arr = [];
-        for (var name in cargoes) {
+        for (var name in standby) {
             if (name == 'Total')
                 continue;
-            var cargo = cargoes[name];
-            if (cargo.ship_count == null)
-                cargo.ship_count = 0;
+            if (ship[name].count == 0 && standby[name].count == 0)
+                continue;
             var i = new ListItem_1011;
             index += 1;
             i.no = index.toString();
             i.itemName = i18n.chinese[name];
-            i.dateStr = "库存:" + cargo.count + "  ";
-            i.dateStr += "在舰:" + cargo.ship_count;
+            i.dateStr = "库存:" + standby[name].count + "  ";
+            i.dateStr += "在舰:" + ship[name].count;
             i.description = "";
-            cargo.name = name;
-            i.info = cargo;
+            i.name = name;
             arr.push(i);
         }
         ;

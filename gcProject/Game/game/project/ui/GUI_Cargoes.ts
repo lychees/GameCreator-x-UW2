@@ -26,7 +26,7 @@ class GUI_Cargoes extends GUI_8005 {
      * 当项目点击时
      */
     private onItemClick() {        
-        Roguelike.selected_cargo = this.list.selectedItem.info;
+        Roguelike.selected_cargo_name = this.list.selectedItem.name;
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8006);        
     }
@@ -39,36 +39,40 @@ class GUI_Cargoes extends GUI_8005 {
         // 浅拷贝
         // let cargoes = Object.assign({}, Roguelike.standby_cargoes);
         // 深拷贝
-        let cargoes = JSON.parse(JSON.stringify(Roguelike.standby_cargoes));
+        let standby = Roguelike.standby_cargoes;
+        let ship = Roguelike.ships[Roguelike.selected_ship_id].cargoes;
         
-        for (let name in Roguelike.ships[Roguelike.selected_ship_id].cargoes) {
-            if (cargoes[name] == null) {
-                cargoes[name] = JSON.parse(JSON.stringify(Roguelike.ships[Roguelike.selected_ship_id].cargoes[name]));
-                cargoes[name].ship_count = cargoes[name].count;
-                cargoes[name].count = 0 ;
-            } else {
-                cargoes[name].ship_count = Roguelike.ships[Roguelike.selected_ship_id].cargoes[name].count;
+        for (let name in ship) {
+            if (standby[name] == null) {
+                standby[name] = JSON.parse(JSON.stringify(ship[name]));                
+                standby[name].count = 0;
+            }
+        }
+
+        for (let name in standby) {
+            if (ship[name] == null) {
+                ship[name] = JSON.parse(JSON.stringify(standby[name]));                
+                ship[name].count = 0;
             }
         }
 
         let arr = [];
          
-        for (let name in cargoes) {
+        for (let name in standby) {
             if (name == 'Total') continue;
-            let cargo = cargoes[name];        
-            if (cargo.ship_count == null) cargo.ship_count = 0;
+            
+            if (ship[name].count == 0 && standby[name].count == 0) continue;
             
             const i = new ListItem_1011;            
             index += 1;
             i.no = index.toString();
                         
             i.itemName = i18n.chinese[name];
-            i.dateStr = "库存:" + cargo.count + "  ";
-            i.dateStr += "在舰:" + cargo.ship_count;
+            i.dateStr = "库存:" + standby[name].count + "  ";
+            i.dateStr += "在舰:" + ship[name].count;
 
-            i.description = "";
-            cargo.name = name;
-            i.info = cargo;
+            i.description = "";            
+            i.name = name;
             arr.push(i); // 居然直接 push 不行？
         });
 

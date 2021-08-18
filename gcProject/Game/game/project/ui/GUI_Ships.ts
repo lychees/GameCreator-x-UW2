@@ -29,8 +29,7 @@ class GUI_Ships extends GUI_8001 {
         // 打开8002号界面
         // 额嗯，为了知道你打开了哪艘船，所以需要一个临时变量。
         // 这里暂且用到了这个，到时候你可以改。
-        const selectedItem = this.list.selectedItem;        
-        Roguelike.selected_ship = selectedItem;
+        const selectedItem = this.list.selectedItem;                
         Roguelike.selected_ship_id = Number(selectedItem.no);
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
@@ -66,7 +65,6 @@ class GUI_Ships extends GUI_8001 {
             d.icon = `asset/image/_uw2/ships/${ship.type.toLowerCase()}.png`;            
             d.itemName = i18n.chinese[ship.name]; // 设置名称
             d.description = `\n价格：${ship.price}`;
-            d.info = ship;
             return d;
         });
         // 如果没有道具的话：追加一个空项
