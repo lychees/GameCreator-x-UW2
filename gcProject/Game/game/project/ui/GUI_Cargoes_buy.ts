@@ -10,14 +10,14 @@ class GUI_Cargoes_buy extends GUI_8007 {
     }
 
     private uplimit() {
-        let standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
-        let ship = Roguelike.ships[Roguelike.selected_ship_id]; 
-        return Math.min(standby.count, ship.capacity - ship.cargoes.Total);
+        //let standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
+        //let ship = Roguelike.ships[Roguelike.selected_ship_id]; 
+        //return Math.min(standby.count, ship.capacity - ship.cargoes.Total);
+        return Roguelike.city_cargoes[Roguelike.selected_cargo_name].count;
     }
 
     private downlimit() {
-        let ship = Roguelike.ships[Roguelike.selected_ship_id]; 
-        return -ship.cargoes[Roguelike.selected_cargo_name].count;
+        return 0;
     }
 
     //------------------------------------------------------------------------------------------------------
@@ -25,8 +25,7 @@ class GUI_Cargoes_buy extends GUI_8007 {
     //------------------------------------------------------------------------------------------------------
     
     private onDisplay() {
-        let standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
-        this.standby.text = standby.count;
+        this.standby.text = Roguelike.city_cargoes[Roguelike.selected_cargo_name].count;        
     }
 
     private onAddButtonClick() {
@@ -67,17 +66,16 @@ class GUI_Cargoes_buy extends GUI_8007 {
     private onSureButtonClick() {
         let delta: number = Math.floor(Number(this.delta.text));
         let name = Roguelike.selected_cargo_name;
-        let standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
-        let ship = Roguelike.ships[Roguelike.selected_ship_id]; 
+        let standby = Roguelike.standby_cargoes[name];
+        
         
         let up_limit = this.uplimit(); if (delta > up_limit) delta = up_limit;
         let down_limit = this.downlimit(); if (delta < down_limit) delta = down_limit;
 
-        standby.count -= delta;
-        ship.cargoes[name].count += delta;
-        Roguelike.standby_cargoes.Total -= delta;
-        ship.cargoes.Total += delta;
-
+        standby.count += delta;
+        Roguelike.city_cargoes[name].count -= delta;
+        Roguelike.standby_cargoes.Total += delta;
+        
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
         GameUI.get(8005).onDisplay();

@@ -15,17 +15,13 @@ var GUI_Cargoes_buy = (function (_super) {
         this.cancelBtn.on(EventObject.CLICK, this, this.onCancelButtonClick);
     }
     GUI_Cargoes_buy.prototype.uplimit = function () {
-        var standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
-        var ship = Roguelike.ships[Roguelike.selected_ship_id];
-        return Math.min(standby.count, ship.capacity - ship.cargoes.Total);
+        return Roguelike.city_cargoes[Roguelike.selected_cargo_name].count;
     };
     GUI_Cargoes_buy.prototype.downlimit = function () {
-        var ship = Roguelike.ships[Roguelike.selected_ship_id];
-        return -ship.cargoes[Roguelike.selected_cargo_name].count;
+        return 0;
     };
     GUI_Cargoes_buy.prototype.onDisplay = function () {
-        var standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
-        this.standby.text = standby.count;
+        this.standby.text = Roguelike.city_cargoes[Roguelike.selected_cargo_name].count;
     };
     GUI_Cargoes_buy.prototype.onAddButtonClick = function () {
         var delta = Number(this.delta.text);
@@ -62,18 +58,16 @@ var GUI_Cargoes_buy = (function (_super) {
     GUI_Cargoes_buy.prototype.onSureButtonClick = function () {
         var delta = Math.floor(Number(this.delta.text));
         var name = Roguelike.selected_cargo_name;
-        var standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
-        var ship = Roguelike.ships[Roguelike.selected_ship_id];
+        var standby = Roguelike.standby_cargoes[name];
         var up_limit = this.uplimit();
         if (delta > up_limit)
             delta = up_limit;
         var down_limit = this.downlimit();
         if (delta < down_limit)
             delta = down_limit;
-        standby.count -= delta;
-        ship.cargoes[name].count += delta;
-        Roguelike.standby_cargoes.Total -= delta;
-        ship.cargoes.Total += delta;
+        standby.count += delta;
+        Roguelike.city_cargoes[name].count -= delta;
+        Roguelike.standby_cargoes.Total += delta;
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
         GameUI.get(8005).onDisplay();

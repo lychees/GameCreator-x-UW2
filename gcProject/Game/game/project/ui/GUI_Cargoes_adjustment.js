@@ -62,7 +62,7 @@ var GUI_Cargoes_adjustment = (function (_super) {
     GUI_Cargoes_adjustment.prototype.onSureButtonClick = function () {
         var delta = Math.floor(Number(this.delta.text));
         var name = Roguelike.selected_cargo_name;
-        var standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
+        var standby = Roguelike.standby_cargoes[name];
         var ship = Roguelike.ships[Roguelike.selected_ship_id];
         var up_limit = this.uplimit();
         if (delta > up_limit)

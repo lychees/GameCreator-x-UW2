@@ -46,11 +46,10 @@ var GUI_Cargoes = (function (_super) {
             var ships = Roguelike.ships;
             for (var _i = 0, ships_1 = ships; _i < ships_1.length; _i++) {
                 var ship = ships_1[_i];
-                console.log(ship);
                 for (var name in ship.cargoes) {
-                    console.log(name);
                     if (name == 'Total') {
                         standby.Total += ship.cargoes.Total;
+                        ship.cargoes.Total = 0;
                     }
                     else {
                         if (standby[name] == null) {

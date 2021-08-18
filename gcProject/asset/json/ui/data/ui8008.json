@@ -651,6 +651,6 @@
         ]
     },
     "id": 8008,
-    "instanceClassName": "GUI_Cargoes_adjustment",
+    "instanceClassName": "GUI_Cargoes_sell",
     "hasRootCommand": []
 }

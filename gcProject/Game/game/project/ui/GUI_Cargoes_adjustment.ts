@@ -67,7 +67,7 @@ class GUI_Cargoes_adjustment extends GUI_8006 {
     private onSureButtonClick() {
         let delta: number = Math.floor(Number(this.delta.text));
         let name = Roguelike.selected_cargo_name;
-        let standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
+        let standby = Roguelike.standby_cargoes[name];
         let ship = Roguelike.ships[Roguelike.selected_ship_id]; 
         
         let up_limit = this.uplimit(); if (delta > up_limit) delta = up_limit;
