@@ -335,52 +335,7 @@
                         "image": "",
                         "grid9": "10,10,10,10,0",
                         "flip": null,
-                        "pivotType": 0,
-                        "children": [
-                            {
-                                "id": "71657540484_0.9289573467489902",
-                                "condition": [],
-                                "type": "UIString",
-                                "name": "delta",
-                                "x": 0,
-                                "y": 0,
-                                "width": 48,
-                                "height": 17,
-                                "opacity": 1,
-                                "rotation": 0,
-                                "show": true,
-                                "mouseEventEnabledData": false,
-                                "materialData": [
-                                    {
-                                        "materials": []
-                                    }
-                                ],
-                                "mouseEventEnabledInEditor": true,
-                                "showOnEditor": true,
-                                "hasCommand": [],
-                                "isOpen": true,
-                                "text": "0",
-                                "fontSize": 16,
-                                "color": "#523731",
-                                "bold": true,
-                                "italic": false,
-                                "smooth": false,
-                                "align": 1,
-                                "valign": 1,
-                                "leading": 0,
-                                "letterSpacing": 0,
-                                "font": "思源黑体",
-                                "wordWrap": false,
-                                "overflow": 1,
-                                "shadowEnabled": false,
-                                "shadowColor": "#000000",
-                                "shadowDx": 1,
-                                "shadowDy": 1,
-                                "stroke": 0,
-                                "strokeColor": "#000000",
-                                "onChangeFragEvent": null
-                            }
-                        ]
+                        "pivotType": 0
                     },
                     {
                         "id": "71657540484_0.0006860707135047939",
@@ -691,6 +646,45 @@
                 "stroke": 0,
                 "strokeColor": "#000000",
                 "onChangeFragEvent": null
+            },
+            {
+                "id": "71712169194_0.24988236425880062",
+                "condition": [],
+                "type": "UIInput",
+                "name": "delta",
+                "x": 724,
+                "y": 537,
+                "width": 65,
+                "height": 30,
+                "opacity": 1,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": true,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "text": "0",
+                "fontSize": 16,
+                "color": "#000000",
+                "bold": false,
+                "italic": false,
+                "align": 1,
+                "leading": 0,
+                "font": "思源黑体",
+                "wordWrap": true,
+                "restrict": "",
+                "inputMode": 2,
+                "maxChars": 99999,
+                "shadowColor": "#000000",
+                "shadowDx": 1,
+                "shadowDy": 1,
+                "onEnterFragEvent": "\u000571712782268_0.03951296058462406\u0005[[20,\"\",\"\",\"\",{\"___cmdID\":\"71712237131_0.4741049230038197\"}]]"
             }
         ]
     },

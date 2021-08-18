@@ -23,7 +23,7 @@ class GUI_Crews extends GUI_8004 {
 
     private onAddButtonClick() {
         let delta: number = Number(this.delta.text);
-        let up_limit = Math.min(Roguelike.selected_ship.info.max_crew - Roguelike.selected_ship.info.crew, Roguelike.standby_crews);        
+        let up_limit = Math.min(Roguelike.selected_ship.info.max_crew - Roguelike.selected_ship.info.crew, Roguelike.standby_crews);
         if (delta == up_limit) {
             GameAudio.playSE(WorldData.disalbeSE);
         } else {        
@@ -56,7 +56,12 @@ class GUI_Crews extends GUI_8004 {
 
     private onSureButtonClick() {
         GameAudio.playSE(WorldData.selectSE);
-        let delta: number = Number(this.delta.text);
+        let delta: number = Math.floor(Number(this.delta.text));
+        let up_limit = Math.min(Roguelike.selected_ship.info.max_crew - Roguelike.selected_ship.info.crew, Roguelike.standby_crews);
+        if (delta > up_limit) delta = up_limit;
+        let down_limit = -Roguelike.selected_ship.info.crew;
+        if (delta < down_limit) delta = down_limit;
+
         Roguelike.standby_crews -= delta;
         Roguelike.selected_ship.info.crew += delta;
         this.delta.text = 0;        

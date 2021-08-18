@@ -51,6 +51,13 @@ var GUI_Crews = (function (_super) {
     GUI_Crews.prototype.onSureButtonClick = function () {
         GameAudio.playSE(WorldData.selectSE);
         var delta = Number(this.delta.text);
+        var up_limit = Math.min(Roguelike.selected_ship.info.max_crew - Roguelike.selected_ship.info.crew, Roguelike.standby_crews);
+        if (delta > up_limit)
+            delta = up_limit;
+        console.log(delta, '-', up_limit, '-', down_limit);
+        var down_limit = -Roguelike.selected_ship.info.crew;
+        if (delta < down_limit)
+            delta = down_limit;
         Roguelike.standby_crews -= delta;
         Roguelike.selected_ship.info.crew += delta;
         this.delta.text = 0;

@@ -2191,7 +2191,6 @@ class GUI_8004 extends GUI_BASE {
    addNumBtn:UIButton;
    maxNumBtn:UIButton;
    购买数量背景:UIBitmap;
-   delta:UIString;
    确定按钮阴影:UIBitmap;
    取消按钮阴影:UIBitmap;
    sureBtn:UIButton;
@@ -2201,6 +2200,7 @@ class GUI_8004 extends GUI_BASE {
    goldBox:UIBitmap;
    standby:UIString;
    文本:UIString;
+   delta:UIInput;
    constructor(){
       super(8004);
    }
@@ -2211,7 +2211,6 @@ class ListItem_8004 extends UIListItemData {
    buyNum_text:string;
    buyNum_text2:string;
    购买数量背景:string;
-   delta:string;
    确定按钮阴影:string;
    取消按钮阴影:string;
    分割线:string;
@@ -2219,6 +2218,7 @@ class ListItem_8004 extends UIListItemData {
    goldBox:string;
    standby:string;
    文本:string;
+   delta:string;
 }
 
 /**
