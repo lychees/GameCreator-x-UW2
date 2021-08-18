@@ -62,7 +62,6 @@ var GUI_Crews = (function (_super) {
         ship.crew += delta;
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
-        GameUI.get(8002).onDisplay();
     };
     GUI_Crews.prototype.onCancelButtonClick = function () {
         GameCommand.startCommonCommand(15001);

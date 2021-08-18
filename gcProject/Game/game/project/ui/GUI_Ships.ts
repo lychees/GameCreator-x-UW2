@@ -62,7 +62,7 @@ class GUI_Ships extends GUI_8001 {
             const d = new ListItem_1011;
             d.no = index.toString();
             d.dateStr = "----/----";
-            d.icon = `asset/image/_uw2/ships/${ship.type.toLowerCase()}.png`;            
+            d.icon = `asset/image/_uw2/ships/${ship.type.toLowerCase()}.png`;
             d.itemName = i18n.chinese[ship.name]; // 设置名称
             d.description = `\n价格：${ship.price}`;
             return d;

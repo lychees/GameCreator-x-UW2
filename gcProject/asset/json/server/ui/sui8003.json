@@ -147,6 +147,15 @@
         "commands": [
             [
                 [
+                    20,
+                    "",
+                    "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.cargoes_ui_type = \"adjust\";",
+                    "Roguelike.cargoes_ui_type = \"adjust\";\n",
+                    {
+                        "___cmdID": "71749529235_0.8137272759960215"
+                    }
+                ],
+                [
                     40010,
                     {
                         "49809728719_0.046619702255007": 0,

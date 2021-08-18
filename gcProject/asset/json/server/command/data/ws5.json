@@ -2,6 +2,16 @@
     "allowClient": false,
     "conditionSwitch": 1,
     "updateMode": false,
-    "commands": [],
+    "commands": [
+        [
+            20,
+            "",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nGameUI.get(8005).type = \"adjust\";",
+            "GameUI.get(8005).type = \"adjust\";\n",
+            {
+                "___cmdID": "71749452277_0.682088690770281"
+            }
+        ]
+    ],
     "id": 5
 }

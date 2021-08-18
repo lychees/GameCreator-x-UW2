@@ -217,7 +217,7 @@ class KeyboardControl {
                                 } else if (name[i] == "church") {
                                     GameAudio.playBGM("asset/audio/_uwol/building/church.mp3");
                                 } else if (name[i] == "market") {
-                                    GameUI.show(8004);
+                                    GameCommand.startCommonCommand(4);
                                 }
 
                                 break;

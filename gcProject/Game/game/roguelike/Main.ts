@@ -12,7 +12,20 @@ namespace Roguelike{
     export let first_battle = false;
     export let in_crew_menu = false;
     export let standby_crews = 100;
+    export let cargoes_ui_type = "";
 
+    export let city_cargoes = {        
+        'Cheese': {
+            'count': 100,
+            'buy_price': 100
+        }
+        ,
+        'Fish': {
+            'count': 100,
+            'buy_price': 100
+        }
+    };
+    
     export let standby_cargoes = {
         'Total': 30,
         'Food': {

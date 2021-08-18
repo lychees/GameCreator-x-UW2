@@ -12,6 +12,17 @@ var Roguelike;
     Roguelike.first_battle = false;
     Roguelike.in_crew_menu = false;
     Roguelike.standby_crews = 100;
+    Roguelike.cargoes_ui_type = "";
+    Roguelike.city_cargoes = {
+        'Cheese': {
+            'count': 100,
+            'buy_price': 100
+        },
+        'Fish': {
+            'count': 100,
+            'buy_price': 100
+        }
+    };
     Roguelike.standby_cargoes = {
         'Total': 30,
         'Food': {

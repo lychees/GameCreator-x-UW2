@@ -133,7 +133,7 @@ var KeyboardControl = (function () {
                                     GameAudio.playBGM("asset/audio/_uwol/building/church.mp3");
                                 }
                                 else if (name[i_2] == "market") {
-                                    GameUI.show(8004);
+                                    GameCommand.startCommonCommand(4);
                                 }
                                 break;
                             }
