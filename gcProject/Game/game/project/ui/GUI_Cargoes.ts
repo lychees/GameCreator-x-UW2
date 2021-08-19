@@ -97,7 +97,8 @@ class GUI_Cargoes extends GUI_8005 {
 
     private update(cargoes: any) {
 
-        console.log(Game.player.data);
+        //console.log(Game.player);
+        //console.log(ProjectPlayer);
         
         // 遍历货物
         let index = 0;

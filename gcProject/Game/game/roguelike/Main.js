@@ -16,26 +16,26 @@ var Roguelike;
     Roguelike.city_cargoes = {
         'Cheese': {
             'count': 100,
-            'buy_price': 100
+            'price': 100
         },
         'Fish': {
             'count': 100,
-            'buy_price': 100
+            'price': 100
         }
     };
     Roguelike.standby_cargoes = {
         'Total': 30,
         'Food': {
             'count': 10,
-            'buy_price': 5
+            'price': 5
         },
         'Water': {
             'count': 10,
-            'buy_price': 0
+            'price': 0
         },
         'Cheese': {
             'count': 10,
-            'buy_price': 100
+            'price': 100
         }
     };
     Roguelike.ships = [
@@ -59,15 +59,15 @@ var Roguelike;
                 'Total': 30,
                 'Food': {
                     'count': 10,
-                    'buy_price': 5
+                    'price': 5
                 },
                 'Water': {
                     'count': 10,
-                    'buy_price': 0
+                    'price': 0
                 },
                 'Fish': {
                     'count': 10,
-                    'buy_price': 100
+                    'price': 100
                 }
             }
         },
@@ -91,15 +91,15 @@ var Roguelike;
                 'Total': 30,
                 'Food': {
                     'count': 10,
-                    'buy_price': 5
+                    'price': 5
                 },
                 'Water': {
                     'count': 10,
-                    'buy_price': 0
+                    'price': 0
                 },
                 'Fish': {
                     'count': 10,
-                    'buy_price': 100
+                    'price': 100
                 }
             }
         },
@@ -123,15 +123,15 @@ var Roguelike;
                 'Total': 30,
                 'Food': {
                     'count': 10,
-                    'buy_price': 5
+                    'price': 5
                 },
                 'Water': {
                     'count': 10,
-                    'buy_price': 0
+                    'price': 0
                 },
                 'Fish': {
                     'count': 10,
-                    'buy_price': 100
+                    'price': 100
                 }
             }
         },

@@ -78,7 +78,8 @@ var GUI_Cargoes = (function (_super) {
         }
     };
     GUI_Cargoes.prototype.update = function (cargoes) {
-        console.log(Game.player.data);
+        console.log(Game.player);
+        console.log(ProjectPlayer);
         var index = 0;
         var standby = Roguelike.standby_cargoes;
         var ship = Roguelike.ships[Roguelike.selected_ship_id].cargoes;
@@ -105,7 +106,7 @@ var GUI_Cargoes = (function (_super) {
             }
             else if (Roguelike.cargoes_ui_type == "sell") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";
-                i.dateStr += "价格:" + (cargoes[name].price+10) + " ";
+                i.dateStr += "价格:" + (cargoes[name].price + 10) + " ";
                 i.description = "";
             }
             i.name = name;

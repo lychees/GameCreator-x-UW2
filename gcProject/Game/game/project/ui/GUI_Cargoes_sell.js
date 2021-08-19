@@ -61,7 +61,6 @@ var GUI_Cargoes_sell = (function (_super) {
         var delta = Math.floor(Number(this.delta.text));
         var name = Roguelike.selected_cargo_name;
         var standby = Roguelike.standby_cargoes[name];
-        var ship = Roguelike.ships[Roguelike.selected_ship_id];
         var up_limit = this.uplimit();
         if (delta > up_limit)
             delta = up_limit;
@@ -70,6 +69,7 @@ var GUI_Cargoes_sell = (function (_super) {
             delta = down_limit;
         standby.count -= delta;
         Roguelike.standby_cargoes.Total -= delta;
+        ProjectPlayer.increaseGold(standby.price * delta);
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
         GameUI.get(8005).onDisplay();

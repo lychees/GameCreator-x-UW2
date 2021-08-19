@@ -342,6 +342,136 @@
                 "textDy": 0,
                 "textStroke": 0,
                 "textStrokeColor": "#000000"
+            },
+            {
+                "id": "71804186186_0.8095718711694522",
+                "condition": [],
+                "type": "UIBitmap",
+                "name": "goldBox",
+                "x": 306,
+                "y": 591,
+                "width": 104,
+                "height": 34,
+                "opacity": 1,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": true,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "image": "asset/image/picture/ui/backpack/goldBg.png",
+                "grid9": "0,0,0,0,0",
+                "flip": null,
+                "pivotType": 0,
+                "children": [
+                    {
+                        "id": "71804186187_0.43090372035483115",
+                        "condition": [],
+                        "type": "UIString",
+                        "name": "gold_sign",
+                        "x": 68,
+                        "y": 10,
+                        "width": 15,
+                        "height": 17,
+                        "opacity": 1,
+                        "rotation": 0,
+                        "show": true,
+                        "mouseEventEnabledData": false,
+                        "materialData": [
+                            {
+                                "materials": []
+                            }
+                        ],
+                        "mouseEventEnabledInEditor": true,
+                        "showOnEditor": true,
+                        "hasCommand": [],
+                        "isOpen": true,
+                        "text": "G",
+                        "fontSize": 16,
+                        "color": "#bc810f",
+                        "bold": true,
+                        "italic": false,
+                        "smooth": false,
+                        "align": 0,
+                        "valign": 0,
+                        "leading": 0,
+                        "letterSpacing": 0,
+                        "font": "思源黑体",
+                        "wordWrap": true,
+                        "overflow": 0,
+                        "shadowEnabled": null,
+                        "shadowColor": "#000000",
+                        "shadowDx": 1,
+                        "shadowDy": 1,
+                        "stroke": 0,
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
+                    },
+                    {
+                        "id": "71804186187_0.9842306799136278",
+                        "condition": [],
+                        "type": "UICustomGameNumber",
+                        "name": "goldNum",
+                        "x": 14,
+                        "y": 10,
+                        "width": 52,
+                        "height": 14,
+                        "opacity": 1,
+                        "rotation": 0,
+                        "show": true,
+                        "mouseEventEnabledData": false,
+                        "materialData": [
+                            {
+                                "materials": []
+                            }
+                        ],
+                        "mouseEventEnabledInEditor": true,
+                        "showOnEditor": true,
+                        "hasCommand": [],
+                        "isOpen": true,
+                        "customData": [
+                            4,
+                            {
+                                "type": 0,
+                                "itemID": 0,
+                                "customAttrName": ""
+                            },
+                            [
+                                {
+                                    "42658697920_0.521797091125876": 0,
+                                    "42658755593_0.30830009866665464": 0,
+                                    "42658786591_0.003637264112336336": ""
+                                }
+                            ]
+                        ],
+                        "previewNum": 4,
+                        "previewFixed": 0,
+                        "fontSize": 16,
+                        "color": "#3c3c48",
+                        "bold": true,
+                        "italic": false,
+                        "smooth": false,
+                        "align": 2,
+                        "valign": 0,
+                        "leading": 0,
+                        "letterSpacing": 0,
+                        "font": "思源黑体",
+                        "wordWrap": true,
+                        "overflow": 0,
+                        "shadowEnabled": null,
+                        "shadowColor": "#000000",
+                        "shadowDx": 1,
+                        "shadowDy": 1,
+                        "stroke": 0,
+                        "strokeColor": "#000000"
+                    }
+                ]
             }
         ]
     },

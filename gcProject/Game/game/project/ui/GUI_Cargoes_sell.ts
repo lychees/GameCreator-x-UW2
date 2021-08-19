@@ -66,13 +66,15 @@ class GUI_Cargoes_sell extends GUI_8008 {
         let delta: number = Math.floor(Number(this.delta.text));
         let name = Roguelike.selected_cargo_name;
         let standby = Roguelike.standby_cargoes[name];
-        let ship = Roguelike.ships[Roguelike.selected_ship_id]; 
         
         let up_limit = this.uplimit(); if (delta > up_limit) delta = up_limit;
         let down_limit = this.downlimit(); if (delta < down_limit) delta = down_limit;
 
         standby.count -= delta;
         Roguelike.standby_cargoes.Total -= delta;
+
+        //Game.player.increaseGold(standby.price * delta);
+        ProjectPlayer.increaseGold(standby.price * delta);
 
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);

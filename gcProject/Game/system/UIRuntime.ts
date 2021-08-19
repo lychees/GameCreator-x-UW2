@@ -2232,6 +2232,9 @@ class GUI_8005 extends GUI_BASE {
    已发现物品英文标题:UIString;
    list:UIList; // Item=1011
    关闭已发现物品界面按钮:UIButton;
+   goldBox:UIBitmap;
+   gold_sign:UIString;
+   goldNum:UICustomGameNumber;
    constructor(){
       super(8005);
    }
@@ -2245,6 +2248,8 @@ class ListItem_8005 extends UIListItemData {
    已发现物品标题:string;
    已发现物品英文标题:string;
    list:UIListItemData[];
+   goldBox:string;
+   gold_sign:string;
 
 }
 
@@ -2311,8 +2316,6 @@ class GUI_8007 extends GUI_BASE {
    standby:UIString;
    文本:UIString;
    delta:UIInput;
-   gold_sign:UIString;
-   goldNum:UICustomGameNumber;
    constructor(){
       super(8007);
    }
@@ -2330,8 +2333,6 @@ class ListItem_8007 extends UIListItemData {
    standby:string;
    文本:string;
    delta:string;
-   gold_sign:string;
-
 }
 
 /**
