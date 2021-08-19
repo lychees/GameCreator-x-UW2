@@ -86,6 +86,11 @@ var GUI_Cargoes = (function (_super) {
                     }
                 }
             }
+            for (var name in standby) {
+                if (standby[name].count == 0) {
+                    delete standby[name];
+                }
+            }
             this.update(standby);
         }
     };

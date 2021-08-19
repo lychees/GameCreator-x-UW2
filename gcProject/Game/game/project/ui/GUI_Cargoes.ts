@@ -104,6 +104,12 @@ class GUI_Cargoes extends GUI_8005 {
                 }
             }
 
+            for (let name in standby) {
+                if (standby[name].count == 0) {
+                    delete standby[name];
+                }
+            }
+
             this.update(standby);
         }
     }
