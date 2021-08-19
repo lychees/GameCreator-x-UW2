@@ -13,7 +13,7 @@ var GUI_Ships = (function (_super) {
     }
     GUI_Ships.prototype.onDisplay = function () {
         UIList.focus = this.list;
-        this.refreshItems(0);
+        this.update();
     };
     GUI_Ships.prototype.onItemClick = function () {
         var selectedItem = this.list.selectedItem;
@@ -26,9 +26,7 @@ var GUI_Ships = (function (_super) {
             GameUI.show(8003);
         }
     };
-    GUI_Ships.prototype.refreshItems = function (state) {
-        if (state != 0)
-            return;
+    GUI_Ships.prototype.update = function () {
         var arr = Roguelike.ships.map(function (ship, index) {
             var d = new ListItem_1011;
             d.no = index.toString();

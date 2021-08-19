@@ -14,18 +14,12 @@ namespace Roguelike{
     export let standby_crews = 100;
     export let cargoes_ui_type = "";
 
+    export let villages_json = {};
+    export let hash_markets_price_details_json = {};
+
     export let city_cargoes = {        
-        'Cheese': {
-            'count': 100,
-            'price': 100
-        }
-        ,
-        'Fish': {
-            'count': 100,
-            'price': 100
-        }
-    };
-    
+    };    
+
     export let standby_cargoes = {
         'Total': 30,
         'Food': {
@@ -209,8 +203,6 @@ namespace Roguelike{
         return colorHex(c);
     }
 
-    export let villages_json = {};
-
     export var Main = {
         display: null,
         map: null,
@@ -268,6 +260,18 @@ namespace Roguelike{
             } else {
                 toPort(port_id);
             }
+
+            url = "asset/json/_uw2/hash_markets_price_details.json";
+
+            FileUtils.loadJsonFile(url, new Callback(function (json) {                
+                Roguelike.hash_markets_price_details_json = json;
+            }, this));
+            
+            /*if (on_ocean == true) {
+                toWorldMap(last_x, last_y);
+            } else {
+                toPort(port_id);
+            }*/
         },
 
         start_level: function(level) {

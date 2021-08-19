@@ -13,16 +13,9 @@ var Roguelike;
     Roguelike.in_crew_menu = false;
     Roguelike.standby_crews = 100;
     Roguelike.cargoes_ui_type = "";
-    Roguelike.city_cargoes = {
-        'Cheese': {
-            'count': 100,
-            'price': 100
-        },
-        'Fish': {
-            'count': 100,
-            'price': 100
-        }
-    };
+    Roguelike.villages_json = {};
+    Roguelike.hash_markets_price_details_json = {};
+    Roguelike.city_cargoes = {};
     Roguelike.standby_cargoes = {
         'Total': 30,
         'Food': {
@@ -177,7 +170,6 @@ var Roguelike;
         return colorHex(c);
     }
     Roguelike.mix = mix;
-    Roguelike.villages_json = {};
     Roguelike.Main = {
         display: null,
         map: null,
@@ -216,6 +208,10 @@ var Roguelike;
             else {
                 toPort(Roguelike.port_id);
             }
+            url = "asset/json/_uw2/hash_markets_price_details.json";
+            FileUtils.loadJsonFile(url, new Callback(function (json) {
+                Roguelike.hash_markets_price_details_json = json;
+            }, this));
         },
         start_level: function (level) {
             var w = 25;

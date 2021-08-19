@@ -18,6 +18,23 @@ class GUI_Cargoes extends GUI_8005 {
     /**
      * 当界面显示时事件
      */
+
+    private buyPrice(name: string) {      
+        let id = Roguelike.port_id;
+        let meta = hash_ports_meta_data[id+1];                        
+        let market = Roguelike.hash_markets_price_details_json[meta.regionId];
+        if (market[name] == null) return 0;
+        return market[name][0];
+    }
+
+    private sellPrice(name: string) {
+        let id = Roguelike.port_id;
+        let meta = hash_ports_meta_data[id+1];                        
+        let market = Roguelike.hash_markets_price_details_json[meta.regionId];
+        if (market[name] == null) return 0;
+        return market[name][1];
+    }
+
     private onDisplay() {
         // 设置焦点为道具列表
         UIList.focus = this.list;
@@ -45,15 +62,27 @@ class GUI_Cargoes extends GUI_8005 {
             this.update(standby);
         } else if (Roguelike.cargoes_ui_type == "buy") {
             
+            let id = Roguelike.port_id;
+            let meta = hash_ports_meta_data[id+1];                        
+            let market = Roguelike.hash_markets_price_details_json[meta.regionId];
+            
+            let cargoes = Roguelike.city_cargoes;
+            
+            for (let name in market.Available_items) {
+                cargoes[name] = {};
+                cargoes[name].count = 100;
+                cargoes[name].price = this.buyPrice(name);
+            }
             let standby = Roguelike.standby_cargoes;
-            for (let name in Roguelike.city_cargoes) {
+
+            for (let name in cargoes) {
                 if (standby[name] == null) {
-                    standby[name] = JSON.parse(JSON.stringify(Roguelike.city_cargoes[name]));                
+                    standby[name] = JSON.parse(JSON.stringify(cargoes[name]));
                     standby[name].count = 0;
                 }
             }
 
-            this.update(Roguelike.city_cargoes);
+            this.update(cargoes);
         } else if (Roguelike.cargoes_ui_type == "sell") {
 
             let standby = Roguelike.standby_cargoes;
@@ -127,11 +156,11 @@ class GUI_Cargoes extends GUI_8005 {
             } else if (Roguelike.cargoes_ui_type == "buy") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";
                 i.dateStr += "已采购:" + standby[name].count + " ";
-                i.dateStr += "价格:" + cargoes[name].price + " ";
+                i.dateStr += "价格:" + this.buyPrice(name) + " ";
                 i.description = "";
             } else if (Roguelike.cargoes_ui_type == "sell") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";                
-                i.dateStr += "价格:" + (cargoes[name].price+10) + " ";
+                i.dateStr += "价格:" + this.sellPrice(name) + " ";
                 i.description = "";
             }
             

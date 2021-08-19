@@ -21,6 +21,14 @@ var GUI_Cargoes_sell = (function (_super) {
     GUI_Cargoes_sell.prototype.downlimit = function () {
         return 0;
     };
+    GUI_Cargoes_sell.prototype.sellPrice = function (name) {
+        var id = Roguelike.port_id;
+        var meta = hash_ports_meta_data[id + 1];
+        var market = Roguelike.hash_markets_price_details_json[meta.regionId];
+        if (market[name] == null)
+            return 0;
+        return market[name][1];
+    };
     GUI_Cargoes_sell.prototype.onDisplay = function () {
         var standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
         this.standby.text = standby.count;
@@ -69,7 +77,7 @@ var GUI_Cargoes_sell = (function (_super) {
             delta = down_limit;
         standby.count -= delta;
         Roguelike.standby_cargoes.Total -= delta;
-        ProjectPlayer.increaseGold(standby.price * delta);
+        ProjectPlayer.increaseGold(this.sellPrice(name) * delta);
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
         GameUI.get(8005).onDisplay();

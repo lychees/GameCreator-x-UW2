@@ -18,6 +18,14 @@ class GUI_Cargoes_sell extends GUI_8008 {
         return 0;
     }
 
+    private sellPrice(name: string) {
+        let id = Roguelike.port_id;
+        let meta = hash_ports_meta_data[id+1];                        
+        let market = Roguelike.hash_markets_price_details_json[meta.regionId];
+        if (market[name] == null) return 0;
+        return market[name][1];
+    }
+
     //------------------------------------------------------------------------------------------------------
     // 事件
     //------------------------------------------------------------------------------------------------------
@@ -71,10 +79,8 @@ class GUI_Cargoes_sell extends GUI_8008 {
         let down_limit = this.downlimit(); if (delta < down_limit) delta = down_limit;
 
         standby.count -= delta;
-        Roguelike.standby_cargoes.Total -= delta;
-
-        //Game.player.increaseGold(standby.price * delta);
-        ProjectPlayer.increaseGold(standby.price * delta);
+        Roguelike.standby_cargoes.Total -= delta;        
+        ProjectPlayer.increaseGold(this.sellPrice(name) * delta);
 
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);

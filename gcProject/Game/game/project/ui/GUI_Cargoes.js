@@ -12,6 +12,22 @@ var GUI_Cargoes = (function (_super) {
         this.list.on(UIList.ITEM_CLICK, this, this.onItemClick);
         this.on(EventObject.DISPLAY, this, this.onDisplay);
     }
+    GUI_Cargoes.prototype.buyPrice = function (name) {
+        var id = Roguelike.port_id;
+        var meta = hash_ports_meta_data[id + 1];
+        var market = Roguelike.hash_markets_price_details_json[meta.regionId];
+        if (market[name] == null)
+            return 0;
+        return market[name][0];
+    };
+    GUI_Cargoes.prototype.sellPrice = function (name) {
+        var id = Roguelike.port_id;
+        var meta = hash_ports_meta_data[id + 1];
+        var market = Roguelike.hash_markets_price_details_json[meta.regionId];
+        if (market[name] == null)
+            return 0;
+        return market[name][1];
+    };
     GUI_Cargoes.prototype.onDisplay = function () {
         UIList.focus = this.list;
         if (Roguelike.cargoes_ui_type == "adjust") {
@@ -32,14 +48,23 @@ var GUI_Cargoes = (function (_super) {
             this.update(standby);
         }
         else if (Roguelike.cargoes_ui_type == "buy") {
+            var id = Roguelike.port_id;
+            var meta = hash_ports_meta_data[id + 1];
+            var market = Roguelike.hash_markets_price_details_json[meta.regionId];
+            var cargoes = Roguelike.city_cargoes;
+            for (var name in market.Available_items) {
+                cargoes[name] = {};
+                cargoes[name].count = 100;
+                cargoes[name].price = this.buyPrice(name);
+            }
             var standby = Roguelike.standby_cargoes;
-            for (var name in Roguelike.city_cargoes) {
+            for (var name in cargoes) {
                 if (standby[name] == null) {
-                    standby[name] = JSON.parse(JSON.stringify(Roguelike.city_cargoes[name]));
+                    standby[name] = JSON.parse(JSON.stringify(cargoes[name]));
                     standby[name].count = 0;
                 }
             }
-            this.update(Roguelike.city_cargoes);
+            this.update(cargoes);
         }
         else if (Roguelike.cargoes_ui_type == "sell") {
             var standby = Roguelike.standby_cargoes;
@@ -100,12 +125,12 @@ var GUI_Cargoes = (function (_super) {
             else if (Roguelike.cargoes_ui_type == "buy") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";
                 i.dateStr += "已采购:" + standby[name].count + " ";
-                i.dateStr += "价格:" + cargoes[name].price + " ";
+                i.dateStr += "价格:" + this.buyPrice(name) + " ";
                 i.description = "";
             }
             else if (Roguelike.cargoes_ui_type == "sell") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";
-                i.dateStr += "价格:" + (cargoes[name].price + 10) + " ";
+                i.dateStr += "价格:" + this.sellPrice(name) + " ";
                 i.description = "";
             }
             i.name = name;
