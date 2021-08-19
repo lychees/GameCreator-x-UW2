@@ -42,8 +42,8 @@
         [
             20,
             "",
-            "// 当前的事件触发器：trigger: CommandTrigger;\nGameCommand.startCommonCommand(15001);",
-            "GameCommand.startCommonCommand(15001);\n",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nif (Game.player.data.gold >= Roguelike.selected_ship.price) {\n    ProjectPlayer.increaseGold(-Roguelike.selected_ship.price);\n    Roguelike.ships.push(Roguelike.selected_ship);\n    Game.player.variable.setString(1, \"有眼光。\");\n    GameCommand.startCommonCommand(1);    \n} else {\n    GameAudio.playSE(ClientWorld.data.disalbeSE);\n    Game.player.variable.setString(1, \"钱不够。\");\n    GameCommand.startCommonCommand(1);    \n}\nGameCommand.startCommonCommand(15001);    ",
+            "if (Game.player.data.gold >= Roguelike.selected_ship.price) {\n    ProjectPlayer.increaseGold(-Roguelike.selected_ship.price);\n    Roguelike.ships.push(Roguelike.selected_ship);\n    Game.player.variable.setString(1, \"有眼光。\");\n    GameCommand.startCommonCommand(1);\n}\nelse {\n    GameAudio.playSE(ClientWorld.data.disalbeSE);\n    Game.player.variable.setString(1, \"钱不够。\");\n    GameCommand.startCommonCommand(1);\n}\nGameCommand.startCommonCommand(15001);\n",
             {
                 "___cmdID": "71828902038_0.8372648744260571"
             }

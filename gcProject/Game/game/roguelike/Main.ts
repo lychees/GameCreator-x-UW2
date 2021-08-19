@@ -9,6 +9,8 @@ namespace Roguelike{
     export let discoveries = {};
     export let selected_cargo_name = "";
     export let selected_ship_id = 0;
+    export let selected_ship = {};
+
     export let first_battle = false;
     export let in_crew_menu = false;
     export let standby_crews = 100;
@@ -23,8 +25,7 @@ namespace Roguelike{
     export let city_cargoes = {        
     };    
 
-    export let standby_cargoes = {
-        'Total': 30,
+    export let standby_cargoes = {        
         'Food': {
             'count': 10,
             'price': 5
@@ -39,119 +40,7 @@ namespace Roguelike{
         }
     };
 
-    export let ships = [
-        {
-            'name': 'Balsa',
-            'type': 'Balsa',
-            'price': 1200,
-            
-            'max_durability': 30,
-            'durability': 30,
-
-            'max_crew': 20,
-            'min_crew': 5,
-            'crew': 0,
-
-            'sailing_power': 80,
-            'square_rig': 0,
-            'fore-and-aft_rig': 80,
-
-            'tacking': 70,
-            'max_guns': 10,
-                                                                            
-            'state': 'active',
-            'capacity': 50,
-            'cargoes': {
-                'Total': 30,
-                'Food': {
-                    'count': 10,
-                    'price': 5
-                },
-                'Water': {
-                    'count': 10,
-                    'price': 0
-                },
-                'Fish': {
-                    'count': 10,
-                    'price': 100
-                }
-            }
-        },
-        {
-            'name': 'Sloop',
-            'type': 'Sloop',
-            'price': 16000,
-            
-            'max_durability': 50,
-            'durability': 50,
-
-            'max_crew': 60,
-            'min_crew': 5,
-            'crew': 0,
-
-            'sailing_power': 85,
-            'square_rig': 0,
-            'fore-and-aft_rig': 85,
-
-            'tacking': 95,            
-            'max_guns': 40,
-            
-            'state': 'active',
-            'capacity': 250,
-            'cargoes': {
-                'Total': 30,
-                'Food': {
-                    'count': 10,
-                    'price': 5
-                },
-                'Water': {
-                    'count': 10,
-                    'price': 0
-                },
-                'Fish': {
-                    'count': 10,
-                    'price': 100
-                }
-            }
-        },
-        {
-            'name': 'Venetian Galeass',
-            'type': 'Venetian Galeass',
-            'price': 64000,
-
-            'max_durability': 90,
-            'durability': 90,
-
-            'max_crew': 400,
-            'min_crew': 60,
-            'crew': 0,
-
-            'sailing_power': 70,
-            'square_rig': 0,
-            'fore-and-aft_rig': 70,
-
-            'tacking': 70,
-            'max_guns': 50,
-            
-            'state': 'active',
-            'capacity': 950,
-            'cargoes': {
-                'Total': 30,
-                'Food': {
-                    'count': 10,
-                    'price': 5
-                },
-                'Water': {
-                    'count': 10,
-                    'price': 0
-                },
-                'Fish': {
-                    'count': 10,
-                    'price': 100
-                }
-            }
-        },
-    ];
+    export let ships = [];
 
     
     // 地块
@@ -236,6 +125,7 @@ namespace Roguelike{
             document.getElementById("gcCanvas").style.position = "relative";
             //document.getElementById("gcCanvas").style.position = "relative";      
             */ 
+
             for (let i=0;i<7;++i) {
                 let file_name = "PORTCHIP.";
                 let a = '0';
@@ -273,8 +163,12 @@ namespace Roguelike{
             url = "asset/json/_uw2/hash_markets_price_details.json";
             FileUtils.loadJsonFile(url, new Callback(function (json) {                
                 Roguelike.hash_markets_price_details_json = json;
+                Roguelike.ships.push(new Ship("Sloop"));
+                Roguelike.ships.push(new Ship("Sloop"));
+                Roguelike.ships.push(new Ship("Sloop"));
             }, this));
-        
+
+            ProjectPlayer.increaseGold(1000000);                  
         },
 
         start_level: function(level) {
@@ -298,8 +192,7 @@ namespace Roguelike{
                     
             var scheduler = new ROT.Scheduler.Simple();
                 
-            for (let a of this.map.agents) {
-                console.log(a);            
+            for (let a of this.map.agents) {                 
                 scheduler.add(a, true);
             }        
             this.engine = new ROT.Engine(scheduler);
@@ -602,7 +495,6 @@ namespace Roguelike{
         state: string;
         
         capacity: number;
-        cargoes_total: number;
         cargoes: {};
      
         constructor(type: string) {   
@@ -627,13 +519,20 @@ namespace Roguelike{
             
             this.state = "active";
             
-            this.capacity = json.capacity;
-            this.cargoes_total = 0;
+            this.capacity = json.capacity;            
             this.cargoes = {};
         }
 
         icon() : string {
             return `asset/image/_uw2/ships/${this.type.toLowerCase()}.png`;
+        }
+
+        cargoes_total() {
+            let z = 0;
+            for (let c of this.cargoes) {
+                z += c.count;
+            }
+            return z;
         }
 
         list_item() {
@@ -644,6 +543,7 @@ namespace Roguelike{
             d.itemName = i18n.chinese[this.name]; // 设置名称
             d.description = `\n价格：${this.price}`;
             d.price = this.price;
+            d.ship = this;
             return d;
         }
     };

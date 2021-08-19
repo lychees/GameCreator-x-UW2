@@ -12,7 +12,7 @@ class GUI_Cargoes_adjustment extends GUI_8006 {
     private uplimit() {
         let standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
         let ship = Roguelike.ships[Roguelike.selected_ship_id]; 
-        return Math.min(standby.count, ship.capacity - ship.cargoes.Total);
+        return Math.min(standby.count, ship.capacity - ship.total_cargoes());
     }
 
     private downlimit() {
@@ -75,8 +75,6 @@ class GUI_Cargoes_adjustment extends GUI_8006 {
 
         standby.count -= delta;
         ship.cargoes[name].count += delta;
-        Roguelike.standby_cargoes.Total -= delta;
-        ship.cargoes.Total += delta;
 
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);

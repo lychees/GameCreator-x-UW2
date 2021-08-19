@@ -17,7 +17,7 @@ var GUI_Cargoes_adjustment = (function (_super) {
     GUI_Cargoes_adjustment.prototype.uplimit = function () {
         var standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
         var ship = Roguelike.ships[Roguelike.selected_ship_id];
-        return Math.min(standby.count, ship.capacity - ship.cargoes.Total);
+        return Math.min(standby.count, ship.capacity - ship.total_cargoes());
     };
     GUI_Cargoes_adjustment.prototype.downlimit = function () {
         var ship = Roguelike.ships[Roguelike.selected_ship_id];
@@ -72,8 +72,6 @@ var GUI_Cargoes_adjustment = (function (_super) {
             delta = down_limit;
         standby.count -= delta;
         ship.cargoes[name].count += delta;
-        Roguelike.standby_cargoes.Total -= delta;
-        ship.cargoes.Total += delta;
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
         GameUI.get(8005).onDisplay();

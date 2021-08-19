@@ -66,13 +66,21 @@ class GUI_Cargoes extends GUI_8005 {
             let meta = hash_ports_meta_data[id+1];                        
             let market = Roguelike.hash_markets_price_details_json[meta.regionId];
             
+            Roguelike.city_cargoes = {};
             let cargoes = Roguelike.city_cargoes;
-            
+                        
             for (let name in market.Available_items) {
                 cargoes[name] = {};
                 cargoes[name].count = 100;
                 cargoes[name].price = this.buyPrice(name);
             }
+
+            /*for (let name in Roguelike.city_cargoes) {
+                if (Roguelike.city_cargoes[name].price == 0) {                    
+                    delete Roguelike.city_cargoes[name];
+                }
+            }*/
+
             let standby = Roguelike.standby_cargoes;
 
             for (let name in cargoes) {
@@ -90,17 +98,12 @@ class GUI_Cargoes extends GUI_8005 {
 
             for (let ship of ships) {
                 for (let name in ship.cargoes) {
-                    if (name == 'Total') {
-                        standby.Total += ship.cargoes.Total;
-                        ship.cargoes.Total = 0;
-                    } else {                        
-                        if (standby[name] == null) {
-                            standby[name] = JSON.parse(JSON.stringify(ship.cargoes[name]));
-                            standby[name].count = 0;                    
-                        } 
-                        standby[name].count += ship.cargoes[name].count;
-                        ship.cargoes[name].count = 0;
-                    }
+                    if (standby[name] == null) {
+                        standby[name] = JSON.parse(JSON.stringify(ship.cargoes[name]));
+                        standby[name].count = 0;                    
+                    } 
+                    standby[name].count += ship.cargoes[name].count;
+                    ship.cargoes[name].count = 0;
                 }
             }
 
@@ -143,9 +146,7 @@ class GUI_Cargoes extends GUI_8005 {
         
         let arr = [];
          
-        for (let name in cargoes) {
-            
-            if (name == 'Total') continue;            
+        for (let name in cargoes) {   
                         
             const i = new ListItem_1011;                        
             index += 1;

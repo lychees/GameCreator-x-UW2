@@ -18,6 +18,7 @@ var GUI_Ships = (function (_super) {
     GUI_Ships.prototype.onItemClick = function () {
         var selectedItem = this.list.selectedItem;
         Roguelike.selected_ship_id = Number(selectedItem.no);
+        Roguelike.selected_ship = selectedItem.ship;
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
         if (Roguelike.ships_ui_type == "buy") {
@@ -36,20 +37,12 @@ var GUI_Ships = (function (_super) {
             }
         }
         else {
-            var arr_1 = Roguelike.ships.map(function (ship, index) {
-                var d = new ListItem_1011;
-                d.no = index.toString();
-                d.dateStr = "----/----";
-                d.icon = "asset/image/_uw2/ships/" + ship.type.toLowerCase() + ".png";
-                d.itemName = i18n.chinese[ship.name];
-                d.price = Number(ship.price);
-                d.description = "\n\u4EF7\u683C\uFF1A" + ship.price;
-                return d;
-            });
-            this.list.items = arr_1;
+            for (var _i = 0, _a = Roguelike.ships; _i < _a.length; _i++) {
+                var ship = _a[_i];
+                arr.push(ship.list_item());
+            }
         }
         arr.sort(function (a, b) {
-            console.log(a.price);
             return a.price - b.price;
         });
         this.list.items = arr;

@@ -9,6 +9,7 @@ var Roguelike;
     Roguelike.discoveries = {};
     Roguelike.selected_cargo_name = "";
     Roguelike.selected_ship_id = 0;
+    Roguelike.selected_ship = {};
     Roguelike.first_battle = false;
     Roguelike.in_crew_menu = false;
     Roguelike.standby_crews = 100;
@@ -19,7 +20,6 @@ var Roguelike;
     Roguelike.hash_ship_name_to_attributes_json = {};
     Roguelike.city_cargoes = {};
     Roguelike.standby_cargoes = {
-        'Total': 30,
         'Food': {
             'count': 10,
             'price': 5
@@ -33,104 +33,7 @@ var Roguelike;
             'price': 100
         }
     };
-    Roguelike.ships = [
-        {
-            'name': 'Balsa',
-            'type': 'Balsa',
-            'price': 1200,
-            'max_durability': 30,
-            'durability': 30,
-            'max_crew': 20,
-            'min_crew': 5,
-            'crew': 0,
-            'sailing_power': 80,
-            'square_rig': 0,
-            'fore-and-aft_rig': 80,
-            'tacking': 70,
-            'max_guns': 10,
-            'state': 'active',
-            'capacity': 50,
-            'cargoes': {
-                'Total': 30,
-                'Food': {
-                    'count': 10,
-                    'price': 5
-                },
-                'Water': {
-                    'count': 10,
-                    'price': 0
-                },
-                'Fish': {
-                    'count': 10,
-                    'price': 100
-                }
-            }
-        },
-        {
-            'name': 'Sloop',
-            'type': 'Sloop',
-            'price': 16000,
-            'max_durability': 50,
-            'durability': 50,
-            'max_crew': 60,
-            'min_crew': 5,
-            'crew': 0,
-            'sailing_power': 85,
-            'square_rig': 0,
-            'fore-and-aft_rig': 85,
-            'tacking': 95,
-            'max_guns': 40,
-            'state': 'active',
-            'capacity': 250,
-            'cargoes': {
-                'Total': 30,
-                'Food': {
-                    'count': 10,
-                    'price': 5
-                },
-                'Water': {
-                    'count': 10,
-                    'price': 0
-                },
-                'Fish': {
-                    'count': 10,
-                    'price': 100
-                }
-            }
-        },
-        {
-            'name': 'Venetian Galeass',
-            'type': 'Venetian Galeass',
-            'price': 64000,
-            'max_durability': 90,
-            'durability': 90,
-            'max_crew': 400,
-            'min_crew': 60,
-            'crew': 0,
-            'sailing_power': 70,
-            'square_rig': 0,
-            'fore-and-aft_rig': 70,
-            'tacking': 70,
-            'max_guns': 50,
-            'state': 'active',
-            'capacity': 950,
-            'cargoes': {
-                'Total': 30,
-                'Food': {
-                    'count': 10,
-                    'price': 5
-                },
-                'Water': {
-                    'count': 10,
-                    'price': 0
-                },
-                'Fish': {
-                    'count': 10,
-                    'price': 100
-                }
-            }
-        },
-    ];
+    Roguelike.ships = [];
     function colorHex(colorArr) {
         var strHex = "#";
         var colorArr;
@@ -217,7 +120,11 @@ var Roguelike;
             url = "asset/json/_uw2/hash_markets_price_details.json";
             FileUtils.loadJsonFile(url, new Callback(function (json) {
                 Roguelike.hash_markets_price_details_json = json;
+                Roguelike.ships.push(new Ship("Sloop"));
+                Roguelike.ships.push(new Ship("Sloop"));
+                Roguelike.ships.push(new Ship("Sloop"));
             }, this));
+            ProjectPlayer.increaseGold(1000000);
         },
         start_level: function (level) {
             var w = 25;
@@ -232,7 +139,6 @@ var Roguelike;
             var scheduler = new ROT.Scheduler.Simple();
             for (var _i = 0, _a = this.map.agents; _i < _a.length; _i++) {
                 var a = _a[_i];
-                console.log(a);
                 scheduler.add(a, true);
             }
             this.engine = new ROT.Engine(scheduler);
@@ -502,11 +408,18 @@ var Roguelike;
             this.max_guns = json.max_guns;
             this.state = "active";
             this.capacity = json.capacity;
-            this.cargoes_total = 0;
             this.cargoes = {};
         }
         Ship.prototype.icon = function () {
             return "asset/image/_uw2/ships/" + this.type.toLowerCase() + ".png";
+        };
+        Ship.prototype.cargoes_total = function () {
+            var z = 0;
+            for (var _i = 0, _a = this.cargoes; _i < _a.length; _i++) {
+                var c = _a[_i];
+                z += c.count;
+            }
+            return z;
         };
         Ship.prototype.list_item = function () {
             var d = new ListItem_1011;
@@ -516,6 +429,7 @@ var Roguelike;
             d.itemName = i18n.chinese[this.name];
             d.description = "\n\u4EF7\u683C\uFF1A" + this.price;
             d.price = this.price;
+            d.ship = this;
             return d;
         };
         return Ship;

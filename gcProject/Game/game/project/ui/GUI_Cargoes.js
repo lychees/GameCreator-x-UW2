@@ -51,6 +51,7 @@ var GUI_Cargoes = (function (_super) {
             var id = Roguelike.port_id;
             var meta = hash_ports_meta_data[id + 1];
             var market = Roguelike.hash_markets_price_details_json[meta.regionId];
+            Roguelike.city_cargoes = {};
             var cargoes = Roguelike.city_cargoes;
             for (var name in market.Available_items) {
                 cargoes[name] = {};
@@ -72,18 +73,12 @@ var GUI_Cargoes = (function (_super) {
             for (var _i = 0, ships_1 = ships; _i < ships_1.length; _i++) {
                 var ship = ships_1[_i];
                 for (var name in ship.cargoes) {
-                    if (name == 'Total') {
-                        standby.Total += ship.cargoes.Total;
-                        ship.cargoes.Total = 0;
+                    if (standby[name] == null) {
+                        standby[name] = JSON.parse(JSON.stringify(ship.cargoes[name]));
+                        standby[name].count = 0;
                     }
-                    else {
-                        if (standby[name] == null) {
-                            standby[name] = JSON.parse(JSON.stringify(ship.cargoes[name]));
-                            standby[name].count = 0;
-                        }
-                        standby[name].count += ship.cargoes[name].count;
-                        ship.cargoes[name].count = 0;
-                    }
+                    standby[name].count += ship.cargoes[name].count;
+                    ship.cargoes[name].count = 0;
                 }
             }
             for (var name in standby) {
@@ -113,13 +108,12 @@ var GUI_Cargoes = (function (_super) {
         var ship = Roguelike.ships[Roguelike.selected_ship_id].cargoes;
         var arr = [];
         for (var name in cargoes) {
-            if (name == 'Total')
-                continue;
             var i = new ListItem_1011;
             index += 1;
             i.no = index.toString();
             i.itemName = i18n.chinese[name];
             i.icon = "asset/image/_uwol/cargo/" + name.toLowerCase() + ".png";
+            i.price = cargoes.price;
             if (Roguelike.cargoes_ui_type == "adjust") {
                 if (ship[name].count == 0 && cargoes[name].count == 0)
                     continue;
@@ -142,6 +136,9 @@ var GUI_Cargoes = (function (_super) {
             arr.push(i);
         }
         ;
+        arr.sort(function (a, b) {
+            return a.price - b.price;
+        });
         this.list.items = arr;
     };
     return GUI_Cargoes;
