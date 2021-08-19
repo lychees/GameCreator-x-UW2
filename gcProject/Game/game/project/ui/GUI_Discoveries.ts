@@ -22,7 +22,7 @@ class GUI_Discoveries extends GUI_27 {
         // 设置焦点为道具列表
         UIList.focus = this.list;
         // 刷新道具列表
-        this.refreshItems(0);
+        this.update();
     }
 
     static onDiscoveredItem(ui: GUI_1011, data: ListItem_1011, index: number) {
@@ -47,8 +47,7 @@ class GUI_Discoveries extends GUI_27 {
         // 例如，向工会报告，和吧女聊天，etcs
     }    
 
-    private refreshItems(state: number) {
-        if (state != 0) return;
+    private update() {
         const arr = [];
         // 遍历玩家自定义数据-背包
         Object.keys(Roguelike.discoveries).forEach((id) => {

@@ -78,6 +78,7 @@ var GUI_Cargoes = (function (_super) {
         }
     };
     GUI_Cargoes.prototype.update = function (cargoes) {
+        console.log(Game.player.data);
         var index = 0;
         var standby = Roguelike.standby_cargoes;
         var ship = Roguelike.ships[Roguelike.selected_ship_id].cargoes;
@@ -98,11 +99,13 @@ var GUI_Cargoes = (function (_super) {
             }
             else if (Roguelike.cargoes_ui_type == "buy") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";
-                i.dateStr += "在库:" + standby[name].count;
+                i.dateStr += "已采购:" + standby[name].count + " ";
+                i.dateStr += "价格:" + cargoes[name].price + " ";
                 i.description = "";
             }
             else if (Roguelike.cargoes_ui_type == "sell") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";
+                i.dateStr += "价格:" + (cargoes[name].price+10) + " ";
                 i.description = "";
             }
             i.name = name;

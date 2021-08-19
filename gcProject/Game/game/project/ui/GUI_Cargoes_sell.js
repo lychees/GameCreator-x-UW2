@@ -22,7 +22,6 @@ var GUI_Cargoes_sell = (function (_super) {
         return 0;
     };
     GUI_Cargoes_sell.prototype.onDisplay = function () {
-        console.log(Roguelike.selected_cargo_name);
         var standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
         this.standby.text = standby.count;
     };

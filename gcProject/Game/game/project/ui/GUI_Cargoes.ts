@@ -96,6 +96,8 @@ class GUI_Cargoes extends GUI_8005 {
     }
 
     private update(cargoes: any) {
+
+        console.log(Game.player.data);
         
         // 遍历货物
         let index = 0;
@@ -121,10 +123,12 @@ class GUI_Cargoes extends GUI_8005 {
                 i.description = "";
             } else if (Roguelike.cargoes_ui_type == "buy") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";
-                i.dateStr += "在库:" + standby[name].count;
+                i.dateStr += "已采购:" + standby[name].count + " ";
+                i.dateStr += "价格:" + cargoes[name].price + " ";
                 i.description = "";
             } else if (Roguelike.cargoes_ui_type == "sell") {
                 i.dateStr = "库存:" + cargoes[name].count + "  ";                
+                i.dateStr += "价格:" + (cargoes[name].price+10) + " ";
                 i.description = "";
             }
             

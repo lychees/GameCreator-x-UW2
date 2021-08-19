@@ -14,7 +14,7 @@ var GUI_Discoveries = (function (_super) {
     }
     GUI_Discoveries.prototype.onDisplay = function () {
         UIList.focus = this.list;
-        this.refreshItems(0);
+        this.update();
     };
     GUI_Discoveries.onDiscoveredItem = function (ui, data, index) {
         AssetManager.loadImage('asset/image/_uw2/discoveries/discoveries_and_items.png', Callback.New(function (tex) {
@@ -29,9 +29,7 @@ var GUI_Discoveries = (function (_super) {
     GUI_Discoveries.prototype.onItemClick = function () {
         alert('点击发现物');
     };
-    GUI_Discoveries.prototype.refreshItems = function (state) {
-        if (state != 0)
-            return;
+    GUI_Discoveries.prototype.update = function () {
         var arr = [];
         Object.keys(Roguelike.discoveries).forEach(function (id) {
             var d = new ListItem_1011;

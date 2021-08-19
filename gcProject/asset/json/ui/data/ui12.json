@@ -659,7 +659,7 @@
                 "mouseEventEnabledInEditor": true,
                 "showOnEditor": true,
                 "hasCommand": [],
-                "isOpen": false,
+                "isOpen": true,
                 "image": "asset/image/picture/ui/backpack/goldBg.png",
                 "grid9": "0,0,0,0,0",
                 "flip": null,

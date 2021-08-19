@@ -2311,6 +2311,8 @@ class GUI_8007 extends GUI_BASE {
    standby:UIString;
    文本:UIString;
    delta:UIInput;
+   gold_sign:UIString;
+   goldNum:UICustomGameNumber;
    constructor(){
       super(8007);
    }
@@ -2328,6 +2330,8 @@ class ListItem_8007 extends UIListItemData {
    standby:string;
    文本:string;
    delta:string;
+   gold_sign:string;
+
 }
 
 /**
