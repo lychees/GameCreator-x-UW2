@@ -153,6 +153,7 @@ class GUI_Cargoes extends GUI_8005 {
             i.itemName = i18n.chinese[name];
 
             i.icon = `asset/image/_uwol/cargo/${name.toLowerCase()}.png`;
+            i.price = cargoes.price;
 
             if (Roguelike.cargoes_ui_type == "adjust") {
                 if (ship[name].count == 0 && cargoes[name].count == 0) continue;
@@ -173,6 +174,10 @@ class GUI_Cargoes extends GUI_8005 {
             i.name = name;
             arr.push(i); // 居然直接 push 不行？
         });
+
+        arr.sort(function(a, b){
+            return a.price - b.price;
+        }); 
 
         this.list.items = arr;
     }

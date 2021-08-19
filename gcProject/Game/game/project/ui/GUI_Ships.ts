@@ -64,9 +64,8 @@ class GUI_Ships extends GUI_8001 {
         }
 
         arr.sort(function(a, b){
-            console.log(a.price);
             return a.price - b.price;
-        }); 
+        });
         
         this.list.items = arr;
     }
