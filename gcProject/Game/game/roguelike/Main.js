@@ -13,8 +13,10 @@ var Roguelike;
     Roguelike.in_crew_menu = false;
     Roguelike.standby_crews = 100;
     Roguelike.cargoes_ui_type = "";
+    Roguelike.ships_ui_type = "";
     Roguelike.villages_json = {};
     Roguelike.hash_markets_price_details_json = {};
+    Roguelike.hash_ship_name_to_attributes_json = {};
     Roguelike.city_cargoes = {};
     Roguelike.standby_cargoes = {
         'Total': 30,
@@ -208,6 +210,10 @@ var Roguelike;
             else {
                 toPort(Roguelike.port_id);
             }
+            url = "asset/json/_uw2/hash_ship_name_to_attributes.json";
+            FileUtils.loadJsonFile(url, new Callback(function (json) {
+                Roguelike.hash_ship_name_to_attributes_json = json;
+            }, this));
             url = "asset/json/_uw2/hash_markets_price_details.json";
             FileUtils.loadJsonFile(url, new Callback(function (json) {
                 Roguelike.hash_markets_price_details_json = json;
@@ -478,5 +484,43 @@ var Roguelike;
         GameAudio.playBGM(bgm_url);
     }
     Roguelike.toPort = toPort;
+    var Ship = (function () {
+        function Ship(type) {
+            var json = Roguelike.hash_ship_name_to_attributes_json[type];
+            this.name = type;
+            this.type = type;
+            this.price = json.price;
+            this.max_durability = json.durability;
+            this.durability = json.durability;
+            this.max_crew = json.max_crew;
+            this.min_crew = json.min_crew;
+            this.crew = 0;
+            this.sailing_power = json.power;
+            this.square_rig = 0;
+            this.fore_and_aft_rig = json.power;
+            this.tacking = json.tacking;
+            this.max_guns = json.max_guns;
+            this.state = "active";
+            this.capacity = json.capacity;
+            this.cargoes_total = 0;
+            this.cargoes = {};
+        }
+        Ship.prototype.icon = function () {
+            return "asset/image/_uw2/ships/" + this.type.toLowerCase() + ".png";
+        };
+        Ship.prototype.list_item = function () {
+            var d = new ListItem_1011;
+            d.no = 0;
+            d.dateStr = "----/----";
+            d.icon = this.icon();
+            d.itemName = i18n.chinese[this.name];
+            d.description = "\n\u4EF7\u683C\uFF1A" + this.price;
+            d.price = this.price;
+            return d;
+        };
+        return Ship;
+    }());
+    Roguelike.Ship = Ship;
+    ;
 })(Roguelike || (Roguelike = {}));
 //# sourceMappingURL=Main.js.map

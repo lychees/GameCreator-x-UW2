@@ -676,6 +676,15 @@
         "commands": [
             [
                 [
+                    20,
+                    "",
+                    "// 当前的事件触发器：trigger: CommandTrigger;\nRoguelike.ships_ui_type = \"my_ships\";",
+                    "Roguelike.ships_ui_type = \"my_ships\";\n",
+                    {
+                        "___cmdID": "71826912798_0.8272875321057893"
+                    }
+                ],
+                [
                     40010,
                     {
                         "49809728719_0.046619702255007": 0,

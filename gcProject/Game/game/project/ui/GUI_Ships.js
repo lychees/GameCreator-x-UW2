@@ -20,28 +20,38 @@ var GUI_Ships = (function (_super) {
         Roguelike.selected_ship_id = Number(selectedItem.no);
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
-        if (Roguelike.in_crew_menu == true) {
+        if (Roguelike.ships_ui_type == "buy") {
+            GameCommand.startCommonCommand(0005);
         }
         else {
             GameUI.show(8003);
         }
     };
     GUI_Ships.prototype.update = function () {
-        var arr = Roguelike.ships.map(function (ship, index) {
-            var d = new ListItem_1011;
-            d.no = index.toString();
-            d.dateStr = "----/----";
-            d.icon = "asset/image/_uw2/ships/" + ship.type.toLowerCase() + ".png";
-            d.itemName = i18n.chinese[ship.name];
-            d.description = "\n\u4EF7\u683C\uFF1A" + ship.price;
-            return d;
-        });
-        if (Object.keys(Roguelike.discoveries).length === 0) {
-            var emptyItem = new ListItem_1011;
-            emptyItem.itemName = "还没有船只";
-            emptyItem.no = "0";
-            emptyItem.dateStr = "----/----";
+        var arr = [];
+        if (Roguelike.ships_ui_type == "buy") {
+            for (var name in Roguelike.hash_ship_name_to_attributes_json) {
+                var ship = new Roguelike.Ship(name);
+                arr.push(ship.list_item());
+            }
         }
+        else {
+            var arr_1 = Roguelike.ships.map(function (ship, index) {
+                var d = new ListItem_1011;
+                d.no = index.toString();
+                d.dateStr = "----/----";
+                d.icon = "asset/image/_uw2/ships/" + ship.type.toLowerCase() + ".png";
+                d.itemName = i18n.chinese[ship.name];
+                d.price = Number(ship.price);
+                d.description = "\n\u4EF7\u683C\uFF1A" + ship.price;
+                return d;
+            });
+            this.list.items = arr_1;
+        }
+        arr.sort(function (a, b) {
+            console.log(a.price);
+            return a.price - b.price;
+        });
         this.list.items = arr;
     };
     return GUI_Ships;

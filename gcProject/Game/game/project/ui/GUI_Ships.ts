@@ -33,46 +33,41 @@ class GUI_Ships extends GUI_8001 {
         Roguelike.selected_ship_id = Number(selectedItem.no);
         GameAudio.playSE(ClientWorld.data.selectSE);
         GameUI.show(8002);
-        if (Roguelike.in_crew_menu == true) {
-
+        if (Roguelike.ships_ui_type == "buy") {
+            GameCommand.startCommonCommand(0005);
         } else {
             GameUI.show(8003);
         }
     }
 
-    // static onDiscoveredItem(ui: GUI_1011, data: ListItem_1011, index: number) {
-    //     AssetManager.loadImage('asset/image/_uw2/discoveries/discoveries_and_items.png', Callback.New((tex: Texture) => {
-    //         // 取样从图中的0,0中取得50x50尺寸的切图
-    //         const meta = Roguelike.villages_json[parseInt(data.no)];
-    //         const g = new Graphics();
-    //         g.fillTexture(tex, 0, 0, 50, 50, 'repeat', new Point(-49*(meta.image_x-1), -49*(meta.image_y-1)));
-            
-    //         const sp = new Sprite();
-    //         sp.graphics = g;
-    //         ui.icon.addChild(sp);
-    //     }
-    // }
-
-    private update() {        
-        
-        const arr = Roguelike.ships.map((ship: any, index: number) => {
-            // 创建对应的背包物品项数据，该项数据由系统自动生成
-            const d = new ListItem_1011;
-            d.no = index.toString();
-            d.dateStr = "----/----";
-            d.icon = `asset/image/_uw2/ships/${ship.type.toLowerCase()}.png`;
-            d.itemName = i18n.chinese[ship.name]; // 设置名称
-            d.description = `\n价格：${ship.price}`;
-            return d;
-        });
-        // 如果没有道具的话：追加一个空项
-        if (Object.keys(Roguelike.discoveries).length === 0) {
-            const emptyItem = new ListItem_1011;
-            emptyItem.itemName = "还没有船只";
-            emptyItem.no = "0";
-            emptyItem.dateStr = "----/----";
+    private update() {
+        let arr = [];
+        if (Roguelike.ships_ui_type == "buy") {            
+            for (let name in Roguelike.hash_ship_name_to_attributes_json) {                
+                let ship = new Roguelike.Ship(name);
+                arr.push(ship.list_item());
+            }
+        } else {        
+            let arr = Roguelike.ships.map((ship: any, index: number) => {
+                // 创建对应的背包物品项数据，该项数据由系统自动生成
+                const d = new ListItem_1011;
+                d.no = index.toString();
+                d.dateStr = "----/----";
+                d.icon = `asset/image/_uw2/ships/${ship.type.toLowerCase()}.png`;
+                d.itemName = i18n.chinese[ship.name]; // 设置名称
+                d.price = Number(ship.price);
+                d.description = `\n价格：${ship.price}`;
+                return d;
+            });
+            // 刷新列表
+            this.list.items = arr;
         }
-        // 刷新列表
+
+        arr.sort(function(a, b){
+            console.log(a.price);
+            return a.price - b.price;
+        }); 
+        
         this.list.items = arr;
     }
 }

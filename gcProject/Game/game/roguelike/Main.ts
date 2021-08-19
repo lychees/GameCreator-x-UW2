@@ -12,10 +12,13 @@ namespace Roguelike{
     export let first_battle = false;
     export let in_crew_menu = false;
     export let standby_crews = 100;
+    
     export let cargoes_ui_type = "";
+    export let ships_ui_type = "";
 
     export let villages_json = {};
     export let hash_markets_price_details_json = {};
+    export let hash_ship_name_to_attributes_json = {};
 
     export let city_cargoes = {        
     };    
@@ -261,17 +264,17 @@ namespace Roguelike{
                 toPort(port_id);
             }
 
-            url = "asset/json/_uw2/hash_markets_price_details.json";
+            
+            url = "asset/json/_uw2/hash_ship_name_to_attributes.json";
+            FileUtils.loadJsonFile(url, new Callback(function (json) {                                
+                Roguelike.hash_ship_name_to_attributes_json = json;
+            }, this));    
 
+            url = "asset/json/_uw2/hash_markets_price_details.json";
             FileUtils.loadJsonFile(url, new Callback(function (json) {                
                 Roguelike.hash_markets_price_details_json = json;
             }, this));
-            
-            /*if (on_ocean == true) {
-                toWorldMap(last_x, last_y);
-            } else {
-                toPort(port_id);
-            }*/
+        
         },
 
         start_level: function(level) {
@@ -572,4 +575,77 @@ namespace Roguelike{
         }
         GameAudio.playBGM(bgm_url);
     }
+
+
+
+    
+    export class Ship {
+        
+        name: string;
+        type: string;
+        price: number;
+            
+        max_durability: number;
+        durability: number;
+
+        max_crew: number;
+        min_crew: number;
+        crew: number;
+
+        sailing_power: number;
+        square_rig: number;
+        fore_and_aft_rig: number;
+
+        tacking: number;
+        max_guns: number;
+                                                                            
+        state: string;
+        
+        capacity: number;
+        cargoes_total: number;
+        cargoes: {};
+     
+        constructor(type: string) {   
+            let json = hash_ship_name_to_attributes_json[type];
+            this.name = type;
+            this.type = type;
+            this.price = json.price;
+            
+            this.max_durability = json.durability;
+            this.durability = json.durability;
+
+            this.max_crew = json.max_crew;
+            this.min_crew = json.min_crew;
+            this.crew = 0;
+
+            this.sailing_power = json.power;
+            this.square_rig = 0;
+            this.fore_and_aft_rig = json.power;
+            
+            this.tacking = json.tacking;
+            this.max_guns = json.max_guns;
+            
+            this.state = "active";
+            
+            this.capacity = json.capacity;
+            this.cargoes_total = 0;
+            this.cargoes = {};
+        }
+
+        icon() : string {
+            return `asset/image/_uw2/ships/${this.type.toLowerCase()}.png`;
+        }
+
+        list_item() {
+            let d = new ListItem_1011;
+            d.no = 0;
+            d.dateStr = "----/----";
+            d.icon = this.icon();
+            d.itemName = i18n.chinese[this.name]; // 设置名称
+            d.description = `\n价格：${this.price}`;
+            d.price = this.price;
+            return d;
+        }
+    };
 }
+

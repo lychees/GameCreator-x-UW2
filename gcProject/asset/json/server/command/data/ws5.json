@@ -4,12 +4,75 @@
     "updateMode": false,
     "commands": [
         [
+            11,
+            1,
+            null,
+            "造船厂老板",
+            3,
+            -3,
+            "<span style='color:#FfFffF'>要买这艘船吗？</span>",
+            null,
+            1,
+            0,
+            {
+                "___cmdID": "71360351179_0.7668318613070881"
+            }
+        ],
+        [
+            3,
+            15,
+            -1,
+            -1,
+            {
+                "___cmdID": "71360243824_0.12068922377196056"
+            }
+        ],
+        [
+            4,
+            "是",
+            -1,
+            -1,
+            0,
+            0,
+            [],
+            {
+                "___cmdID": "71360243824_0.20730104275649275"
+            }
+        ],
+        [
             20,
             "",
-            "// 当前的事件触发器：trigger: CommandTrigger;\nGameUI.get(8005).type = \"adjust\";",
-            "GameUI.get(8005).type = \"adjust\";\n",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nGameCommand.startCommonCommand(15001);",
+            "GameCommand.startCommonCommand(15001);\n",
             {
-                "___cmdID": "71749452277_0.682088690770281"
+                "___cmdID": "71828902038_0.8372648744260571"
+            }
+        ],
+        [
+            4,
+            "再看看",
+            -1,
+            -1,
+            0,
+            0,
+            [],
+            {
+                "___cmdID": "71360243824_0.6558701287933193"
+            }
+        ],
+        [
+            20,
+            "",
+            "// 当前的事件触发器：trigger: CommandTrigger;\nGameCommand.startCommonCommand(15001);",
+            "GameCommand.startCommonCommand(15001);\n",
+            {
+                "___cmdID": "71828901697_0.23192008576913903"
+            }
+        ],
+        [
+            10,
+            {
+                "___cmdID": "71360243824_0.3106967773830802"
             }
         ]
     ],
