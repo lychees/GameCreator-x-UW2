@@ -117,6 +117,8 @@ class GUI_Cargoes extends GUI_8005 {
             i.no = index.toString();                        
             i.itemName = i18n.chinese[name];
 
+            i.icon = `asset/image/_uwol/cargo/${name.toLowerCase()}.png`;
+
             if (Roguelike.cargoes_ui_type == "adjust") {
                 if (ship[name].count == 0 && cargoes[name].count == 0) continue;
                 i.dateStr = "库存:" + standby[name].count + "  ";

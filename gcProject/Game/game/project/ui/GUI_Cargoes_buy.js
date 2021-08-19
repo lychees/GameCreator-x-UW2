@@ -15,7 +15,9 @@ var GUI_Cargoes_buy = (function (_super) {
         this.cancelBtn.on(EventObject.CLICK, this, this.onCancelButtonClick);
     }
     GUI_Cargoes_buy.prototype.uplimit = function () {
-        return Roguelike.city_cargoes[Roguelike.selected_cargo_name].count;
+        var cargo = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
+        var gold = Game.player.data.gold;
+        return Math.min(Roguelike.city_cargoes[Roguelike.selected_cargo_name].count, Math.floor(gold / cargo.price));
     };
     GUI_Cargoes_buy.prototype.downlimit = function () {
         return 0;
@@ -68,6 +70,7 @@ var GUI_Cargoes_buy = (function (_super) {
         standby.count += delta;
         Roguelike.city_cargoes[name].count -= delta;
         Roguelike.standby_cargoes.Total += delta;
+        ProjectPlayer.increaseGold(-standby.price * delta);
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
         GameUI.get(8005).onDisplay();

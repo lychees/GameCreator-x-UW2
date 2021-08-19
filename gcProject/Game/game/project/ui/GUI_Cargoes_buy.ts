@@ -10,10 +10,9 @@ class GUI_Cargoes_buy extends GUI_8007 {
     }
 
     private uplimit() {
-        //let standby = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];
-        //let ship = Roguelike.ships[Roguelike.selected_ship_id]; 
-        //return Math.min(standby.count, ship.capacity - ship.cargoes.Total);
-        return Roguelike.city_cargoes[Roguelike.selected_cargo_name].count;
+        let cargo = Roguelike.standby_cargoes[Roguelike.selected_cargo_name];        
+        let gold = Game.player.data.gold;
+        return Math.min(Roguelike.city_cargoes[Roguelike.selected_cargo_name].count, Math.floor(gold / cargo.price));
     }
 
     private downlimit() {
@@ -75,7 +74,8 @@ class GUI_Cargoes_buy extends GUI_8007 {
         standby.count += delta;
         Roguelike.city_cargoes[name].count -= delta;
         Roguelike.standby_cargoes.Total += delta;
-        
+        ProjectPlayer.increaseGold(-standby.price * delta);
+    
         this.delta.text = 0;
         GameCommand.startCommonCommand(15001);
         GameUI.get(8005).onDisplay();

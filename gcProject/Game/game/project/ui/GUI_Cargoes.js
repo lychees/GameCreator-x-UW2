@@ -78,8 +78,6 @@ var GUI_Cargoes = (function (_super) {
         }
     };
     GUI_Cargoes.prototype.update = function (cargoes) {
-        console.log(Game.player);
-        console.log(ProjectPlayer);
         var index = 0;
         var standby = Roguelike.standby_cargoes;
         var ship = Roguelike.ships[Roguelike.selected_ship_id].cargoes;
@@ -91,6 +89,7 @@ var GUI_Cargoes = (function (_super) {
             index += 1;
             i.no = index.toString();
             i.itemName = i18n.chinese[name];
+            i.icon = "asset/image/_uwol/cargo/" + name.toLowerCase() + ".png";
             if (Roguelike.cargoes_ui_type == "adjust") {
                 if (ship[name].count == 0 && cargoes[name].count == 0)
                     continue;

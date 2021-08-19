@@ -19,7 +19,7 @@ class GUI_Ships extends GUI_8001 {
         // 设置焦点为道具列表
         UIList.focus = this.list;
         // 刷新道具列表
-        this.refreshItems(0);
+        this.update();
     }
 
     /**
@@ -53,9 +53,7 @@ class GUI_Ships extends GUI_8001 {
     //     }
     // }
 
-    private refreshItems(state: number) {
-        if (state != 0) return;
-        // 遍历玩家自定义数据-背包
+    private update() {        
         
         const arr = Roguelike.ships.map((ship: any, index: number) => {
             // 创建对应的背包物品项数据，该项数据由系统自动生成
