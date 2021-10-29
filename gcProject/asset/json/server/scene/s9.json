@@ -252,8 +252,8 @@
             [
                 20,
                 "",
-                "// 当前的事件触发器：trigger: CommandTrigger;\n/*\nif (Roguelike.first_battle == false) {\n    Roguelike.first_battle = true;\n    GameCommand.startCommonCommand(8006);\n}\n*/\n                                  ",
-                "",
+                "// 当前的事件触发器：trigger: CommandTrigger;\n\nif (Roguelike.first_battle == false) {\n    Roguelike.first_battle = true;\n    GameCommand.startCommonCommand(8006);\n}\n\n                                  ",
+                "if (Roguelike.first_battle == false) {\n    Roguelike.first_battle = true;\n    GameCommand.startCommonCommand(8006);\n}\n",
                 {
                     "___cmdID": "71025471430_0.5942583761979316"
                 }
