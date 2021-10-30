@@ -1,8 +1,3 @@
-//@cannot search
-//------------------------------------------------------------------------------------------------------
-// Game Creator Runtime By 黑暗之神KDS
-// 请勿修改该JS文件，引擎会根据版本自动替换该文件
-//------------------------------------------------------------------------------------------------------
 var AsynTask = (function () {
     function AsynTask(onFin) {
         this._asynCount = 0;
@@ -5279,9 +5274,15 @@ var Laya = window.Laya = (function (window, document) {
                 callbackBeforeRenderFunc = function () { };
             }
             window.___callbackBeforeRenderFunc = callbackBeforeRenderFunc;
+            //记录初始时间
+            var then = Date.now();
             Browser.window.requestAnimationFrame(loop);
             function loop() {
-                Laya.stage._loop();
+                var now = Date.now();
+                if (Math.round(now * os.fps * 0.001) > Math.round(then * os.fps * 0.001)) {
+                    Laya.stage._loop();
+                    then = now;
+                }
                 Browser.window.requestAnimationFrame(loop);
             }
             Laya.stage.on("visibilitychange", this, this._onVisibilitychange);
@@ -17684,10 +17685,10 @@ if (typeof define === 'function' && define.amd) {
             BlendMode.targetFns = [BlendMode.BlendNormalTarget, BlendMode.BlendAddTarget, BlendMode.BlendMultiplyTarget, BlendMode.BlendScreenTarget, BlendMode.BlendOverlayTarget, BlendMode.BlendLightTarget, BlendMode.BlendMask, BlendMode.BlendDestinationOut];
         };
         BlendMode.BlendNormal = function (gl) {
-            gl.blendFuncSeparate(0x0302, 0x0303, 0x0302, 0x0303);
+            gl.blendFunc(/*laya.webgl.WebGLContext.ONE*/1,/*laya.webgl.WebGLContext.ONE_MINUS_SRC_ALPHA*/0x0303);
         };
         BlendMode.BlendAdd = function (gl) {
-            gl.blendFunc(0x0302, 0x0304);
+            gl.blendFunc(/*laya.webgl.WebGLContext.ONE*/1,/*laya.webgl.WebGLContext.DST_ALPHA*/0x0304);
         };
         BlendMode.BlendMultiply = function (gl) {
             gl.blendFunc(0x0306, 0x0303);
@@ -18187,8 +18188,8 @@ if (typeof define === 'function' && define.amd) {
             Shader.addInclude("parts/ColorAdd_ps_logic.glsl", "gl_FragColor = vec4(colorAdd.rgb,colorAdd.a*gl_FragColor.a);\ngl_FragColor.xyz *= colorAdd.a;");
             var vs, ps;
             vs = "attribute vec4 position;\nattribute vec2 texcoord;\nuniform vec2 size;\n\n#ifdef WORLDMAT\nuniform mat4 mmat;\n#endif\nvarying vec2 v_texcoord;\nvoid main() {\n  #ifdef WORLDMAT\n  vec4 pos=mmat*position;\n  gl_Position =vec4((pos.x/size.x-0.5)*2.0,(0.5-pos.y/size.y)*2.0,pos.z,1.0);\n  #else\n  gl_Position =vec4((position.x/size.x-0.5)*2.0,(0.5-position.y/size.y)*2.0,position.z,1.0);\n  #endif\n  \n  v_texcoord = texcoord;\n}";
-            ps = "precision mediump float;\n//precision highp float;\nvarying vec2 v_texcoord;\nuniform sampler2D texture;\nuniform float alpha;\n#include?BLUR_FILTER  \"parts/BlurFilter_ps_uniform.glsl\";\n#include?COLOR_FILTER \"parts/ColorFilter_ps_uniform.glsl\";\n#include?GLOW_FILTER \"parts/GlowFilter_ps_uniform.glsl\";\n#include?COLOR_ADD \"parts/ColorAdd_ps_uniform.glsl\";\n\nvoid main() {\n   vec4 color= texture2D(texture, v_texcoord);\nif(color.a<1.0)color.rgb*=1.0/color.a;\n   color.a*=alpha;\n   \n   gl_FragColor=color;\n   #include?COLOR_ADD \"parts/ColorAdd_ps_logic.glsl\";   \n   #include?BLUR_FILTER  \"parts/BlurFilter_ps_logic.glsl\";\n   #include?COLOR_FILTER \"parts/ColorFilter_ps_logic.glsl\";\n   #include?GLOW_FILTER \"parts/GlowFilter_ps_logic.glsl\";\n}";
-            Shader.preCompile2D(0, 0x01, vs, ps, null);
+            ps = "precision mediump float;\n//precision highp float;\nvarying vec2 v_texcoord;\nuniform sampler2D texture;\nuniform float alpha;\n#include?BLUR_FILTER  \"parts/BlurFilter_ps_uniform.glsl\";\n#include?COLOR_FILTER \"parts/ColorFilter_ps_uniform.glsl\";\n#include?GLOW_FILTER \"parts/GlowFilter_ps_uniform.glsl\";\n#include?COLOR_ADD \"parts/ColorAdd_ps_uniform.glsl\";\n\nvoid main() {\n   vec4 color= texture2D(texture, v_texcoord);\n   color.a*=alpha;\n   color.rgb*=alpha;\n   gl_FragColor=color;\n   #include?COLOR_ADD \"parts/ColorAdd_ps_logic.glsl\";   \n   #include?BLUR_FILTER  \"parts/BlurFilter_ps_logic.glsl\";\n   #include?COLOR_FILTER \"parts/ColorFilter_ps_logic.glsl\";\n   #include?GLOW_FILTER \"parts/GlowFilter_ps_logic.glsl\";\n}";
+            Shader.preCompile2D(0,/*laya.webgl.shader.d2.ShaderDefines2D.TEXTURE2D*/0x01, vs, ps, null);
             vs = "attribute vec4 position;\nuniform vec2 size;\nuniform mat4 mmat;\nvoid main() {\n  vec4 pos=mmat*position;\n  gl_Position =vec4((pos.x/size.x-0.5)*2.0,(0.5-pos.y/size.y)*2.0,pos.z,1.0);\n}";
             ps = "precision mediump float;\nuniform vec4 color;\nuniform float alpha;\n#include?COLOR_FILTER \"parts/ColorFilter_ps_uniform.glsl\";\nvoid main() {\n	vec4 a = vec4(color.r, color.g, color.b, color.a);\n	a.w = alpha;\n	a.xyz *= alpha;\n	gl_FragColor = a;\n	#include?COLOR_FILTER \"parts/ColorFilter_ps_logic.glsl\";\n}";
             Shader.preCompile2D(0, 0x02, vs, ps, null);
@@ -24645,8 +24646,6 @@ if (typeof define === 'function' && define.amd) {
         };
         __proto.createWebGlTexture = function () {
             var gl = WebGL.mainContext;
-            if (!this._canvas) {
-            }
             var glTex = this._source = gl.createTexture();
             this.iscpuSource = false;
             var preTarget = WebGLContext.curBindTexTarget;
@@ -24654,7 +24653,14 @@ if (typeof define === 'function' && define.amd) {
             WebGLContext.bindTexture(gl, 0x0DE1, glTex);
             gl.pixelStorei(0x9240, this.flipY ? 1 : 0);
             this.premulAlpha && gl.pixelStorei(0x9241, true);
-            gl.texImage2D(0x0DE1, 0, 0x1908, 0x1908, 0x1401, this._imgData);
+            if (this._imgData.videoWidth || this._imgData.videoHeight) {
+                gl.texImage2D(0x0DE1, 0, 0x1908, 0x1908, 0x1401, this._imgData);
+            } else {
+                if (!window['defaultImageData']) {
+                    window['defaultImageData'] = new ImageData(1, 1)
+                }
+                gl.texImage2D(0x0DE1, 0, 0x1908, 0x1908, 0x1401, window['defaultImageData']);
+            }
             this.premulAlpha && gl.pixelStorei(0x9241, false);
             gl.texParameteri(0x0DE1, 0x2800, 0x2601);
             gl.texParameteri(0x0DE1, 0x2801, 0x2601);
@@ -24667,14 +24673,21 @@ if (typeof define === 'function' && define.amd) {
         __proto.reloadCanvasData = function () {
             var gl = WebGL.mainContext;
             if (!this._source) {
-                throw "reloadCanvasData error, gl texture not created!";
+                console.error("reloadCanvasData error, gl texture not created!");
+                return;
             }
-            ;
             var preTarget = WebGLContext.curBindTexTarget;
             var preTexture = WebGLContext.curBindTexValue;
             WebGLContext.bindTexture(gl, 0x0DE1, this._source);
             this.premulAlpha && gl.pixelStorei(0x9241, true);
-            gl.texImage2D(0x0DE1, 0, 0x1908, 0x1908, 0x1401, this._imgData);
+            if (this._imgData.videoWidth || this._imgData.videoHeight) {
+                gl.texImage2D(0x0DE1, 0, 0x1908, 0x1908, 0x1401, this._imgData);
+            } else {
+                if (!window['defaultImageData']) {
+                    window['defaultImageData'] = new ImageData(1, 1)
+                }
+                gl.texImage2D(0x0DE1, 0, 0x1908, 0x1908, 0x1401, window['defaultImageData']);
+            }
             this.premulAlpha && gl.pixelStorei(0x9241, false);
             gl.pixelStorei(0x9240, 0);
             (preTarget && preTexture) && (WebGLContext.bindTexture(gl, preTarget, preTexture));
@@ -42962,21 +42975,28 @@ os.restoreCursor = function () { document.body.style.cursor = os._recordCursor; 
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 os._enterframeMap = new Map();
 os._removeframeMap = new Map();
+os.fps = 60;//帧率
 os.add_ENTERFRAME = function (onHappen, thisPtr, args) {
+    // 记录初始时间
+    var then = Date.now();
     var _loop;
     window.requestAnimationFrame(_loop = function () {
-        var _removeArr = os._removeframeMap.get(onHappen);
-        if (_removeArr) {
-            var idx = _removeArr.indexOf(thisPtr);
-            if (idx != -1) {
-                _removeArr.splice(idx, 1);
-                return;
+        var now = Date.now();
+        if (Math.round(now * os.fps * 0.001) > Math.round(then * os.fps * 0.001)) {
+            var _removeArr = os._removeframeMap.get(onHappen);
+            if (_removeArr) {
+                var idx = _removeArr.indexOf(thisPtr);
+                if (idx != -1) {
+                    _removeArr.splice(idx, 1);
+                    return;
+                }
             }
+            onHappen.apply(thisPtr, args);
+            then = now;
         }
-        var now = new Date().getTime();
-        onHappen.apply(thisPtr, args);
         window.requestAnimationFrame(_loop); // next frame 执行本函数
     });
+    //ENTERFRAME侦听
     var enterArr = os._enterframeMap.get(onHappen);
     if (!enterArr) {
         enterArr = [];
@@ -43803,7 +43823,7 @@ var TreeRender = (function (_super) {
         if (e.ctrlKey || e.shiftKey) {
             return;
         }
-        if (this.data.numChildren == 0)
+        if (!this.data || this.data.numChildren == 0)
             return;
         var isOpen = !this.data.isOpen;
         if (!isOpen) {
@@ -44387,16 +44407,16 @@ Shader2D.initMaterial = function () {
     }
     var vs, ps;
     vs = "\n\tattribute vec4 position;\n\tattribute vec2 texcoord;\n\tuniform vec2 size;\n\t#ifdef WORLDMAT\n\t uniform mat4 mmat;\n\t#endif\n\tvarying vec2 v_texcoord;\n\tvoid main() {\n\t\t  vec2 sizex = size;\n\t\t  #ifdef WORLDMAT\n\t\t   vec4 pos=mmat*position;\n\t\t   gl_Position =vec4((pos.x/sizex.x-0.5)*2.0,(0.5-pos.y/sizex.y)*2.0,pos.z,1.0);\n\t\t  #else\n\t\t   gl_Position =vec4((position.x/sizex.x-0.5)*2.0,(0.5-position.y/sizex.y)*2.0,position.z,1.0);\n\t\t  #endif\n\t\t v_texcoord = texcoord;\n\t}";
-    ps = "\n\t" + (Config.EDIT_MODE ? "#define IN_GC_EDITOR" : "") + "\n\tprecision mediump float;\n\t//precision highp float;\n\tvarying vec2 v_texcoord;\n\tuniform sampler2D texture;\n\tuniform float alpha;\n\tuniform vec2 renderTargetSize;\n\tuniform float u_yFilp;\n\n\tvec2 getDrawUV(vec2 texcoord,vec4 p){\n\t\tvec2 drawUV = texcoord;\n\t\tdrawUV.x = fract(drawUV.x);\n\t\tif(u_yFilp==1.0){\n\t\t\tdrawUV.y = fract(drawUV.y);\n\t\t}\n\t\telse{\n\t\t\tdrawUV.y = fract(drawUV.y)*-1.0+1.0;\n\t\t}\n    \t\n\n    \tdrawUV.x *= p.x;\n    \tdrawUV.y *= p.y;\n\n    \tdrawUV.x += p.z;\n    \tdrawUV.y += p.w;\n\n\t\treturn drawUV;\n\t}\n\tvec4 getTextureColor(vec2 texcoord) {\n\t\t vec4 color= texture2D(texture, fract(texcoord));\n\t\t return color;\n\t}\n\n\tvec2 getInRangeTextureCoord(vec2 texcoord){\n\t\treturn fract(texcoord);\n\t}\n\t\n\t#include?KDS  \"parts/KDS_ps_uniform.glsl\";\n\t#include?BLUR_FILTER  \"parts/BlurFilter_ps_uniform.glsl\";\n\t#include?COLOR_FILTER \"parts/ColorFilter_ps_uniform.glsl\";\n\t#include?GLOW_FILTER \"parts/GlowFilter_ps_uniform.glsl\";\n\t#include?COLOR_ADD \"parts/ColorAdd_ps_uniform.glsl\";\n\tvoid main() {\n\t\t   vec4 color= getTextureColor(v_texcoord);\n\t\t   if(color.a<1.0){\n\t\t\t   if(color.a==0.0){\n\t\t\t\t   color.rgb *= 0.0;\n\t\t\t   }\n\t\t\t   else{\n\t\t\t\t   color.rgb*=1.0/color.a;\n\t\t\t   }\n\t\t   }\n\t\t   color.a*=alpha;\n\t\t   gl_FragColor=color;\n\t\t//    gl_FragColor.w = 1.0;\n\t\t   #include?KDS  \"parts/KDS_ps_logic.glsl\";\n\t\t   #include?COLOR_ADD \"parts/ColorAdd_ps_logic.glsl\"; \n\t\t   #include?BLUR_FILTER  \"parts/BlurFilter_ps_logic.glsl\";\n\t\t   #include?COLOR_FILTER \"parts/ColorFilter_ps_logic.glsl\";\n\t\t   #include?GLOW_FILTER \"parts/GlowFilter_ps_logic.glsl\";\n\n\t\t//    gl_FragColor.g = 1.0;\n\n\t}";
+    ps = "\n\t" + (Config.EDIT_MODE ? "#define IN_GC_EDITOR" : "") + "\n\tprecision mediump float;\n\t//precision highp float;\n\tvarying vec2 v_texcoord;\n\tuniform sampler2D texture;\n\tuniform float alpha;\n\tuniform vec2 renderTargetSize;\n\tuniform float u_yFilp;\n\n\tvec2 getDrawUV(vec2 texcoord,vec4 p){\n\t\tvec2 drawUV = texcoord;\n\t\tdrawUV.x = fract(drawUV.x);\n\t\tif(u_yFilp==1.0){\n\t\t\tdrawUV.y = fract(drawUV.y);\n\t\t}\n\t\telse{\n\t\t\tdrawUV.y = fract(drawUV.y)*-1.0+1.0;\n\t\t}\n    \t\n\n    \tdrawUV.x *= p.x;\n    \tdrawUV.y *= p.y;\n\n    \tdrawUV.x += p.z;\n    \tdrawUV.y += p.w;\n\n\t\treturn drawUV;\n\t}\n\tvec4 getTextureColor(vec2 texcoord) {\n\t\t vec4 color= texture2D(texture, fract(texcoord));\n\t\t return color;\n\t}\n\n\tvec2 getInRangeTextureCoord(vec2 texcoord){\n\t\treturn fract(texcoord);\n\t}\n\t\n\t#include?KDS  \"parts/KDS_ps_uniform.glsl\";\n\t#include?BLUR_FILTER  \"parts/BlurFilter_ps_uniform.glsl\";\n\t#include?COLOR_FILTER \"parts/ColorFilter_ps_uniform.glsl\";\n\t#include?GLOW_FILTER \"parts/GlowFilter_ps_uniform.glsl\";\n\t#include?COLOR_ADD \"parts/ColorAdd_ps_uniform.glsl\";\n\tvoid main() {\n\n\t\tvec4 color= getTextureColor(v_texcoord);\n\t\tcolor.a*=alpha;\n\t\tcolor.rgb*=alpha;\n\t\tgl_FragColor=color;\n\n\t\t   #include?KDS  \"parts/KDS_ps_logic.glsl\";\n\t\t   #include?COLOR_ADD \"parts/ColorAdd_ps_logic.glsl\"; \n\t\t   #include?BLUR_FILTER  \"parts/BlurFilter_ps_logic.glsl\";\n\t\t   #include?COLOR_FILTER \"parts/ColorFilter_ps_logic.glsl\";\n\t\t   #include?GLOW_FILTER \"parts/GlowFilter_ps_logic.glsl\";\n\n\t\t//    gl_FragColor.g = 1.0;\n\n\t}";
     Shader.preCompile2D(0, 0x01, vs, ps, null);
     vs = "\n\tattribute vec4 position;\n\tattribute vec2 texcoord;\n\tuniform vec2 size;\n\t#ifdef WORLDMAT\n\tuniform mat4 mmat;\n\t#endif\n\tvarying vec2 v_texcoord;\n\tvoid main() {\n\t\t  #ifdef WORLDMAT\n\t\t    vec4 pos=mmat*position;\n\t\t\tgl_Position =vec4((pos.x/size.x-0.5)*2.0,(0.5-pos.y/size.y)*2.0,pos.z,1.0);\n\t\t  #else\n\t\t\tgl_Position =vec4((position.x/size.x-0.5)*2.0,(0.5-position.y/size.y)*2.0,position.z,1.0);\n\t\t  #endif\n\t\t  v_texcoord = texcoord;\n\t}";
-    ps = "\n\t" + (Config.EDIT_MODE ? "#define IN_GC_EDITOR" : "") + "\n\t#ifdef FSHIGHPRECISION\n\tprecision highp float;\n\t#else\n\tprecision mediump float;\n\t#endif\n\t//precision highp float;\n\tvarying vec2 v_texcoord;\n\tuniform sampler2D texture;\n\tuniform float alpha;\n\tuniform vec4 u_TexRange;\n\tuniform vec2 u_offset;\n\tuniform vec2 renderTargetSize;\n\n\tvec2 getDrawUV(vec2 texcoord,vec4 p){\n\t\tvec2 drawUV = texcoord;\n\t\tdrawUV.x = fract(drawUV.x);\n\t\tdrawUV.y = fract(drawUV.y); // *-1.0+1.0\n\n    \tdrawUV.x *= p.x;\n    \tdrawUV.y *= p.y;\n\n    \tdrawUV.x += p.z;\n    \tdrawUV.y += p.w;\n\n\t\treturn drawUV;\n\t}\n\t\n\tvec4 getTextureColor(vec2 texcoord) {\n\t\t vec2 newTexCoord;\n\t\t newTexCoord.x = mod(u_offset.x + texcoord.x,u_TexRange.y) + u_TexRange.x;\n\t\t newTexCoord.y = mod(u_offset.y + texcoord.y,u_TexRange.w) + u_TexRange.z;\n\t\t vec4 color = texture2D(texture, newTexCoord);\n\t\t return color;\n\t}\n\n\tvec2 getInRangeTextureCoord(vec2 texcoord){\n\t\tvec2 newTexCoord;\n\t\tnewTexCoord.x = fract(mod(u_offset.x + texcoord.x,u_TexRange.y) + u_TexRange.x);\n\t\tnewTexCoord.y = fract(mod(u_offset.y + texcoord.y,u_TexRange.w) + u_TexRange.z);\n\t\treturn newTexCoord;\n\t}\n\n\t#include?KDS  \"parts/KDS_ps_uniform.glsl\";\n\t#include?BLUR_FILTER  \"parts/BlurFilter_ps_uniform.glsl\";\n\t#include?COLOR_FILTER \"parts/ColorFilter_ps_uniform.glsl\";\n\t#include?GLOW_FILTER \"parts/GlowFilter_ps_uniform.glsl\";\n\t#include?COLOR_ADD \"parts/ColorAdd_ps_uniform.glsl\";\n\tvoid main() {\n\t\t vec4 color = getTextureColor(v_texcoord);\n\t\t if(color.a<1.0){\n\t\t\t   if(color.a==0.0){\n\t\t\t\t   color.rgb *= 0.0;\n\t\t\t   }\n\t\t\t   else{\n\t\t\t\t   color.rgb*=1.0/color.a;\n\t\t\t   }\n\t\t }\n\t\t color.a*=alpha;\n\t\t gl_FragColor=color;\n\t\t #include?KDS  \"parts/KDS_ps_logic.glsl\";\n\t\t #include?COLOR_ADD \"parts/ColorAdd_ps_logic.glsl\";   \n\t\t #include?BLUR_FILTER  \"parts/BlurFilter_ps_logic.glsl\";\n\t\t #include?COLOR_FILTER \"parts/ColorFilter_ps_logic.glsl\";\n\t\t #include?GLOW_FILTER \"parts/GlowFilter_ps_logic.glsl\";\n\t}";
+    ps = "\n\t" + (Config.EDIT_MODE ? "#define IN_GC_EDITOR" : "") + "\n\t#ifdef FSHIGHPRECISION\n\tprecision highp float;\n\t#else\n\tprecision mediump float;\n\t#endif\n\t//precision highp float;\n\tvarying vec2 v_texcoord;\n\tuniform sampler2D texture;\n\tuniform float alpha;\n\tuniform vec4 u_TexRange;\n\tuniform vec2 u_offset;\n\tuniform vec2 renderTargetSize;\n\n\tvec2 getDrawUV(vec2 texcoord,vec4 p){\n\t\tvec2 drawUV = texcoord;\n\t\tdrawUV.x = fract(drawUV.x);\n\t\tdrawUV.y = fract(drawUV.y); // *-1.0+1.0\n\n    \tdrawUV.x *= p.x;\n    \tdrawUV.y *= p.y;\n\n    \tdrawUV.x += p.z;\n    \tdrawUV.y += p.w;\n\n\t\treturn drawUV;\n\t}\n\t\n\tvec4 getTextureColor(vec2 texcoord) {\n\t\t vec2 newTexCoord;\n\t\t newTexCoord.x = mod(u_offset.x + texcoord.x,u_TexRange.y) + u_TexRange.x;\n\t\t newTexCoord.y = mod(u_offset.y + texcoord.y,u_TexRange.w) + u_TexRange.z;\n\t\t vec4 color = texture2D(texture, newTexCoord);\n\t\t return color;\n\t}\n\n\tvec2 getInRangeTextureCoord(vec2 texcoord){\n\t\tvec2 newTexCoord;\n\t\tnewTexCoord.x = fract(mod(u_offset.x + texcoord.x,u_TexRange.y) + u_TexRange.x);\n\t\tnewTexCoord.y = fract(mod(u_offset.y + texcoord.y,u_TexRange.w) + u_TexRange.z);\n\t\treturn newTexCoord;\n\t}\n\n\t#include?KDS  \"parts/KDS_ps_uniform.glsl\";\n\t#include?BLUR_FILTER  \"parts/BlurFilter_ps_uniform.glsl\";\n\t#include?COLOR_FILTER \"parts/ColorFilter_ps_uniform.glsl\";\n\t#include?GLOW_FILTER \"parts/GlowFilter_ps_uniform.glsl\";\n\t#include?COLOR_ADD \"parts/ColorAdd_ps_uniform.glsl\";\n\tvoid main() {\n\t\tvec4 color= getTextureColor(v_texcoord);\n\t\tcolor.a*=alpha;\n\t\tcolor.rgb*=alpha;\n\t\tgl_FragColor=color;\n\t\t #include?KDS  \"parts/KDS_ps_logic.glsl\";\n\t\t #include?COLOR_ADD \"parts/ColorAdd_ps_logic.glsl\";   \n\t\t #include?BLUR_FILTER  \"parts/BlurFilter_ps_logic.glsl\";\n\t\t #include?COLOR_FILTER \"parts/ColorFilter_ps_logic.glsl\";\n\t\t #include?GLOW_FILTER \"parts/GlowFilter_ps_logic.glsl\";\n\t}";
     Shader.preCompile2D(0, 0x100, vs, ps, null);
     ShaderDefines2D.reg("KDS", GameSpriteMaterialPass.shaderType);
 };
 Shader2D.__init__ = function () {
     Shader.addInclude("parts/ColorFilter_ps_uniform.glsl", "uniform vec4 colorAlpha;\nuniform mat4 colorMat;");
-    Shader.addInclude("parts/ColorFilter_ps_logic.glsl", "mat4 alphaMat =colorMat;\n\tfloat lastDr = alphaMat[0][3];\n\tfloat lastDg = alphaMat[1][3];\n\tfloat lastDb = alphaMat[2][3];\n\talphaMat[0][3] =0.0;\n\talphaMat[1][3] =0.0;\n\talphaMat[2][3] =0.0;\n\tgl_FragColor = gl_FragColor * alphaMat;\n\tgl_FragColor.r += lastDr*(lastDr<0.0?gl_FragColor.r:1.0);\n\tgl_FragColor.g += lastDg*(lastDr<0.0?gl_FragColor.g:1.0);\n\tgl_FragColor.b += lastDb*(lastDr<0.0?gl_FragColor.b:1.0);\n\t");
+    Shader.addInclude("parts/ColorFilter_ps_logic.glsl", "mat4 alphaMat =colorMat;\n\nalphaMat[0][3] *= gl_FragColor.a;\nalphaMat[1][3] *= gl_FragColor.a;\nalphaMat[2][3] *= gl_FragColor.a;\n\ngl_FragColor = gl_FragColor * alphaMat;\ngl_FragColor += colorAlpha*gl_FragColor.a;\n");
     Shader.addInclude("parts/GlowFilter_ps_uniform.glsl", "\n\tuniform vec4 u_color;\n\tuniform float u_strength;\n\tuniform float u_blurX;\n\tuniform float u_blurY;\n\tuniform float u_offsetX;\n\tuniform float u_offsetY;\n\tuniform float u_textW;\n\tuniform float u_textH;");
     Shader.addInclude("parts/GlowFilter_ps_logic.glsl", "\n\tconst float c_IterationTime = 10.0;\n\tfloat floatIterationTotalTime = c_IterationTime * c_IterationTime;\n\tvec4 vec4Color = vec4(0.0,0.0,0.0,0.0);\n\tvec2 vec2FilterDir = vec2(-(u_offsetX)/u_textW,-(u_offsetY)/u_textH);\n\tvec2 vec2FilterOff = vec2(u_blurX/u_textW/c_IterationTime * 2.0,u_blurY/u_textH/c_IterationTime * 2.0);\n\tfloat maxNum = u_blurX * u_blurY;\n\tvec2 vec2Off = vec2(0.0,0.0);\n\tfloat floatOff = c_IterationTime/2.0;\n\tfor(float i = 0.0;i<=c_IterationTime; ++i){\n\t\t\tfor(float j = 0.0;j<=c_IterationTime; ++j){\n\t\t\t\tvec2Off = vec2(vec2FilterOff.x * (i - floatOff),vec2FilterOff.y * (j - floatOff));\n\t\t\t\tvec4Color += texture2D(texture, v_texcoord + vec2FilterDir + vec2Off)/floatIterationTotalTime;\n\t\t\t}\n\t}\n\tgl_FragColor = vec4(u_color.rgb,vec4Color.a * u_strength);\n\tgl_FragColor.rgb *= gl_FragColor.a;");
     Shader.addInclude("parts/BlurFilter_ps_logic.glsl", "gl_FragColor =   blur();\ngl_FragColor.w*=alpha;");
@@ -48675,19 +48695,33 @@ var FileUtils = (function () {
                 SyncTask.taskOver(FileUtils.TASK_MODIFY_FILE);
             }, _this);
             if (!Config.EDIT_MODE && (os.platform != 2)) {
-                var isCloneFileSuccess = false;
-                try {
-                    var fromDataObj = LocalStorage.getJSON(fromLocalURL);
-                    if (fromDataObj) {
-                        LocalStorage.setJSON(toLocalURL, fromDataObj);
-                        isCloneFileSuccess = true;
+                if (IndexedDBManager.support && IndexedDBManager.used) {
+                    IndexedDBManager.getIndexDBJson(fromLocalURL, function (value) {
+                        if (value) {
+                            IndexedDBManager.setIndexDBJson(toLocalURL, value, function (success) {
+                                onCloneFileFin.delayRun(0, null, [success, fromLocalURL, toLocalURL]);
+                            });
+                        }
+                        else {
+                            onCloneFileFin.delayRun(0, null, [false, fromLocalURL, toLocalURL]);
+                        }
+                    });
+                }
+                else {
+                    var isCloneFileSuccess = false;
+                    try {
+                        var fromDataObj = LocalStorage.getJSON(fromLocalURL);
+                        if (fromDataObj) {
+                            LocalStorage.setJSON(toLocalURL, fromDataObj);
+                            isCloneFileSuccess = true;
+                        }
                     }
+                    catch (e) {
+                        isCloneFileSuccess = false;
+                        trace("can not clone file [" + fromLocalURL + "] to [" + toLocalURL + "]");
+                    }
+                    onCloneFileFin.delayRun(0, null, [isCloneFileSuccess, fromLocalURL, toLocalURL]);
                 }
-                catch (e) {
-                    isCloneFileSuccess = false;
-                    trace("can not clone file [" + fromLocalURL + "] to [" + toLocalURL + "]");
-                }
-                onCloneFileFin.delayRun(0, null, [isCloneFileSuccess, fromLocalURL, toLocalURL]);
                 return;
             }
             if (os.inGC()) {
@@ -48966,8 +49000,15 @@ var FileUtils = (function () {
                 SyncTask.taskOver(FileUtils.TASK_MODIFY_FILE);
             }, _this);
             if (!Config.EDIT_MODE && (os.platform != 2)) {
-                LocalStorage.setJSON(localURL, dataObject);
-                onSaveFin && onSaveFin.delayRun(0, null, [true, localURL]);
+                if (IndexedDBManager.support && IndexedDBManager.used) {
+                    IndexedDBManager.setIndexDBJson(localURL, dataObject, function (success) {
+                        onSaveFin && onSaveFin.delayRun(0, null, [success, localURL]);
+                    });
+                }
+                else {
+                    LocalStorage.setJSON(localURL, dataObject);
+                    onSaveFin && onSaveFin.delayRun(0, null, [true, localURL]);
+                }
                 return;
             }
             function onSaveOver(onSaveFin, args) {
@@ -49110,22 +49151,31 @@ var FileUtils = (function () {
             taskF.apply(this);
         }
     };
-    FileUtils.deleteFile = function (localURL, onFin) {
+    FileUtils.deleteFile = function (localURL, onFin, isFullPath) {
         var _this = this;
+        if (onFin === void 0) { onFin = null; }
+        if (isFullPath === void 0) { isFullPath = false; }
         new SyncTask(FileUtils.TASK_MODIFY_FILE, function () {
             var onDeleteFileFin = Callback.New(function (success, localURL) {
-                onFin.runWith([success, localURL]);
+                onFin && onFin.runWith([success, localURL]);
                 SyncTask.taskOver(FileUtils.TASK_MODIFY_FILE);
             }, _this);
             if (!Config.EDIT_MODE && (os.platform != 2)) {
-                LocalStorage.removeItem(localURL);
-                onDeleteFileFin && onDeleteFileFin.delayRun(0, null, [true, localURL]);
+                if (IndexedDBManager.support && IndexedDBManager.used) {
+                    IndexedDBManager.removeIndexDBItem(localURL, function (success) {
+                        onDeleteFileFin && onDeleteFileFin.delayRun(0, null, [success, localURL]);
+                    });
+                }
+                else {
+                    LocalStorage.removeItem(localURL);
+                    onDeleteFileFin && onDeleteFileFin.delayRun(0, null, [true, localURL]);
+                }
                 return;
             }
             var fs;
             if (typeof gcTop.require && (fs = gcTop.require("fs"))) {
                 var head = (typeof gcTop.mainDomain_LGNative != "undefined") ? gcTop.mainDomain_LGNative.WORK_PATH + "/" : "";
-                var fullURL = head + localURL;
+                var fullURL = isFullPath ? localURL : (head + localURL);
                 if (!fs.existsSync(fullURL)) {
                     onDeleteFileFin && onDeleteFileFin.delayRun(0, null, [false, localURL]);
                     return;
@@ -49188,31 +49238,6 @@ var GameUtils = (function () {
         }
         return oriMapping[index];
     };
-    GameUtils.getIndexByOri = function (ori, oriMode) {
-        if (oriMode === void 0) { oriMode = 8; }
-        var oriMapping;
-        switch (oriMode) {
-            case 1:
-                oriMapping = { 1: 0, 2: 0, 3: 0, 4: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
-                break;
-            case 2:
-                oriMapping = { 1: 0, 2: 1, 3: 1, 4: 0, 6: 1, 7: 0, 8: 1, 9: 1 };
-                break;
-            case 3:
-                oriMapping = { 1: 4, 2: 1, 3: 4, 4: 0, 6: 0, 7: 0, 8: 2, 9: 0 };
-                break;
-            case 4:
-                oriMapping = { 1: 1, 2: 0, 3: 2, 4: 1, 6: 2, 7: 1, 8: 3, 9: 2 };
-                break;
-            case 5:
-                oriMapping = { 1: 1, 2: 0, 3: 1, 4: 2, 6: 2, 7: 3, 8: 4, 9: 3 };
-                break;
-            case 8:
-                oriMapping = { 1: 7, 2: 6, 3: 5, 4: 0, 6: 4, 7: 1, 8: 2, 9: 3 };
-                break;
-        }
-        return oriMapping[ori];
-    };
     GameUtils.getAssetOri = function (ori, oriMode) {
         if (oriMode === void 0) { oriMode = 8; }
         var oriMapping;
@@ -49264,6 +49289,56 @@ var GameUtils = (function () {
         if (oriMapping.indexOf(ori) != -1)
             return ori;
         return oriMapping[0];
+    };
+    GameUtils.getFlipOriByIndex = function (index, oriMode) {
+        if (oriMode === void 0) { oriMode = 8; }
+        var oriMapping;
+        switch (oriMode) {
+            case 1:
+                oriMapping = { 0: 4, 1: 6 };
+                break;
+            case 2:
+                oriMapping = { 0: 4, 1: 6 };
+                break;
+            case 3:
+                oriMapping = { 0: 4, 1: 2, 2: 8, 3: 6 };
+                break;
+            case 4:
+                oriMapping = { 0: 2, 1: 4, 2: 6, 3: 8 };
+                break;
+            case 5:
+                oriMapping = { 0: 2, 1: 1, 2: 4, 3: 7, 4: 8, 5: 6 };
+                break;
+            case 8:
+                oriMapping = { 0: 4, 1: 7, 2: 8, 3: 9, 4: 6, 5: 3, 6: 2, 7: 1 };
+                break;
+        }
+        return oriMapping[index];
+    };
+    GameUtils.getIndexByFlipOri = function (ori, oriMode) {
+        if (oriMode === void 0) { oriMode = 8; }
+        var oriMapping;
+        switch (oriMode) {
+            case 1:
+                oriMapping = { 1: 0, 2: 0, 3: 0, 4: 0, 6: 1, 7: 0, 8: 0, 9: 0 };
+                break;
+            case 2:
+                oriMapping = { 1: 0, 2: 1, 3: 1, 4: 0, 6: 1, 7: 0, 8: 1, 9: 1 };
+                break;
+            case 3:
+                oriMapping = { 1: 4, 2: 1, 3: 4, 4: 0, 6: 3, 7: 0, 8: 2, 9: 0 };
+                break;
+            case 4:
+                oriMapping = { 1: 1, 2: 0, 3: 2, 4: 1, 6: 2, 7: 1, 8: 3, 9: 2 };
+                break;
+            case 5:
+                oriMapping = { 1: 1, 2: 0, 3: 1, 4: 2, 6: 5, 7: 3, 8: 4, 9: 3 };
+                break;
+            case 8:
+                oriMapping = { 1: 7, 2: 6, 3: 5, 4: 0, 6: 4, 7: 1, 8: 2, 9: 3 };
+                break;
+        }
+        return oriMapping[ori];
     };
     GameUtils.getOriByAngle = function (angle) {
         if (angle >= 337.5 || angle < 22.5) {
@@ -49617,6 +49692,312 @@ var GameUtils = (function () {
     };
     GameUtils.tweenCount = 34;
     return GameUtils;
+}());
+var IndexedDBManager = (function () {
+    function IndexedDBManager() {
+    }
+    IndexedDBManager.setIndexDB = function (key, value, onFin) {
+        if (onFin === void 0) { onFin = null; }
+        if (!IndexedDBManager.used)
+            return;
+        var req = IndexedDBManager.indexedDB.open(IndexedDBManager.databaseName, IndexedDBManager.version);
+        req.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (!db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                db.createObjectStore(IndexedDBManager.tableName, { keyPath: "name" });
+            }
+        };
+        req.onsuccess = function (event) {
+            var db = event.target.result;
+            if (db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                var transaction = db.transaction([IndexedDBManager.tableName], 'readwrite');
+                var store = transaction.objectStore(IndexedDBManager.tableName);
+                var cache = { name: key, value: value };
+                var get_req = store.get(key);
+                get_req.onsuccess = function (event) {
+                    if (event.target.result) {
+                        updataIndexDB(store, cache, onFin);
+                    }
+                    else {
+                        addIndexDB(store, cache, onFin);
+                    }
+                };
+                get_req.onerror = function () {
+                    addIndexDB(store, cache, onFin);
+                };
+            }
+            else {
+                onFin && onFin.apply(this, [false]);
+            }
+        };
+        req.onerror = function () {
+            onFin && onFin.apply(this, [false]);
+        };
+        function addIndexDB(store, cache, onFin) {
+            var add_req = store.add(cache);
+            add_req.onsuccess = function () {
+                onFin && onFin.apply(this, [true]);
+            };
+            add_req.onerror = function () {
+                onFin && onFin.apply(this, [false]);
+            };
+        }
+        function updataIndexDB(store, cache, onFin) {
+            var updata_req = store.put(cache);
+            updata_req.onsuccess = function () {
+                onFin && onFin.apply(this, [true]);
+            };
+            updata_req.onerror = function () {
+                onFin && onFin.apply(this, [false]);
+            };
+        }
+    };
+    IndexedDBManager.getIndexDB = function (key, onFin) {
+        if (!IndexedDBManager.used)
+            return;
+        var req = IndexedDBManager.indexedDB.open(IndexedDBManager.databaseName, IndexedDBManager.version);
+        req.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (!db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                db.createObjectStore(IndexedDBManager.tableName, { keyPath: "name" });
+            }
+        };
+        req.onsuccess = function (event) {
+            var db = event.target.result;
+            if (db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                var transaction = db.transaction([IndexedDBManager.tableName], 'readwrite');
+                var store = transaction.objectStore(IndexedDBManager.tableName);
+                var store_req = store.get(key);
+                store_req.onsuccess = function (event) {
+                    if (event.target.result) {
+                        onFin.apply(this, [event.target.result.value]);
+                    }
+                    else {
+                        onFin.apply(this, [null]);
+                    }
+                };
+                store_req.onerror = function () {
+                    onFin.apply(this, [null]);
+                };
+            }
+            else {
+                onFin.apply(this, [null]);
+            }
+        };
+        req.onerror = function () {
+            onFin.apply(this, [null]);
+        };
+    };
+    IndexedDBManager.setIndexDBJson = function (key, value, onFin) {
+        if (onFin === void 0) { onFin = null; }
+        if (!IndexedDBManager.used)
+            return;
+        var req = IndexedDBManager.indexedDB.open(IndexedDBManager.databaseName, IndexedDBManager.version);
+        req.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (!db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                db.createObjectStore(IndexedDBManager.tableName, { keyPath: "name" });
+            }
+        };
+        req.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (!db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                db.createObjectStore(IndexedDBManager.tableName, { keyPath: "name" });
+            }
+        };
+        req.onsuccess = function (event) {
+            var db = event.target.result;
+            if (db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                var transaction = db.transaction([IndexedDBManager.tableName], 'readwrite');
+                var store = transaction.objectStore(IndexedDBManager.tableName);
+                var content = JSON.stringify(value);
+                var cache = { name: key, value: content };
+                var get_req = store.get(key);
+                get_req.onsuccess = function (event) {
+                    if (event.target.result) {
+                        updataIndexDBJson(store, cache, onFin);
+                    }
+                    else {
+                        addIndexDBJson(store, cache, onFin);
+                    }
+                };
+                get_req.onerror = function (event) {
+                    addIndexDBJson(store, cache, onFin);
+                };
+            }
+            else {
+                onFin && onFin.apply(this, [false]);
+            }
+        };
+        req.onerror = function () {
+            onFin && onFin.apply(this, [false]);
+        };
+        function addIndexDBJson(store, cache, onFin) {
+            var add_req = store.add(cache);
+            add_req.onsuccess = function () {
+                onFin && onFin.apply(this, [true]);
+            };
+            add_req.onerror = function () {
+                onFin && onFin.apply(this, [false]);
+            };
+        }
+        function updataIndexDBJson(store, cache, onFin) {
+            var updata_req = store.put(cache);
+            updata_req.onsuccess = function () {
+                onFin && onFin.apply(this, [true]);
+            };
+            updata_req.onerror = function () {
+                onFin && onFin.apply(this, [false]);
+            };
+        }
+    };
+    IndexedDBManager.getIndexDBJson = function (key, onFin) {
+        if (!IndexedDBManager.used)
+            return;
+        var req = IndexedDBManager.indexedDB.open(IndexedDBManager.databaseName, IndexedDBManager.version);
+        req.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (!db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                db.createObjectStore(IndexedDBManager.tableName, { keyPath: "name" });
+            }
+        };
+        req.onsuccess = function (event) {
+            var db = event.target.result;
+            if (db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                var transaction = db.transaction([IndexedDBManager.tableName], 'readwrite');
+                var store = transaction.objectStore(IndexedDBManager.tableName);
+                var store_req = store.get(key);
+                store_req.onsuccess = function (event) {
+                    if (event.target.result) {
+                        try {
+                            var content = JSON.parse(event.target.result.value);
+                            onFin.apply(this, [content]);
+                            console.log('Value: ' + content);
+                        }
+                        catch (e) {
+                            onFin.apply(this, [null]);
+                        }
+                    }
+                    else {
+                        onFin.apply(this, [null]);
+                    }
+                };
+                store_req.onerror = function (event) {
+                    onFin.apply(this, [false]);
+                };
+            }
+            else {
+                onFin.apply(this, [null]);
+            }
+        };
+        req.onerror = function () {
+            onFin.apply(this, [null]);
+        };
+    };
+    IndexedDBManager.removeIndexDBItem = function (key, onFin) {
+        if (onFin === void 0) { onFin = null; }
+        if (!IndexedDBManager.used)
+            return;
+        var req = IndexedDBManager.indexedDB.open(IndexedDBManager.databaseName, IndexedDBManager.version);
+        req.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (!db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                db.createObjectStore(IndexedDBManager.tableName, { keyPath: "name" });
+            }
+        };
+        req.onsuccess = function (event) {
+            var db = event.target.result;
+            if (db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                var transaction = db.transaction([IndexedDBManager.tableName], 'readwrite');
+                var store = transaction.objectStore(IndexedDBManager.tableName);
+                var store_req = store.delete(key);
+                store_req.onsuccess = function (event) {
+                    onFin && onFin.apply(this, [true]);
+                };
+                store_req.onerror = function (event) {
+                    onFin && onFin.apply(this, [false]);
+                };
+            }
+            else {
+                onFin && onFin.apply(this, [false]);
+            }
+        };
+        req.onerror = function () {
+            onFin && onFin.apply(this, [false]);
+        };
+    };
+    IndexedDBManager.items = function (onFin) {
+        if (!IndexedDBManager.used)
+            return;
+        var req = IndexedDBManager.indexedDB.open(IndexedDBManager.databaseName, IndexedDBManager.version);
+        req.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (!db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                db.createObjectStore(IndexedDBManager.tableName, { keyPath: "name" });
+            }
+        };
+        req.onsuccess = function (event) {
+            var db = event.target.result;
+            if (db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                var transaction = db.transaction([IndexedDBManager.tableName], 'readwrite');
+                var store = transaction.objectStore(IndexedDBManager.tableName);
+                var store_req = store.openCursor();
+                var list = {};
+                store_req.onsuccess = function (event) {
+                    var cursor = event.target.result;
+                    if (cursor) {
+                        list[cursor.value.name] = cursor.value.value;
+                        cursor.continue();
+                    }
+                    else {
+                        onFin.apply(this, [list]);
+                    }
+                };
+                store_req.onerror = function (event) {
+                    onFin.apply(this, [{}]);
+                };
+            }
+        };
+        req.onerror = function () {
+            onFin.apply(this, [{}]);
+        };
+    };
+    IndexedDBManager.clear = function (onFin) {
+        if (onFin === void 0) { onFin = null; }
+        if (!IndexedDBManager.used)
+            return;
+        var req = IndexedDBManager.indexedDB.open(IndexedDBManager.databaseName, IndexedDBManager.version);
+        req.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (!db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                db.createObjectStore(IndexedDBManager.tableName, { keyPath: "name" });
+            }
+        };
+        req.onsuccess = function (event) {
+            var db = event.target.result;
+            if (db.objectStoreNames.contains(IndexedDBManager.tableName)) {
+                var transaction = db.transaction([IndexedDBManager.tableName], 'readwrite');
+                var store = transaction.objectStore(IndexedDBManager.tableName);
+                var store_req = store.clear();
+                store_req.onsuccess = function (event) {
+                    onFin && onFin.apply(this, [true]);
+                };
+                store_req.onerror = function (event) {
+                    onFin && onFin.apply(this, [false]);
+                };
+            }
+        };
+        req.onerror = function () {
+            onFin && onFin.apply(this, [false]);
+        };
+    };
+    IndexedDBManager.indexedDB = (typeof window != "undefined" && (window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB));
+    IndexedDBManager.support = IndexedDBManager.indexedDB ? true : false;
+    IndexedDBManager.used = false;
+    IndexedDBManager.databaseName = "GameCreator";
+    IndexedDBManager.version = 1;
+    IndexedDBManager.tableName = "GC_Cache";
+    return IndexedDBManager;
 }());
 var SceneObjectBehaviors = (function () {
     function SceneObjectBehaviors(so, loop, targetSceneObject, onOver, startIndex, executor) {
@@ -50122,6 +50503,7 @@ var Config = (function () {
     Config.JSON_PATH = "asset/json";
     Config.JSON_CONFIG = Config.JSON_PATH + "/config.json";
     Config.SCENE_BY_DRAWLINES_MAX = 500;
+    Config.ENGINE_MERGE_STARTUP_FILE = true;
     Config.DATA_GRIDS = [];
     Config.FONTS = [];
     Config.startupPreloadFonts = true;
@@ -50725,6 +51107,9 @@ var CustomCompositeSetting = (function (_super) {
     CustomCompositeSetting.getAllAttributes = function (data, dsAttrMode, varInBlockMapping) {
         if (dsAttrMode === void 0) { dsAttrMode = true; }
         if (varInBlockMapping === void 0) { varInBlockMapping = null; }
+        if (data == null) {
+            return [];
+        }
         var len = data.blockList.length;
         var arr = [];
         for (var i = 0; i < len; i++) {
@@ -54698,6 +55083,7 @@ var GameSprite = (function (_super) {
         if (!this.__isDisposed) {
             this.clearMaterials();
             this.event(GameSprite.ON_DISPOSE);
+            this.offAll();
             EventUtils.clear(this);
             this.removeSelf();
             this._tonalParams = this._tonalFilter = this.tips = null;
@@ -54920,10 +55306,14 @@ var GameSprite = (function (_super) {
         if (!ani)
             return;
         this._animationTargetEffect.push(ani);
+        if (this.isDisposed)
+            return;
         this.refreshAnimationTargetEffect();
     };
     GameSprite.prototype.removeAnimationTargetEffect = function (ani) {
         ArrayUtils.remove(this._animationTargetEffect, ani);
+        if (this.isDisposed)
+            return;
         this.refreshAnimationTargetEffect();
     };
     GameSprite.prototype.refreshAnimationTargetEffect = function () {
@@ -55028,9 +55418,9 @@ var GameSprite = (function (_super) {
         var gt0 = 0 - (0 - 0.6094) * gray / 100;
         var bt0 = 0 - (0 - 0.0820) * gray / 100;
         this._tonalFilter = new ColorFilter([
-            rt1 * mr, gt0, bt0, r / 255, 0,
-            rt0, gt1 * mg, bt0, g / 255, 0,
-            rt0, gt0, bt1 * mb, b / 255, 0,
+            rt1 * mr, gt0, bt0, 0, r / 255,
+            rt0, gt1 * mg, bt0, 0, g / 255,
+            rt0, gt0, bt1 * mb, 0, b / 255,
             0, 0, 0, 1, 0
         ]);
         this.refreshFilters();
@@ -56555,8 +56945,12 @@ var ClientMsgSender = (function () {
 }());
 var NetConn = (function () {
     function NetConn() {
-        this.jsonMsgFragment = "";
-        this.msgFragment = "";
+        this.jsonMsgFragmentArr = [];
+        this.jsonMsgFragmentSize = 0;
+        this.jsonMsgFragmentNow = 0;
+        this.msgFragmentArr = [];
+        this.msgFragmentSize = 0;
+        this.msgFragmentNow = 0;
     }
     NetConn.prototype.connect = function (key, host, port, onConnect, onMsg, onClose) {
         if (onClose === void 0) { onClose = null; }
@@ -56606,17 +57000,34 @@ var NetConn = (function () {
             var msgType = msgContent.substr(0, 1);
             var msgBody = msgContent.substr(1);
             if (msgType == "0") {
-                this.onMsg.runWith([msgType, this.msgFragment + msgBody]);
+                this.onMsg.runWith([msgType, msgBody]);
             }
             else if (msgType == "3") {
-                this.msgFragment += msgBody;
+                var fragSendIndex = parseInt(msgBody.substr(0, 3));
+                this.msgFragmentSize = parseInt(msgBody.substr(3, 3));
+                msgBody = msgBody.substr(6);
+                this.msgFragmentArr[fragSendIndex] = msgBody;
+                this.msgFragmentNow++;
+                if (this.msgFragmentNow == this.msgFragmentSize) {
+                    this.onMsg.runWith(["0", this.msgFragmentArr.join("")]);
+                    this.msgFragmentArr.length = 0;
+                    this.msgFragmentNow = 0;
+                }
             }
             else if (msgType == "1") {
-                this.onMsg.runWith([msgType, this.jsonMsgFragment + msgBody]);
-                this.jsonMsgFragment = "";
+                this.onMsg.runWith([msgType, msgBody]);
             }
             else if (msgType == "2") {
-                this.jsonMsgFragment += msgBody;
+                var fragSendIndex = parseInt(msgBody.substr(0, 3));
+                this.jsonMsgFragmentSize = parseInt(msgBody.substr(3, 3));
+                msgBody = msgBody.substr(6);
+                this.jsonMsgFragmentArr[fragSendIndex] = msgBody;
+                this.jsonMsgFragmentNow++;
+                if (this.jsonMsgFragmentNow == this.jsonMsgFragmentSize) {
+                    this.onMsg.runWith(["1", this.jsonMsgFragmentArr.join("")]);
+                    this.jsonMsgFragmentArr.length = 0;
+                    this.jsonMsgFragmentNow = 0;
+                }
             }
             else if (msgType == "4") {
                 this.isConnect = false;
@@ -56654,7 +57065,7 @@ var ClientMain = (function () {
                 return;
             if (gcTop == window && (os.platform == 2))
                 return;
-            if (!Config.USE_FN || (e.keyCode != Keyboard.F11 && e.keyCode != Keyboard.F5)) {
+            if (!Config.USE_FN || (e.keyCode != Keyboard.F11 && e.keyCode != Keyboard.F5 && e.keyCode != Keyboard.F12)) {
                 e.stopPropagation();
                 window.event.returnValue = false;
             }
@@ -56675,6 +57086,7 @@ var ClientMain = (function () {
         GameCommand.init();
         Game.init();
         GameUI.init();
+        new SyncTask(this.initTask, this.loadStartupJson, [], this);
         new SyncTask(this.initTask, this.installDataConfig, [Config.JSON_CONFIG, Config], this);
         new SyncTask(this.initTask, this.loadFontFile, [], this);
         new SyncTask(this.initTask, this.initConfig, [], this);
@@ -56705,6 +57117,30 @@ var ClientMain = (function () {
         stage.on(EventObject.MOUSE_DOWN, this, function () {
             window.focus();
         });
+    };
+    ClientMain.prototype.loadStartupJson = function () {
+        var _this = this;
+        if (!Config.RELEASE_GAME) {
+            SyncTask.taskOver(this.initTask);
+            return;
+        }
+        var oldLoadJson1 = FileUtils.loadJsonFile;
+        FileUtils.loadJsonFile("asset/json/startup.json", Callback.New(function (startupJsons) {
+            if (!startupJsons) {
+                alert("找不到合并版的Json!");
+                return;
+            }
+            FileUtils.loadJsonFile = function (localURL, onFin, onErrorTips) {
+                if (onErrorTips === void 0) { onErrorTips = true; }
+                var bigJsonCacheObj = startupJsons[localURL];
+                if (bigJsonCacheObj) {
+                    onFin.delayRun(0, null, [bigJsonCacheObj]);
+                    return;
+                }
+                oldLoadJson1.apply(FileUtils, [localURL, onFin, onErrorTips]);
+            };
+            SyncTask.taskOver(_this.initTask);
+        }, this));
     };
     ClientMain.prototype.installDataConfig = function (url, configObj) {
         FileUtils.loadJsonFile(url, new Callback(function (cfgJson) {
@@ -56955,7 +57391,6 @@ var GameBase = (function () {
         this._staticInterval = 0;
         this._now = 0;
         this._timeMultiplier = 1;
-        this.oneFrame = 16.666667;
         this._pause = false;
         this.__initGameTime();
     }
@@ -56965,6 +57400,13 @@ var GameBase = (function () {
             os.add_ENTERFRAME(_this.onEnterFrame, _this);
         }, this), true);
     };
+    Object.defineProperty(GameBase.prototype, "oneFrame", {
+        get: function () {
+            return 1000 / os['fps'];
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(GameBase.prototype, "now", {
         get: function () {
             return this._now;
@@ -56987,7 +57429,7 @@ var GameBase = (function () {
     });
     GameBase.prototype.onEnterFrame = function () {
         if (!Game._pause)
-            this._now += this._timeMultiplier * 16.666667;
+            this._now += this._timeMultiplier * this.oneFrame;
     };
     GameBase.prototype.setLoginData = function (playerID, worldData, heartBeatInterval) {
         Game.player.uid = playerID;
@@ -57192,6 +57634,9 @@ var ClientSceneLayer = (function (_super) {
                 }
             }
             tileDataColumn.length = hSplit;
+        }
+        if (isNaN(wSplit) || wSplit < 0 || wSplit == Infinity) {
+            return;
         }
         this.tileSplitMap.length = wSplit;
         for (var x = 0; x < wSplit; x++) {
@@ -57970,16 +58415,21 @@ var Animation = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Animation.prototype.clear = function (clearGraphics) {
-        if (clearGraphics === void 0) { clearGraphics = true; }
+    Animation.prototype.clear = function () {
         for (var i = this.numChildren - 1; i >= 0; i--) {
-            if (this.getChildAt(i) instanceof AnimationLayer) {
-                this.removeChildAt(i);
+            var layer = this.getChildAt(i);
+            if (layer instanceof AnimationLayer) {
+                layer.dispose();
             }
         }
         if (this.particleAni) {
+            this.particleAni.emitter.stop();
+            this.particleAni.stop();
+            this.particleAni.offAll();
             this.particleAni.removeSelf();
+            this.particleAni.destroy(true);
             this.particleAni = null;
+            this.particleData = null;
         }
     };
     Animation.prototype.loadData = function (animationID, loadIDRD) {
@@ -58025,11 +58475,11 @@ var Animation = (function (_super) {
         if (!animationData) {
             this._isloaded = true;
             this._isloading = false;
-            this.clear(false);
+            this.clear();
             this.event(EventObject.LOADED);
             return;
         }
-        this.clear(false);
+        this.clear();
         if (animationData.isParticle) {
             this.particleParseData(animationData, loadIDRD);
         }
@@ -58054,7 +58504,10 @@ var Animation = (function (_super) {
         }
         var _this = this;
         this._loadState = 2;
-        this.___loadPicUrls = [textureName];
+        if (this.___loadPicUrls)
+            this.___loadPicUrls = this.___loadPicUrls.concat([textureName]);
+        else
+            this.___loadPicUrls = [textureName];
         AssetManager.loadTexture(textureName, Callback.New(function (texture) {
             if (_this.isDisposed || _this.topAnimation.isDisposed || (loadIDRD && _this._loadIDRD != loadIDRD)) {
                 _this.event(Animation.LOAD_EXPIRE);
@@ -58104,7 +58557,11 @@ var Animation = (function (_super) {
             return;
         }
         var _this = this;
-        this.___loadPicUrls = [this.particleData.textureName];
+        this._loadState = 2;
+        if (this.___loadPicUrls)
+            this.___loadPicUrls = this.___loadPicUrls.concat([this.particleData.textureName]);
+        else
+            this.___loadPicUrls = [this.particleData.textureName];
         this._isloading = true;
         this._isloaded = false;
         AssetManager.loadTexture(this.particleData.textureName, Callback.New(function (texture) {
@@ -58139,8 +58596,12 @@ var Animation = (function (_super) {
         this.isParticle = false;
         this._preAnimationlayers.length = 0;
         this.animationTargetLayer = null;
-        var picUrls = this.___loadPicUrls = animationData.imageSources.reduce(function (pv, v) { if (v && pv.indexOf(v.url) == -1)
+        var picUrls = animationData.imageSources.reduce(function (pv, v) { if (v && pv.indexOf(v.url) == -1)
             pv.push(v.url); return pv; }, []);
+        if (this.___loadPicUrls)
+            this.___loadPicUrls = this.___loadPicUrls.concat(picUrls);
+        else
+            this.___loadPicUrls = picUrls;
         this._loadState = 2;
         AssetManager.loadImages(picUrls, Callback.New(function () {
             if (_this.isDisposed || _this.topAnimation.isDisposed || (loadIDRD && _this._loadIDRD != loadIDRD)) {
@@ -58239,26 +58700,28 @@ var Animation = (function (_super) {
             this._preAnimationlayers.forEach(function (v) { return _this.addChild(v); });
         }
     };
-    Animation.prototype.removeSelf = function () {
-        this.stop();
-        this.target = null;
-        this._lowLayer = null;
-        this._highLayer = null;
-        this.updateParent();
-        this.particleAni = null;
-        this.particleData = null;
-        return _super.prototype.removeSelf.call(this);
-    };
     Animation.prototype.dispose = function () {
         if (!this.isDisposed) {
-            this._preAnimationlayers.forEach(function (element) {
-                element.removeSelf();
-            });
             os.remove_ENTERFRAME(this.onEnterFrame, this);
             this.stop(this.currentFrame);
             this.___clearTask();
             this.___disposeAsset();
-            this.removeSelf();
+            this._preAnimationlayers.forEach(function (element) {
+                element.dispose();
+            });
+            this._preAnimationlayers = [];
+            this.target = null;
+            this.topAnimation = null;
+            this._lowLayer = null;
+            this._highLayer = null;
+            this.animationTargetLayer = null;
+            if (this.particleAni) {
+                this.particleAni.offAll();
+                this.particleAni.removeSelf();
+                this.particleAni.destroy(true);
+                this.particleAni = null;
+                this.particleData = null;
+            }
         }
         _super.prototype.dispose.call(this);
     };
@@ -58295,6 +58758,8 @@ var Animation = (function (_super) {
         else if (this._loadState == 1) {
             AssetManager.disposeJson(this.___loadJsonURL);
         }
+        this.___loadJsonURL = null;
+        this.___loadPicUrls = null;
         this._loadState = 0;
     };
     Animation.prototype.gotoAndPlay = function (frame) {
@@ -58815,7 +59280,7 @@ var AnimationTargetLayer = (function (_super) {
         if (!this.animation)
             return;
         var target = this.animation.target;
-        if (!target)
+        if (!target || target.isDisposed)
             return;
         if (target instanceof GameSprite) {
             target.refreshAnimationTargetEffect();
@@ -58955,6 +59420,11 @@ var UIComponent;
         };
         UIBase.prototype.dispose = function () {
             if (!this.isDisposed) {
+                var uiArr = this.getAllUIChildren();
+                for (var s in uiArr) {
+                    var ui = uiArr[s];
+                    ui.dispose();
+                }
                 this.initCondition(false);
             }
             _super.prototype.dispose.call(this);
@@ -59062,12 +59532,24 @@ var UIComponent;
         };
         UIBase.prototype.inEditorDatabase = function () {
         };
+        UIBase.prototype.getAllUIChildren = function () {
+            var allChildren = this["_childs"];
+            var uiArr = [];
+            for (var i = 0; i < allChildren.length; i++) {
+                var ui = allChildren[i];
+                if (ui instanceof UIComponent.UIBase && ui["_needLoad"]) {
+                    uiArr.push(ui);
+                }
+            }
+            return uiArr;
+        };
         UIBase.EVENT_COMPONENT_CONSTRUCTOR_INIT = "UIBase_EVENT_COMPONENT_CONSTRUCTOR_INIT";
         UIBase.ON_VISIBLE_CHANGE = "UIBaseVisible";
         UIBase.BASE_ATTRS = ["x", "y", "width", "height", "rotation", "show", "opacity", "mouseEventEnabledData"];
         UIBase.BASE_ATTRS_OBJ = { x: true, y: true, width: true, height: true, rotation: true, show: true, opacity: true, mouseEventEnabledData: true };
         UIBase.systemReservationWords = ["id", "name", "guiRoot", "onConditionCheckCB", "firstConditionCheckCount", "_isInCurrentLayer", "_syncLoadedEventWhenAssetExist", "data", "_commondID", "__forceChange",
-            "isDisposed", "_tonalFilter", "_lastGameFilters", "_finalFilters", "_tips", "tips", "mouseThrough", "autoSize", "viewport", "cacheAs", "cacheAsBitmap", "graphics", "scrollRect", "mask", "parent", "texture"];
+            "isDisposed", "_tonalFilter", "_lastGameFilters", "_finalFilters", "_tips", "tips", "mouseThrough", "autoSize", "viewport", "cacheAs", "cacheAsBitmap", "graphics", "scrollRect", "mask", "parent",
+            "texture", "x", "y", "_x", "_y"];
         return UIBase;
     }(GameSprite));
     UIComponent.UIBase = UIBase;
@@ -59113,7 +59595,7 @@ var UIComponent;
                 return;
             }
             function doLoadAssetTest(imageURL) {
-                AssetManager.loadImages([imageURL], Callback.New(function () {
+                AssetManager.loadImage(imageURL, Callback.New(function () {
                     this.event(GameUI.EVENT_TEST_LOAD_CHILD_UI);
                 }, this), this._syncLoadedEventWhenAssetExist, false);
             }
@@ -59121,7 +59603,20 @@ var UIComponent;
         };
         UIBitmap.prototype.dispose = function () {
             if (!this.isDisposed) {
-                AssetManager.disposeImages(this.___currentRequestLoadImages);
+                var varID = GameUtils.getVarID(this.image);
+                if (varID != 0 && this._onVarChange) {
+                    Game.player.removeListenerPlayerVariable(2, varID, this._onVarChange);
+                }
+                if (this.___currentRequestLoadImages)
+                    AssetManager.disposeImages(this.___currentRequestLoadImages);
+                if (this._texture) {
+                    this._texture.offAll();
+                    this._texture = null;
+                }
+                this._uiImage.removeSelf();
+                this._uiImage.offAll();
+                this._uiImage.destroy(true);
+                this._uiImage = null;
             }
             _super.prototype.dispose.call(this);
         };
@@ -59143,6 +59638,8 @@ var UIComponent;
             configurable: true
         });
         UIBitmap.prototype.onResize = function () {
+            if (this.isDisposed)
+                return;
             if (this._imageByTexture) {
                 this._uiImage.graphics.clear();
                 this._uiImage.graphics.drawTexture(this.texture, 0, 0, this.width, this.height);
@@ -59388,12 +59885,12 @@ var UIComponent;
             this._color = "#000000";
             this._state = 1;
             this._image = new UIImage();
-            this._tf = new UIComponent.UIString();
             this.addChild(this._image);
-            var tfBox = new Sprite();
-            tfBox.addChild(this._tf);
+            this._tfBox = new Sprite();
+            this._tf = new UIComponent.UIString();
             this._tf.mouseEventEnabled = false;
-            this.addChild(tfBox);
+            this._tfBox.addChild(this._tf);
+            this.addChild(this._tfBox);
             this.className = "UIButton";
             this.add_MOUSEOVER(this.onmouseover, this);
             this.add_MOUSEOUT(this.onmouseout, this);
@@ -59412,8 +59909,8 @@ var UIComponent;
             set: function (v) {
                 if (this.isDisposed)
                     return;
-                this.refImageRecord(0, v);
                 this._image1 = v;
+                this.refImageRecord(0, v);
                 AssetManager.loadImage(v);
                 this.onImageChange(v, 1);
             },
@@ -59427,8 +59924,8 @@ var UIComponent;
             set: function (v) {
                 if (this.isDisposed)
                     return;
-                this.refImageRecord(1, v);
                 this._image2 = v;
+                this.refImageRecord(1, v);
                 AssetManager.loadImage(v);
                 this.onImageChange(v, 2);
             },
@@ -59442,8 +59939,8 @@ var UIComponent;
             set: function (v) {
                 if (this.isDisposed)
                     return;
-                this.refImageRecord(2, v);
                 this._image3 = v;
+                this.refImageRecord(2, v);
                 AssetManager.loadImage(v);
                 this.onImageChange(v, 3);
             },
@@ -59486,7 +59983,14 @@ var UIComponent;
         };
         UIButton.prototype.dispose = function () {
             if (!this.isDisposed) {
-                AssetManager.disposeImages(this.___currentRequestLoadImages);
+                if (this.___currentRequestLoadImages)
+                    AssetManager.disposeImages(this.___currentRequestLoadImages);
+                this._tf.dispose();
+                this._tf = null;
+                this._tfBox.removeSelf();
+                this._tfBox = null;
+                this._image.removeSelf();
+                this._image = null;
             }
             _super.prototype.dispose.call(this);
         };
@@ -59768,6 +60272,8 @@ var UIComponent;
                 this.setState(2);
         };
         UIButton.prototype.onResize = function () {
+            if (this.isDisposed)
+                return;
             this.setState(this._state);
             this._tf.width = this.width;
             this._tf.height = this.height;
@@ -59842,7 +60348,11 @@ var UIComponent;
         };
         UICheckBox.prototype.dispose = function () {
             if (!this.isDisposed) {
-                AssetManager.disposeImages(this.___currentRequestLoadImages);
+                if (this.___currentRequestLoadImages)
+                    AssetManager.disposeImages(this.___currentRequestLoadImages);
+                this._image.removeSelf();
+                this._image.offAll();
+                this._image = null;
             }
             _super.prototype.dispose.call(this);
         };
@@ -59852,6 +60362,8 @@ var UIComponent;
             },
             set: function (v) {
                 this._image1 = v;
+                this.refImageRecord(0, v);
+                AssetManager.loadImage(v);
                 this.refresh();
             },
             enumerable: true,
@@ -59863,6 +60375,9 @@ var UIComponent;
             },
             set: function (v) {
                 this._image2 = v;
+                this.refImageRecord(1, v);
+                AssetManager.loadImage(v);
+                ;
                 this.refresh();
             },
             enumerable: true,
@@ -59965,7 +60480,6 @@ var UIComponent;
             var url = this._selected ? this.image2 : this.image1;
             var gridText = this._selected ? this._grid9img2 : this._grid9img1;
             if (url) {
-                this.refImageRecord(this._selected ? 1 : 0, url);
                 AssetManager.loadImage(url, Callback.New(function (url, tex) {
                     if (_this.isDisposed)
                         return;
@@ -59976,7 +60490,7 @@ var UIComponent;
                     _this._image.width = _this.width;
                     _this._image.height = _this.height;
                     _this._image.sizeGrid = gridText;
-                }, this, [url]), true);
+                }, this, [url]), true, false);
             }
         };
         Object.defineProperty(UICheckBox.prototype, "onChangeFragEvent", {
@@ -60094,9 +60608,17 @@ var UIComponent;
         }
         UIComboBox.prototype.dispose = function () {
             if (!this.isDisposed) {
+                os.remove_ENTERFRAME(this.refreshListPosition, this);
                 this._bgImg.dispose();
+                this._bgImg = null;
+                this._tf.dispose();
+                this._tf = null;
                 if (this._list)
                     this._list.dispose();
+                this._list = null;
+                this._root.removeSelf();
+                this._root.offAll();
+                this._root = null;
             }
             _super.prototype.dispose.call(this);
         };
@@ -60109,6 +60631,8 @@ var UIComponent;
             }, this), this._syncLoadedEventWhenAssetExist, false);
         };
         UIComboBox.prototype.onResize = function (e) {
+            if (this.isDisposed)
+                return;
             this._bgImg.width = this.width;
             this._bgImg.height = this.height;
             this._tf.width = this.width;
@@ -60299,7 +60823,7 @@ var UIComponent;
         });
         UIComboBox.prototype.onMouseDown = function (e) {
             var _this = this;
-            if (this._list.stage)
+            if (!this._itemLabelArr || this._list.stage)
                 return;
             this._overItem = null;
             this._list.itemModelClass = ComboboxListRender;
@@ -60639,6 +61163,12 @@ var UIComponent;
             this.label.wordWrap = false;
             this.addChild(this.label);
         }
+        ComboboxListRender.prototype.dispose = function () {
+            if (this.label)
+                this.label.dispose();
+            this.label = null;
+            _super.prototype.destroy.call(this, true);
+        };
         return ComboboxListRender;
     }(Sprite));
 })(UIComponent || (UIComponent = {}));
@@ -60742,14 +61272,16 @@ var UIComponent;
                         _this.event(GameUI.EVENT_TEST_LOAD_CHILD_UI);
                     });
                     os.add_ENTERFRAME(_this.onEditorCheckLoaded, _this);
-                    _this._root.addChild(_this._ui);
+                    if (_this._root)
+                        _this._root.addChild(_this._ui);
                     EUIRoot.dataBaseWindow.win7.off(EUIWindowUI.EVENT_GUI_DATA_SYNC_COMPLETE, _this, _this.onGUIDataChange);
                     EUIRoot.dataBaseWindow.win7.on(EUIWindowUI.EVENT_GUI_DATA_SYNC_COMPLETE, _this, _this.onGUIDataChange);
                 }, this).delayRun(0);
             }
             else {
                 var ui = GameUI.load(guiID, true);
-                this._root.addChild(ui);
+                if (this._root)
+                    this._root.addChild(ui);
                 this._ui = ui;
                 this.event(EventObject.LOADED);
             }
@@ -60781,7 +61313,8 @@ var UIComponent;
         };
         UIGUI.prototype.clear = function (guiID) {
             this.graphics.clear();
-            this._root.removeChildren();
+            if (this._root)
+                this._root.removeChildren();
             if (!guiID) {
                 this._lastRect = new Rectangle;
                 this.graphics.drawRect(0, 0, 100, 100, "#000000");
@@ -60794,8 +61327,24 @@ var UIComponent;
                 this.height = 0;
             }
         };
+        UIGUI.prototype.dispose = function () {
+            if (!this.isDisposed) {
+                os.remove_ENTERFRAME(this.onEditorCheckLoaded, this);
+                if (Config.EDIT_MODE) {
+                    EUIRoot.dataBaseWindow.win7.off(EUIWindowUI.EVENT_GUI_DATA_SYNC_COMPLETE, this, this.onGUIDataChange);
+                }
+                if (this._ui)
+                    this._ui.dispose();
+                this._ui = null;
+                this._root.removeSelf();
+                this._root.offAll();
+                this._root.destroy(true);
+                this._root = null;
+            }
+            _super.prototype.dispose.call(this);
+        };
         UIGUI.prototype.onEditorCheckLoaded = function () {
-            if (this.destroyed)
+            if (this.isDisposed)
                 return;
             var rect = this.getSelfBounds();
             if (!rect.equals(this._lastRect)) {
@@ -61121,11 +61670,15 @@ var UIComponent;
             this._hScrollBar.x = this._myScrollRect.x;
         };
         UIRoot.prototype.onResize = function () {
+            if (this.isDisposed)
+                return;
             this.refresh();
             this.refreshScrollPos();
             this.enabledLimitView = this.enabledLimitView;
         };
         UIRoot.prototype.onMouseWheel = function (e) {
+            if (this.isDisposed)
+                return;
             if (Config.EDIT_MODE || !this._enabledLimitView)
                 return;
             if (!this._contentHeight || !this._contentWidth)
@@ -61230,9 +61783,9 @@ var UIComponent;
             this._lastPoint.setTo(stage.mouseX, stage.mouseY);
             this._lastValuePoint || (this._lastValuePoint = new Point());
             this._lastValuePoint.setTo(this._hScrollBar.value, this._vScrollBar.value);
-            this._offsetXList || (this._offsetXList = []);
-            this._offsetYList || (this._offsetYList = []);
-            this._offsetPoint || (this._offsetPoint = new Point());
+            this._offsetXList = [];
+            this._offsetYList = [];
+            this._offsetPoint = new Point();
             timer.clear(this, this.tweenMoveX);
             timer.clear(this, this.tweenMoveY);
             stage.on(EventObject.MOUSE_UP, this, this.onStageMouseUp);
@@ -61323,7 +61876,8 @@ var UIComponent;
         };
         UIRoot.prototype.addChild = function (node) {
             var node = _super.prototype.addChild.call(this, node);
-            this.refreshAddchild();
+            if (node != this._mask)
+                this.refreshAddchild();
             return node;
         };
         ;
@@ -61372,12 +61926,11 @@ var UIComponent;
         };
         UIRoot.prototype.loadAssetTest = function (checkAllChildren) {
             if (checkAllChildren === void 0) { checkAllChildren = false; }
-            var mySkins = [this._vScroollBarImage1, this._vScroollBarImage2, this._hScroollBarImage1, this._hScroollBarImage2];
             if (this._isRoot || checkAllChildren) {
                 var uiRoots = [];
                 function onLoadedCheck(ui) {
                     count--;
-                    if (count == 0) {
+                    if (count <= 0) {
                         setTimeout(function (uiRoots) {
                             for (var i in uiRoots) {
                                 var ro = uiRoots[i];
@@ -61392,6 +61945,9 @@ var UIComponent;
                         this.event(EventObject.LOADED);
                     }
                 }
+                this.once(GameUI.EVENT_TEST_LOAD_CHILD_UI, this, onLoadedCheck, [this]);
+                this.loadSelfAssetTest();
+                uiRoots.push(this);
                 var uiArr = this.getAllUIChildren();
                 var count = uiArr.length;
                 for (var s in uiArr) {
@@ -61420,17 +61976,6 @@ var UIComponent;
                 return;
             AssetManager.disposeImages(this.___currentRequestLoadImages);
         };
-        UIRoot.prototype.getAllUIChildren = function () {
-            var allChildren = ArrayUtils.getTreeNodeArray(this, "_childs");
-            var uiArr = [];
-            for (var i = 0; i < allChildren.length; i++) {
-                var ui = allChildren[i];
-                if (ui instanceof UIComponent.UIBase && ui["_needLoad"]) {
-                    uiArr.push(ui);
-                }
-            }
-            return uiArr;
-        };
         UIRoot.prototype.dispose = function () {
             if (!this.isDisposed) {
                 if (this.guiID) {
@@ -61442,19 +61987,16 @@ var UIComponent;
                         return;
                     }
                 }
-                if (this._isRoot && GameUI.get(this.guiID) == this) { }
-                else {
-                    var uiArr = this.getAllUIChildren();
-                    for (var s in uiArr) {
-                        var ui = uiArr[s];
-                        if (ui.className == "UIRoot") {
-                            ui.disposeSelfAsset();
-                        }
-                        else {
-                            ui.dispose();
-                        }
-                    }
-                }
+                this.disposeSelfAsset();
+                this._mask.removeSelf();
+                this._mask.offAll();
+                this._mask = null;
+                this._vScrollBar.removeSelf();
+                this._vScrollBar.offAll();
+                this._vScrollBar = null;
+                this._hScrollBar.removeSelf();
+                this._hScrollBar.offAll();
+                this._hScrollBar = null;
             }
             _super.prototype.dispose.call(this);
         };
@@ -61599,7 +62141,20 @@ var UIComponent;
         };
         UISlider.prototype.dispose = function () {
             if (!this.isDisposed) {
-                AssetManager.disposeImages([this.image1, this.image2, this.image3]);
+                if (this.___currentRequestLoadImages)
+                    AssetManager.disposeImages(this.___currentRequestLoadImages);
+                this._bgImg.removeSelf();
+                this._bgImg.offAll();
+                this._bgImg = null;
+                this._blockImg.removeSelf();
+                this._blockImg.offAll();
+                this._blockImg = null;
+                this._blockFillImg.removeSelf();
+                this._blockFillImg.offAll();
+                this._blockFillImg = null;
+                this._blockFillMask.removeSelf();
+                this._blockFillMask.offAll();
+                this._blockFillMask = null;
             }
             _super.prototype.dispose.call(this);
         };
@@ -61611,6 +62166,8 @@ var UIComponent;
                 if (this.isDisposed)
                     return;
                 this._image1 = v;
+                this.refImageRecord(0, v);
+                AssetManager.loadImage(v);
                 this.refresh();
             },
             enumerable: true,
@@ -61624,6 +62181,8 @@ var UIComponent;
                 if (this.isDisposed)
                     return;
                 this._image2 = v;
+                this.refImageRecord(1, v);
+                AssetManager.loadImage(v);
                 this.refresh();
             },
             enumerable: true,
@@ -61637,6 +62196,8 @@ var UIComponent;
                 if (this.isDisposed)
                     return;
                 this._image3 = v;
+                this.refImageRecord(2, v);
+                AssetManager.loadImage(v);
                 this.refresh();
             },
             enumerable: true,
@@ -61958,9 +62519,6 @@ var UIComponent;
             var _this = this;
             if (this.isDisposed)
                 return;
-            this.refImageRecord(0, this.image1);
-            this.refImageRecord(1, this.image2);
-            this.refImageRecord(2, this.image3);
             AssetManager.loadImages([this.image1, this.image2, this.image3], Callback.New(function (image1, image2, image3) {
                 if (_this.isDisposed)
                     return;
@@ -61972,9 +62530,11 @@ var UIComponent;
                 if (_this._fillStrething)
                     _this._blockFillMask.skin = _this.image3;
                 _this.refreshSize();
-            }, this, [this.image1, this.image2, this.image3]), true);
+            }, this, [this.image1, this.image2, this.image3]), true, false);
         };
         UISlider.prototype.refreshSize = function () {
+            if (this.isDisposed)
+                return;
             this._bgImg.width = this.width;
             this._bgImg.height = this.height;
             var blockTex = AssetManager.getImage(this.image2);
@@ -62130,11 +62690,34 @@ var UIComponent;
                 }, this);
             }
         }
+        UIString.prototype.dispose = function () {
+            if (!this.isDisposed) {
+                if (!Config.EDIT_MODE) {
+                    var varID = this._lastVarID;
+                    if (varID != 0 && this.className == "UIString") {
+                        Game.player.removeListenerPlayerVariable(2, varID, this._onVarChange);
+                    }
+                }
+                this._tf.removeSelf();
+                this._tf.offAll();
+                this._tf.destroy(true);
+                this._tf = null;
+                if (this._tf2) {
+                    this._tf2.removeSelf();
+                    this._tf2.offAll();
+                    this._tf2.destroy(true);
+                    this._tf2 = null;
+                }
+            }
+            _super.prototype.dispose.call(this);
+        };
         UIString.prototype.inEditorInit = function () {
             this.text = "字符串";
             this.mouseEventEnabledData = false;
         };
         UIString.prototype.onResize = function () {
+            if (this.isDisposed)
+                return;
             this._tf.width = this.width;
             this._tf.height = this.height;
         };
@@ -62197,6 +62780,8 @@ var UIComponent;
                         this._tf.text = v;
                     }
                     if (this._shadowEnabled) {
+                        if (this._tf.text && !this._tf2.stage)
+                            this.addChildAt(this._tf2, 0);
                         this._tf2.color = this._shadowColor;
                         if (this.__forceChange) {
                             this._tf2.changeText(this._tf.text);
@@ -62485,7 +63070,8 @@ var UIComponent;
                     if (!this._tf2)
                         this._tf2 = this._input ? new TextInput() : new Label();
                     this._tf2.mouseEnabled = false;
-                    this.addChildAt(this._tf2, 0);
+                    if (this.text)
+                        this.addChildAt(this._tf2, 0);
                     this._tf2.font = this._tf.font;
                     this._tf2.bold = this._tf.bold;
                     this._tf2.italic = this._tf.italic;
@@ -62718,8 +63304,8 @@ var UIComponent;
             var _this = this;
             if (this.isDisposed)
                 return;
+            this.graphics.clear();
             if (!Config.EDIT_MODE) {
-                this.graphics.clear();
                 var varID = this.getVarID();
                 if (varID) {
                     var switchBool = Game.player.variable.getSwitch(varID);
@@ -62732,7 +63318,6 @@ var UIComponent;
                         gridText = this._grid9img1;
                     }
                     if (url) {
-                        this.refImageRecord(switchBool ? 1 : 0, url);
                         AssetManager.loadImage(url, Callback.New(function (url, tex) {
                             if (_this.isDisposed)
                                 return;
@@ -62744,23 +63329,37 @@ var UIComponent;
                             _this._image.width = _this.width;
                             _this._image.height = _this.height;
                             _this._image.sizeGrid = gridText;
-                        }, this, [url]), true);
+                        }, this, [url]), true, false);
                     }
                 }
             }
             else {
-                if (this._previewselected) {
-                    var url = this.image2;
-                    var gridText = this._grid9img2;
-                    if (url) {
-                        this._image.skin = url;
-                        this._image.width = this.width;
-                        this._image.height = this.height;
-                        this._image.sizeGrid = gridText;
-                    }
-                    return;
+                var url = this._previewselected ? this.image2 : this.image1;
+                var gridText = this._previewselected ? this._grid9img2 : this._grid9img1;
+                if (url) {
+                    AssetManager.loadImage(url, Callback.New(function (url, tex) {
+                        if (_this.isDisposed)
+                            return;
+                        var thisUrl = _this._previewselected ? _this.image2 : _this.image1;
+                        if (thisUrl != url)
+                            return;
+                        _this._image.skin = url;
+                        _this._image.width = _this.width;
+                        _this._image.height = _this.height;
+                        _this._image.sizeGrid = gridText;
+                    }, this, [url]), true, false);
                 }
-                _super.prototype.refresh.call(this);
+            }
+        };
+        UISwitch.prototype.dispose = function () {
+            if (!this.isDisposed) {
+                if (!Config.EDIT_MODE) {
+                    var varID = this.getVarID();
+                    if (varID != 0 && this.className == "UISwitch") {
+                        Game.player.removeListenerPlayerVariable(1, varID, this._onVarChange);
+                    }
+                }
+                _super.prototype.dispose.call(this);
             }
         };
         return UISwitch;
@@ -62826,6 +63425,9 @@ var UIComponent;
         UITabBox.prototype.dispose = function () {
             if (!this.isDisposed) {
                 this.clearItems();
+                this._tabRoot.removeSelf();
+                this._tabRoot.offAll();
+                this._tabRoot = null;
             }
             _super.prototype.dispose.call(this);
         };
@@ -63163,6 +63765,8 @@ var UIComponent;
             for (var i = 0; i < this._itemButtons.length; i++) {
                 var button = this._itemButtons[i];
                 button.dispose();
+                var label = this._itemLabels[i];
+                label.dispose();
             }
             this._itemButtons = [];
             this._itemLabels = [];
@@ -63346,6 +63950,17 @@ var UIComponent;
             this.className = "UIVariable";
             this._tf.text = "";
         }
+        UIVariable.prototype.dispose = function () {
+            if (!this.isDisposed) {
+                if (!Config.EDIT_MODE) {
+                    var varID = this._lastVarID;
+                    if (varID != 0 && this.className == "UIVariable" && Game.player) {
+                        Game.player.removeListenerPlayerVariable(0, varID, this._onVarChange);
+                    }
+                }
+            }
+            _super.prototype.dispose.call(this);
+        };
         UIVariable.prototype.inEditorInit = function () {
             _super.prototype.inEditorInit.call(this);
             this.varID = 1;
@@ -63450,13 +64065,6 @@ var UIComponent;
             this._currentTime = 0;
             this._playType = 0;
             this.className = "UIVideo";
-            if (Browser.onMobile) {
-                this.image = "";
-                this.width = 0;
-                this.height = 0;
-                this.visible = false;
-                return;
-            }
             if (Config.EDIT_MODE && editorCompMode) {
                 this.editorCompMode = true;
             }
@@ -63495,6 +64103,8 @@ var UIComponent;
                 if (_this.stage && _this.videoElement && _this._playType == 0 && !_this._metaDataLoaded)
                     _this.videoElement.play();
                 _this._metaDataLoaded = true;
+                _this.webGLCanvas.recreateResource();
+                stage.on(EventObject.RENDER, _this, _this.onVideoRender);
             });
             video.addEventListener("error", function () {
                 _this.event(EventObject.ERROR);
@@ -63506,21 +64116,31 @@ var UIComponent;
             this.webGLCanvas.size(1, 1);
             var tex = this.videoTex = new Texture(canvas);
             this.texture = tex;
-            canvas.recreateResource();
-            stage.on(EventObject.RENDER, this, this.onVideoRender);
         }
+        UIVideo.prototype.clear = function () {
+            this.webGLCanvas.disposeResource();
+            this._playType = 0;
+            this._metaDataLoaded = false;
+            stage.off(EventObject.RENDER, this, this.onVideoRender);
+        };
         UIVideo.prototype.dispose = function () {
             if (!this.isDisposed) {
+                stage.off(EventObject.RENDER, this, this.onVideoRender);
                 if (this.videoTex) {
                     this.videoTex.destroy(true);
                     this.videoTex = null;
                 }
                 if (this.videoElement) {
                     this.pause();
-                    stage.off(EventObject.RENDER, this, this.onVideoRender);
+                    this.videoElement.src = null;
+                    this.videoElement["srcObject"] = null;
                     if (this.videoElement.parentNode)
                         document.body.removeChild(this.videoElement);
                     this.videoElement = null;
+                }
+                if (this.webGLCanvas) {
+                    this.webGLCanvas.disposeResource();
+                    this.webGLCanvas = null;
                 }
             }
             _super.prototype.dispose.call(this);
@@ -64081,13 +64701,17 @@ var Avatar = (function (_super) {
         this._loadState = 2;
         AssetManager.loadImages(this.picUrls, h, this.syncLoadWhenAssetExist, true, this.prerender);
     };
-    Avatar.prototype.dispose = function (disposeChild) {
-        if (disposeChild === void 0) { disposeChild = false; }
+    Avatar.prototype.dispose = function () {
         if (!this.isDisposed) {
             this.___clearTask();
             this.stop(0, false);
             this.___disposeAsset();
-            this.removeSelf();
+            this.avatarList = [];
+            this._bodyGraphics.dispose();
+            this._bodyGraphics = null;
+            this._body.dispose();
+            this._body = null;
+            this.topAvatar = null;
         }
         _super.prototype.dispose.call(this);
     };
@@ -64102,15 +64726,10 @@ var Avatar = (function (_super) {
     };
     Avatar.prototype.___disposeAsset = function () {
         if (this._loadState == 3) {
-            var needDisposeParts = [];
             for (var i = 0; i < this.avatarList.length; i++) {
                 var avatarPart = this.avatarList[i];
                 if (avatarPart == this)
                     continue;
-                needDisposeParts.push(avatarPart);
-            }
-            for (var i = 0; i < needDisposeParts.length; i++) {
-                var avatarPart = needDisposeParts[i];
                 avatarPart.___disposeAsset();
                 avatarPart.__isDisposed = true;
             }
@@ -64143,6 +64762,7 @@ var Avatar = (function (_super) {
         set: function (v) {
             if (this.fixedOrientation)
                 return;
+            this.userChangeOrientation = true;
             for (var i in this.avatarList) {
                 if (this.avatarList[i] == this)
                     continue;
@@ -64512,7 +65132,7 @@ var Avatar = (function (_super) {
             this._bodyGraphicsFlip = (this.oriMode % 2 == 1) && (this.ori == 3 || this.ori == 6 || this.ori == 9) && this.autoFlip;
             if (this._bodyGraphicsFlip) {
                 this._bodyGraphics.scaleX = -1;
-                this._bodyGraphics.x = -frame.x * 2;
+                this._bodyGraphics.x = frame.width > 0 ? -frame.x * 2 : frame.x * 2;
             }
             else {
                 this._bodyGraphics.scaleX = 1;
@@ -64641,7 +65261,9 @@ var Avatar = (function (_super) {
             return;
         this._openAutoHitArea = false;
         this._openAutoHitAreaForce = false;
-        this.mouseEnabled = this._body.mouseEnabled = false;
+        this.mouseEnabled = false;
+        if (this._body)
+            this._body.mouseEnabled = false;
         for (var i in this.avatarList) {
             if (this.avatarList[i] == this)
                 continue;
@@ -67551,7 +68173,7 @@ var AnimationImageLayer = (function (_super) {
         configurable: true
     });
     AnimationImageLayer.prototype.onResize = function () {
-        if (!this.img.graphics || this.img.width == 0 || this.img.height == 0)
+        if (!this.img || !this.img.graphics || this.img.width == 0 || this.img.height == 0)
             return;
         var scaleX = this.width / this.img.width;
         var scaleY = this.height / this.img.height;
@@ -67619,6 +68241,15 @@ var AnimationImageLayer = (function (_super) {
         framedata.blendModeType = this.blendModeType;
         return framedata;
     };
+    AnimationImageLayer.prototype.dispose = function () {
+        if (this.img) {
+            this.img.offAll();
+            this.img.removeSelf();
+            this.img.destroy(true);
+            this.img = null;
+        }
+        _super.prototype.dispose.call(this);
+    };
     return AnimationImageLayer;
 }(AnimationDisplayLayer));
 AnimationLayer.typeClsMap[AnimationItemType.Image] = AnimationImageLayer;
@@ -67653,6 +68284,9 @@ var UIComponent;
                     this._bg.graphics.drawCircle(0, 0, 10, "#FF0000");
                     this._bg.alpha = 0.4;
                 }
+            }
+            else {
+                this.on(EventObject.DISPLAY, this, this.refreshSize);
             }
         }
         Object.defineProperty(UIAnimation.prototype, "animationID", {
@@ -67694,6 +68328,16 @@ var UIComponent;
                 this._aniFrame = v;
                 this.animation.currentFrame = v;
                 this.refreshSize();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(UIAnimation.prototype, "scaleNumber", {
+            get: function () {
+                return this._animation.scaleX;
+            },
+            set: function (v) {
+                this._animation.scaleX = this._animation.scaleY = v;
             },
             enumerable: true,
             configurable: true
@@ -67770,6 +68414,12 @@ var UIComponent;
                     this._animation.dispose();
                     this._animation = null;
                 }
+                if (this._bg) {
+                    this._bg.removeSelf();
+                    this._bg.offAll();
+                    this._bg.destroy(true);
+                    this._bg = null;
+                }
             }
             _super.prototype.dispose.call(this);
         };
@@ -67800,6 +68450,9 @@ var UIComponent;
         UIAnimation.prototype.refreshSize = function () {
             if (!this.stage)
                 return;
+            if (!Config.EDIT_MODE) {
+                this.hitArea = this._animation.getBounds();
+            }
         };
         UIAnimation.prototype.on = function (type, caller, listener, args) {
             var t = _super.prototype.on.apply(this, arguments);
@@ -67852,6 +68505,7 @@ var UIComponent;
             _super.call(this);
             this._oriMode = 8;
             this._avatarFrame = 1;
+            this._orientationIndex = 0;
             this._isPlay = true;
             this._playOnce = false;
             this.className = "UIAvatar";
@@ -67869,10 +68523,8 @@ var UIComponent;
             }
             this.addChildAt(this._avatar, 0);
             this.avatar.on(Avatar.RENDER, this, this.refreshSize);
-            this.avatar.on(EventObject.LOADED, this, function () {
+            this.avatar.once(EventObject.LOADED, this, function () {
                 _this._oriMode = _this.avatar.oriMode;
-                _this.orientationIndex = _this.orientationIndex;
-                _this.refreshSize();
             });
         };
         Object.defineProperty(UIAvatar.prototype, "syncLoadedEventWhenAssetExist", {
@@ -67961,13 +68613,24 @@ var UIComponent;
         });
         Object.defineProperty(UIAvatar.prototype, "orientationIndex", {
             get: function () {
-                return GameUtils.getIndexByOri(this.orientation, this._oriMode);
+                return this._orientationIndex;
             },
             set: function (v) {
+                var _this = this;
+                if (this.avatar.isLoading) {
+                    this.avatar.once(EventObject.LOADED, this, function () {
+                        if (_this.isDisposed || _this.avatar.isDisposed || _this.avatar.userChangeOrientation)
+                            return;
+                        _this.orientationIndex = v;
+                        _this.refreshSize();
+                    });
+                    return;
+                }
                 v = Math.floor(v);
-                var orientation = GameUtils.getOriByIndex(v, this._oriMode);
+                this._orientationIndex = v;
+                var orientation = GameUtils.getFlipOriByIndex(v, this._oriMode);
                 if (orientation == null)
-                    orientation = GameUtils.getOriByIndex(0, this._oriMode);
+                    orientation = GameUtils.getFlipOriByIndex(0, this._oriMode);
                 this.orientation = orientation;
             },
             enumerable: true,
@@ -67979,6 +68642,7 @@ var UIComponent;
             },
             set: function (v) {
                 v = Math.floor(v);
+                this._orientationIndex = GameUtils.getIndexByFlipOri(v, this._oriMode);
                 this.avatar.orientation = v;
                 this.refreshSize();
             },
@@ -68078,6 +68742,10 @@ var UIComponent;
                     if (_this.avatar)
                         _this.hitArea = _this.avatar.getBounds();
                 }, this);
+            }
+            else {
+                if (this.avatar)
+                    this.hitArea = this.avatar.getBounds();
             }
         };
         UIAvatar.prototype.on = function (type, caller, listener, args) {
@@ -68290,6 +68958,11 @@ var UIComponent;
                 this._tf2.text = this._tf.text;
             }
         };
+        UICustomGameNumber.prototype.dispose = function () {
+            if (!this.isDisposed)
+                os.remove_ENTERFRAME(this.refreshDataDisplay, this);
+            _super.prototype.dispose.call(this);
+        };
         return UICustomGameNumber;
     }(UIComponent.UIString));
     UIComponent.UICustomGameNumber = UICustomGameNumber;
@@ -68410,6 +69083,11 @@ var UIComponent;
                 this._tf2.text = this._tf.text;
             }
         };
+        UICustomGameString.prototype.dispose = function () {
+            if (!this.isDisposed)
+                os.remove_ENTERFRAME(this.refreshDataDisplay, this);
+            _super.prototype.dispose.call(this);
+        };
         return UICustomGameString;
     }(UIComponent.UIString));
     UIComponent.UICustomGameString = UICustomGameString;
@@ -68425,6 +69103,8 @@ var UIComponent;
         __extends(UIInput, _super);
         function UIInput() {
             _super.call(this, !Config.EDIT_MODE);
+            this._color = "#000000";
+            this._promptColor = "#606060";
             this.className = "UIInput";
             this.valign = 1;
             this.width = 200;
@@ -68509,6 +69189,100 @@ var UIComponent;
                 }
                 if ((lastInputMode <= 2 && v == 3) || (lastInputMode == 3 && v < 3)) {
                     this.changeTextInputType();
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(UIInput.prototype, "text", {
+            get: function () {
+                if (!Config.EDIT_MODE) {
+                    return this._tf.text;
+                }
+                else {
+                    return this._text;
+                }
+            },
+            set: function (v) {
+                this._text = v;
+                if (this.__forceChange) {
+                    this._tf.changeText(v);
+                }
+                else {
+                    this._tf.text = v;
+                }
+                this._tf.color = this._color;
+                if (this._shadowEnabled) {
+                    if (this._text && !this._tf2.stage)
+                        this.addChildAt(this._tf2, 0);
+                    this._tf2.color = this._shadowColor;
+                    if (this.__forceChange) {
+                        this._tf2.changeText(this._tf.text);
+                    }
+                    else {
+                        this._tf2.text = this._tf.text;
+                    }
+                }
+                if (Config.EDIT_MODE && !this._text && this._prompt) {
+                    this._tf.changeText(this._prompt);
+                    this._tf.color = this._promptColor;
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(UIInput.prototype, "color", {
+            get: function () {
+                return this._color;
+            },
+            set: function (v) {
+                this._color = v;
+                if (!Config.EDIT_MODE) {
+                    this._tf.color = v ? v : "#000000";
+                }
+                else {
+                    if (this._text) {
+                        this._tf.color = v;
+                        this.width += 1;
+                        this.width -= 1;
+                    }
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(UIInput.prototype, "prompt", {
+            get: function () {
+                return this._prompt;
+            },
+            set: function (v) {
+                this._prompt = v;
+                if (!Config.EDIT_MODE) {
+                    this._tf.prompt = v ? v : "";
+                }
+                else {
+                    if (!this._text && this._prompt) {
+                        this._tf.changeText(this._prompt);
+                        this._tf.color = this._promptColor;
+                    }
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(UIInput.prototype, "promptColor", {
+            get: function () {
+                return this._promptColor;
+            },
+            set: function (v) {
+                this._promptColor = v;
+                if (!Config.EDIT_MODE) {
+                    this._tf.promptColor = v ? v : "#606060";
+                }
+                else {
+                    if (!this._text && this._prompt) {
+                        this._tf.color = this._promptColor;
+                    }
                 }
             },
             enumerable: true,
@@ -68760,18 +69534,22 @@ var UIComponent;
         });
         UIList.prototype.dispose = function () {
             if (!this.isDisposed) {
-                this.__isDisposed = true;
-                if (this._overImage)
-                    this._overImage.dispose();
-                if (this._selectedImage)
-                    this._selectedImage.dispose();
-                this.clearItems();
-                if (this.__currentLoadUIAsset) {
-                    AssetManager.disposeUIAsset(this.__currentLoadUIAsset);
+                if (Config.EDIT_MODE) {
+                    EUIRoot.dataBaseWindow.win7.off(EUIWindowUI.EVENT_GUI_DATA_SYNC_COMPLETE, this, this.onItemUIChange);
                 }
-                this.destroy();
+                this.clearItems();
+                this._overImage.dispose();
+                this._overImage = null;
+                this._overImageBox.dispose();
+                this._overImageBox = null;
+                this._selectedImage.dispose();
+                this._selectedImage = null;
+                this._selectedImageBox.dispose();
+                this._selectedImageBox = null;
+                this._contentArea.dispose();
+                this._contentArea = null;
             }
-            _super.prototype.disposeSelfAsset.call(this);
+            _super.prototype.dispose.call(this);
         };
         UIList.prototype.inEditorInit = function () {
             this.overImageURL = "asset/image/picture/control/uilistover.png";
@@ -69230,10 +70008,6 @@ var UIComponent;
                     if (!classObj)
                         classObj = window["GUI_" + v];
                     this._itemModelClass = classObj;
-                    if (this.__currentLoadUIAsset) {
-                        AssetManager.disposeUIAsset(this.__currentLoadUIAsset);
-                    }
-                    this.__currentLoadUIAsset = v;
                     AssetManager.preLoadUIAsset(v, Callback.New(function () {
                         _this.event(EventObject.LOADED);
                     }, this), true, true);
@@ -69820,6 +70594,12 @@ var AnimationAnimationLayer = (function (_super) {
         frame.scaleX = tween(t, pf.scaleX, nf.scaleX - pf.scaleX, 1);
         frame.scaleY = tween(t, pf.scaleY, nf.scaleY - pf.scaleY, 1);
         return frame;
+    };
+    AnimationAnimationLayer.prototype.dispose = function () {
+        if (this._animationInstance)
+            this._animationInstance.dispose();
+        this._animationInstance = null;
+        _super.prototype.dispose.call(this);
     };
     return AnimationAnimationLayer;
 }(AnimationDisplayLayer));
@@ -70458,8 +71238,15 @@ var SinglePlayerGame = (function () {
         }
         else {
             url = SinglePlayerGame.toWebSaveFileURL(url);
-            var saveData = LocalStorage.getJSON(url);
-            complete.delayRun(0, null, [saveData]);
+            if (IndexedDBManager.support && IndexedDBManager.used) {
+                IndexedDBManager.getIndexDBJson(url, function (value) {
+                    complete.delayRun(0, null, [value]);
+                });
+            }
+            else {
+                var saveData = LocalStorage.getJSON(url);
+                complete.delayRun(0, null, [saveData]);
+            }
         }
     };
     SinglePlayerGame.disposeSaveFile = function (url, force) {
@@ -71033,6 +71820,27 @@ var layer3Test;
 function main() {
     Config.SINGLE_PLAYER_CORE = true;
     ClientMain.prototype["initOver"] = function () {
+        if (IndexedDBManager && IndexedDBManager.support) {
+            if (window.name != null && os.platform == 0) {
+                try {
+                    var parentInfo = JSON.parse(window.name);
+                    IndexedDBManager.databaseName = parentInfo.id;
+                    IndexedDBManager.used = true;
+                }
+                catch (e) {
+                    IndexedDBManager.used = false;
+                }
+            }
+            else {
+                if (Config.gameSID) {
+                    IndexedDBManager.databaseName = Config.gameSID.toString();
+                    IndexedDBManager.used = true;
+                }
+                else {
+                    IndexedDBManager.used = false;
+                }
+            }
+        }
         Config.TILE_SPLIT_SIZE_LOCK = true;
         SinglePlayerGame.init(Callback.New(function () {
             EventUtils.happen(ClientWorld, ClientWorld.EVENT_BEFORE_INITED);

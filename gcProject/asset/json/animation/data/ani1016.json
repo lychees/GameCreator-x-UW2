@@ -25,7 +25,8 @@
                     "rotation": 0,
                     "alpha": 1,
                     "scaleX": 1,
-                    "scaleY": 1
+                    "scaleY": 1,
+                    "frameinterpolationEnabled": true
                 }
             ],
             "isHitEffect": false,
@@ -53,8 +54,9 @@
                     "y": 0,
                     "rotation": 0,
                     "alpha": 1,
-                    "scaleX": 1,
-                    "scaleY": 1
+                    "scaleX": 0.5,
+                    "scaleY": 0.5,
+                    "frameinterpolationEnabled": true
                 },
                 {
                     "index": 18,
@@ -72,9 +74,10 @@
                     "y": 0,
                     "rotation": 0,
                     "alpha": 1,
-                    "scaleX": 1,
-                    "scaleY": 1,
-                    "signalId": 0
+                    "scaleX": 0.5,
+                    "scaleY": 0.5,
+                    "signalId": 0,
+                    "frameinterpolationEnabled": true
                 }
             ],
             "isHitEffect": false,
